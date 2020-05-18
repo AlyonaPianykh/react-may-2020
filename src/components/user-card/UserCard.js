@@ -1,6 +1,8 @@
 import React from 'react';
 
-//todo здесь нужно сделать импорт стилей из './UserCard.scss'
+import {usersList} from "../app/App";
+
+import './UserCard.scss';
 
 
 // todo здесь нужно сделать экспорт функии под названием UserCard с аргументом props
@@ -15,3 +17,20 @@ import React from 'react';
 //  этот div будет содержать:
 //  - блок h4 с классом card-title, он должен вывести имя и фамилию (first_name, last_name)
 //  - блок div c классом "card-text", содержащий 2 div блока для поля email и поля address
+export const UserCard = (props) => {
+    const {usersList} = props;
+    if (!usersList) return null;
+
+    return (
+        <div className="may-user-card card">
+            <img className="may-user-card-avatar rounded-circle" src={usersList._links.avatar.href} alt=""/>
+            <div className="card-body">
+                <h4 className="card-title">{usersList.first_name} {usersList.last_name}</h4>
+                <div className="card-text">
+                    <div>{usersList.email}</div>
+                    <div>{usersList.address}</div>
+                </div>
+            </div>
+        </div>
+    )
+}
