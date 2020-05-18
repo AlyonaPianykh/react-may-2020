@@ -21,7 +21,7 @@ export const UserCard = (props)=>{
             {/*//  этот div будет содержать:*/}
             {/*//  - блок h4 с классом card-title, он должен вывести имя и фамилию (first_name, last_name)*/}
             <h4 className='card-title'>{first_name} {last_name}</h4>
-            {/*//  - блок div c классом "card-text", содержащий 2 div блока для поля email и поля address*/}
+            {/*//  - блок div c классом "card-text", содержащий 2 div блока для поля email и поля address */}
             <div className='card-text'>
                 <div>{email}</div>
                 <div>{address}</div>
