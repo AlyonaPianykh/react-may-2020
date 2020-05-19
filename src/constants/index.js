@@ -48,7 +48,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1341"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?87340"
+        "href": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.wallpaperflare.com%2Fanime-anime-girls-natalia-poklonskaya-short-hair-blonde-wallpaper-cthen&psig=AOvVaw3gENmSiTZMFgpV5I1Pn1Ph&ust=1589986546150000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjsotKXwOkCFQAAAAAdAAAAABAD"
       }
     }
   },
