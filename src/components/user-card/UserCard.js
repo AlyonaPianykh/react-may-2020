@@ -7,7 +7,8 @@ export const UserCard= (props)=>{
 
     const {first_name, last_name, email, address, _links} = user;
 
-    return (<div className='may-user-card card'>
+    return(
+    <div className='may-user-card card'>
             <img src = {_links.avatar.href} className='may-user-card-avatar rounded-circle'/>
             <div className='card-body'>
                 <h4 className='card-title'>{first_name } {last_name}</h4>
