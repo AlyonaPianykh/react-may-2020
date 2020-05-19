@@ -18,14 +18,10 @@ export const Footer = ()=>{
                     <img className="may-footer-social-media-icon" alt={socialMediaIcons[1].alt} src={socialMediaIcons[1].src}/>
                     <img className="may-footer-social-media-icon" alt={socialMediaIcons[2].alt} src={socialMediaIcons[2].src}/>
                 </div>
-
             </div>
             <div>All rights reserved. may-app © 2020</div>
-
         </div>
     )
-
-
 };
   // todo здесь нужно сделать экспорт функии под названием Footer
   //   она должна вернуть div с классом "may-footer"
