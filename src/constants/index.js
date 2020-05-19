@@ -1,7 +1,7 @@
 export const user = {
-  firstName: 'Poison',
-  lastName: 'Ivy',
-  avatar: 'https://www.iconeasy.com/icon/png/Movie%20%26%20TV/The%20Batman%20Vol.%202/Poison%20Ivy.png',
+  firstName: 'Smart',
+  lastName: 'OWU',
+  avatar: 'http://www.iconeasy.com/icon/64/Movie%20%26%20TV/Adium%20Eve%20Wall-E/Awake.png',
 };
 
 export const links = [{
@@ -27,6 +27,12 @@ export const socialMediaIcons = [{
   alt: 'twitter'
 }];
 
+export const author = {
+  name: 'Taras',
+  surName: 'Danylyshyn',
+  nickName: '{TRAINEE}',
+  gitHub: 'https://github.com/TarikoDan'
+};
 
 export const usersList = [
   {
