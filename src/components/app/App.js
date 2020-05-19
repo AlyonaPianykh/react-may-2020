@@ -19,11 +19,19 @@ function App() {
       <Header />
       <div>content will appear here soon</div>
       {/*  todo: здесь нужно использовать Footer по аналогии с Header */}
-      <UserCard user={usersList[0]}/>
+      {/*<UserCard user={usersList[0]}/>*/}
+      <div style={
+             {display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center"
+
+             }}>
+        {usersList.map((value)=>{
+            return <UserCard key={value.id} user={value} />
+        })}
+      </div>
       <Footer/>
       {/*  todo: здесь нужно использовать UserCard по аналогии с Header, как пропсу user передать usersList[0]*/}
-
-
     </div>
   );
 }

@@ -4,8 +4,8 @@ import './UserCard.scss'
 
 
 export const UserCard =  (props)=>{
-const {user} = props;
-if (!user) return null;
+    const {user} = props;
+    if (!user) return null;
 
 const  {_links, first_name, last_name, address, email} = user;
 
