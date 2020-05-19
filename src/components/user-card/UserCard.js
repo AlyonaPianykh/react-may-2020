@@ -15,3 +15,4 @@ import React from 'react';
 //  этот div будет содержать:
 //  - блок h4 с классом card-title, он должен вывести имя и фамилию (first_name, last_name)
 //  - блок div c классом "card-text", содержащий 2 div блока для поля email и поля address
+

@@ -4,7 +4,7 @@ import './UserInfo.scss';
 
 
 export const UserInfo = (props) => {
-  console.log(props)
+
 
   const { user } = props;
 
