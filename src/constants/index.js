@@ -2,9 +2,6 @@ export const user = {
   firstName: 'Poison',
   lastName: 'Ivy',
   avatar: 'https://www.iconeasy.com/icon/png/Movie%20%26%20TV/The%20Batman%20Vol.%202/Poison%20Ivy.png',
-  email: 'mvmoshchovskyi@gmail.com',
-  address: "Lviv",
-  _links: ''
 };
 
 export const links = [{

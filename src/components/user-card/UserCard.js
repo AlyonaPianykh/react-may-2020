@@ -2,6 +2,7 @@ import React from 'react';
 
 //todo здесь нужно сделать импорт стилей из './UserCard.scss'
 import './UserCard.scss';
+import {links} from "../../constants";
 
 // todo здесь нужно сделать экспорт функии под названием UserCard с аргументом props
 //  нужно деструктуризировать объект props и достать из него переменную user
@@ -22,12 +23,12 @@ export const UserCard  = (props) => {
 
   if (!user) return null;
 
-  const { firstName, lastName, email, address, _links } = user;
+  const { first_name, last_name, email, address, _links} = user;
   return (
     <div className="may-user-card card">
-      <img src={avatar} className="may-user-card-avatar rounded-circle" />
+      <img src={user[1]}className="may-user-card-avatar rounded-circle" />
       <div className="card-body">
-        <h4 className="card-title">{firstName}, {lastName}</h4>
+        <h4 className="card-title">{first_name}, {last_name}</h4>
         <div className="card-text">
             <div>{email}</div>
             <div>{address}</div>
