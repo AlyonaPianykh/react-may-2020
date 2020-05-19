@@ -17,10 +17,11 @@ function App() {
         <div className="App">
             <Header/>
             <div>content will appear here soon</div>
-            <Footer/>
+            <UserCard user={usersList[0]}/>
+
 
             {/*  todo: здесь нужно использовать UserCard по аналогии с Header, как пропсу user передать usersList[0]*/}
-            <UserCard usersList={usersList[0]}/>
+            <Footer/>
         </div>
     );
 }

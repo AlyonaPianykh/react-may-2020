@@ -16,8 +16,8 @@ import './Footer.scss';
 export const Footer = (props) => {
     return (
         <div className="may-footer">
+
             <div className="may-footer-content">
-                <div>All rights reserved. may-app © 2020</div>
                 <div>Some text about authors</div>
                 <div className="may-footer-social-media-wrapper">
                     <img className="may-footer-social-media-icon" src={socialMediaIcons[0].src}
@@ -28,7 +28,8 @@ export const Footer = (props) => {
                          alt={socialMediaIcons[2].alt}/>
                 </div>
             </div>
-
+            <div>All rights reserved. may-app © 2020</div>
         </div>
+
     );
 }
