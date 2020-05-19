@@ -14,6 +14,7 @@ import './Footer.scss'
   //   и в пропсу alt должен быть записан alt из соответствующего объекта в socialMediaIcons массиве
 export const Footer = (props) => {
     return (
+
         <div className = 'may-footer'>
             <div className = "may-footer-content">
             <div>Some text about authors</div>
