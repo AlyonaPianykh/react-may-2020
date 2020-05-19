@@ -5,7 +5,6 @@ import { Header } from '../header/HeaderFromLecture';
 
 // todo: здесь нужно сделать импорт usersList из '../../constants'
 // todo: здесь нужно сделать импорт UserCard из '../user-card/UserCard'
-
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Footer} from "../footer/Footer";

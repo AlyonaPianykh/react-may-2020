@@ -11,6 +11,7 @@ import './Footer.scss';
   //   второй будет иметь класс "may-footer-social-media-wrapper", в него будут вложены 3 блока img в соответствии с socialMediaIcons
   //   каждый img должен иметь класс "may-footer-social-media-icon" и в пропсу src должен быть записан src из соответствующего объекта в socialMediaIcons массиве
   //   и в пропсу alt должен быть записан alt из соответствующего объекта в socialMediaIcons массиве
+
 export const Footer = () => {
     return (
         <div className="may-footer">
