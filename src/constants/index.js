@@ -47,15 +47,15 @@ export const usersList = [
     "address": "3565 Ambrose Dale\nStarkmouth, FL 26307-0824",
     "status": "inactive",
     "_links": {
-      "self": {
-        "href": "https://gorest.co.in/public-api/users/1341"
-      },
-      "edit": {
-        "href": "https://gorest.co.in/public-api/users/1341"
-      },
-      "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?87340"
-      }
+        "self": {
+          "href": "https://gorest.co.in/public-api/users/1341"
+        },
+        "edit": {
+          "href": "https://gorest.co.in/public-api/users/1341"
+        },
+        "avatar": {
+          "href": "https://lorempixel.com/250/250/people/?87340"
+        }
     }
   },
   {
