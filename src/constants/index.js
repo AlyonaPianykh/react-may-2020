@@ -48,7 +48,9 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1341"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?87340"
+        //link not work, so I added my
+        // "href": "https://lorempixel.com/250/250/people/?87340"
+        "href": "https://lh3.googleusercontent.com/proxy/6WXFTJCalZaw7spX4qMD-yJqfn07spYG3-zH4a22vo4HxCgaTDDeFqHmol5_WYVxu73rr2dnRRiMi0jJGCUI36xPRxOkP5iQHPWrh3coOrPB7LOo-byH2ZSInAjbAm0AOofsI2KnxiMJ-w"
       }
     }
   },
