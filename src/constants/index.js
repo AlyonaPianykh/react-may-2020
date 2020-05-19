@@ -48,7 +48,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1341"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?87340"
+        "href": "https://i.pinimg.com/originals/4b/1d/11/4b1d11587776cdda3423684ff74f2660.jpg"
       }
     }
   },
