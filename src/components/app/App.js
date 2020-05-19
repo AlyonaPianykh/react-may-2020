@@ -19,14 +19,10 @@ function App() {
     <div className="App">
       <Header />
       <div>content will appear here soon</div>
-      {
           /*  todo: здесь нужно использовать Footer по аналогии с Header */
-          <Footer />
-      }
-      {
           /*  todo: здесь нужно использовать UserCard по аналогии с Header, как пропсу user передать usersList[0]*/
-          <UserCard user={usersList[0]}/>
-      }
+        <UserCard user={usersList[0]}/>
+        <Footer />  
     </div>
   );
 }
