@@ -3,7 +3,6 @@ import React from 'react';
 import {socialMediaIcons} from "../../constants";
 //todo здесь нужно сделать импорт стилей из './Footer.scss'
 import './Footer.scss';
-
   // todo здесь нужно сделать экспорт функии под названием Footer
   //   она должна вернуть div с классом "may-footer"
   //   в котором будет 2 div блока: 1й с классом "may-footer-content", второй будет без класса но с текстом 'All rights reserved. may-app © 2020'

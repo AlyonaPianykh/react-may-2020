@@ -20,7 +20,6 @@ function App() {
         <Footer />
       {/*  todo: здесь нужно использовать UserCard по аналогии с Header, как пропсу user передать usersList[0]*/}
         <UserCard user={usersList[0]}/>
-
     </div>
   );
 }
