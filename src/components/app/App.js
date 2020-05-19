@@ -12,16 +12,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
-      <Header />
-      {/*<div>content will appear here soon</div>*/}
-      {/*  todo: здесь нужно использовать Footer по аналогии с Header */}
-      <Footer/>
-      {/*  todo: здесь нужно использовать UserCard по аналогии с Header, как пропсу user передать usersList[0]*/}
-      <UserCard user = {usersList} n={0}/>
-      {/*<UserCard user = {usersList} n={1}/>*/}
-      {/*<UserCard user = {usersList} n={2}/>*/}
-      {/*<UserCard user = {usersList} n={3}/>*/}
-
+        <Header />
+        {/*<div>content will appear here soon</div>*/}
+        {/*  todo: здесь нужно использовать UserCard по аналогии с Header, как пропсу user передать usersList[0]*/}
+        <UserCard user = {usersList} n={0}/>
+        <UserCard user = {usersList} n={1}/>
+        <UserCard user = {usersList} n={2}/>
+        <UserCard user = {usersList} n={3}/>
+        {/*  todo: здесь нужно использовать Footer по аналогии с Header */}
+        <Footer/>
     </div>
   );
 }
