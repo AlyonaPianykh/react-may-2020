@@ -10,8 +10,9 @@ function App() {
     return (
         <div className="App">
             <Header />
-            <div>content will appear here soon</div>
+
             <UserCard user={usersList[0]} />
+
             <Footer />
         </div>
     );
