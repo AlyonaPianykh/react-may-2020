@@ -1,0 +1,14 @@
+.user-info{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  &-avatar{
+    width: 60px;
+    height: 60px;
+  }
+  &-details{
+    font-weight: bold;
+    color: darkslategrey;
+  }
+}

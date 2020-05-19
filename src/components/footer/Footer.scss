@@ -1,0 +1,23 @@
+.my-footer{
+  border-top: 1px solid grey;
+  padding: 10px 0px;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  &-content{
+    display: flex;
+    justify-content: space-between;
+  }
+  &-social-media {
+    &-wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-icon {
+      width: 25px;
+      height: 25px;
+      margin: 0 10px;
+    }
+  }
+}
