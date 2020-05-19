@@ -1,7 +1,8 @@
 import React from 'react';
 
 //todo здесь нужно сделать импорт стилей из './UserCard.scss'
-
+import './UserCard.scss';
+import {links} from "../../constants";
 
 // todo здесь нужно сделать экспорт функии под названием UserCard с аргументом props
 //  нужно деструктуризировать объект props и достать из него переменную user
@@ -15,3 +16,26 @@ import React from 'react';
 //  этот div будет содержать:
 //  - блок h4 с классом card-title, он должен вывести имя и фамилию (first_name, last_name)
 //  - блок div c классом "card-text", содержащий 2 div блока для поля email и поля address
+
+export const UserCard  = (props) => {
+
+  const { user } = props;
+
+  if (!user) return null;
+
+  const { first_name, last_name, email, address,
+      _links:{avatar:{href}}} = user;
+
+  return (
+    <div className="may-user-card card">
+      <img src={href}className="may-user-card-avatar rounded-circle" alt = "avatar"/>
+      <div className="card-body">
+        <h4 className="card-title">{first_name}, {last_name}</h4>
+        <div className="card-text">
+            <div>{email}</div>
+            <div>{address}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
