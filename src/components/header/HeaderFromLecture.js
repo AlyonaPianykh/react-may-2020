@@ -6,6 +6,9 @@ import { UserInfo } from '../user-info/UserInfoFromLecture';
 
 import './Header.scss';
 
+import {UsersHoverList} from '../users-hover-menu/Users-hover-list'
+import {usersList} from '../../constants'
+
 export const Header = (props) => {
   console.log(links);
   return (
@@ -18,6 +21,7 @@ export const Header = (props) => {
         </div>
         <div className="nav-item">
           <a href={links[1].url} className="may-header-links-wrapper-link nav-link">{links[1].name}</a>
+            <UsersHoverList users={usersList}/>
         </div>
         <div className="nav-item">
           <a href={links[2].url} className="may-header-links-wrapper-link nav-link">{links[2].name}</a>

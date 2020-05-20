@@ -1,7 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+.cards-section{
+  background-color: aquamarine;
+}
+.cards-container {
+  display: flex;
+  justify-content: space-around;
+  white-space: normal;
+  flex-wrap: wrap;
+}
+
 .may-user-card {
+  width: 28%;
   max-width: 300px;
   margin: 10px 20px;
   padding: 10px;
+  background-color: pink !important;
 
   &-avatar {
     width: 75px;

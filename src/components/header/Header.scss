@@ -1,3 +1,10 @@
+.may-header .nav-item {
+  position: relative;
+}
+.may-header .nav-item:hover .users-menu {
+  display: block;
+}
+
 .may-header {
   padding: 10px 20px;
   width: 100%;
@@ -5,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: hotpink !important;
 
   &-logo {
     height: 60px;
@@ -15,6 +23,9 @@
 
     &-link {
       margin: 0 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: mediumvioletred;
     }
   }
 }
