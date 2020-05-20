@@ -1,8 +1,27 @@
 import React from 'react';
 
 //todo здесь нужно сделать импорт стилей из './UserCard.scss'
+import './UserCard.scss';
 
-
+export const UserCard = (props) => {
+	const {user} = props;
+	const {first_name, last_name, email, address, _links} = user;
+	if (!user) return null;
+	return (
+		<div className="may-user-card card">
+			<img src={_links.avatar.href} className="may-user-card-avatar rounded-circle" />
+			<div className="card-body">
+				<h4 className="card-title">
+					<p>{first_name} {last_name}</p>
+				</h4>
+				<div className="card-text">
+					<p>{email}</p>
+					<p>{address}</p>
+				</div>
+			</div>
+		</div>
+	)
+}
 // todo здесь нужно сделать экспорт функии под названием UserCard с аргументом props
 //  нужно деструктуризировать объект props и достать из него переменную user
 //  детальнее про деструктуризацию тут: https://learn.javascript.ru/destructuring#destrukturizatsiya-obekta
