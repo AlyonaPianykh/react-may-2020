@@ -1,8 +1,8 @@
 import React from 'react';
-import {links, socialMediaIcons, user} from '../../constants';
+import {socialMediaIcons} from '../../constants';
+// import Logo from "../../assets/react.png";
+// import {UserInfo} from "../user-info/UserInfoFromLecture";
 import './Footer.scss';
-import Logo from "../../assets/react.png";
-import {UserInfo} from "../user-info/UserInfoFromLecture";
 //todo здесь нужно сделать импорт socialMediaIcons из файла '../../constants'
 //todo здесь нужно сделать импорт стилей из './Footer.scss'
 export const Footer = (props) => {
@@ -12,13 +12,13 @@ export const Footer = (props) => {
                 <div>Some text about authors</div>
                 <div className="may-footer-social-media-wrapper">
                     <div>
-                        <img className='may-footer-social-media-icon' src="https://cdn1.iconfinder.com/data/icons/social-media-2285/512/Colored_Facebook3_svg-256.png" alt="facebook"/>
+                        <img className='may-footer-social-media-icon' src={socialMediaIcons[0].src} alt={socialMediaIcons[0].alt}/>
                     </div>
                     <div>
-                        <img className='may-footer-social-media-icon' src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Instagram_colored_svg_1-256.png" alt="instagram"/>
+                        <img className='may-footer-social-media-icon' src={socialMediaIcons[1].src} alt={socialMediaIcons[1].alt}/>
                     </div>
                     <div>
-                        <img className='may-footer-social-media-icon' src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Twitter3_colored_svg-256.png" alt="twitter"/>
+                        <img className='may-footer-social-media-icon' src={socialMediaIcons[2].src} alt={socialMediaIcons[2].alt}/>
                     </div>
                 </div>
             </div>
