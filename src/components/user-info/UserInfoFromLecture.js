@@ -14,7 +14,7 @@ export const UserInfo = (props) => {
 
   return (
     <div className="user-info">
-      <img src={avatar} className="user-info-avatar rounded-circle" />
+      <img src={avatar} className="user-info-avatar rounded-circle" alt='Avatar'/>
       <div className="user-info-details">
         <span>{firstName} </span>
         <span>{lastName}</span>
