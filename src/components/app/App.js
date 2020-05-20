@@ -8,6 +8,9 @@ import { Header } from '../header/HeaderFromLecture';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Footer} from "../footer/Footer";
+import {usersList} from '../../constants'
+import {UserCard} from '../user-card/UserCard'
 
 function App() {
   return (
@@ -15,8 +18,9 @@ function App() {
       <Header />
       <div>content will appear here soon</div>
       {/*  todo: здесь нужно использовать Footer по аналогии с Header */}
-
+        <Footer/>
       {/*  todo: здесь нужно использовать UserCard по аналогии с Header, как пропсу user передать usersList[0]*/}
+        <UserCard user = {usersList[0]} />
     </div>
   );
 }
