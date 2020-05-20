@@ -4,8 +4,9 @@ import '../footer/Footer.scss';
 import '../user-card/UserCard.scss';
 import {Footer} from '../footer/Footer';
 import {Header} from '../header/HeaderFromLecture';
-import {usersList} from '../../constants';
+import {links,usersList} from '../../constants';
 import {UserCard} from '../user-card/UserCard';
+
 
 // todo: здесь нужно сделать импорт Footer из '../footer/Footer'
 

@@ -1,9 +1,7 @@
 import React from 'react';
 import { links, user } from '../../constants';
 import Logo from '../../assets/react.png';
-
 import { UserInfo } from '../user-info/UserInfoFromLecture';
-
 import './Header.scss';
 
 export const Header = (props) => {

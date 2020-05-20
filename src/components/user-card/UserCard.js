@@ -1,7 +1,6 @@
 import React from 'react';
 //todo здесь нужно сделать импорт стилей из './UserCard.scss'
 import './UserCard.scss';
-import {links,user} from "../../constants";
 
     export const UserCard=(props)=>{
         console.log(props);
@@ -22,7 +21,7 @@ import {links,user} from "../../constants";
                 </div>
             </div>
         </div>
-        )
+        );
 }
 
 
