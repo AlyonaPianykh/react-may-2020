@@ -19,10 +19,9 @@ function App() {
             {/*  todo: здесь нужно использовать Footer по аналогии с Header */}
             <Footer/>
             {/*  todo: здесь нужно использовать UserCard по аналогии с Header, как пропсу user передать usersList[0]*/}
-            {usersList.map(value=>{
-                return (<UserCard key={value.id} user={value}/>)
-            }) }
-
+            <UserCard user={usersList[0]}> </UserCard>
+            <UserCard user={usersList[1]}> </UserCard>
+            <UserCard user={usersList[2]}> </UserCard>
         </div>
 
     );

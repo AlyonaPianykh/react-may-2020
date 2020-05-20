@@ -18,17 +18,12 @@ import {links} from "../../constants";
 //  - блок div c классом "card-text", содержащий 2 div блока для поля email и поля address
 
 export const UserCard  = (props) => {
-
   const { user } = props;
-
   if (!user) return null;
-
-  const { first_name, last_name, email, address,
-      _links:{avatar:{href}}} = user;
-
+  const { first_name, last_name, email, address, _links} = user;
   return (
     <div className="may-user-card card">
-      <img src={href}className="may-user-card-avatar rounded-circle" alt = "avatar"/>
+      <img src={_links.avatar.href} className="may-user-card-avatar rounded-circle" alt = "avatar"/>
       <div className="card-body">
         <h4 className="card-title">{first_name}, {last_name}</h4>
         <div className="card-text">
