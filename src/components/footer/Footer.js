@@ -2,7 +2,6 @@ import React from 'react';
 
 //todo здесь нужно сделать импорт socialMediaIcons из файла '../../constants'
 import {socialMediaIcons} from '../../constants';
-
 //todo здесь нужно сделать импорт стилей из './Footer.scss'
 import './Footer.scss';
 
