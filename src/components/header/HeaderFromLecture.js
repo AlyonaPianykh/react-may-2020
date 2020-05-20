@@ -15,8 +15,8 @@ export const Header = (props) => {
                 {/* todo: переписать рендеринг этих ссылок используя links.map метод */}
                 {links.map((link, id) => {
                         return (
-                            <div className="nav-item">
-                                <a key={id} href={link.url}
+                            <div key={id} className="nav-item">
+                                <a  href={link.url}
                                    className="may-header-links-wrapper-link nav-link">{link.name}</a>
                             </div>
                         )
