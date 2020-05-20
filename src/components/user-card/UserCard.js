@@ -15,8 +15,8 @@ export const UserCard = (props) => {
 					<p>{first_name} {last_name}</p>
 				</h4>
 				<div className="card-text">
-					<p>{email}</p>
-					<p>{address}</p>
+					<div>{email}</div>
+					<div>{address}</div>
 				</div>
 			</div>
 		</div>
