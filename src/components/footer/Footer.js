@@ -5,7 +5,6 @@ import { socialMediaIcons } from "../../constants";
 //todo здесь нужно сделать импорт стилей из './Footer.scss'
 import './Footer.scss'
 
-
 export const Footer = () => {
         return (
             <div className='may-footer'>
