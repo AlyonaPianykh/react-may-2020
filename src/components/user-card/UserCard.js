@@ -23,10 +23,12 @@ export const UserCard  = (props) => {
 
   if (!user) return null;
 
-  const { first_name, last_name, email, address, _links} = user;
+  const { first_name, last_name, email, address,
+      _links:{avatar:{href}}} = user;
+
   return (
     <div className="may-user-card card">
-      <img src={user[1]}className="may-user-card-avatar rounded-circle" />
+      <img src={href}className="may-user-card-avatar rounded-circle" alt = "avatar"/>
       <div className="card-body">
         <h4 className="card-title">{first_name}, {last_name}</h4>
         <div className="card-text">

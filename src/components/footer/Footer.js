@@ -24,22 +24,24 @@ export const Footer = (props) => {
                 <div>"Some text about authors"</div>
 
                 <div className="may-footer-social-media-wrapper">
-                    <div className="may-footer-social-media-icon">
-                        <img src={socialMediaIcons [0]} className="may-header-logo" alt: 'facebook'/>
-                    </div>
-                    <div className="may-footer-social-media-icon">
-                        <img src={socialMediaIcons [1]} className="may-header-logo" alt: 'instagram'/>
-                    </div>
-                    <div className="may-footer-social-media-icon">
-                        <img src={socialMediaIcons [2]} className="may-header-logo" alt: 'twitter'/>
-                    </div>
+
+                    {socialMediaIcons.map((value, index) => {
+                        return < img key={index} className="may-footer-social-media-icon" src={value.src}
+                                     alt={value.alt}/>
+                    })}
+
+                    {/*<img className="may-footer-social-media-icon" src={socialMediaIcons [0]} alt: 'facebook'/>*/}
+                    {/*<img className="may-footer-social-media-icon" src={socialMediaIcons [1]} alt: 'instagram'/>*/}
+                    {/*<img className="may-footer-social-media-icon" src={socialMediaIcons [2]} alt: 'twitter'/>*/}
+
+                </div>
+
+                <div>
+                    'All rights reserved. may-app © 2020'
                 </div>
             </div>
 
-            <div>
-                'All rights reserved. may-app © 2020'
-            </div>
-
-        </div>
-    );
+        </div>)
+        ;
 };
+
