@@ -7,19 +7,23 @@ import { Footer } from '../footer/Footer';
 import {usersList} from '../../constants';
 // todo: здесь нужно сделать импорт UserCard из '../user-card/UserCard'
 import { UserCard} from "../user-card/UserCard";
-
-
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-console.log(usersList)
 
 function App() {
   return (
     <div className="App">
       <Header />
       <div>content will appear here soon</div>
-        <UserCard user={usersList[0]}/>
+        <div className={"App-user-cards-container"}>
+            {
+                usersList.map((item, index) => {
+                    return (
+                        <UserCard key={index} user={usersList[index]}/>
+                    );
+                })
+            }
+        </div>
         <Footer />
     </div>
   );
