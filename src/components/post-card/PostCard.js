@@ -3,7 +3,7 @@ import DefaultImg from '../../assets/default-empty-img.png';
 import {Comment} from "../comment/Comment";
 import './PostCard.scss';
 
-export function PostCard({post,comments,hasImage}) {
+export function PostCard({post,comments,author,hasImage}) {
     const { title, body } = post;
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
@@ -27,6 +27,13 @@ export function PostCard({post,comments,hasImage}) {
               {body}
             </div>
         </div>
+
+        <blockquote className="blockquote">
+            <p className="mb-0">  {author.first_name}  {author.last_name}</p>
+            <footer className="blockquote-footer"> is the author of an article
+                <cite title="Source Title">    well known to assholes... </cite>
+            </footer>
+        </blockquote>
 
         {comments.map(value => {
             return (

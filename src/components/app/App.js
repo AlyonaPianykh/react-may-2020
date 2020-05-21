@@ -19,10 +19,11 @@ function App() {
 
         <div className="d-flex posts-container posts">
             {
-              postsList.slice(0,6).map((item, index) => {
+              postsList.slice(0,12).map((item, index) => {
                 const odd = index % 2 !== 0;
                 const comments = allComments.filter(value => value.post_id === item.id);
-                  return <Card key={item.id} post={item} comments={comments} hasImage={odd} />
+                const user = usersList.find(value => value.id === item.user_id)
+                  return <Card key={item.id} post={item} comments={comments} author={user} hasImage={odd} />
               })
             }
         </div>
