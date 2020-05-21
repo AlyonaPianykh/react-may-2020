@@ -1,7 +1,6 @@
 import React from 'react';
 import { socialMediaIcons } from '../../constants';
 import './Footer.scss';
-
 export function Footer(props) {
   return (
     <div className="may-footer">
