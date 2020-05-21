@@ -403,3 +403,153 @@ export const postsList = [
     }
   }
 ];
+
+export const allComments = [ {
+  "id": "2553",
+  "post_id": "70",
+  "name": "Nakia Tillman",
+  "email": "berenice.hayes@mosciski.com",
+  "body": "In aut nihil consectetur totam ipsam ipsa ratione eveniet. Aut et nemo quae aut quis rerum distinctio. Vitae nam nisi minima in excepturi saepe asperiores. Cumque sit et at laudantium iusto voluptate aut.\n\nNon aliquid laudantium ea et est et. In mollitia nihil nam. Iure est et incidunt. Ratione omnis tempore omnis aut nam.\n\nAtque labore ut magni cumque odio quis necessitatibus. Ut recusandae repellat sed officiis. Non qui ea dolor illum illo.",
+  "_links": {
+    "self": {
+      "href": "https://gorest.co.in/public-api/comments/2553"
+    },
+    "edit": {
+      "href": "https://gorest.co.in/public-api/comments/2553"
+    }
+  }
+},
+  {
+    "id": "4886",
+    "post_id": "70",
+    "name": "Angeline O'Keefe",
+    "email": "arch.jenkins@hermann.org",
+    "body": "Soluta sunt adipisci culpa optio sit quaerat deleniti. Et officiis facere sed dolore necessitatibus omnis et.\n\nCum quidem quia adipisci. Ipsum laudantium ab tenetur est qui vel. Aspernatur rerum est sequi libero perspiciatis saepe.\n\nAd velit veritatis aut quaerat quis. Exercitationem ut ea et temporibus sit commodi. Sint aspernatur nisi enim sit cumque dolorum.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/4886"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/4886"
+      }
+    }
+  },  {
+    "id": "808",
+    "post_id": "71",
+    "name": "Rashawn Johnston MD",
+    "email": "ayana99@gmail.com",
+    "body": "Nihil eum est est vitae porro laudantium. Consequatur aut eius corporis error. Sed et suscipit est et iste repellat rerum ut.\n\nFacere adipisci corporis vitae aut praesentium corrupti. Voluptatem nobis rerum quae voluptatem omnis. Nesciunt consequatur molestias rerum pariatur ex ipsa aut voluptas.\n\nEx eveniet omnis omnis aut fugiat sit. Quaerat sed consequatur sed voluptatem. Non et eum nisi ea aliquid est. Ipsa quisquam at omnis. Explicabo rerum unde fugit voluptate dicta optio voluptatum nostrum.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/808"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/808"
+      }
+    }
+  },
+  {
+    "id": "5498",
+    "post_id": "71",
+    "name": "Mrs. Anabelle Borer",
+    "email": "mrice@gmail.com",
+    "body": "Provident doloremque ea ut. Nulla quidem aliquid id qui. Dolorem suscipit voluptate veritatis aut quo minima.\n\nQuas pariatur rem deserunt aut sed sed. Sequi nihil sint ratione officiis libero sint rerum id. Vel non quia tempora optio sed officiis. Sunt natus vel cumque esse vel commodi corporis.\n\nIpsa architecto est odio eveniet. Qui officia temporibus consequuntur rerum repellendus. Earum corporis doloremque est sed id consequuntur dolorum et. Est velit consequatur praesentium.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/5498"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/5498"
+      }
+    }
+  },
+  {
+    "id": "1184",
+    "post_id": "83",
+    "name": "Prof. Henry Eichmann",
+    "email": "feil.chester@harris.org",
+    "body": "Repellendus ut vero accusamus suscipit aut rerum. Nam est doloremque in vel. Voluptatem unde accusamus sint velit non. Quas ea eos molestias quisquam illum et.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/1184"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/1184"
+      }
+    }
+  },
+  {
+    "id": "6259",
+    "post_id": "83",
+    "name": "Mackenzie Krajcik PhD",
+    "email": "beier.cleta@yahoo.com",
+    "body": "Et optio excepturi dignissimos officiis quam autem. Qui deserunt eveniet magnam qui asperiores. Cupiditate est impedit placeat.\n\nVel aut sint illo illo. Hic harum occaecati tempore exercitationem vero eaque non. Voluptatem ipsum blanditiis minima ipsam at animi vitae. Accusantium quis recusandae voluptatem vel officiis iste autem.\n\nLabore at rerum vel dolorem. Quas eum fugit culpa.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/6259"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/6259"
+      }
+    }
+  },
+  {
+    "id": "214",
+    "post_id": "110",
+    "name": "Magnus Wilderman",
+    "email": "collier.maximo@satterfield.info",
+    "body": "Eius qui officia quidem veniam optio cumque sint. Magni in architecto aperiam nisi nam maxime. Quia necessitatibus reiciendis et cumque et eum dolor. Dolores qui quia quis omnis optio.\n\nSapiente perferendis alias ipsam fugiat optio. Illum et aut hic maiores deleniti tempora. Velit iste voluptas nisi explicabo et atque. Ex aperiam voluptas aut voluptas.\n\nIure laborum voluptas et qui. Ut quo modi quibusdam voluptatem. Natus saepe exercitationem totam dolorum doloremque.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/214"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/214"
+      }
+    }
+  },
+  {
+    "id": "6464",
+    "post_id": "110",
+    "name": "Ellie Auer III",
+    "email": "aurelie46@yahoo.com",
+    "body": "Ut sed dignissimos eius sint dicta. Ut iste hic et ducimus velit dolor voluptas. Voluptatum totam in facilis rerum voluptate illo dolor. Aliquam omnis dolores maxime provident quia.\n\nRerum est aut nobis error ut. Sed laudantium vel pariatur nulla quia. Ipsa suscipit velit mollitia aspernatur.\n\nVoluptas perferendis quasi reiciendis. Aliquid consequuntur ipsa incidunt fuga qui.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/6464"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/6464"
+      }
+    }
+  },    {
+    "id": "468",
+    "post_id": "142",
+    "name": "Lisa Buckridge Jr.",
+    "email": "pearl.bailey@zemlak.com",
+    "body": "A maiores qui sit dolores sunt corrupti unde. Aut qui quis tempore quas nulla. Sunt in alias beatae sapiente.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/468"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/468"
+      }
+    }
+  },
+  {
+    "id": "3228",
+    "post_id": "142",
+    "name": "Curt Little",
+    "email": "rkunze@hotmail.com",
+    "body": "Ut expedita iure et soluta ut explicabo. Qui enim quos est eius architecto. Alias praesentium id id fugiat qui maiores.\n\nPerferendis quos laudantium suscipit dolor sapiente. Labore maxime voluptas in consequatur. Ea tempora id qui asperiores excepturi.",
+    "_links": {
+      "self": {
+        "href": "https://gorest.co.in/public-api/comments/3228"
+      },
+      "edit": {
+        "href": "https://gorest.co.in/public-api/comments/3228"
+      }
+    }
+  }
+];
