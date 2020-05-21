@@ -1,9 +1,11 @@
 import React from 'react';
 import DefaultImg from '../../assets/default-empty-img.png';
-import {Comment} from "../comment/Comment";
+import { Comment } from "../comment/Comment";
 import './PostCard.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function PostCard({post,comments,author,hasImage}) {
+
+export function PostCard({ post, comments, author, hasImage }) {
     const { title, body } = post;
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
@@ -12,7 +14,7 @@ export function PostCard({post,comments,author,hasImage}) {
 
         {hasImage && (
             <div className="may-post-card-img" id="my-block" onClick={() => {alert("its funny, isn't it?")}}>
-              <img src={kittyUrl} alt={'kitty'} />
+              <img src={ kittyUrl } alt={'kitty'} />
             </div>
         )}
         {!hasImage && (
@@ -22,26 +24,21 @@ export function PostCard({post,comments,author,hasImage}) {
         )}
 
         <div className="card-body">
-            <h4 className="card-title title">{title}</h4>
+            <h4 className="card-title title">{ title }</h4>
             <div className="card-text body">
-              {body}
+              { body }
             </div>
         </div>
 
-        <blockquote className="blockquote">
-            <p className="mb-0">  {author.first_name}  {author.last_name}</p>
-            <footer className="blockquote-footer"> is the author of an article
-                <cite title="Source Title">    well known to assholes... </cite>
-            </footer>
-        </blockquote>
+        <footer className="blockquote-footer"> { author.first_name }  { author.last_name }
+            <cite title="Source Title">   is the author of an article </cite>
+        </footer>
 
         {comments.map(value => {
             return (
-                <Comment key={value.id} comm={value}/>
+                <Comment key={ value.id } comm={ value }/>
             )
         })}
-
-
     {/*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
           можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
           как она будет выглядеть зависит от вашей фантазии
@@ -50,9 +47,7 @@ export function PostCard({post,comments,author,hasImage}) {
           email - почта автора комментария
           body - текст комментария
     */}
-
     </div>
   )
 }
-
 export default PostCard;

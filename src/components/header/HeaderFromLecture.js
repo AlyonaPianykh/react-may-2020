@@ -8,7 +8,7 @@ const Links = () => {
     return links.map(({url,name}, index) => {
         return (
             <div key={index} className={"nav-item"}>
-                <a key={index} href={url} className={"may-header-links-wrapper-link nav-link"}>{name}</a>
+                <a href={url} className={"may-header-links-wrapper-link nav-link"}>{name}</a>
             </div>
         )
     })
