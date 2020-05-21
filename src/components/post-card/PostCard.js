@@ -9,6 +9,8 @@ export function PostCard(props) {
   // todo: достать пропсу comments из props ниже в 9й строке
   const { post, hasImage, author, comments} = props;
   const { title, body } = post;
+  console.log(comments)
+
 
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
@@ -66,7 +68,14 @@ export function PostCard(props) {
           email - почта автора комментария
           body - текст комментария
     */}
-      <Comment comments={comments} />
+      <div className='comments'>
+          {comments.map(comment => {
+              return (
+                  <Comment comment={comment} key={comment.id} />
+              );
+          })}
+      </div>
+      {/*<Comment comments={comments} />*/}
       <div className="blockquote-footer">{author}</div>
     </div>
   );

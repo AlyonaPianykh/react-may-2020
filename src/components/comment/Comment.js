@@ -1,8 +1,7 @@
 import React from 'react';
 
-export const Comment = (props) => {
-    const { comments } = props;
-    const {name, email, body} = comments;
+export const Comment = ({comment}) => {
+    const {name, email, body} = comment;
 
     return (
         <div className="card-body">

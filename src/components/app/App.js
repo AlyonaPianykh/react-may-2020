@@ -55,8 +55,8 @@ function App() {
             //  для этого можно использовать метод массива filter
             //  передать этот массив в Card как пропсу под названиес comments
 
-              const comments = allComments.find(comment => comment.post_id === post.id);
-              if (!comments) return null;
+              const comments = allComments.filter(comment => comment.post_id === post.id);
+              if (!comments.length) return null;
 
               return <Card post={post} key={post.id} hasImage={odd} author={`${first_name} ${last_name}`} comments={comments} />
           })
