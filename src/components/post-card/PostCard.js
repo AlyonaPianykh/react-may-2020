@@ -1,6 +1,6 @@
 import React from 'react';
 import DefaultImg from '../../assets/default-empty-img.png';
-
+import {PostsComments} from '../comment/Comment';
 import './PostCard.scss';
 
 export function PostCard(props) {
@@ -43,20 +43,7 @@ export function PostCard(props) {
           name - имя автора комментария
           email - почта автора комментария
           body - текст комментария  */}
-            {
-                comments.map(item => {
-                    return (
-                        <div className='post-comment'>
-                            <span>Comment from: </span>
-                            <div>Name: {item.name}</div>
-                            <div>email: {item.email}</div>
-                            <div className='post-comment-body'>
-                                <p>{item.body}</p>
-                            </div>
-                        </div>
-                    );
-                })
-            }
+            <PostsComments comment={comments}/>
         </div>
     );
 }
