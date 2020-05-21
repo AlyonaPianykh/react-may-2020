@@ -1,5 +1,6 @@
 .may-post-card {
-  max-width: 300px;
+  flex-basis: 48%;
+  //max-width: 300px;
   margin: 10px;
 
 
@@ -9,7 +10,7 @@
     justify-content: center;
   }
   img {
-    height: 150px;
+    height: 200px;
   }
 
   .title {
@@ -19,5 +20,14 @@
   .body {
     display: block;
     overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
+}
+.comments {
+  margin-top: 10px;
+  background-color: darkgray;
+  padding: 10px;
 }

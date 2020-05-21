@@ -29,7 +29,7 @@
 }
 
 .posts-container {
-  flex-direction: column;
+  flex-direction: row;
 }
 
 @keyframes App-logo-spin {
