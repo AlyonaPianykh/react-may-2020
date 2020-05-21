@@ -136,7 +136,7 @@ export const postsList = [
       }
     }
   },
-  { 
+  {
     "id": "71",
     "user_id": "1342",
     "title": "Nihil illo magnam nesciunt. Quam in enim eveniet dicta voluptatem.",
