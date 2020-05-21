@@ -1,14 +1,14 @@
 import React from 'react';
 
 import DefaultImg from '../../assets/default-empty-img.png';
+import {Comment} from '../comment/comments'
 import './PostCard.scss';
 
 export function PostCard(props) {
   console.log(props);
   // todo: достать пропсу comments из props ниже в 9й строке
-  const { post, hasImage } = props;
+  const { post, hasImage, user, comments} = props;
 
-  console.log('hasImage', hasImage);
   const { title, body } = post;
 
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
@@ -59,7 +59,11 @@ export function PostCard(props) {
         </div>
       </div>
 
-    {/*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
+    {
+      comments.map((val, num) => {
+        return (<Comment comment={val}/>)
+      })
+      /*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
           можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
           как она будет выглядеть зависит от вашей фантазии
           Для каждого комментария должны быть выведены такие поля:
