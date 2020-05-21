@@ -2,11 +2,12 @@ import React from 'react';
 
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
+import {Comment} from '../comment/Comment'
 
 export function PostCard(props) {
-  console.log(props);
+  //console.log(props);
   // todo: достать пропсу comments из props ниже в 9й строке
-  const { post, hasImage } = props;
+  const { post, hasImage, author, comments } = props;
 
   console.log('hasImage', hasImage);
   const { title, body } = post;
@@ -59,6 +60,10 @@ export function PostCard(props) {
         </div>
       </div>
 
+      <div className="blockquote-footer">
+        {author}
+      </div>
+
     {/*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
           можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
           как она будет выглядеть зависит от вашей фантазии
@@ -67,6 +72,11 @@ export function PostCard(props) {
           email - почта автора комментария
           body - текст комментария
     */}
+      {
+        comments.map(value =>{
+          return <Comment comment={value}/>
+        })
+      }
 
     </div>
   );
