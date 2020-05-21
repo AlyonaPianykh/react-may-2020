@@ -13,7 +13,7 @@ function App() {
         <div className="App">
             <Header />
             <div className='d-flex'>
-                {usersList.map((user)=> <UserCard user={user}/>) }
+                {usersList.map((user)=> <UserCard key={user.id} user={user}/>) }
             </div>
             <Footer/>
         </div>
