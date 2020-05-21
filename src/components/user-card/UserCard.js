@@ -3,7 +3,6 @@ import React from 'react';
 //todo здесь нужно сделать импорт стилей из './UserCard.scss'
 import './UserCard.scss';
 
-
 export const UserCard = (props) => {
     const {user} = props;
     if (!user) return  null;

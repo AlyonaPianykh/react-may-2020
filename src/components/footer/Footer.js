@@ -11,9 +11,9 @@ export const Footer = (props) => {
             <div className="may-footer-content">
                 <div>Some text about authors</div>
                 <div className="may-footer-social-media-wrapper">
-                    {socialMediaIcons.map((item, index) => {
+                    {socialMediaIcons.map((icon, index) => {
                         return (
-                            <img key={index} src={socialMediaIcons[index].src} className="may-footer-social-media-icon" alt={socialMediaIcons[index].alt}/>
+                            <img key={index} src={icon.src} className="may-footer-social-media-icon" alt={icon.alt}/>
                         );
                     })}
                 </div>

@@ -17,9 +17,9 @@ function App() {
       <div>content will appear here soon</div>
         <div className={"App-user-cards-container"}>
             {
-                usersList.map((item, index) => {
+                usersList.map(user => {
                     return (
-                        <UserCard key={index} user={usersList[index]}/>
+                        <UserCard key={user.id} user={user}/>
                     );
                 })
             }

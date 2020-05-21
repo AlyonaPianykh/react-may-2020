@@ -11,10 +11,10 @@ export const Header = (props) => {
     <div className="may-header navbar">
       <img src={Logo} className="may-header-logo" />
       <div className="may-header-links-wrapper">
-          {links.map((item, index) => {
+          {links.map((link, index) => {
               return(
                   <div className="nav-item" key={index}>
-                      <a href={links[index].url} className="may-header-links-wrapper-link nav-link">{links[index].name}</a>
+                      <a href={link.url} className="may-header-links-wrapper-link nav-link">{link.name}</a>
                   </div>
               );
           })}
