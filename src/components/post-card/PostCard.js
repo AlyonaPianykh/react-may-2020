@@ -15,13 +15,13 @@ export function PostCard(props) {
                 <div className="may-post-card-img" id="my-block" onClick={() => {
                     alert('this post has a picture')
                 }}>
-                    <img src={kittyUrl}/>
+                    <img src={kittyUrl} alt='cat'/>
                 </div>
             )
             }
             {!hasImage && (
                 <div className="may-post-card-img">
-                    <img src={DefaultImg}/>
+                    <img src={DefaultImg} alt='no image'/>
                 </div>
             )}
 
@@ -47,10 +47,10 @@ export function PostCard(props) {
                 comments.map(item => {
                     return (
                         <div className='post-comment'>
+                            <span>Comment from: </span>
                             <div>Name: {item.name}</div>
                             <div>email: {item.email}</div>
                             <div className='post-comment-body'>
-                                <span>Comment: </span>
                                 <p>{item.body}</p>
                             </div>
                         </div>

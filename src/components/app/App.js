@@ -33,7 +33,6 @@ function App() {
                             return user.id === item.user_id
                         })
 
-
                         // todo: найти в массиве allComments комментарии, post_id которых = id поста  (т.е. в данном случае item.id)
                         //  для этого можно использовать метод массива filter
                         //  передать этот массив в Card как пропсу под названиес comments
