@@ -1,0 +1,14 @@
+.may-post-card{
+  max-width: 300px;
+  margin: 10px;
+
+  .title{
+    font-size: 16px
+  }
+
+  .body{
+    display: block;
+    overflow-wrap: break-word;
+
+  }
+}
