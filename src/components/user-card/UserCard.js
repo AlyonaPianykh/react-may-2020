@@ -11,13 +11,13 @@ export function UserCard(props) {
     return (
         <div key={user.id} className="may-user-card card">
 
-            <img src={user.avatar} alt="user avatar" className="may-user-card-avatar rounded-circle"/>
+            <img src={avatar.href} alt="user avatar" className="may-user-card-avatar rounded-circle"/>
 
             <div className="card-body">
-                <h4 className="card-title">{user.first_name} {user.last_name}</h4>
+                <h4 className="card-title">{first_name} {last_name}</h4>
                 <div className="card-text">
-                    <div>{user.email}</div>
-                    <div>{user.address}</div>
+                    <div>{email}</div>
+                    <div>{address}</div>
                 </div>
             </div>
         </div>
