@@ -4,7 +4,7 @@ import Logo from '../../assets/react.png';
 import { UserInfo } from '../user-info/UserInfoFromLecture';
 import './Header.scss';
 
-const Link = () => {
+const Links = () => {
     return links.map(({url,name}, index) => {
         return (
             <div key={index} className={"nav-item"}>
@@ -15,17 +15,16 @@ const Link = () => {
 };
 
 export const Header = (props) => {
-  // console.log(links);
   return (
     <div className="may-header navbar">
         <img src={Logo} className="may-header-logo"  alt={'logo'}/>
 
         <div className="may-header-links-wrapper">
             {/* todo: переписать рендеринг этих ссылок используя links.map метод */}
-            <Link/>
+            <Links/>
         </div>
 
         <UserInfo user={user} />
     </div>
-  );
+  )
 };

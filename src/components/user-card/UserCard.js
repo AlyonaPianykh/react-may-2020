@@ -2,16 +2,15 @@ import React from 'react';
 
 import './UserCard.scss'
 
-export function UserCard(props) {
-  const { user } = props;
+export function UserCard({ user }) {
 
   if (!user) return null;
 
-  const { first_name, last_name, email, address, _links: { avatar } } = user;
+  const { first_name, last_name, email, address, _links: { avatar:{ href } } } = user;
   return (
     <div className="may-user-card card">
 
-      <img src={avatar.href} alt="user avatar" className="may-user-card-avatar rounded-circle"/>
+      <img src={ href}  alt="user avatar" className="may-user-card-avatar rounded-circle"/>
 
       <div className="card-body">
         <h4 className="card-title">{first_name} {last_name}</h4>
@@ -21,5 +20,5 @@ export function UserCard(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

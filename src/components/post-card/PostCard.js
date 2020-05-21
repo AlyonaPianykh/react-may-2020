@@ -1,25 +1,19 @@
 import React from 'react';
-
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
 export function PostCard(props) {
-  console.log(props);
 
-  const { post, hasImage } = props;
-
-  console.log('hasImage', hasImage);
-  const { title, body } = post;
-
+  const { post: { title, body }, hasImage } = props;
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
-  const renderImage = () => {
-    return hasImage ? (
-      <img src={kittyUrl} />
-    ) : (
-      <img src={DefaultImg} />
-    );
-  };
+  // const renderImage = () => {
+  //   return hasImage ? (
+  //       <img src={kittyUrl} alt={'kitty'}/>
+  //     ) : (
+  //       <img src={DefaultImg} alt={'no img'}/>
+  //     )
+  // };
 
   return (
     <div className="may-post-card card">
@@ -41,14 +35,13 @@ export function PostCard(props) {
       {/*</div>*/}
 
       {hasImage && (
-        <div className="may-post-card-img" id="my-block" onClick={() => {alert('ghvcdhfvbdfsjvbdf')}}>
-          <img src={kittyUrl} />
+        <div className="may-post-card-img" id="my-block" onClick={() => {alert("its funny, isn't it?")}}>
+          <img src={kittyUrl} alt={'kitty'} />
         </div>
-      )
-      }
+      )}
       {!hasImage && (
         <div className="may-post-card-img">
-          <img src={DefaultImg} />
+          <img src={DefaultImg} alt={'no img'} />
         </div>
       )}
 
@@ -59,7 +52,7 @@ export function PostCard(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default PostCard;
