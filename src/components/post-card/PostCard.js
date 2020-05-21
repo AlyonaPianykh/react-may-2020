@@ -68,13 +68,12 @@ export function PostCard(props) {
           email - почта автора комментария
           body - текст комментария
     */}
-      <div className='comments'>
         {comments.map(comments => {
           return (
               <Comments comment={comments} key={comments.id} />
           );
         })}
-      </div>
+
 
     </div>
   );
