@@ -1,13 +1,13 @@
 import React from "react";
-import {allComments} from "../../constants";
-
 import './Comment.css'
 
-export const Comment = ({name,email,body}) => {
+export const Comment = ({comm}) => {
+    if (!comm) {return null}
+    const {name,email,body} = comm;
     return (
         <div className={'container'}>
-            <p3>{name}</p3>
-            <p4>{email}</p4>
+            <h5>{name}</h5>
+            <h6>{email}</h6>
             <div>{body}</div>
         </div>
     )

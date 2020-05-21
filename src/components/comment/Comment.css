@@ -1,7 +1,9 @@
 .container {
-    /*max-width: 300px;*/
     margin: 10px;
     padding: 10px;
     border: 1px solid red;
     border-radius: 10px;
+    background-color: #dfffa4;
+    font-size: 12px;
+    font-style: italic;
 }

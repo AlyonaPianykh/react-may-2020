@@ -21,7 +21,8 @@ function App() {
             {
               postsList.slice(0,6).map((item, index) => {
                 const odd = index % 2 !== 0;
-                  return <Card post={item} key={item.id} hasImage={odd} />
+                const comments = allComments.filter(value => value.post_id === item.id);
+                  return <Card key={item.id} post={item} comments={comments} hasImage={odd} />
               })
             }
         </div>
