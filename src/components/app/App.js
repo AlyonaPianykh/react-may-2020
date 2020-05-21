@@ -4,8 +4,9 @@ import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 // todo: достать в строке 7 массив allComments из констант
-import { postsList } from '../../constants'; // todo помимо константы postsList достать еще usersList
+import { postsList, usersList, allComments } from '../../constants'; // todo помимо константы postsList достать еще usersList
 // todo: тут сделать импорт  UserCard из components/user-card/UserCard
+import {UserCard} from "../user-card/UserCard";
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -45,19 +46,27 @@ function App() {
             //  в Card под телом поста срендерить имя автора, используя blockquote-footer класс из бутстрапа
             //  пример тут: https://hackerthemes.com/bootstrap-cheatsheet/#blockquote-footer
 
+              const {first_name, last_name} = usersList.find(user => user.id === item.user_id);
+
 
             // todo: найти в массиве allComments комментарии, post_id которых = id поста  (т.е. в данном случае item.id)
             //  для этого можно использовать метод массива filter
             //  передать этот массив в Card как пропсу под названиес comments
 
-              return <Card post={item} key={item.id} hasImage={odd} />
+              const comments = allComments.filter(comment => comment.post_id === item.id);
+
+              return <Card post={item} key={item.id} hasImage={odd} author={`${first_name} ${last_name}`} comments={comments} />
           })
         }
       </div>
 
       <div className="d-flex posts-container">
       {/*  todo: срендерить тут список пользователей, используя компонент UserCard */}
-
+          {
+              usersList.map((item) => {
+                  return <UserCard user = {item} key = {item.id} />
+              })
+          }
       </div>
 
       <Footer />

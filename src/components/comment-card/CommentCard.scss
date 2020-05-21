@@ -1,0 +1,18 @@
+.comment {
+  margin: 15px 10px 5px 20px;
+  text-align: right;
+
+  &-title {
+    font-size: 14px;
+    margin: 0 0 -5px 0;
+  }
+
+  &-link{
+    font-size: 11px;
+  }
+  &-text {
+    font-size: 10px;
+    text-align:left;
+    overflow-wrap: break-word;
+  }
+}
