@@ -3,9 +3,9 @@ import React from 'react';
 import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
-import { postsList, usersList } from '../../constants'; // todo помимо константы postsList достать еще usersList
+// todo: достать в строке 7 массив allComments из констант
+import { postsList } from '../../constants'; // todo помимо константы postsList достать еще usersList
 // todo: тут сделать импорт  UserCard из components/user-card/UserCard
-import {UserCard} from '../../components/user-card/UserCard'
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -44,16 +44,11 @@ function App() {
           })
         }
       </div>
+
       <div className="d-flex posts-container">
       {/*  todo: срендерить тут список пользователей, используя компонент UserCard */}
-          {
-              usersList.map((value)=>{
-                  return (
-                      <UserCard key={value.id} user={value}/>
-                  )
-              })
-          }
       </div>
+
       <Footer />
     </div>
   );
