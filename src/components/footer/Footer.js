@@ -1,10 +1,28 @@
 import React from 'react';
 
 //todo здесь нужно сделать импорт socialMediaIcons из файла '../../constants'
-//todo здесь нужно сделать импорт стилей из './Footer.scss'
+import { socialMediaIcons} from '../../constants/';
+
+// todo здесь нужно сделать импорт стилей из './Footer.scss'
+import './Footer.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
+export const Footer = (props) => {
+    return (
+        <div className="may-footer">
+            <div className="may-footer-content">
+                <div>Some text about authors</div>
+                <div className="may-footer-social-media-wrapper">
+                    <img src={socialMediaIcons[0].src} className="may-footer-social-media-icon" alt={socialMediaIcons[0].alt}/>
+                    <img src={socialMediaIcons[1].src} className="may-footer-social-media-icon" alt={socialMediaIcons[1].alt}/>
+                    <img src={socialMediaIcons[2].src} className="may-footer-social-media-icon" alt={socialMediaIcons[2].alt}/>
+                </div>
+            </div>
+            <div>All rights reserved. may-app © 2020</div>
+        </div>
+    )
+};
   // todo здесь нужно сделать экспорт функии под названием Footer
   //   она должна вернуть div с классом "may-footer"
   //   в котором будет 2 div блока: 1й с классом "may-footer-content", второй будет без класса но с текстом 'All rights reserved. may-app © 2020'
