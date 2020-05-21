@@ -4,11 +4,11 @@ import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
 export function PostCard(props) {
-  console.log(props);
+  //console.log(props);
 
   const { post, hasImage } = props;
 
-  console.log('hasImage', hasImage);
+  //console.log('hasImage', hasImage);
   const { title, body } = post;
 
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
