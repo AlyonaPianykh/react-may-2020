@@ -1,5 +1,5 @@
 import React from 'react';
-import { links, user } from '../../constants';
+import {links, socialMediaIcons, user} from '../../constants';
 import Logo from '../../assets/react.png';
 
 import { UserInfo } from '../user-info/UserInfoFromLecture';
@@ -15,13 +15,11 @@ export const Header = (props) => {
       <div className="may-header-links-wrapper">
         {/* todo: переписать рендеринг этих ссылок используя links.map метод */}
         <div className="nav-item">
-          <a href={links[0].url} className="may-header-links-wrapper-link nav-link">{links[0].name}</a>
-        </div>
-        <div className="nav-item">
-          <a href={links[1].url} className="may-header-links-wrapper-link nav-link">{links[1].name}</a>
-        </div>
-        <div className="nav-item">
-          <a href={links[2].url} className="may-header-links-wrapper-link nav-link">{links[2].name}</a>
+            {links.map(value => {
+                return(
+                    <a href={value.url}className="may-header-links-wrapper-link nav-link">{value.name}</a>
+                )
+            })}
         </div>
       </div>
 

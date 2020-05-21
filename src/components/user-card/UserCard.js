@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './UserCard.scss'
+import PostCard from "../post-card/PostCard";
 
 export function UserCard(props) {
   const { user } = props;
@@ -23,3 +24,5 @@ export function UserCard(props) {
     </div>
   );
 }
+
+export default UserCard;
