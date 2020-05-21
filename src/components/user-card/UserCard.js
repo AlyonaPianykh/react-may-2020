@@ -7,7 +7,7 @@ import {usersList} from "../../constants";
 
 // todo здесь нужно сделать экспорт функии под названием UserCard с аргументом props
 export const UserCard = (props) =>{
-   const user=usersList[0];
+   const {user}=props;
 
     if(!user){return null}
     else{
