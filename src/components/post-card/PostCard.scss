@@ -2,7 +2,6 @@
   max-width: 300px;
   margin: 10px;
 
-
   .may-post-card-img {
     display: flex;
     align-items: center;
@@ -19,5 +18,24 @@
   .body {
     display: block;
     overflow-wrap: break-word;
+  }
+}
+
+.post-comment {
+  border-top: 1px solid grey;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 5px 0 5px 10px;
+
+  span {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  &-body {
+    margin: 10px 0;
+    font-size: 14px;
+    font-weight: 400;
   }
 }
