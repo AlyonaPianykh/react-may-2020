@@ -1,22 +1,25 @@
 import React from 'react';
 
-import { socialMediaIcons } from '../../constants';
+import {socialMediaIcons} from '../../constants';
 
 import './Footer.scss';
 
 export function Footer(props) {
-  return (
-    <div className="may-footer">
-      <div className="may-footer-content">
-      <div className="may-footer-text">Some text about authors</div>
-      <div className="may-footer-social-media-wrapper">
-        <img className="may-footer-social-media-icon" src={socialMediaIcons[0].src} alt={socialMediaIcons[0].alt}/>
-        <img className="may-footer-social-media-icon" src={socialMediaIcons[1].src} alt={socialMediaIcons[1].alt}/>
-        <img className="may-footer-social-media-icon" src={socialMediaIcons[2].src} alt={socialMediaIcons[2].alt}/>
-      </div>
-      </div>
-      <div>All rights reserved. may-app © 2020</div>
-    </div>
-  );
+    return (
+        <div className="may-footer">
+            <div className="may-footer-content">
+                <div className="may-footer-text">Some text about authors</div>
+                <div className="may-footer-social-media-wrapper">
+                    {
+                        socialMediaIcons.map((sc, id) => {
+                            return (
+                                <img key={id} className="may-footer-social-media-icon" src={sc.src} alt={sc.alt}/>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+            <div>All rights reserved. may-app © 2020</div>
+        </div>
+    );
 }
-
