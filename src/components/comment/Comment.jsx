@@ -1,7 +1,6 @@
 import React from 'react'
 
 export function Comment( props ) {
-
     const {name, email, body} = props;
     return (
         <div>

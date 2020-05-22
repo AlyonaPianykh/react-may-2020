@@ -3,10 +3,7 @@ import React from 'react';
 import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import  { PostCard as Card } from '../post-card/PostCard';
-// todo: достать в строке 7 массив allComments из констант
-import { postsList, allComments, usersList } from '../../constants'; // todo помимо константы postsList достать еще usersList
-// todo: тут сделать импорт  UserCard из components/user-card/UserCard
-import { UserCard } from '../user-card/UserCard';
+import { postsList, allComments, usersList } from '../../constants';
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -46,12 +43,8 @@ function App() {
           })
         }
       </div>
-
       <div className="d-flex posts-container">
-      {/*  todo: срендерить тут список пользователей, используя компонент UserCard */}
-
       </div>
-
       <Footer />
     </div>
   );

@@ -1,16 +1,10 @@
 import React from 'react';
-
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
-
 import { Comment } from '../comment/Comment';
 
 export function PostCard(props) {
-  console.log(props);
-  // todo: достать пропсу comments из props ниже в 9й строке
   const { post, hasImage, author, comments } = props;
-
-  console.log('hasImage', hasImage);
   const { title, body } = post;
 
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
@@ -53,7 +47,6 @@ export function PostCard(props) {
           <img src={DefaultImg} />
         </div>
       )}
-
       <div className="card-body">
         <h4 className="card-title title">{title}</h4>
         <div className="card-text body">
@@ -64,11 +57,9 @@ export function PostCard(props) {
       <p>{author.first_name} {author.last_name}</p>
       <p>{author.email}</p>
       </div>
-
     {comments.map( comment => (
-      <Comment name={comment.name} email={comment.email} body={comment.body}  />
+      <Comment name={comment.name} email={comment.email} body={comment.body} key={comment.id} />
     ))}
-
     </div>
   );
 }
