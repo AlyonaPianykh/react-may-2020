@@ -5,7 +5,6 @@ import { Footer } from '../footer/Footer';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 // todo: достать в строке 7 массив allComments из констант
 import {allComments} from "../../constants";
-
 import { postsList, usersList } from '../../constants'; // todo помимо константы postsList достать еще usersList
 // todo: тут сделать импорт  UserCard из components/user-card/UserCard
 import {UserCard} from "../user-card/UserCard";
@@ -14,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // console.log(allComments);
 // console.log(postsList)
-
+// console.log(usersList);
 function App() {
   const renderList = () => {
     const res = [];
@@ -65,7 +64,13 @@ function App() {
 
       <div className="d-flex posts-container">
       {/*  todo: срендерить тут список пользователей, используя компонент UserCard */}
-
+          {
+              usersList.map(user => {
+               return (
+                   <UserCard user={user} />
+               );
+           })
+          }
       </div>
 
       <Footer />
