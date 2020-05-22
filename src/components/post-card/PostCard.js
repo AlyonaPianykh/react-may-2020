@@ -2,13 +2,14 @@ import React from 'react';
 
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
+import { Comment} from "../comment/Comment";
+import {allComments} from "../../constants";
 
 export function PostCard(props) {
   console.log(props);
-  // todo: достать пропсу comments из props ниже в 9й строке
-  const { post, hasImage } = props;
+  // donetodo: достать пропсу comments из props ниже в 9й строке
+  const { post, hasImage, comments, author } = props;
 
-  console.log('hasImage', hasImage);
   const { title, body } = post;
 
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
@@ -57,7 +58,11 @@ export function PostCard(props) {
         <div className="card-text body">
           {body}
         </div>
+        <footer className="blockquote-footer">{author}
+        </footer>
       </div>
+
+
 
     {/*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
           можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
@@ -67,7 +72,12 @@ export function PostCard(props) {
           email - почта автора комментария
           body - текст комментария
     */}
+      {
+        comments && comments.map(item => {
+          return <Comment key={item.id} comment={item}/>
+        })
 
+      }
     </div>
   );
 }
