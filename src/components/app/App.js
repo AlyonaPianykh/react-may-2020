@@ -3,9 +3,9 @@ import React from 'react';
 import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
-import { postsList } from '../../constants'; // todo помимо константы postsList достать еще usersList
-// todo: тут сделать импорт  UserCard из components/user-card/UserCard
-
+import { postsList, usersList } from '../../constants'; //done помимо константы postsList достать еще usersList
+//done: тут сделать импорт  UserCard из components/user-card/UserCard
+import {UserCard} from "../user-card/UserCard";
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -45,7 +45,13 @@ function App() {
       </div>
 
       <div className="d-flex posts-container">
-      {/*  todo: срендерить тут список пользователей, используя компонент UserCard */}
+      {/*  done: срендерить тут список пользователей, используя компонент UserCard */}
+          {
+              usersList.map((value) => {
+
+                  return <UserCard user={value} key={value.id}  />
+              })
+          }
       </div>
 
       <Footer />
