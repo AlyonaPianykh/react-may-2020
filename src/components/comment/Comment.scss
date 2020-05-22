@@ -1,0 +1,20 @@
+.comment {
+  width: 100%;
+  background: rgba(192, 192, 192, 0.479);
+  border-radius: 10px;
+  .comment_author {
+    font-size: 0.9em;
+    text-align: center;
+    background: rgba(158, 150, 150, 0.479);
+    padding: 5px 0;
+  }
+  .comment_email {
+    font-size: 0.9em;
+    padding-left: 15px;
+    margin: 0;
+  }
+  .comment_body {
+    font-size: 0.7em;
+    padding: 5px;
+  }
+}
