@@ -6,7 +6,7 @@ import {Comment} from "./comments/Comments";
 
 export function PostCard(props) {
     console.log(props);
-    // todo: достать пропсу comments из props ниже в 9й строке
+    // donetodo: достать пропсу comments из props ниже в 9й строке
     const {post, hasImage, comments, author} = props;
 
 
@@ -60,22 +60,22 @@ export function PostCard(props) {
                 <h4 className="card-title title">{title}</h4>
                 <div className="card-text body">
                     {body}
+                    <div className='blockquote-footer'>{author}</div>
                 </div>
             </div>
 
-            {/*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
-          можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
-          как она будет выглядеть зависит от вашей фантазии
-          Для каждого комментария должны быть выведены такие поля:
-          name - имя автора комментария
-          email - почта автора комментария
-          body - текст комментария
+            {/*  donetodo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
+                  можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
+                  как она будет выглядеть зависит от вашей фантазии
+                  Для каждого комментария должны быть выведены такие поля:
+                  name - имя автора комментария
+                  email - почта автора комментария
+                  body - текст комментария
     */}
-            <div>
 
-                {comments.map(val => <Comment comm={val}/>)}
-            </div>
-            <div>{author}</div>
+
+            {comments.map((val) => <Comment key={val.id} comm={val}/>)}
+
 
         </div>
     );
