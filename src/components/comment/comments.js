@@ -1,4 +1,5 @@
 import React from 'react';
+import './comments.scss'
 
 export function Comment (props) {
     const {name, email, body, key} = props.comment;
@@ -9,7 +10,7 @@ export function Comment (props) {
                 <div className="comment-info-name">{name}</div>
                 <div className="comment-info-email">{email}</div>
             </div>
-            <div className="comment-body">{body}</div>
+            <div className="comment-body overflow-auto">{body}</div>
         </div>
     )
 }

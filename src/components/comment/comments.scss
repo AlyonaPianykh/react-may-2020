@@ -1,0 +1,27 @@
+.comment {
+  display: block;
+  border: 2px solid violet;
+  border-radius: 5px;
+  margin-bottom: 20px;
+
+  &-info {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+
+    &-name {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    &-email {
+      font-style: italic;
+
+    }
+  }
+  &-body {
+    padding: 10px;
+    max-height: 180px;
+
+  }
+}

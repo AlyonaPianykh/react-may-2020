@@ -7,7 +7,7 @@ import './PostCard.scss';
 export function PostCard(props) {
   console.log(props);
   // todo: достать пропсу comments из props ниже в 9й строке
-  const { post, hasImage, user, comments} = props;
+  const { post, hasImage, author, comments} = props;
 
   const { title, body } = post;
 
@@ -57,20 +57,24 @@ export function PostCard(props) {
         <div className="card-text body">
           {body}
         </div>
+        <div className='writtenBy blockquote-footer'>{author}</div>
       </div>
 
+    <div className='comments'>
     {
       comments.map((val, num) => {
         return (<Comment comment={val}/>)
       })
-      /*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
+    }
+    </div>
+{/*       todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
           можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
           как она будет выглядеть зависит от вашей фантазии
           Для каждого комментария должны быть выведены такие поля:
           name - имя автора комментария
           email - почта автора комментария
-          body - текст комментария
-    */}
+          body - текст комментария*/}
+
 
     </div>
   );
