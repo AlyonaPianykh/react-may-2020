@@ -1,23 +1,24 @@
 .may-post-card {
-  max-width: 300px;
-  margin: 10px;
+   max-width: 320px;
+   max-height: 300px;
+   margin: 15px 0;
+   overflow: auto;
 
+   .may-post-card-img {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   img {
+     height: 150px;
+   }
 
-  .may-post-card-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  img {
-    height: 150px;
-  }
+   .title {
+     font-size: 14px;
+   }
 
-  .title {
-    font-size: 16px;
-  }
-
-  .body {
-    display: block;
-    overflow-wrap: break-word;
-  }
-}
+   .body {
+     display: block;
+     font-size: 13px;
+   }
+ }
