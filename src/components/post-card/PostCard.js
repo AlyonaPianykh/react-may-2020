@@ -3,10 +3,12 @@ import React from 'react';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
+import { Comment } from '../comment/Comment';
+
 export function PostCard(props) {
   console.log(props);
   // todo: достать пропсу comments из props ниже в 9й строке
-  const { post, hasImage } = props;
+  const { post, hasImage, author, comments } = props;
 
   console.log('hasImage', hasImage);
   const { title, body } = post;
@@ -58,15 +60,14 @@ export function PostCard(props) {
           {body}
         </div>
       </div>
+      <div className="blockquote-footer">
+      <p>{author.first_name} {author.last_name}</p>
+      <p>{author.email}</p>
+      </div>
 
-    {/*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
-          можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
-          как она будет выглядеть зависит от вашей фантазии
-          Для каждого комментария должны быть выведены такие поля:
-          name - имя автора комментария
-          email - почта автора комментария
-          body - текст комментария
-    */}
+    {comments.map( comment => (
+      <Comment name={comment.name} email={comment.email} body={comment.body}  />
+    ))}
 
     </div>
   );
