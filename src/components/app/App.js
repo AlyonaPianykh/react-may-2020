@@ -2,11 +2,12 @@ import React from 'react';
 
 import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
-import TestCard, { PostCard as Card } from '../post-card/PostCard';
-import {allComments, postsList, usersList} from '../../constants';
-// todo: достать в строке 7 массив allComments из констант ?
-import {UserCard} from './../user-card/UserCard'
 
+import  { PostCard as Card } from '../post-card/PostCard';
+// todo: достать в строке 7 массив allComments из констант
+import { postsList, allComments, usersList } from '../../constants'; // todo помимо константы postsList достать еще usersList
+// todo: тут сделать импорт  UserCard из components/user-card/UserCard
+import { UserCard } from '../user-card/UserCard';
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -57,6 +58,7 @@ function App() {
 
 
               return <Card post={post} key={post.id} hasImage={odd} author={`${user.first_name} ${user.last_name}`} comments={arr} />
+
           })
         }
       </div>

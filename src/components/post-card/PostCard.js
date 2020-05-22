@@ -5,10 +5,12 @@ import './PostCard.scss';
 import {Comments} from './../Comments/Comments'
 import divWithClassName from "react-bootstrap/cjs/divWithClassName";
 
+import { Comment } from '../comment/Comment';
+
 export function PostCard(props) {
-    console.log(props);
-    // todo: достать пропсу comments из props ниже в 9й строке
-    const {post, hasImage, author, comments} = props;
+
+  // todo: достать пропсу comments из props ниже в 9й строке
+  const { post, hasImage, author, comments } = props;
 
 
     const {title, body} = post;
@@ -62,8 +64,6 @@ export function PostCard(props) {
 
         </div>
 
-
-    );
 }
 
 export default PostCard;
