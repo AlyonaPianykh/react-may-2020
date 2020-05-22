@@ -3,6 +3,7 @@ $breakpoint-tablet: 768px;
 .posts-container {
   flex-direction: column;
   flex-wrap: wrap;
+  border-bottom: 1px solid grey;
 
   @media (min-width: $breakpoint-tablet) {
     flex-direction: row;
