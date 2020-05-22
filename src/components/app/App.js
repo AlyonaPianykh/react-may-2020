@@ -3,7 +3,7 @@ import React from 'react';
 import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
-import { postsList, usersList } from '../../constants';
+import {allComments, postsList, usersList} from '../../constants';
 // todo: достать в строке 7 массив allComments из констант ?
 import {UserCard} from './../user-card/UserCard'
 
@@ -37,14 +37,26 @@ function App() {
 
       <div className="d-flex posts-container">
         {
-          postsList.map((item, index) => {
+          postsList.map((post, index) => {
             const odd = index % 2 !== 0;
+
+
+
+            let user = usersList.find((user)=>{
+                if(user.id === post.user_id)
+                    return user
+            });
 
             // todo: найти в массиве allComments комментарии, post_id которых = id поста  (т.е. в данном случае item.id)
             //  для этого можно использовать метод массива filter
             //  передать этот массив в Card как пропсу под названиес comments
 
-              return <Card post={item} key={item.id} hasImage={odd} />
+              let arr = allComments.filter((comment )=>{
+                  return comment.post_id === post.id
+              });
+
+
+              return <Card post={post} key={post.id} hasImage={odd} author={`${user.first_name} ${user.last_name}`} comments={arr} />
           })
         }
       </div>
