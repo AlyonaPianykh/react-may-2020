@@ -39,7 +39,7 @@ function App() {
                 {
                     postsList.map((item, index) => {
                         const odd = index % 2 !== 0;
-                        // done_todo: найти в массиве usersList пользователя, айди которого равно user_id в посте (т.е. в данном случае item)
+                        // todo: найти в массиве usersList пользователя, айди которого равно user_id в посте (т.е. в данном случае item)
                         //  для этого можно использовать функцию массива find или findIndex
                         //  передать имя и фамилию пользователя как пропсу author в Card
                         //  использовать для этого стринговый литерал ``
@@ -51,15 +51,14 @@ function App() {
                         // todo: найти в массиве allComments комментарии, post_id которых = id поста  (т.е. в данном случае item.id)
                         //  для этого можно использовать метод массива filter
                         //  передать этот массив в Card как пропсу под названием comments
-                        const comment = allComments.filter(value => value.post_id === item.id);
-                        console.log(comment);
+                        const comments = allComments.filter(value => value.post_id === item.id);
 
                         return <Card
                             post={item}
                             key={item.id}
                             hasImage={odd}
                             author={author}
-                            comments = {comment}
+                            comments={comments}
                         />
                     })
                 }
@@ -67,7 +66,13 @@ function App() {
 
             <div className="d-flex posts-container">
                 {/*  todo: срендерить тут список пользователей, используя компонент UserCard */}
-
+                {
+                    usersList.map(value => {
+                        return (
+                            <UserCard user={value} key={value.id}/>
+                        );
+                    })
+                }
 
             </div>
 

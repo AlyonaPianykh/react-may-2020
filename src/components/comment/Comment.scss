@@ -1,20 +1,14 @@
 .may-comment {
-  max-width: 320px;
-  max-height: 300px;
-  margin: 15px 0;
-  overflow: auto;
+  max-width: 300px;
+  margin: 10px 20px;
+  padding: 10px;
+  border: 0.5px lightgray solid;
 
-  .may-post-card-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .title {
+  .comment-title {
     font-size: 14px;
   }
 
-  .body {
+  .comment-body {
     display: block;
     font-size: 13px;
   }
