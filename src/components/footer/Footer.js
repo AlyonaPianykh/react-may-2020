@@ -1,9 +1,31 @@
 import React from 'react';
 
 //todo здесь нужно сделать импорт socialMediaIcons из файла '../../constants'
+import { socialMediaIcons} from "../../constants";
+
 //todo здесь нужно сделать импорт стилей из './Footer.scss'
 
+import './Footer.scss'
 
+export const Footer = () => {
+    return (
+        <div className="may-footer">
+            <div className="may-footer-content">;
+                <div>Some text about authors</div>
+                <div className="may-footer-social-media-wrapper">
+
+                    {socialMediaIcons.map((value, index) => {
+                        return(
+                            <img key={index} className="may-footer-social-media-icon" src={value.src} alt={value.alt}/>
+                        )
+                    })}
+                </div>
+            </div>
+            <div>All rights reserved. may-app © 2020</div>
+
+        </div>
+    );
+};
 
   // todo здесь нужно сделать экспорт функии под названием Footer
   //   она должна вернуть div с классом "may-footer"
