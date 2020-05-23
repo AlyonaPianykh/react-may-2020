@@ -3,7 +3,7 @@ import React from 'react';
 import {Header} from '../header/HeaderFromLecture';
 import {Footer} from '../footer/Footer';
 import TestCard, {PostCard as Card} from '../post-card/PostCard';
-import {postsList, usersList} from '../../constants';
+import {postsList, usersList, allComments} from '../../constants';
 import {UserCard} from "../user-card/UserCard";
 
 import './App.scss';
@@ -38,14 +38,18 @@ function App() {
                     postsList.map((item, index) => {
                         const odd = index % 2 !== 0;
 
-                        return <Card post={item} key={item.id} hasImage={odd}/>
+                        const userPost = usersList.find(user => user.id === item.user_id);
+                        const author = `${userPost.first_name} ${userPost.last_name}`;
+                        const comments = allComments.filter(comment => comment.post_id === item.id);
+                        return <Card post={item} key={item.id} hasImage={odd}
+                                     author={author} comments={comments}/>
                     })
                 }
             </div>
 
             <div className="d-flex posts-container">
                 {
-                    usersList.map((value, index) => {
+                    usersList.map((value) => {
                         return (
                             <UserCard user={value} key={value.id}/>
                         )
