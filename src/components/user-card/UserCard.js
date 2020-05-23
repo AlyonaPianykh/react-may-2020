@@ -12,7 +12,7 @@ if (!user) return null;
 //  вернем блок div c классом "may-user-card card",  он должен содержать в себе:
 return <div className="may-user-card card">
 {/*//  1) блок img c src равным avatar.href и классом "may-user-card-avatar rounded-circle"*/}
-    <img src="avatar.href" className="may-user-card-avatar rounded-circle"/>
+    <img src={_links.avatar.href} className="may-user-card-avatar rounded-circle"/>
 {/*//  2) div с классом card-body*/}
     <div className="card-body">
 {/*//  этот div будет содержать:*/}
