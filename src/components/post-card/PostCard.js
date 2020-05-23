@@ -54,6 +54,7 @@ export function PostCard(props) {
         </div>
       )}
 
+
       <div className="card-body">
         <h4 className="card-title title">{title}</h4>
         <div className="card-text body">
