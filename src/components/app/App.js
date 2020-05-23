@@ -18,7 +18,6 @@ function App() {
       const item = postsList[i];
       res.push(<Card post={item} key={item.id}/>)
     }
-
     return res;
   };
 
