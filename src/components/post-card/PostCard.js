@@ -3,6 +3,8 @@ import React from 'react';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 import {App} from "../app/App";
+import {Comment} from "../comments/comment";
+import {allComments} from "../../constants";
 export function PostCard(props) {
 
   const { post, hasImage, comment, author } = props;
@@ -59,6 +61,10 @@ export function PostCard(props) {
         <footer className="blockquote-footer">
           {author}
         </footer>
+      </div>
+      <div className="post-comment">
+        { allComments.map(item => {
+        return(<Comment key={item.id} comment={item}/>)})}
       </div>
     </div>
   );

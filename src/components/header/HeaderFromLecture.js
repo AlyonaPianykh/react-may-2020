@@ -19,8 +19,8 @@ export const Header = (props) => {
           {
                   links.map((item, index) => {
                       return (
-                          <div className="nav-item">
-                              <a href={item.url} className="may-header-links-wrapper-link nav-link">{item.name}</a>
+                          <div className="nav-item" key={index}>
+                              <a href={item.url} className="may-header-links-wrapper-link nav-link" key={index}>{item.name}</a>
                           </div>
                       )
                   })
