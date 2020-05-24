@@ -38,7 +38,7 @@ function App() {
 
               let author = `${first_name} ${last_name}`;
 
-              let comment = allComments.filter(item => item.post_id === item.id);
+              let comment = allComments.filter(value => value.post_id === item.id);
               console.log(comment);
 
               return <Card post={item} key={item.id} hasImage={odd} author={author} comment={comment}/>

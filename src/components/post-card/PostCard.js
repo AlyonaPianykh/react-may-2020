@@ -9,7 +9,7 @@ export function PostCard(props) {
 
   const { post, hasImage, comment, author } = props;
 
-  console.log('hasImage', hasImage);
+  console.log('comment', comment);
   const { title, body } = post;
 
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
@@ -24,22 +24,6 @@ export function PostCard(props) {
 
   return (
     <div className="may-post-card card">
-
-      {/*<div className="may-post-card-img">*/}
-      {/*  {*/}
-      {/*    hasImage ? (*/}
-      {/*      <img src={kittyUrl} />*/}
-      {/*      ) : (*/}
-      {/*        <img src={DefaultImg} />*/}
-      {/*    )*/}
-      {/*  }*/}
-      {/*</div>*/}
-
-      {/*<div className="may-post-card-img" >*/}
-      {/*  {*/}
-      {/*    renderImage()*/}
-      {/*  }*/}
-      {/*</div>*/}
 
       {hasImage && (
         <div className="may-post-card-img" id="my-block" onClick={() => {alert('hi')}}>
@@ -63,8 +47,8 @@ export function PostCard(props) {
         </footer>
       </div>
       <div className="post-comment">
-        { allComments.map(item => {
-        return(<Comment key={item.id} comment={item}/>)})}
+        { comment.map((value, index) => {
+        return(<Comment key={index} comment={value}/>)})}
       </div>
     </div>
   );
