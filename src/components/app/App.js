@@ -5,7 +5,8 @@ import { Footer } from '../footer/Footer';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 import { postsList } from '../../constants'; // todo помимо константы postsList достать еще usersList
 // todo: тут сделать импорт  UserCard из components/user-card/UserCard
-
+import  {usersList} from "../../constants";
+import {UserCard} from "../user-card/UserCard";
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
