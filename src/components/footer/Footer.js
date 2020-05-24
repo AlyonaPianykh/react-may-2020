@@ -10,9 +10,9 @@ export function Footer(props) {
       <div className="may-footer-content">
       <div className="may-footer-text">Some text about authors</div>
       <div className="may-footer-social-media-wrapper">
-          {socialMediaIcons.map(value => {
+          {socialMediaIcons.map((value, index) =>  {
               return(
-                  <img className="may-footer-social-media-icon" src={value.src} alt={value.alt}/>
+                  <img key={index} className="may-footer-social-media-icon" src={value.src} alt={value.alt}/>
                   )
           })}
       </div>
