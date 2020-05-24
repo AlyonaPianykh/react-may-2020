@@ -46,6 +46,11 @@ function App() {
 
       <div className="d-flex posts-container">
       {/*  todo: срендерить тут список пользователей, используя компонент UserCard */}
+          {
+              usersList.map((item, index) => {
+                  return <UserCard key={index} user={item}/>
+              })
+          }
       </div>
 
       <Footer />
