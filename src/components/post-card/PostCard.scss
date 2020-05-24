@@ -14,10 +14,15 @@
 
   .title {
     font-size: 16px;
+    border-bottom: 1px solid grey;
+    width: 100%;
   }
 
   .body {
     display: block;
     overflow-wrap: break-word;
+    overflow-y: scroll;
+    max-height:150px;
   }
+
 }
