@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';

@@ -3,9 +3,10 @@ import React from 'react';
 import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
-import { postsList } from '../../constants'; // todo помимо константы postsList достать еще usersList
-// todo: тут сделать импорт  UserCard из components/user-card/UserCard
-
+import { postsList } from '../../constants'; // do помимо константы postsList достать еще usersList
+import {usersList} from "../../constants";
+// do: тут сделать импорт  UserCard из components/user-card/UserCard
+import {UserCard} from '../user-card/UserCard';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,11 +28,6 @@ function App() {
       <Header />
       <div>content will appear here soon</div>
 
-      {/*<div className="d-flex posts-container">*/}
-      {/*  {*/}
-      {/*    renderList()*/}
-      {/*  }*/}
-      {/*</div>*/}
 
       <div className="d-flex posts-container">
         {
@@ -45,7 +41,16 @@ function App() {
       </div>
 
       <div className="d-flex posts-container">
-      {/*  todo: срендерить тут список пользователей, используя компонент UserCard */}
+      {/*  do: срендерить тут список пользователей, используя компонент UserCard */}
+          {
+              usersList.map((item,index)=>{
+                  return(
+                      <UserCard key={item.id}  user={item}/>
+                                    )
+                  }
+
+              )
+          }
       </div>
 
       <Footer />
