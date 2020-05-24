@@ -4,18 +4,23 @@
   width: 90%;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
   border: solid 2px gray;
+  text-align: center;
+
+
 
 
   .comm-info {
-    height: 40px;
-    background: grey;
+    font-size: 18px;
+    padding-bottom: 20px;
+    color: darkblue;
   }
 
   .comm-box{
-    height: 100px;
-    overflow: scroll;
-    border: solid 1px black;
+    font-size: 16px;
+
+    .email {
+      font-style: italic;
+    }
   }
 }
