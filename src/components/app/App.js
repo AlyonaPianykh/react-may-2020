@@ -50,8 +50,6 @@ function App() {
               let user = usersList.find(user=> user.id===item.user_id)
               const {last_name, first_name}=user
 
-
-
             // donetodo: найти в массиве allComments комментарии, post_id которых = id поста  (т.е. в данном случае item.id)
             //  для этого можно использовать метод массива filter
             //  передать этот массив в Card как пропсу под названиес comments
