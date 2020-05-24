@@ -48,7 +48,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1341"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?87340"
+        "href": "https://peopletalk.ru/wp-content/uploads/2016/11/1480331127.jpg"
       }
     }
   },
@@ -71,7 +71,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1342"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?55275"
+        "href": "https://cdn.pixabay.com/photo/2018/11/02/10/30/black-and-white-cat-3790003_960_720.jpg"
       }
     }
   },
@@ -94,7 +94,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1343"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?62267"
+        "href": "https://storage.picsave.pp.ua/view/0/733/original"
       }
     }
   },
@@ -117,7 +117,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1344"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?71754"
+        "href": "https://a.wattpad.com/cover/175008249-288-k128087.jpg"
       }
     }
   },

@@ -25,6 +25,7 @@ export const Header = (props) => {
       </div>
 
       <UserInfo user={user} />
+
     </div>
   );
 };
