@@ -2,7 +2,7 @@ import React from 'react';
 
 import './UserCard.scss'
 
-export function UserCard(props) {
+export function UserCard (props) {
   const { user } = props;
 
   if (!user) return null;
