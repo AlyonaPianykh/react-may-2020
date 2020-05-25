@@ -6,6 +6,9 @@ export class DropDown extends Component {
 // todo:
 //  добавить state, в котором будет булевая пропертя isOpen по умолчанию = false
 //  на базе нее будут рендериться или нет опции дропдауна
+  state = {
+    isOpen: false
+  }
 
   toggle = () => {
     // todo: здесь должно быть открывание/закрывание дропдауна с помощью this.setState
