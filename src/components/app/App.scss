@@ -1,5 +1,9 @@
 $breakpoint-tablet: 768px;
 
+.active {
+  background-color: aquamarine;
+}
+
 .posts-container {
   flex-direction: column;
   flex-wrap: wrap;
