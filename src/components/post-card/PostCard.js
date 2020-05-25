@@ -1,12 +1,16 @@
 import React from 'react';
 
+import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
+// todo: переписать эту компоненту, чтоб она стала классовой
+//  в ней должно появиться свойство state
+//  в котором будет флажок showComments
+//  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
+
 export function PostCard(props) {
-  console.log(props);
-  // todo: достать пропсу comments из props ниже в 9й строке
-  const { post, hasImage } = props;
+  const { post, hasImage, comments = [], author } = props;
 
   console.log('hasImage', hasImage);
   const { title, body } = post;
@@ -23,25 +27,10 @@ export function PostCard(props) {
 
   return (
     <div className="may-post-card card">
-
-      {/*<div className="may-post-card-img">*/}
-      {/*  {*/}
-      {/*    hasImage ? (*/}
-      {/*      <img src={kittyUrl} />*/}
-      {/*      ) : (*/}
-      {/*        <img src={DefaultImg} />*/}
-      {/*    )*/}
-      {/*  }*/}
-      {/*</div>*/}
-
-      {/*<div className="may-post-card-img" >*/}
-      {/*  {*/}
-      {/*    renderImage()*/}
-      {/*  }*/}
-      {/*</div>*/}
-
       {hasImage && (
-        <div className="may-post-card-img" id="my-block" onClick={() => {alert('ghvcdhfvbdfsjvbdf')}}>
+        <div className="may-post-card-img" id="my-block" onClick={() => {
+          alert('ghvcdhfvbdfsjvbdf');
+        }}>
           <img src={kittyUrl} />
         </div>
       )
@@ -57,17 +46,17 @@ export function PostCard(props) {
         <div className="card-text body">
           {body}
         </div>
+        <blockquote className="blockquote">
+          <footer className="blockquote-footer">Author:
+            <cite title="Source Title">{author}</cite>
+          </footer>
+        </blockquote>
       </div>
 
-    {/*  todo: здесь нужно показать массив коментариев к посту (comments), который прилетит в props
-          можно создать отдельную компоненту Comment по аналогии с тем, как мы делали PostCard, UserCard
-          как она будет выглядеть зависит от вашей фантазии
-          Для каждого комментария должны быть выведены такие поля:
-          name - имя автора комментария
-          email - почта автора комментария
-          body - текст комментария
-    */}
-
+      {!!comments.length && <label>Comments:</label> }
+      {
+        comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
+      }
     </div>
   );
 }
