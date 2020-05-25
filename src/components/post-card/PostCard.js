@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import DefaultImg from '../../assets/default-empty-img.png';
