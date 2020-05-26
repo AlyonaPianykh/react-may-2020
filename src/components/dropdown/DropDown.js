@@ -53,8 +53,6 @@ export class DropDown extends Component {
              (нажатие на этот тег должно открывать/закрывать дропдаун)
         */}
                 <div className="dropdown-toggle">{selectedOption}</div>
-
-
                     // todo:
                     //  если значение isOpen в this.state = true показываем этот блок ниже (использовать &&)
                    {isOpen && (
