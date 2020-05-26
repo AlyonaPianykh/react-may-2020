@@ -41,7 +41,7 @@ export class DropDown extends Component {
     //  достать из this.props массив опций options
     //  он должен быть по умолчанию пуст, т.е. = [] (дефолтный параметр при деструктуризации) и
     //  достать также в пропсах selectedOption (выбранная в данный момент опция)
-    const { options, selectedOption } = this.props; // ["Sort By Default", "Sort By Author"],  "Sort By Default"
+    const { options = [], selectedOption } = this.props; // ["Sort By Default", "Sort By Author"],  "Sort By Default"
     // donetodo:
     //  достать isOpen из this.state
     const { isOpen } = this.state; // false
