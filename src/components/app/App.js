@@ -20,6 +20,7 @@ class App extends Component {
   state = {
     posts: [...postsList],
     // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    selectedOption: sortingOptions[0]
   };
 
   renderList = () => {
@@ -60,7 +61,8 @@ class App extends Component {
 
   onSortByDefault = () => {
     this.setState({
-      posts: [...postsList]
+      posts: [...postsList],
+      selectedOption: sortingOptions[0]
     })
   };
 
@@ -82,13 +84,14 @@ class App extends Component {
     });
 
     this.setState({
-      posts: sorted
+      posts: sorted,
+      selectedOption:sortingOptions[0]
     });
   };
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    const { posts, selectedOption } = this.state;
 
     return (
       <div className="App">
@@ -115,9 +118,9 @@ class App extends Component {
                  в options положить sortingOptions
             */}
             <DropDown
-
-
-
+                onSelect={this.onSort}
+                selectedOption={selectedOption}
+                options={sortingOptions}
             />
           </div>
           <div className="d-flex posts-container">
