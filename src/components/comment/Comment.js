@@ -13,7 +13,7 @@ export const Comment = (props) => {
         <p className="mb-0">{body}</p>
         <footer className="blockquote-footer"> Author:
           <cite title="Source Title">
-            <span> {name}</span>
+            <span>{name}</span>
             <br/>
             <span>{email}</span>
           </cite>
