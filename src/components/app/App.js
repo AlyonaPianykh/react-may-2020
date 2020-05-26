@@ -3,7 +3,7 @@ import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 
-import TestCard, { PostCard as Card } from '../post-card/PostCard';
+import { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 
 // todo 0) тут мы делаем импорт дропдауна (уже сделан)
@@ -20,6 +20,7 @@ class App extends Component {
   state = {
     posts: [...postsList],
     // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    selectedOption: sortingOptions[0]
   };
 
   renderList = () => {
@@ -51,7 +52,7 @@ class App extends Component {
         case option2:
           this.onSortByAuthorClick(); // вызываем сортировку по автору, если 2 элемент массива sortingOptions
           this.setState({
-            selectedOption: option1 // записываем в стейт выбранную опцию
+            selectedOption: option2 // записываем в стейт выбранную опцию
           });
           break;
         default:  break; // ничего неделаем если опция не входит в массив sortingOptions
@@ -88,13 +89,13 @@ class App extends Component {
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    const { posts,selectedOption } = this.state;
 
     return (
       <div className="App">
         <Header />
 
-        <PanelFromLecture isOpenByDefault={false} >
+        <PanelFromLecture isOpenByDefault={false} label ='first'>
           Hello, world!
         </PanelFromLecture>
 
