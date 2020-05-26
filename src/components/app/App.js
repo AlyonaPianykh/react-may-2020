@@ -115,7 +115,7 @@ class App extends Component {
                  в selectedOption положить selectedOption (из строки 91)
                  в options положить sortingOptions
             */}
-            <DropDown onSelect={this.state} selectedOption={selectedOption} options={sortingOptions}/>
+            <DropDown onSelect={this.onSort} selectedOption={selectedOption} options={sortingOptions}/>
           </div>
           <div className="d-flex posts-container">
             {
