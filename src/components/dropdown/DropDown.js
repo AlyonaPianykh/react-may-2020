@@ -9,8 +9,6 @@ export class DropDown extends Component {
   constructor(props) {
     super(props);
 
-    // const {onSelect} = props;
-
     this.state = {
       isOpen: false
     }
@@ -26,15 +24,14 @@ export class DropDown extends Component {
       // todo:
       //  достать из this.props функцию onSelect
       const {onSelect} = this.props;
-      console.log('event',event)
 
       // todo:
       //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
       //  вывести console.log(value) и убедиться что в консоли показывается текст выбранной опции
-      const {value} = event.target.getAttribute('data-value');
-      console.log('value',value)
+      const value = event.target.getAttribute('data-value');
+      console.log('value',value);
       // todo: вызвать функцию из onSelect с аргументом value
-      onSelect(value)
+      onSelect(value);
 
       // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
       this.setState({isOpen:false})
@@ -75,7 +72,8 @@ export class DropDown extends Component {
                       options.map(option => {
                         return (
                           <div key={option}
-                               className="may-drop-down-options-wrapper-option dropdown-item"
+                               className={`may-drop-down-options-wrapper-option dropdown-item 
+                                            ${option === selectedOption ? 'active' : ''}`}
                                data-value={option}
                                onClick={this.onOptionSelect}>
                             {option}
