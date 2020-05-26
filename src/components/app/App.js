@@ -19,7 +19,8 @@ const sortingOptions = ['Sort By Default', 'Sort By Author'];
 class App extends Component {
   state = {
     posts: [...postsList],
-    // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию) +
+    selectedOption: sortingOptions[0]
   };
 
   renderList = () => {
@@ -33,7 +34,7 @@ class App extends Component {
     return res;
   };
 
-  // todo: 3) обратите внимание на эту функцию, она уже написана,
+  // todo: 3) обратите внимание на эту функцию, она уже написана, +
   //  ее надо использовать в render методе, где кнопки сортировки
   //  передать ее в DropDown как пропсу под названием onSelect (строка 118)
   //  попробуйте продебажить и разобраться как она работает
@@ -51,7 +52,7 @@ class App extends Component {
         case option2:
           this.onSortByAuthorClick(); // вызываем сортировку по автору, если 2 элемент массива sortingOptions
           this.setState({
-            selectedOption: option1 // записываем в стейт выбранную опцию
+            selectedOption: option2 // записываем в стейт выбранную опцию
           });
           break;
         default:  break; // ничего неделаем если опция не входит в массив sortingOptions
@@ -87,8 +88,8 @@ class App extends Component {
   };
 
   render() {
-    // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    // todo 4) достать также в строке 92 из стейта selectedOption +
+    const { posts, selectedOption } = this.state;
 
     return (
       <div className="App">
@@ -108,17 +109,13 @@ class App extends Component {
             <button onClick={this.onSortByAuthorClick}>By author</button>
             <button onClick={this.onSortByDefault}>By default</button>
 
-            {/* todo: тут используется дропдаун
+            {/* todo: тут используется дропдаун +
                  ему нужно передать в пропсы такие значение:
                  в onSelect положить this.onSort
                  в selectedOption положить selectedOption (из строки 91)
                  в options положить sortingOptions
             */}
-            <DropDown
-
-
-
-            />
+            <DropDown onSelect={this.state} selectedOption={selectedOption} options={sortingOptions}/>
           </div>
           <div className="d-flex posts-container">
             {
