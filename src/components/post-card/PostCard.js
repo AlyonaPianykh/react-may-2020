@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
@@ -8,8 +8,68 @@ import './PostCard.scss';
 //  в ней должно появиться свойство state
 //  в котором будет флажок showComments
 //  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
+export class PostCard extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      showComments: false
+    };
+  }
+  onClick = () => {
+    // this.state.showComments = true;
+    this.setState({
+      showComments: !this.state.showComments
+    })
+  };
+  render() {
+    const { post, hasImage, comments = [], author } =this.props;
+    const { showComments } = this.state;
+    console.log( post)
+    const { title, body } = post;
+    const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
-export function PostCard(props) {
+    return (
+        <div className="may-post-card card">
+          {hasImage && (
+              <div className="may-post-card-img" id="my-block" onClick={() => {
+                alert('ghvcdhfvbdfsjvbdf');
+              }}>
+                <img src={kittyUrl} />
+              </div>
+          )
+          }
+          {!hasImage && (
+              <div className="may-post-card-img">
+                <img src={DefaultImg} />
+              </div>
+          )}
+
+          <div className="card-body">
+            <h4 className="card-title title">{title}</h4>
+            <div className="card-text body">
+              {body}
+            </div>
+            <blockquote className="blockquote">
+              <footer className="blockquote-footer">Author:
+                <cite title="Source Title">{author}</cite>
+              </footer>
+            </blockquote>
+            <button onClick={this.onClick}>Show comments</button>
+          </div>
+          {
+            showComments && (<div>
+                {!!comments.length && <label>Comments:</label>}
+          {
+            comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
+          }
+            </div>)
+          }
+        </div>
+    );
+  }
+}
+
+/*export function PostCard(props) {
   const { post, hasImage, comments = [], author } = props;
 
   console.log('hasImage', hasImage);
@@ -59,6 +119,6 @@ export function PostCard(props) {
       }
     </div>
   );
-}
+}*/
 
 export default PostCard;
