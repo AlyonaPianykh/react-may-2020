@@ -26,18 +26,18 @@ export class DropDown extends Component {
       // todo:
       //  достать из this.props функцию onSelect
       const {onSelect} = this.props;
+      console.log('event',event)
 
       // todo:
       //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
       //  вывести console.log(value) и убедиться что в консоли показывается текст выбранной опции
       const {value} = event.target.getAttribute('data-value');
-
-
+      console.log('value',value)
       // todo: вызвать функцию из onSelect с аргументом value
       onSelect(value)
 
-
       // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
+      this.setState({isOpen:false})
     };
 
     render()
@@ -53,12 +53,11 @@ export class DropDown extends Component {
       const {isOpen} = this.state;
 
       return (
-          <div className="may-drop-down dropdown"
-               onClick={this.toggle}>
+          <div className="may-drop-down dropdown">
             {/* todo: показать в строке 45 выбранную опцию selectedOption  и передать в onClick this.toggle
              (нажатие на этот тег должно открывать/закрывать дропдаун)
           */}
-            <div className="dropdown-toggle">{selectedOption}</div>
+            <div onClick={this.toggle} className="dropdown-toggle">{selectedOption}</div>
             {
               // todo:
               //  если значение isOpen в this.state = true показываем этот блок ниже (использовать &&)

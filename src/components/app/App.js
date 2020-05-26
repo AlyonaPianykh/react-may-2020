@@ -89,7 +89,7 @@ class App extends Component {
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts,selectedOption } = this.state;
+    const { posts, selectedOption } = this.state;
 
     return (
       <div className="App">
@@ -116,9 +116,9 @@ class App extends Component {
                  в options положить sortingOptions
             */}
             <DropDown
-
-
-
+                options={sortingOptions}
+                selectedOption={selectedOption}
+                onSelect={this.onSort}
             />
           </div>
           <div className="d-flex posts-container">
