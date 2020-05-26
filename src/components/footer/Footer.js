@@ -18,7 +18,7 @@ export const Footer = () => {
                     })}
                 </div>
             </div>
-            <div>All rights reserved. may-app © c 2020</div>
+            <div>All rights reserved. may-app © C 2020</div>
         </div>
     );
 };
