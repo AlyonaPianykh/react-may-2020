@@ -1,6 +1,15 @@
 .may-post-card {
   max-width: 300px;
   margin: 10px;
+  display: block;
+
+  .show {
+    display: inline-block;
+  }
+
+  .hide {
+    display: none;
+  }
 
   .may-post-card-img {
     display: flex;

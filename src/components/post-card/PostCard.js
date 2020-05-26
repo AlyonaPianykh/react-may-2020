@@ -5,18 +5,31 @@ import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
 // todo: переписать эту компоненту, чтоб она стала классовой +
-//  в ней должно появиться свойство state
-//  в котором будет флажок showComments
-//  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
+//  в ней должно появиться свойство state +
+//  в котором будет флажок showComments +
+//  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments" +
 
 export class PostCard extends Component {
   constructor(props) {
     super(props);
 
-
+    this.state = {
+      isOpen: false,
+      showComments: 'show comm'
+    }
   }
 
-
+  onClick = () => {
+  console.log ('click');
+    this.state.isOpen ? this.setState( {
+          showComments: 'show comm'
+        }) : this.setState( {
+      showComments: 'hide comm'
+    });
+    this.setState( {
+      isOpen: !this.state.isOpen
+    })
+};
 
 
   render() {
@@ -30,12 +43,16 @@ export class PostCard extends Component {
           <img src={DefaultImg} />
       );
     };
+
+    const {isOpen} = this.state;
+    const {showComments} = this.state;
+
     return (
         <div className="may-post-card card">
           {hasImage && (
         <div className="may-post-card-img" id="my-block" onClick={() => {
           alert('ghvcdhfvbdfsjvbdf');
-        }}>
+           }}>
           <img src={kittyUrl} />
         </div>
       )
@@ -56,13 +73,15 @@ export class PostCard extends Component {
             <cite title="Source Title">{author}</cite>
           </footer>
         </blockquote>
+        <button onClick={this.onClick}>{showComments}</button>
       </div>
-
+      <div className={`may-post-card  ${isOpen ? 'show' : 'hide'}`}>
       {!!comments.length && <label>Comments:</label> }
       {
         comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
       }
-    </div>
+      </div>
+      </div>
     );
   }
 
