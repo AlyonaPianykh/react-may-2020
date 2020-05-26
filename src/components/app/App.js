@@ -51,7 +51,7 @@ class App extends Component {
         case option2:
           this.onSortByAuthorClick(); // вызываем сортировку по автору, если 2 элемент массива sortingOptions
           this.setState({
-            selectedOption: option1 // записываем в стейт выбранную опцию
+            selectedOption: option2 // записываем в стейт выбранную опцию
           });
           break;
         default:  break; // ничего неделаем если опция не входит в массив sortingOptions
