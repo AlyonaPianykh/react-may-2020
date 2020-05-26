@@ -13,7 +13,7 @@ export class DropDown extends Component {
     toggle = () => {
         // todo - (done maybe) здесь должно быть открывание/закрывание дропдауна с помощью this.setState
         //  сделать так же как в компоненте components/panel/PanelFromLecture в методе onClick
-        this.setState = ({
+        this.setState ({
             isOpen: !this.state.isOpen
         })
     };
@@ -21,17 +21,17 @@ export class DropDown extends Component {
     onOptionSelect = (event) => {
         // todo - (done maybe)
         //  достать из this.props функцию onSelect
-        const {onSelect} = this.props
+        const {onSelect} = this.props;
 
         // todo - (done maybe)
         //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
         //  вывести console.log(value) и убедиться что в консоли показывается текст выбранной опции
         const value = event.target.getAttribute('data-value');
-        console.log(value)
+        console.log(value);
 
         // todo - (done maybe)
         //  вызвать функцию из onSelect с аргументом value
-        onSelect(value)
+        onSelect(value);
 
         // todo - (done maybe)
         //  закрыть дропдаун, вызвав this.setState({ isOpen: false })
@@ -47,7 +47,8 @@ export class DropDown extends Component {
 
         // todo - (done maybe)
         //  достать isOpen из this.state
-        const {isOpen} = this.state;
+        const {isOpen} = this.state
+
 
         return (
             <div className="may-drop-down dropdown">
@@ -55,7 +56,7 @@ export class DropDown extends Component {
              (нажатие на этот тег должно открывать/закрывать дропдаун)
              */}
 
-                <div className="dropdown-toggle">{selectedOption}</div>
+                <div className="dropdown-toggle" onClick={this.toggle}>{selectedOption}</div>
 
                 {
                     // todo - (done maybe)
@@ -74,8 +75,12 @@ export class DropDown extends Component {
                         {
                             options.map((option) => {
                                 return (<div
-                                    className={`may-drop-down-options-wrapper-option dropdown-item ${selectedOption === option ? 'active' : ''}`}
-                                    onClick={this.onOptionSelect} key={option} data-value={option}>{option}</div>)
+                                    key={option}
+                                    className='may-drop-down-options-wrapper-option dropdown-item'
+                                    onClick={this.onOptionSelect}
+                                    data-value={option}>
+                                    {option}
+                                </div>)
                             })
                         }
                     </div>
