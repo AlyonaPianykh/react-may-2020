@@ -36,7 +36,7 @@ export class DropDown extends Component {
         this.setState({
             isOpen: false
         });
-        
+
 
         console.log('Value:', value);
     };
@@ -53,11 +53,10 @@ export class DropDown extends Component {
         const {isOpen} = this.state;
         return (
             <div className="may-drop-down dropdown" onClick={this.toggle}>
+
                 {/* todo: показать в строке 45 выбранную опцию selectedOption  и передать в onClick this.toggle
-             (нажатие на этот тег должно открывать/закрывать дропдаун)
-        */}
-                <div className="dropdown-toggle">
-                    {/* тут будет выбранная опция*/}{selectedOption}</div>
+             (нажатие на этот тег должно открывать/закрывать дропдаун)*/}
+                <div className="dropdown-toggle">{selectedOption}</div>
                 {/*//  если значение isOpen в this.state = true показываем этот блок ниже (использовать &&)*/}
                 {isOpen && (<div className="may-drop-down-options-wrapper dropdown-menu show">
                     {/*
@@ -72,8 +71,9 @@ export class DropDown extends Component {
           */}
                     {
                         options.map((option) => {
-                            return (<div className={`may-drop-down-options-wrapper-option dropdown-item ${selectedOption===option?'active':''}`}
-                                         onClick={this.onOptionSelect}  key={option} data-value={option}>{option}</div>)
+                            return (<div
+                                className={`may-drop-down-options-wrapper-option dropdown-item ${selectedOption === option ? 'active' : ''}`}
+                                onClick={this.onOptionSelect} key={option} data-value={option}>{option}</div>)
                         })
                     }
                 </div>)}
