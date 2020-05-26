@@ -6,8 +6,8 @@ export class DropDown extends Component {
 // todo:
 //  добавить state, в котором будет булевая пропертя isOpen по умолчанию = false
 //  на базе нее будут рендериться или нет опции дропдауна
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
 
     this.state = {
       isOpen: false
@@ -23,7 +23,7 @@ export class DropDown extends Component {
     onOptionSelect = (event) => {
       // todo:
       //  достать из this.props функцию onSelect
-      const {onSelect} = this.props;
+      const { onSelect } = this.props;
 
       // todo:
       //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
@@ -31,10 +31,10 @@ export class DropDown extends Component {
       const value = event.target.getAttribute('data-value');
       console.log('value',value);
       // todo: вызвать функцию из onSelect с аргументом value
-      onSelect(value);
+      onSelect( value );
 
       // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
-      this.setState({isOpen:false})
+      this.setState({ isOpen:false })
     };
 
     render()
@@ -43,18 +43,18 @@ export class DropDown extends Component {
       //  достать из this.props массив опций options
       //  он должен быть по умолчанию пуст, т.е. = [] (дефолтный параметр при деструктуризации) и
       //  достать также в пропсах selectedOption (выбранная в данный момент опция)
-      const {options = [],selectedOption} = this.props;
+      const { options = [], selectedOption } = this.props;
 
       // todo:
       //  достать isOpen из this.state
-      const {isOpen} = this.state;
+      const { isOpen } = this.state;
 
       return (
           <div className="may-drop-down dropdown">
             {/* todo: показать в строке 45 выбранную опцию selectedOption  и передать в onClick this.toggle
              (нажатие на этот тег должно открывать/закрывать дропдаун)
           */}
-            <div onClick={this.toggle} className="dropdown-toggle">{selectedOption}</div>
+            <div onClick={ this.toggle } className="dropdown-toggle">{ selectedOption }</div>
             {
               // todo:
               //  если значение isOpen в this.state = true показываем этот блок ниже (использовать &&)

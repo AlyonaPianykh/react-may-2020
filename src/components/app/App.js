@@ -23,16 +23,16 @@ class App extends Component {
     selectedOption: sortingOptions[0]
   };
 
-  renderList = () => {
-    const res = [];
-
-    for (let i = 0; i < 6; i++) {
-      const item = postsList[i];
-      res.push(<Card post={item} key={item.id} />);
-    }
-
-    return res;
-  };
+  // renderList = () => {
+  //   const res = [];
+  //
+  //   for (let i = 0; i < 6; i++) {
+  //     const item = postsList[i];
+  //     res.push( <Card post={ item } key={ item.id } /> );
+  //   }
+  //
+  //   return res;
+  // };
 
   // todo: 3) обратите внимание на эту функцию, она уже написана,
   //  ее надо использовать в render методе, где кнопки сортировки
@@ -95,7 +95,7 @@ class App extends Component {
       <div className="App">
         <Header />
 
-        <PanelFromLecture isOpenByDefault={false} label ='first'>
+        <PanelFromLecture isOpenByDefault={ false } label ='first'>
           Hello, world!
         </PanelFromLecture>
 
@@ -106,10 +106,10 @@ class App extends Component {
         <PanelFromLecture label="Posts">
           <div className="d-flex">
             Sorting:
-            <button className={`${selectedOption === sortingOptions[0] ? "active" : ""}`}
-                    onClick={this.onSortByDefault}>By default</button>
-            <button className={`${selectedOption === sortingOptions[1] ? "active" : ""}`}
-                    onClick={this.onSortByAuthorClick}>By author</button>
+            <button className={`${ selectedOption === sortingOptions[0] ? "active" : ""}`}
+                    onClick={ this.onSortByDefault }>By default</button>
+            <button className={`${ selectedOption === sortingOptions[1] ? "active" : ""}`}
+                    onClick={ this.onSortByAuthorClick }>By author</button>
 
             {/* todo: тут используется дропдаун
                  ему нужно передать в пропсы такие значение:
@@ -118,9 +118,9 @@ class App extends Component {
                  в options положить sortingOptions
             */}
             <DropDown
-                options={sortingOptions}
-                selectedOption={selectedOption}
-                onSelect={this.onSort}
+                options={ sortingOptions }
+                selectedOption={ selectedOption }
+                onSelect={ this.onSort }
             />
           </div>
           <div className="d-flex posts-container">
@@ -131,11 +131,11 @@ class App extends Component {
                 const comments = allComments.filter(comment => comment.post_id === item.id);
 
                 return <Card
-                  post={item}
-                  key={item.id}
-                  hasImage={index % 2 !== 0}
-                  author={author}
-                  comments={comments}
+                  post={ item }
+                  key={ item.id }
+                  hasImage={ index % 2 !== 0 }
+                  author={ author }
+                  comments={ comments }
                 />;
               })
             }

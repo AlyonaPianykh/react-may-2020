@@ -1,6 +1,10 @@
 .may-post-card {
   max-width: 300px;
   margin: 10px;
+  display: flex;
+  align-items: center;
+
+
 
   .may-post-card-img {
     display: flex;
@@ -28,4 +32,8 @@
     font-size: 12px;
     margin: 5px 0;
   }
+}
+
+.btn {
+  width: 80%;
 }
