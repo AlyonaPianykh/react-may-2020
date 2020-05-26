@@ -26,17 +26,12 @@ export class PanelFromLecture extends React.Component {
   };
 
   onChange = (event) => {
-    debugger
-    console.log(event)
-    console.log(event.target.value)
-
     this.setState({
       inputVal: event.target.value
     });
   };
 
   render () {
-    console.log('render')
     const { children, label } = this.props;
     const {isOpen} = this.state;
 
