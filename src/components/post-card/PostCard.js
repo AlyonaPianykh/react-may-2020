@@ -54,9 +54,9 @@ render() {
             </footer>
           </blockquote>
         </div>
-        {!!comments.length &&<button onClick={this.onClick} >Show comments</button> }
+        {!!comments.length && <button onClick={this.onClick} >{showComments ? 'Hide comments': 'Show comments'}</button> }
         {
-          showComments && comments.map(comment => (<Comment comment={comment} key={comment.id} onClick={this.onClick} />))
+          showComments && comments.map(comment => (<Comment comment={comment} key={comment.id} />))
         }
       </div>
   );
