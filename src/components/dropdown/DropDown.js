@@ -38,7 +38,7 @@ constructor(props) {
 
     // todo: вызвать функцию из onSelect с аргументом value
 
-    onSelect(value);
+      onSelect (value);
 
     // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
     this.setState({
@@ -56,7 +56,7 @@ constructor(props) {
 
     // todo:
     //  достать isOpen из this.state
-    const { isOpen } = this.state;
+    const { isOpen, activeOption } = this.state;
 
     return (
       <div className="may-drop-down dropdown" onClick={this.toggle}>
@@ -82,7 +82,7 @@ constructor(props) {
           */
 
                 options.map(option => (
-                    <div className="may-drop-down-options-wrapper-option dropdown-item"
+                    <div className={`may-drop-down-options-wrapper-option dropdown-item ${activeOption ? 'active' : ''}`}
                          key={option}
                          data-value={option}
                          onClick={this.onOptionSelect}>
@@ -98,4 +98,4 @@ constructor(props) {
       </div>
     );
   }
-}
+};
