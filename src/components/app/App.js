@@ -19,6 +19,7 @@ const sortingOptions = ['Sort By Default', 'Sort By Author'];
 class App extends Component {
   state = {
     posts: [...postsList],
+    selectedOption: sortingOptions[0]
     // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
   };
 
@@ -51,7 +52,7 @@ class App extends Component {
         case option2:
           this.onSortByAuthorClick(); // вызываем сортировку по автору, если 2 элемент массива sortingOptions
           this.setState({
-            selectedOption: option1 // записываем в стейт выбранную опцию
+            selectedOption: option2 // записываем в стейт выбранную опцию
           });
           break;
         default:  break; // ничего неделаем если опция не входит в массив sortingOptions
@@ -88,7 +89,7 @@ class App extends Component {
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    const { posts,selectedOption } = this.state;
 
     return (
       <div className="App">
@@ -114,7 +115,7 @@ class App extends Component {
                  в selectedOption положить selectedOption (из строки 91)
                  в options положить sortingOptions
             */}
-            <DropDown
+            <DropDown onSelect={this.onSort} selectedOption={selectedOption} options={sortingOptions}
 
 
 
