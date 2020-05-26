@@ -106,8 +106,10 @@ class App extends Component {
         <PanelFromLecture label="Posts">
           <div className="d-flex">
             Sorting:
-            <button onClick={this.onSortByDefault}>By default</button>
-            <button onClick={this.onSortByAuthorClick}>By author</button>
+            <button className={`${selectedOption === sortingOptions[0] ? "active" : ""}`}
+                    onClick={this.onSortByDefault}>By default</button>
+            <button className={`${selectedOption === sortingOptions[1] ? "active" : ""}`}
+                    onClick={this.onSortByAuthorClick}>By author</button>
 
             {/* todo: тут используется дропдаун
                  ему нужно передать в пропсы такие значение:
