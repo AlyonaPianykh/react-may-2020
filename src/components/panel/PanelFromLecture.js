@@ -31,6 +31,7 @@ export class PanelFromLecture extends React.Component {
     console.log(event.target.value)
 
     this.setState({
+
       inputVal: event.target.value
     });
   };

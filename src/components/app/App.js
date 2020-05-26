@@ -20,6 +20,7 @@ class App extends Component {
   state = {
     posts: [...postsList],
     // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    selectedOption: sortingOptions[0]
   };
 
   renderList = () => {
@@ -32,6 +33,7 @@ class App extends Component {
 
     return res;
   };
+
 
   // todo: 3) обратите внимание на эту функцию, она уже написана,
   //  ее надо использовать в render методе, где кнопки сортировки
@@ -51,7 +53,7 @@ class App extends Component {
         case option2:
           this.onSortByAuthorClick(); // вызываем сортировку по автору, если 2 элемент массива sortingOptions
           this.setState({
-            selectedOption: option1 // записываем в стейт выбранную опцию
+            selectedOption: option2 // записываем в стейт выбранную опцию
           });
           break;
         default:  break; // ничего неделаем если опция не входит в массив sortingOptions
@@ -88,7 +90,7 @@ class App extends Component {
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    const { posts, selectedOption } = this.state;
 
     return (
       <div className="App">
@@ -115,6 +117,9 @@ class App extends Component {
                  в options положить sortingOptions
             */}
             <DropDown
+                onSelect={this.onSort}
+                selectedOption={selectedOption}
+                options={sortingOptions}
 
 
 
