@@ -19,6 +19,7 @@ const sortingOptions = ['Sort By Default', 'Sort By Author'];
 class App extends Component {
   state = {
     posts: [...postsList],
+    selectoption:sortingOptions[0]
     // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
   };
 
@@ -88,7 +89,7 @@ class App extends Component {
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    const { posts ,selectedOption} = this.state;
 
     return (
       <div className="App">
@@ -115,7 +116,7 @@ class App extends Component {
                  в options положить sortingOptions
             */}
             <DropDown
-
+onSelect = {this.onSort} selectedOption = {selectedOption} options = {sortingOptions}
 
 
             />
