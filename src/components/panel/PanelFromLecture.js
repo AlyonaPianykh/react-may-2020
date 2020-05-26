@@ -18,7 +18,7 @@ export class PanelFromLecture extends React.Component {
   test = 'test';
 
   onClick = () => {
-    console.log('test');
+    // console.log('test');
 
     this.setState({
       isOpen: !this.state.isOpen
@@ -27,8 +27,8 @@ export class PanelFromLecture extends React.Component {
 
   onChange = (event) => {
     debugger
-    console.log(event)
-    console.log(event.target.value)
+    // console.log(event)
+    // console.log(event.target.value)
 
     this.setState({
       inputVal: event.target.value
@@ -36,28 +36,28 @@ export class PanelFromLecture extends React.Component {
   };
 
   render () {
-    console.log('render')
+    // console.log('render')
     const { children, label } = this.props;
     const {isOpen} = this.state;
 
     return (
-      <div className="may-panel card">
+        <div className="may-panel card">
 
-        {/*<input value={this.state.inputVal} onChange={this.onChange}/>*/}
-        <div className="may-panel-header card-header">
-          <div>{label}</div>
-          <div className={`may-panel-header-chevron ${isOpen ? 'up' : ''}`} onClick={this.onClick}>
-            <img src={Chevron} alt="chevron arrow"/>
-          </div>
-        </div>
-        {
-          isOpen && (
-            <div className="card-body">
-              { children }
+          {/*<input value={this.state.inputVal} onChange={this.onChange}/>*/}
+          <div className="may-panel-header card-header">
+            <div>{label}</div>
+            <div className={`may-panel-header-chevron ${isOpen ? 'up' : ''}`} onClick={this.onClick}>
+              <img src={Chevron} alt="chevron arrow"/>
             </div>
-          )
-        }
-      </div>
+          </div>
+          {
+            isOpen && (
+                <div className="card-body">
+                  { children }
+                </div>
+            )
+          }
+        </div>
     );
   }
 }

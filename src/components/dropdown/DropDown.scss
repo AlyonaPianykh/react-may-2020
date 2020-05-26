@@ -2,4 +2,11 @@
   position: relative;
   height: 30px;
   min-width: 150px;
+  //my styles
+  user-select: none;
+  cursor: pointer;
+}
+
+.may-drop-down-options-wrapper-option.dropdown-item.active {
+  background: linear-gradient(90deg, LightSkyBlue 20%, MediumOrchid);
 }
