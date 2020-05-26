@@ -8,8 +8,6 @@ import './PostCard.scss';
 //  в ней должно появиться свойство state
 //  в котором будет флажок showComments
 //  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
-
-
 export class PostCard extends Component {
   state = {
     showComments: false
