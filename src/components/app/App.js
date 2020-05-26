@@ -20,6 +20,8 @@ class App extends Component {
   state = {
     posts: [...postsList],
     // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+      selectedOption: sortingOptions[0],
+      selectedSort: ""
   };
 
   renderList = () => {
@@ -51,7 +53,9 @@ class App extends Component {
         case option2:
           this.onSortByAuthorClick(); // вызываем сортировку по автору, если 2 элемент массива sortingOptions
           this.setState({
-            selectedOption: option1 // записываем в стейт выбранную опцию
+              //Тут була опічатка писало option1 замість  option2
+            selectedOption: option2 // записываем в стейт выбранную опцию
+
           });
           break;
         default:  break; // ничего неделаем если опция не входит в массив sortingOptions
@@ -59,12 +63,14 @@ class App extends Component {
   };
 
   onSortByDefault = () => {
-    this.setState({
-      posts: [...postsList]
+
+      this.setState({
+      posts: [...postsList],
+      selectedSort:'By default'
     })
   };
 
-  onSortByAuthorClick = () => {
+  onSortByAuthorClick = (event) => {
     const res = [...this.state.posts];
 
     const sorted = res.sort(function (a, b) {
@@ -82,13 +88,14 @@ class App extends Component {
     });
 
     this.setState({
-      posts: sorted
+      posts: sorted,
+      selectedSort:'By author'
     });
   };
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    const { posts, selectedOption } = this.state;
 
     return (
       <div className="App">
@@ -105,8 +112,8 @@ class App extends Component {
         <PanelFromLecture label="Posts">
           <div className="d-flex">
             Sorting:
-            <button onClick={this.onSortByAuthorClick}>By author</button>
-            <button onClick={this.onSortByDefault}>By default</button>
+            <button onClick={this.onSortByAuthorClick} className={`By author`===this.state.selectedSort?'active':""}>By author</button>
+            <button onClick={this.onSortByDefault } className={`By default`===this.state.selectedSort?'active':""}>By default</button>
 
             {/* todo: тут используется дропдаун
                  ему нужно передать в пропсы такие значение:
@@ -114,11 +121,7 @@ class App extends Component {
                  в selectedOption положить selectedOption (из строки 91)
                  в options положить sortingOptions
             */}
-            <DropDown
-
-
-
-            />
+            <DropDown onSelect = {this.onSort} selectedOption={selectedOption} options ={sortingOptions} />
           </div>
           <div className="d-flex posts-container">
             {
