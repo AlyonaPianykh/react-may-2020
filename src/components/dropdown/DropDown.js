@@ -22,7 +22,7 @@ state = {
   onOptionSelect = (event) => {
     // todo:
     //  достать из this.props функцию onSelect
-    const {onSelect} = this.props
+    const {onSelect} = this.props;
     
     // todo:
     //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
@@ -45,7 +45,7 @@ state = {
     //  достать из this.props массив опций options
     //  он должен быть по умолчанию пуст, т.е. = [] (дефолтный параметр при деструктуризации) и
     //  достать также в пропсах selectedOption (выбранная в данный момент опция)
-const {options = [], selectedOption} = this.props
+const {options = [], selectedOption} = this.props;
     // todo:
     //  достать isOpen из this.state
     const {isOpen} = this.state;
