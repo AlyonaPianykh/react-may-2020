@@ -8,25 +8,18 @@ import './PostCard.scss';
 //  в ней должно появиться свойство state
 //  в котором будет флажок showComments
 //  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
-const buttonLabel = ['Show COMMENTS','Hide COMMENTS']
 
 export class PostCard extends Component {
   constructor( props ) {
     super( props );
 
     this.state = {
-      showComments: false,
-      selectedLabel: buttonLabel[0]
+      showComments: false
     }
   }
 
   changeButton = () => {
-    const  [ show, hide ] = buttonLabel;
-
     this.setState({showComments:!this.state.showComments});
-    this.state.showComments === false ?
-      this.setState({selectedLabel:hide}) :
-      this.setState({selectedLabel:show})
   };
 
   render() {
@@ -34,13 +27,13 @@ export class PostCard extends Component {
       // console.log('hasImage', hasImage);
       const { title, body } = post;
       const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
-      const { showComments, selectedLabel } = this.state;
+      const { showComments } = this.state;
 
       const renderImage = () => {
         return hasImage ? (
-            <img src={kittyUrl} />
+            <img src={ kittyUrl } />
         ) : (
-            <img src={DefaultImg} />
+            <img src={ DefaultImg } />
         );
       };
 
@@ -63,7 +56,7 @@ export class PostCard extends Component {
             <div className="card-body">
               <h4 className="card-title title">{ title }</h4>
               <div className="card-text body">
-                {body}
+                { body }
               </div>
               <blockquote className="blockquote">
                 <footer className="blockquote-footer">Author:
@@ -72,12 +65,13 @@ export class PostCard extends Component {
               </blockquote>
             </div>
 
-            { !!comments.length && <button className={ showComments === false ?
-                                                                      'btn btn-success' :
-                                                                      "btn btn-outline-danger"}
-                                           onClick={this.changeButton}>
-                                    { selectedLabel }
-                                  </button>
+            { !!comments.length &&
+                <button className={ !showComments ?
+                                        'btn btn-success' :
+                                        "btn btn-outline-danger"}
+                        onClick={ this.changeButton }>
+                    { showComments ? 'Hide COMMENTS' : 'Show COMMENTS' }
+                </button>
             }
             { showComments &&
               comments.map(comment => ( <Comment comment={ comment } key={ comment.id }/> ))

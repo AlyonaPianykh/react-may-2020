@@ -61,13 +61,14 @@ class App extends Component {
 
   onSortByDefault = () => {
     this.setState({
-      posts: [...postsList]
+      posts: [...postsList],
+      selectedOption: sortingOptions[0]
     })
+    // const btn = event.target.setAttribute(className,'active')
   };
 
   onSortByAuthorClick = () => {
     const res = [...this.state.posts];
-
     const sorted = res.sort(function (a, b) {
       const authorA =  usersList.find(user => user.id === a.user_id);
       const authorB =  usersList.find(user => user.id === b.user_id);
@@ -83,7 +84,8 @@ class App extends Component {
     });
 
     this.setState({
-      posts: sorted
+      posts: sorted,
+      selectedOption: sortingOptions[1]
     });
   };
 
@@ -106,9 +108,9 @@ class App extends Component {
         <PanelFromLecture label="Posts">
           <div className="d-flex">
             Sorting:
-            <button className={`${ selectedOption === sortingOptions[0] ? "active" : ""}`}
+            <button className={ selectedOption === sortingOptions[0] ? "active" : "" }
                     onClick={ this.onSortByDefault }>By default</button>
-            <button className={`${ selectedOption === sortingOptions[1] ? "active" : ""}`}
+            <button className={ selectedOption === sortingOptions[1] ? "active" : "" }
                     onClick={ this.onSortByAuthorClick }>By author</button>
 
             {/* todo: тут используется дропдаун
