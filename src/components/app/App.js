@@ -57,7 +57,8 @@ function App() {
           })
         }
       </div>
-
+        
+        <h2>Users</h2>
       <div className="d-flex posts-container">
       {
           usersList.map((val, num) => {
