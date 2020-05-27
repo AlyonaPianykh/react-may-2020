@@ -8,6 +8,11 @@ import './PostCard.scss';
 // todo: делаем открывание/закрывание комментариев по кнопочке и добавляем лоадинг индикатор на загрузку комментариев
 
 export class PostCard extends PureComponent {
+  constructor(props) {
+    super(props);
+    console.log('PostCard constructor ');
+  }
+
   state = {
     comments: []
     // todo в стейт добавить флажок isCommentsLoading, который будет означать идет ли загрузка в данный момент, по умолчанию false
@@ -15,11 +20,6 @@ export class PostCard extends PureComponent {
     // todo в стейт добавить флажок showComments, который будет означать отображается ли секция с коментариями в данный момент, по умолчанию false
     // todo в стейт добавить строку error, чтоб хранить значения ошибок, если возникнут
   };
-
-  constructor(props) {
-    super(props);
-    console.log('PostCard constructor ');
-  }
 
   componentDidMount() {
     const { post, withCommentsLoading } = this.props;
@@ -51,12 +51,15 @@ export class PostCard extends PureComponent {
 
       const { result } = json;
       debugger
+
+      if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
         this.setState({
           // todo указать, что лоадинг закончился, т.е. isCommentsLoading будет false,
           //  а commentsLoaded станет true (т.е. запрос был выполнен)
           //  в error записываем пустую строку '' - показываем, что ошибки нет
-          comments: result || [] // изменена проверка, если results существовать не будет - закидываем пустой массив
+          comments: result
         });
+      }
     } else {
       // todo поменять стейт так, чтоб
       //  лоадинг закончился, т.е. isCommentsLoading будет false,
