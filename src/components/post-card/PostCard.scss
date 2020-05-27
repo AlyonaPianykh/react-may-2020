@@ -1,10 +1,6 @@
-.comments {
-  padding: 10px;
-}
 .may-post-card {
   max-width: 300px;
   margin: 10px;
-
 
   .may-post-card-img {
     display: flex;
@@ -20,10 +16,16 @@
   }
 
   .body {
-    font-size: 14px;
-    line-height: 1;
-    display: block;
-    overflow-wrap: break-word;
-    margin-bottom: 5px;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blockquote {
+    font-size: 12px;
+    margin: 5px 0;
   }
 }
