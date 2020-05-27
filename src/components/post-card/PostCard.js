@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-import { Comment } from '../comment/Comment';
+import {Comment} from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
@@ -9,56 +9,71 @@ import './PostCard.scss';
 //  в котором будет флажок showComments
 //  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
 
-export function PostCard(props) {
-  const { post, hasImage, comments = [], author } = props;
+export class PostCard extends Component {
+    state = {
+        showComments: false,
+        curValue: "show comments"
+    };
 
-  console.log('hasImage', hasImage);
-  const { title, body } = post;
+    toggle = () => {
+        this.setState({
+            showComments: !this.state.showComments,
+            curValue: this.state.curValue === "show comments" ? "hide comments" : "show comments"
+        })
+    };
 
-  const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
+    render() {
 
-  const renderImage = () => {
-    return hasImage ? (
-      <img src={kittyUrl} />
-    ) : (
-      <img src={DefaultImg} />
-    );
-  };
+        const {post, hasImage, comments = [], author} = this.props;
 
-  return (
-    <div className="may-post-card card">
-      {hasImage && (
-        <div className="may-post-card-img" id="my-block" onClick={() => {
-          alert('ghvcdhfvbdfsjvbdf');
-        }}>
-          <img src={kittyUrl} />
-        </div>
-      )
-      }
-      {!hasImage && (
-        <div className="may-post-card-img">
-          <img src={DefaultImg} />
-        </div>
-      )}
+        console.log('hasImage', hasImage);
+        const {title, body} = post;
+        const {showComments, curValue} = this.state;
+        const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
-      <div className="card-body">
-        <h4 className="card-title title">{title}</h4>
-        <div className="card-text body">
-          {body}
-        </div>
-        <blockquote className="blockquote">
-          <footer className="blockquote-footer">Author:
-            <cite title="Source Title">{author}</cite>
-          </footer>
-        </blockquote>
-      </div>
+        const renderImage = () => {
+            return hasImage ? (
+                <img src={kittyUrl}/>
+            ) : (
+                <img src={DefaultImg}/>
+            );
+        };
 
-      {!!comments.length && <label>Comments:</label> }
-      {
-        comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
-      }
-    </div>
-  );
+        return (
+            <div className="may-post-card card">
+                {hasImage && (
+                    <div className="may-post-card-img" id="my-block" onClick={() => {
+                        alert('ghvcdhfvbdfsjvbdf');
+                    }}>
+                        <img src={kittyUrl}/>
+                    </div>
+                )
+                }
+                {!hasImage && (
+                    <div className="may-post-card-img">
+                        <img src={DefaultImg}/>
+                    </div>
+                )}
+
+                <div className="card-body">
+                    <h4 className="card-title title">{title}</h4>
+                    <div className="card-text body">
+                        {body}
+                    </div>
+                    <blockquote className="blockquote">
+                        <footer className="blockquote-footer">Author:
+                            <cite title="Source Title">{author}</cite>
+                        </footer>
+                    </blockquote>
+                </div>
+
+                {!!comments.length && <label onClick={this.toggle}>{curValue}</label>}
+                {
+                    showComments && comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
+                }
+            </div>
+        );
+    }
 }
 
 export default PostCard;
