@@ -1,5 +1,7 @@
 $breakpoint-tablet: 768px;
-
+.warning {
+  background-color: red;
+}
 .posts-container {
   flex-direction: column;
   flex-wrap: wrap;

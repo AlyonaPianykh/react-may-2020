@@ -24,26 +24,27 @@ class App extends Component {
   state = {
     posts: [...postsList],
     sortingOptions: sortingOptions[0],
-
+    warning : false
   };
-
-  // search = (event) => {
-  //   const value = event.target.elements.input.value
-  //   event.preventDefault();
-  //   const array = this.state.posts.filter((element) => (element.user_id === value))
-  //   this.setState({posts:array});
-  //   console.log(value)
-  //   console.log(array)
-  // }
 
   // search on first_name by usersList like: Dibbert or Caitlyn
   search = (event) => {
     const curValue = event.target.elements.input.value
     event.preventDefault()
-    const user = usersList.filter((element)=>(curValue === element.first_name || curValue === element.last_name))[0].id
-    const filterUser = postsList.filter((element) => (element.user_id === user))
-    this.setState({posts:filterUser});
-    console.log(user)
+    const user = usersList.filter((element)=> (curValue === element.first_name))
+    if (user[0]) {
+      const id = user[0].id
+      const filterUser = postsList.filter((element) => (element.user_id === id))
+      this.setState({posts:filterUser});
+      console.log(user)
+    }
+    else {
+      this.setState({warning:true})
+
+    }
+  }
+  removeWarning = () => {
+    this.setState({warning:false})
   }
 
   renderList = () => {
@@ -135,7 +136,7 @@ class App extends Component {
                 options={sortingOptions}
             />
             {/*search*/}
-            <Search search={this.search} />
+            <Search removeWarning={this.removeWarning} className={this.state.warning && 'warning'} search={this.search} />
 
           </div>
           <div className="d-flex posts-container">

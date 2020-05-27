@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Search({search}) {
+function Search({search, className, removeWarning}) {
        return (
            <form onSubmit={search} >
-               <input  name={'input'} type="search" placeholder="Search" aria-label="Search"/>
+               <input className={className} name={'input'} type="search" placeholder="Search" aria-label="Search" onClick={removeWarning}/>
                <button  type="submit">
                </button>
            </form>
