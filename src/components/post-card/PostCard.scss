@@ -2,7 +2,6 @@
   max-width: 300px;
   margin: 10px;
 
-
   .may-post-card-img {
     display: flex;
     align-items: center;
@@ -17,7 +16,16 @@
   }
 
   .body {
-    display: block;
-    overflow-wrap: break-word;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blockquote {
+    font-size: 12px;
+    margin: 5px 0;
   }
 }
