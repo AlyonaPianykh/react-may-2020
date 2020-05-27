@@ -1,0 +1,25 @@
+.may-footer {
+  border-top: 1px solid gray;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 40px;
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-social-media {
+    &-wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-icon {
+      width: 25px;
+      height: 25px;
+      margin: 0 10px;
+    }
+  }
+}
