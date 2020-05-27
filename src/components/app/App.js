@@ -2,8 +2,8 @@ import React, {Component, useState} from 'react';
 import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import { PanelFromLecture } from '../panel/PanelFromLecture';
-import Search from '../../Search/Search';
-import UserList from './UserList';
+import Search from '../Search/Search';
+
 
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
@@ -27,6 +27,24 @@ class App extends Component {
 
   };
 
+  // search = (event) => {
+  //   const value = event.target.elements.input.value
+  //   event.preventDefault();
+  //   const array = this.state.posts.filter((element) => (element.user_id === value))
+  //   this.setState({posts:array});
+  //   console.log(value)
+  //   console.log(array)
+  // }
+
+  // search on first_name by usersList like: Dibbert or Caitlyn
+  search = (event) => {
+    const curValue = event.target.elements.input.value
+    event.preventDefault()
+    const user = usersList.filter((element)=>(curValue === element.first_name || curValue === element.last_name))[0].id
+    const filterUser = postsList.filter((element) => (element.user_id === user))
+    this.setState({posts:filterUser});
+    console.log(user)
+  }
 
   renderList = () => {
     const res = [];
@@ -116,7 +134,8 @@ class App extends Component {
                 selectedOption={selectedOption}
                 options={sortingOptions}
             />
-
+            {/*search*/}
+            <Search search={this.search} />
 
           </div>
           <div className="d-flex posts-container">
