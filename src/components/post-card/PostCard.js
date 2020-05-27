@@ -14,11 +14,15 @@ export class PostCard extends PureComponent {
   }
 
   state = {
-    comments: []
+    comments: [],
     // todo в стейт добавить флажок isCommentsLoading, который будет означать идет ли загрузка в данный момент, по умолчанию false
+    isCommentsLoading: false,
     // todo в стейт добавить флажок commentsLoaded, который будет означать загрузились ли коментарии, по умолчанию false
+    commentsLoaded: false,
     // todo в стейт добавить флажок showComments, который будет означать отображается ли секция с коментариями в данный момент, по умолчанию false
+    showComments: false,
     // todo в стейт добавить строку error, чтоб хранить значения ошибок, если возникнут
+    error: ''
   };
 
   componentDidMount() {
@@ -43,35 +47,48 @@ export class PostCard extends PureComponent {
 
     //  todo поменять стейт так, чтоб было понятно что секция с комментариями открыта и началась загрузка
     //  todo т.е. isCommentsLoading и showComments станут true
+    this.setState({
+      isCommentsLoading: true,
+      showComments: true
+    });
 
-    let response = await fetch(`https://gorest.co.in/public-api/comments?access-token=${accessToken}&post_id=${postId}`);
+    let response = await fetch(`https://gorest.co.in/public-api/comments?access-token=${ accessToken }&post_id=${ postId }`);
 
     if (response.ok) {
       let json = await response.json();
 
       const { result } = json;
-      debugger
+      // debugger
 
       if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
         this.setState({
           // todo указать, что лоадинг закончился, т.е. isCommentsLoading будет false,
+          isCommentsLoading: false,
           //  а commentsLoaded станет true (т.е. запрос был выполнен)
+          commentsLoaded: true,
           //  в error записываем пустую строку '' - показываем, что ошибки нет
           comments: result
         });
       }
     } else {
+        this.setState({
       // todo поменять стейт так, чтоб
       //  лоадинг закончился, т.е. isCommentsLoading будет false,
-      //  а commentsLoaded станет false (т.е. запрос не был выполнен ввиду ошибки)
-      //  в error пойдет значение response.status
+          isCommentsLoading: false,
+          //  а commentsLoaded станет false (т.е. запрос не был выполнен ввиду ошибки)
+          commentsLoaded: false,
+          //  в error пойдет значение response.status
+          error: response.status,
       //  и закроем секцию коментариев т.е. commentsSectionExpanded будет false
+          commentsSectionExpanded: false
+        })
     }
   };
 
   onToggleComments = () => {
     // todo
     //    меняем в стейт значение showComments на противоположное (по аналогии как мы делали isOpen для PanelFromLecture
+    this.setState({showComments: !this.state.showComments})
   };
 
   // shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -84,28 +101,27 @@ export class PostCard extends PureComponent {
   render() {
     const { post, hasImage, author = '', className = '' } = this.props;
     const { title, body } = post;
-    {/* todo с помощью  деструктуризации достать из this.state проперти showComments, error, isCommentsLoading, commentsLoaded */
-    }
-    const { comments } = this.state;
+    {/* todo с помощью  деструктуризации достать из this.state проперти showComments, error, isCommentsLoading, commentsLoaded */}
+    const { comments,showComments, error, isCommentsLoading, commentsLoaded } = this.state;
 
     const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
     console.log('PostCard render');
     return (
-      <div className={`may-post-card card ${className}`}>
+      <div className={`may-post-card card ${ className }`}>
         <div className="may-post-card-img" id="my-block" onClick={() => {
-          alert('ghvcdhfvbdfsjvbdf');
+          alert("its fun, isn't it?");
         }}>
           <img src={hasImage ? kittyUrl : DefaultImg} />
         </div>
         <div className="card-body">
-          <h4 className="card-title title">{title}</h4>
+          <h4 className="card-title title">{ title }</h4>
           <div className="card-text body">
-            {body}
+            { body }
           </div>
           <blockquote className="blockquote">
             <footer className="blockquote-footer">Author:
-              <cite title="Source Title">{author}</cite>
+              <cite title="Source Title">{ author }</cite>
             </footer>
           </blockquote>
         </div>
@@ -116,15 +132,19 @@ export class PostCard extends PureComponent {
           //    повесить на нее onClick событие this.onToggleComments
           //    как класс задать ей "btn btn-link"
         }
+        <label className="btn btn-link" onClick={this.onToggleComments}>
+          { showComments ? "Hide comments" : "Show comments"}
+        </label>
         {/* todo создать div который будет как children содержать error, если !!error */}
-
+        <div> { !!error ? error : ''} </div>
         {/* todo в строке ниже изменить условие если showComments = true то показываем <label>Comments:</label>*/}
-        {!!comments.length && <label>Comments:</label>}
+        { showComments && <label>Comments:</label>}
         {
           //todo если секция комментариев открыта, т.е. showComments = true
           //   и идет загрузка комментариев, т.е. isCommentsLoading = true
           // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
         }
+        { showComments && isCommentsLoading ? <div> Loading comments ... </div> : '' }
         {
           //todo если секция комментариев открыта, т.е. showComments = true
           //   но НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
@@ -132,13 +152,17 @@ export class PostCard extends PureComponent {
           //   и массив comments пустой, т.е. !comments.length
           // показываем сообщение, что нет результатов (div с надписью "No comments for this post yet" в div)
         }
+        { showComments && !isCommentsLoading && commentsLoaded && !comments.length
+                ? <div> No comments for this post yet </div> : '' }
+
         {
           // todo если секция комментариев открыта, т.е. showComments = true
           //   и НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
           //   и запрос уже был выполнен т.е. commentsLoaded = true
           //   и массив comments НЕ пустой, т.е. !!comments.length
           //    то:
-          comments.map(comment => (<Comment comment={comment} key={comment.id} />))
+          showComments && !isCommentsLoading && commentsLoaded && !!comments.length ?
+          comments.map(comment => (<Comment comment={ comment } key={ comment.id } />)) : ''
         }
       </div>
     );
