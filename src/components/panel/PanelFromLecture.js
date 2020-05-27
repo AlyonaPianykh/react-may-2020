@@ -36,7 +36,6 @@ export class PanelFromLecture extends React.Component {
   };
 
   render () {
-    console.log('render')
     const { children, label } = this.props;
     const {isOpen} = this.state;
 

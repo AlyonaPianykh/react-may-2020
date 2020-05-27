@@ -1,3 +1,6 @@
+// todo: зарегистрироваться на https://gorest.co.in и вписать свой accessToken ниже
+export const accessToken = '';
+
 export const user = {
   firstName: 'Poison',
   lastName: 'Ivy',
