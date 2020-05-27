@@ -3,27 +3,33 @@ import React, { Component } from 'react';
 import './DropDown.scss';
 
 export class DropDown extends Component {
-  state = {
-    isOpen: false
-  };
+// todo:
+//  добавить state, в котором будет булевая пропертя isOpen по умолчанию = false
+//  на базе нее будут рендериться или нет опции дропдауна
+  constructor( props ) {
+    super( props );
 
-  toggle = () => {
-    // todo: здесь должно быть открывание/закрывание дропдауна с помощью this.setState
-    //  сделать так же как в компоненте components/panel/PanelFromLecture в методе onClick
-  };
+    this.state = {
+      isOpen: false
+    }
+  }
+
+    toggle = () => {
+     // // todo: здесь должно быть открывание/закрывание дропдауна с помощью this.setState
+      //  сделать так же как в компоненте components/panel/PanelFromLecture в методе onClick
+      };
 
   onOptionSelect = (event) => {
-    // todo:
+    //// todo:
     //  достать из this.props функцию onSelect
 
-
-    // todo:
-    //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
-    //  вывести console.log(value) и убедиться что в консоли показывается текст выбранной опции
-
-
-    // todo: вызвать функцию из onSelect с аргументом value
-
+      // todo:
+      //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
+      //  вывести console.log(value) и убедиться что в консоли показывается текст выбранной опции
+      const value = event.target.getAttribute('data-value');
+      console.log('value',value);
+      // todo: вызвать функцию из onSelect с аргументом value
+      onSelect( value );
 
     // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
   };
