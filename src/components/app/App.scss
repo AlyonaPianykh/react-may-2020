@@ -1,5 +1,18 @@
+$breakpoint-tablet: 768px;
+
+.posts-container {
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
+}
+
 .App {
   text-align: center;
+  padding-bottom: 90px;
 }
 
 .App-logo {
@@ -28,11 +41,3 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
