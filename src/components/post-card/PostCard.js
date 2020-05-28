@@ -69,6 +69,7 @@ export class PostCard extends PureComponent {
           //  а commentsLoaded станет true (т.е. запрос был выполнен)
           commentsLoaded: true,
           //  в error записываем пустую строку '' - показываем, что ошибки нет
+          error: "",
           comments: result
         });
       }
