@@ -18,14 +18,14 @@ export class PanelFromLecture extends React.Component {
   test = 'test';
 
   onClick = () => {
-    console.log('test');
-
     this.setState({
       isOpen: !this.state.isOpen
     })
   };
 
-  onChange = (event) => {
+
+  // Тут был пример с инпутом и тем, что state нельзя менять напрямую
+/*  onChange = (event) => {
     debugger
     console.log(event)
     console.log(event.target.value)
@@ -33,10 +33,9 @@ export class PanelFromLecture extends React.Component {
     this.setState({
       inputVal: event.target.value
     });
-  };
+  };*/
 
   render () {
-    console.log('render')
     const { children, label } = this.props;
     const {isOpen} = this.state;
 
