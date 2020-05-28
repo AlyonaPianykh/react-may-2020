@@ -31,7 +31,7 @@ export class DropDown extends Component {
     const value = event.target.getAttribute('data-value');
     //  вывести console.log(value) и убедиться что в консоли показывается текст выбранной опции
     // Проверка на отсортированость по этому критерию
-    // if (this.props.selectedOption === value) return null;
+    if (this.props.selectedOption === value) return null;
     // todo: вызвать функцию из onSelect с аргументом value
     renderPosts(value);
 
@@ -83,26 +83,6 @@ export class DropDown extends Component {
           </div>
         }
       </div>
-/*    <div className="may-drop-down dropdown" onClick={this.toggle}>
-
-      <div className="dropdown-toggle">{selectedOption}</div>
-
-      {
-
-        isOpen && <div className="may-drop-down-options-wrapper dropdown-menu show">
-          {
-            options.map((option) => {
-              return(
-                  <div className='may-drop-down-options-wrapper-option dropdown-item' key={option} data-value={option}
-                       onClick={this.onOptionSelect}>
-                    {option}
-                  </div>
-              )
-            })
-          }
-        </div>
-      }
-    </div>*/
     );
   }
 }

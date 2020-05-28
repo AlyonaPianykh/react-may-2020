@@ -217,9 +217,6 @@ class App extends Component {
         <PanelFromLecture label="Posts">
           <div className="d-flex">
             Sorting:
-            <button onClick={this.onSortByAuthorClick}>By author</button>
-            <button onClick={this.onSortByDefault}>By default</button>
-
             {/* todo: тут используется дропдаун
                  ему нужно передать в пропсы такие значение:
                  в onSelect положить this.onSort
