@@ -7,7 +7,7 @@ import { UserInfo } from '../user-info/UserInfoFromLecture';
 import './Header.scss';
 
 export const Header = (props) => {
-  console.log(links);
+  // console.log(links);
   return (
     <div className="may-header navbar">
       <img src={Logo} className="may-header-logo" />

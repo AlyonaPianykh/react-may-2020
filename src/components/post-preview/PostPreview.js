@@ -54,7 +54,7 @@ export class PostPreview extends Component {
           <PostsMenuList posts={posts} onSelect={this.onPostSelect}/>
         </div>
         <div className={`${CN}-content`}>
-          <PostCard post={post} className={`${CN}-card`} withCommentsLoading />
+          <PostCard post={post} className={`${CN}-card`} withCommentsLoading hasImage />
         </div>
       </div>
     );
