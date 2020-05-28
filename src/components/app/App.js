@@ -94,7 +94,8 @@ class App extends Component {
 
             <DropDown
 
-
+                  onSelect={this.onSort()}
+                  option={selectedOption}
 
             />
           </div>

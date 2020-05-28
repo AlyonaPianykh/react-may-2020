@@ -18,17 +18,23 @@ export class DropDown extends Component {
   onOptionSelect = (event) => {
     // todo:
     //  достать из this.props функцию onSelect
+    const {onSelect} = this.props
 
 
-    // todo:
+    // dtodo:
     //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
     //  вывести console.log(value) и убедиться что в консоли показывается текст выбранной опции
+    const value = event.target.getAttribute('data-value')
 
 
-    // todo: вызвать функцию из onSelect с аргументом value
+    // dtodo: вызвать функцию из onSelect с аргументом value
+    onSelect(value)
 
 
-    // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
+    // dtodo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
+    this.setState({
+      isOpen: false
+    })
   };
 
   render() {
@@ -36,6 +42,7 @@ export class DropDown extends Component {
     //  достать из this.props массив опций options
     //  он должен быть по умолчанию пуст, т.е. = [] (дефолтный параметр при деструктуризации) и
     //  достать также в пропсах selectedOption (выбранная в данный момент опция)
+    const {option = []} = this.props
 
     // todo:
     //  достать isOpen из this.state
