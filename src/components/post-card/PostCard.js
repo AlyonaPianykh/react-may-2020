@@ -14,11 +14,15 @@ export class PostCard extends PureComponent {
   }
 
   state = {
-    comments: []
+    comments: [],
     // todo в стейт добавить флажок isCommentsLoading, который будет означать идет ли загрузка в данный момент, по умолчанию false
     // todo в стейт добавить флажок commentsLoaded, который будет означать загрузились ли коментарии, по умолчанию false
     // todo в стейт добавить флажок showComments, который будет означать отображается ли секция с коментариями в данный момент, по умолчанию false
     // todo в стейт добавить строку error, чтоб хранить значения ошибок, если возникнут
+    isCommentsLoading: false,
+    commentsLoaded: false,
+    showComment: false,
+    error: ''
   };
 
   componentDidMount() {
