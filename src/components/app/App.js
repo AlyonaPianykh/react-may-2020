@@ -16,7 +16,9 @@ const sortingOptions = ['Sort By Default', 'Sort By Author'];
 class App extends Component {
   state = {
     posts: [...postsList],
-    // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    selectedOption: sortingOptions[0]
+    //// todo:
+    //  2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
   };
 
   onSort = (selectedOption) => {
@@ -43,7 +45,8 @@ class App extends Component {
 
   onSortByDefault = () => {
     this.setState({
-      posts: [...postsList]
+      posts: [...postsList],
+      selectedOption: sortingOptions[0]
     });
   };
 
@@ -65,24 +68,26 @@ class App extends Component {
     });
 
     this.setState({
-      posts: sorted
+      posts: sorted,
+      selectedOption: sortingOptions[1]
     });
   };
 
   render() {
-    // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    //// todo
+    // 4)достать также в строке 92 из стейта selectedOption
+    const { posts, selectedOption } = this.state;
 
     return (
       <div className="App">
         <Header />
 
-        <PanelFromLecture>
+        <PanelFromLecture label="first">
           Hello, world!
         </PanelFromLecture>
 
         <PanelFromLecture label="test" isOpenByDefault>
-          <PostPreview posts={posts} />
+          <PostPreview posts={ posts } />
         </PanelFromLecture>
 
         <PanelFromLecture label="Posts" >
@@ -92,9 +97,9 @@ class App extends Component {
             <button onClick={this.onSortByDefault}>By default</button>
 
             <DropDown
-
-
-
+                options={sortingOptions}
+                selectedOption={selectedOption}
+                onSelect={this.onSort}
             />
           </div>
           <div className="d-flex posts-container">
@@ -105,11 +110,11 @@ class App extends Component {
                 const comments = allComments.filter(comment => comment.post_id === item.id);
 
                 return <Card
-                  post={item}
-                  key={item.id}
-                  hasImage={index % 2 !== 0}
-                  author={author}
-                  comments={comments}
+                  post={ item }
+                  key={ item.id }
+                  hasImage={ index % 2 !== 0 }
+                  author={ author }
+                  comments={ comments }
                 />;
               })
             }

@@ -18,7 +18,7 @@ export class PanelFromLecture extends React.Component {
   test = 'test';
 
   onClick = () => {
-    console.log('test');
+    // console.log('test');
 
     this.setState({
       isOpen: !this.state.isOpen
@@ -26,9 +26,9 @@ export class PanelFromLecture extends React.Component {
   };
 
   onChange = (event) => {
-    debugger
-    console.log(event)
-    console.log(event.target.value)
+    // debugger
+    // console.log(event);
+    // console.log(event.target.value);
 
     this.setState({
       inputVal: event.target.value

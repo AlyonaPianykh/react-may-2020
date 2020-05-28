@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
@@ -49,7 +49,9 @@ export class PostCard extends PureComponent {
     //  todo т.е. isCommentsLoading и showComments станут true
     this.setState({
       isCommentsLoading: true,
-      showComments: true
+      // showComments: true     // я б не менял этого состояния, чтобы сберечь логику кнопки "show comments"
+                                // Если пользователю надо просматривать только посты без комментариев,
+                                // сотсояние этого стейта не должно изменятся при выборе другой PostCard, ИМХО
     });
 
     let response = await fetch(`https://gorest.co.in/public-api/comments?access-token=${ accessToken }&post_id=${ postId }`);
@@ -98,6 +100,11 @@ export class PostCard extends PureComponent {
   //   return curPost.id !== nextPost.id
   // }
 
+  spinner () {
+    return (
+        <div class="loadingspinner"/>
+    )}
+
   render() {
     const { post, hasImage, author = '', className = '' } = this.props;
     const { title, body } = post;
@@ -107,12 +114,13 @@ export class PostCard extends PureComponent {
     const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
     console.log('PostCard render');
+
     return (
       <div className={`may-post-card card ${ className }`}>
         <div className="may-post-card-img" id="my-block" onClick={() => {
           alert("its fun, isn't it?");
         }}>
-          <img src={hasImage ? kittyUrl : DefaultImg} />
+          <img src={hasImage ? kittyUrl : DefaultImg} alt='DefaultImg' />
         </div>
         <div className="card-body">
           <h4 className="card-title title">{ title }</h4>
@@ -132,7 +140,7 @@ export class PostCard extends PureComponent {
           //    повесить на нее onClick событие this.onToggleComments
           //    как класс задать ей "btn btn-link"
         }
-        <label className="btn btn-link" onClick={this.onToggleComments}>
+        <label className="btn btn-link" onClick={ this.onToggleComments }>
           { showComments ? "Hide comments" : "Show comments"}
         </label>
         {/* todo создать div который будет как children содержать error, если !!error */}
@@ -144,7 +152,8 @@ export class PostCard extends PureComponent {
           //   и идет загрузка комментариев, т.е. isCommentsLoading = true
           // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
         }
-        { showComments && isCommentsLoading ? <div> Loading comments ... </div> : '' }
+        { showComments && isCommentsLoading ? this.spinner() : ''}
+
         {
           //todo если секция комментариев открыта, т.е. showComments = true
           //   но НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
