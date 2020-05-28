@@ -4,10 +4,11 @@ import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
-// todo: переписать эту компоненту, чтоб она стала классовой
+// donetodo: переписать эту компоненту, чтоб она стала классовой
 //  в ней должно появиться свойство state
 //  в котором будет флажок showComments
 //  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
+
 
 export function PostCard(props) {
   const { post, hasImage, comments = [], author } = props;
