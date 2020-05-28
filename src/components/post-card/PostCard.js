@@ -35,13 +35,13 @@ export class PostCard extends PureComponent {
         }
     }
 
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     console.log('PostCard componentDidUpdate', prevProps.post, this.props.post);
-    //     // добавлена проверка withCommentsLoading нужно ли делать загрузку комментариев (чтоб в списке всех постов не загружать их)
-    //     if (prevProps.post.id !== this.props.post.id && this.props.withCommentsLoading) {
-    //         this.loadComments(this.props.post.id);
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('PostCard componentDidUpdate', prevProps.post, this.props.post);
+        // добавлена проверка withCommentsLoading нужно ли делать загрузку комментариев (чтоб в списке всех постов не загружать их)
+        if (prevProps.post.id !== this.props.post.id && this.props.withCommentsLoading) {
+            this.loadComments(this.props.post.id);
+        }
+    }
 
     loadComments = async (postId) => {
 
@@ -53,12 +53,12 @@ export class PostCard extends PureComponent {
         });
 
         let response = await fetch(`https://gorest.co.in/public-api/comments?access-token=${accessToken}&post_id=${postId}`);
-        console.log(postId, 'dasha');
+
         if (response.ok) {
             let json = await response.json();
 
             const {result} = json;
-            // debugger
+
 
             if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
                 this.setState({
