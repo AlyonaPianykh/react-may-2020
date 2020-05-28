@@ -8,6 +8,7 @@ export class DropDown extends Component {
   };
 
   toggle = () => {
+
     // todo: здесь должно быть открывание/закрывание дропдауна с помощью this.setState
     //  сделать так же как в компоненте components/panel/PanelFromLecture в методе onClick
   };
