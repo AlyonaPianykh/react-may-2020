@@ -89,7 +89,7 @@ export class PostCard extends PureComponent {
 
   onToggleComments = () => {
     // donetodo
-    //    меняем в стейт значение showComments на противоположное (по аналогии как мы делали isOpen для PanelFromLecture
+    // меняем в стейт значение showComments на противоположное (по аналогии как мы делали isOpen для PanelFromLecture
     this.setState({
       showComments: !this.state.showComments
     });
@@ -130,66 +130,70 @@ export class PostCard extends PureComponent {
             </footer>
           </blockquote>
         </div>
-
-        {
-          // donetodo: добавить label, в котором как children будет если showComments = true - надпись "Hide comments",
-          //    иначе - "Show comments"
-          //    повесить на нее onClick событие this.onToggleComments
-          //    как класс задать ей "btn btn-link"
-        }
+        <div>
+          {
+            // donetodo: добавить label, в котором как children будет если showComments = true - надпись "Hide comments",
+            //    иначе - "Show comments"
+            //    повесить на нее onClick событие this.onToggleComments
+            //    как класс задать ей "btn btn-link"
+          }
           <label
-              className="btn btn-link"
-              onClick={this.onToggleComments}>
-              {this.state.showComments? 'Hide comments': 'Show comments'}
-          </label>
+                className="btn btn-link"
+                onClick={this.onToggleComments}>
+              {showComments ? 'Hide comments' : 'Show comments'}
+            </label>
+          {/* donetodo создать div который будет как children содержать error, если !!error */}
 
-        {/* donetodo создать div который будет как children содержать error, если !!error */}
-        <div>{!!error && error}</div>
+          <div>{!!error && error}</div>
 
-        {/* donetodo в строке ниже изменить условие если showComments = true то показываем <label>Comments:</label>*/}
-        {/*{!!comments.length && <label>Comments:</label>}*/}
-        {showComments && <label>Comments:</label>}
-        {
-          //donetodo если секция комментариев открыта, т.е. showComments = true
-          //   и идет загрузка комментариев, т.е. isCommentsLoading = true
-          // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
-        }
-        {showComments &&
-        isCommentsLoading &&
-         <div>
-           <div>Loading comments ...</div>
-           <Loader />
-         </div>
+          {/* donetodo в строке ниже изменить условие если showComments = true то показываем <label>Comments:</label>*/}
+          {/*{!!comments.length && <label>Comments:</label>}*/}
 
-        }
+          {showComments && <label>Comments:</label>}
 
-        {
-          //donetodo если секция комментариев открыта, т.е. showComments = true
-          //   но НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
-          //   и запрос уже был выполнен т.е. commentsLoaded = true
-          //   и массив comments пустой, т.е. !comments.length
-          // показываем сообщение, что нет результатов (div с надписью "No comments for this post yet" в div)
-        }
-        {
-          showComments &&
-          !isCommentsLoading &&
-          commentsLoaded &&
-          !comments.length &&
-          <div>No comments for this post yet...</div>
-        }
+          {
+            //donetodo если секция комментариев открыта, т.е. showComments = true
+            //   и идет загрузка комментариев, т.е. isCommentsLoading = true
+            // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
+          }
+          {
+            showComments &&
+            isCommentsLoading &&
+            <div>
+              <div>Loading comments ...</div>
+              <Loader/>
+            </div>
+          }
 
-        {
-          // donetodo если секция комментариев открыта, т.е. showComments = true
-          //   и НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
-          //   и запрос уже был выполнен т.е. commentsLoaded = true
-          //   и массив comments НЕ пустой, т.е. !!comments.length
-          //    то:
-          showComments &&
-          !isCommentsLoading &&
-          commentsLoaded &&
-          !!comments.length &&
-          comments.map(comment => (<Comment comment={comment} key={comment.id} />))
-        }
+          {
+            //donetodo если секция комментариев открыта, т.е. showComments = true
+            //   но НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
+            //   и запрос уже был выполнен т.е. commentsLoaded = true
+            //   и массив comments пустой, т.е. !comments.length
+            // показываем сообщение, что нет результатов (div с надписью "No comments for this post yet" в div)
+          }
+          {
+            showComments &&
+            !isCommentsLoading &&
+            commentsLoaded &&
+            !comments.length &&
+            <div>No comments for this post yet...</div>
+          }
+          {
+            // donetodo если секция комментариев открыта, т.е. showComments = true
+            //   и НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
+            //   и запрос уже был выполнен т.е. commentsLoaded = true
+            //   и массив comments НЕ пустой, т.е. !!comments.length
+            //    то:
+          }
+          {
+            showComments &&
+            !isCommentsLoading &&
+            commentsLoaded &&
+            !!comments.length &&
+            comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
+          }
+        </div>
       </div>
     );
   }
