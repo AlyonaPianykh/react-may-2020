@@ -153,7 +153,7 @@ export class PostCard extends PureComponent {
           //   и идет загрузка комментариев, т.е. isCommentsLoading = true
           // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
         }
-        { showComments && isCommentsLoading ? this.spinner() : ''}
+        { showComments && isCommentsLoading && this.spinner() }
 
         {
           //todo если секция комментариев открыта, т.е. showComments = true
@@ -171,8 +171,8 @@ export class PostCard extends PureComponent {
           //   и запрос уже был выполнен т.е. commentsLoaded = true
           //   и массив comments НЕ пустой, т.е. !!comments.length
           //    то:
-          showComments && !isCommentsLoading && commentsLoaded && !!comments.length ?
-          comments.map(comment => (<Comment comment={ comment } key={ comment.id } />)) : ''
+          showComments && !isCommentsLoading && commentsLoaded && !!comments.length &&
+          comments.map(comment => (<Comment comment={ comment } key={ comment.id } />))
         }
       </div>
     );
