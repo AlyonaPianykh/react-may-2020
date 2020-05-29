@@ -26,7 +26,7 @@ export class PanelFromLecture extends React.Component {
   };
 
   onChange = (event) => {
-    // debugger
+    debugger
     console.log(event)
     console.log(event.target.value)
 
