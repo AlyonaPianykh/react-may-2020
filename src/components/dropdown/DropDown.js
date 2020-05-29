@@ -69,7 +69,7 @@ export class DropDown extends Component {
                             options.map(option => {
                                 return (
                                     <div
-                                        className="may-drop-down-options-wrapper-option dropdown-item"
+                                        className={`may-drop-down-options-wrapper-option dropdown-item ${selectedOption == option ? 'active' : ''}`}
                                         key={option}
                                         data-value={option}
                                         onClick={this.onOptionSelect}
