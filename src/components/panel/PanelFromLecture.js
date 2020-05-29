@@ -27,8 +27,8 @@ export class PanelFromLecture extends React.Component {
 
   onChange = (event) => {
     debugger
-    console.log(event)
-    console.log(event.target.value)
+    console.log(event);
+    console.log(event.target.value);
 
     this.setState({
       inputVal: event.target.value
