@@ -16,12 +16,10 @@ const sortingOptions = ['Sort By Default', 'Sort By Author'];
 class App extends Component {
   state = {
     posts: [...postsList],
-    // done_todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
     selectedOption: sortingOptions[0]
   };
 
   onSort = (selectedOption) => {
-    // детально про строку 42 тут: https://javascript.info/destructuring-assignment#array-destructuring
     const [option1, option2] = sortingOptions;
 
     switch (selectedOption) {
@@ -71,7 +69,6 @@ class App extends Component {
   };
 
   render() {
-    // done_todo 4) достать также в строке 92 из стейта selectedOption
     const { posts, selectedOption } = this.state;
 
     return (

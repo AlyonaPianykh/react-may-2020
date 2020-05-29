@@ -1,5 +1,5 @@
 // done_todo: зарегистрироваться на https://gorest.co.in и вписать свой accessToken ниже
-export const accessToken = 'OmWF27WVvU_wQgMs1FbkKR-oZgFuBcN4SSe5';
+export const accessToken = 'KXysWBtg-Ttls_yBZG7fNf1oMsTWLc0DHXi8';
 
 export const user = {
   firstName: 'Poison',

@@ -114,7 +114,7 @@ export class PostCard extends PureComponent {
         return (
             <div className={`may-post-card card ${className}`}>
                 <div className="may-post-card-img" id="my-block" onClick={() => {
-                    alert('ghvcdhfvbdfsjvbdf');
+                    alert('i love coffee');
                 }}>
                     <img src={hasImage ? kittyUrl : DefaultImg}/>
                 </div>

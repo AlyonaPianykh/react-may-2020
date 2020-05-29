@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './PostPreview.scss';
+
 
 const CN = 'may-posts-menu';
 
