@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import Chevron from '../../assets/chevron-bottom.png';
 
 import './Panel.scss';
@@ -36,7 +36,7 @@ export class PanelFromLecture extends React.Component {
   };
 
   render () {
-    console.log('render')
+    console.log('render');
     const { children, label } = this.props;
     const {isOpen} = this.state;
 
