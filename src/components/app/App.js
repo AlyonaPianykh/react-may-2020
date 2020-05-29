@@ -49,6 +49,11 @@ function App() {
       </div>
 
       <div className="d-flex posts-container">
+          {allComments.map((item) => {
+              return(<div className="comment-item">
+                  <Comment comment={item} />
+              </div>)
+          })}
           {usersList.map((item, index) => {return(<UserCard key={item.id} user={item}/>)})}
       </div>
 

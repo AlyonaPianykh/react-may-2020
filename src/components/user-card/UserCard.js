@@ -1,8 +1,6 @@
 import React from 'react';
 
 import './UserCard.scss'
-import {allComments} from "../../constants";
-import {Comment} from "../comment/Comment";
 
 export function UserCard(props) {
   const { user } = props;
@@ -21,11 +19,7 @@ export function UserCard(props) {
             <div>{email}</div>
             <div>{address}</div>
         </div>
-            {allComments.map((item) => {
-                return(<div className="comment-item">
-                <Comment comment={item} />
-                </div>)
-            })}
+
       </div>
     </div>
   );
