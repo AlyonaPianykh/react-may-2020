@@ -16,7 +16,8 @@ const sortingOptions = ['Sort By Default', 'Sort By Author'];
 class App extends Component {
   state = {
     posts: [...postsList],
-    // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    selectedOption: sortingOptions[0]
+    // donetodo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
 
   };
 
@@ -71,8 +72,8 @@ class App extends Component {
   };
 
   render() {
-    // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    // donetodo 4) достать также в строке 92 из стейта selectedOption
+    const { posts, selectedOption } = this.state;
 
     return (
       <div className="App">
@@ -93,9 +94,9 @@ class App extends Component {
             <button onClick={this.onSortByDefault}>By default</button>
 
             <DropDown
-
-
-
+                onSelect={this.onSort}
+                selectedOpyion={selectedOption}
+                options={sortingOptions}
             />
           </div>
           <div className="d-flex posts-container">
@@ -110,7 +111,7 @@ class App extends Component {
                   key={item.id}
                   hasImage={index % 2 !== 0}
                   author={author}
-                  comments={comments}
+                  withCommentsLoading
                 />;
               })
             }
