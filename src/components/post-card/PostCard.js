@@ -49,8 +49,8 @@ export class PostCard extends PureComponent {
         //  donetodo поменять стейт так, чтоб было понятно что секция с комментариями открыта и началась загрузка
         //  donetodo т.е. isCommentsLoading и showComments станут true
         this.setState({
-            isCommentsLoading: !isCommentsLoading,
-            showComments: !showComments,
+            isCommentsLoading: !this.isCommentsLoading,
+            showComments: !this.showComments,
         })
         let response = await fetch(`https://gorest.co.in/public-api/comments?access-token=${accessToken}&post_id=${postId}`);
 
@@ -150,7 +150,7 @@ export class PostCard extends PureComponent {
                     //donetodo если секция комментариев открыта, т.е. showComments = true
                     //   и идет загрузка комментариев, т.е. isCommentsLoading = true
                     // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
-                    !!showComments && !!isCommentsLoading && <div> Loading comments ...</div>
+                    !!showComments && !!isCommentsLoading && <div className={   }> Loading comments ...</div>
 
                 }
 
