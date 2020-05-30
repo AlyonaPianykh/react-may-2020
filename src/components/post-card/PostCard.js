@@ -5,7 +5,7 @@ import {Comment} from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
-// todo: делаем открывание/закрывание комментариев по кнопочке и добавляем лоадинг индикатор на загрузку комментариев
+// donetodo: делаем открывание/закрывание комментариев по кнопочке и добавляем лоадинг индикатор на загрузку комментариев
 
 export class PostCard extends PureComponent {
     constructor(props) {
@@ -15,10 +15,14 @@ export class PostCard extends PureComponent {
 
     state = {
         comments: [],
-        // todo в стейт добавить флажок isCommentsLoading, который будет означать идет ли загрузка в данный момент, по умолчанию false
-        // todo в стейт добавить флажок commentsLoaded, который будет означать загрузились ли коментарии, по умолчанию false
-        // todo в стейт добавить флажок showComments, который будет означать отображается ли секция с коментариями в данный момент, по умолчанию false
-        // todo в стейт добавить строку error, чтоб хранить значения ошибок, если возникнут
+        // donetodo в стейт добавить флажок isCommentsLoading, который будет означать идет ли загрузка в данный момент, по умолчанию false
+        isCommentsLoading: false,
+        // donetodo в стейт добавить флажок commentsLoaded, который будет означать загрузились ли коментарии, по умолчанию false
+        commentsLoaded: false,
+        // donetodo в стейт добавить флажок showComments, который будет означать отображается ли секция с коментариями в данный момент, по умолчанию false
+        showComments: false,
+        // donetodo в стейт добавить строку error, чтоб хранить значения ошибок, если возникнут
+        error: ''
 
     };
 
@@ -42,8 +46,13 @@ export class PostCard extends PureComponent {
 
     loadComments = async (postId) => {
 
-        //  todo поменять стейт так, чтоб было понятно что секция с комментариями открыта и началась загрузка
-        //  todo т.е. isCommentsLoading и showComments станут true
+        //  donetodo поменять стейт так, чтоб было понятно что секция с комментариями открыта и началась загрузка
+        //  т.е. isCommentsLoading и showComments станут true
+        this.setState({
+            isCommentsLoading: true,
+            showComments: true
+        });
+
 
 
         let response = await fetch(`https://gorest.co.in/public-api/comments?access-token=${accessToken}&post_id=${postId}`);
@@ -52,30 +61,43 @@ export class PostCard extends PureComponent {
             let json = await response.json();
 
             const {result} = json;
-            debugger
+            // debugger
 
             if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
                 this.setState({
-                    // todo указать, что лоадинг закончился, т.е. isCommentsLoading будет false,
+                    // donetodo указать, что лоадинг закончился, т.е. isCommentsLoading будет false,
+                    isCommentsLoading: false,
                     //  а commentsLoaded станет true (т.е. запрос был выполнен)
+                    commentsLoaded: true,
                     //  в error записываем пустую строку '' - показываем, что ошибки нет
+                    error: '',
 
-                    comments: result
+                    comments: result || []
                 });
             }
         } else {
-            // todo поменять стейт так, чтоб
+            // donetodo поменять стейт так, чтоб
             //  лоадинг закончился, т.е. isCommentsLoading будет false,
             //  а commentsLoaded станет false (т.е. запрос не был выполнен ввиду ошибки)
             //  в error пойдет значение response.status
             //  и закроем секцию коментариев т.е. commentsSectionExpanded будет false
+            this.setState({
+                isCommentsLoading: false,
+                commentsLoaded: false,
+                error: response.status,
+                commentsSectionExpanded: false
+            })
 
         }
     };
 
     onToggleComments = () => {
-        // todo
-        //    меняем в стейт значение showComments на противоположное (по аналогии как мы делали isOpen для PanelFromLecture
+        // donetodo
+        //    меняем в стейт значение showComments на противоположное
+        //    (по аналогии как мы делали isOpen для PanelFromLecture
+        this.setState({
+            showComments: !this.state.showComments,
+        })
 
     };
 
@@ -89,9 +111,10 @@ export class PostCard extends PureComponent {
     render() {
         const {post, hasImage, author = '', className = ''} = this.props;
         const {title, body} = post;
-        {/* todo с помощью  деструктуризации достать из this.state проперти showComments, error, isCommentsLoading, commentsLoaded */
+        {/* donetodo с помощью  деструктуризации достать из this.state проперти showComments, error, isCommentsLoading, commentsLoaded */
         }
-        const {comments} = this.state;
+
+        const {comments, showComments, error, isCommentsLoading, commentsLoaded} = this.state;
 
         const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
@@ -116,38 +139,46 @@ export class PostCard extends PureComponent {
                 </div>
 
                 {
-                    // todo: добавить label, в котором как children будет если showComments = true - надпись "Hide comments",
+                    // donetodo: добавить label, в котором как children будет если showComments = true - надпись "Hide comments",
                     //    иначе - "Show comments"
                     //    повесить на нее onClick событие this.onToggleComments
                     //    как класс задать ей "btn btn-link"
+                    <label className="btn btn-link" onClick={this.onToggleComments}>{
+                        showComments ? "Hide comments" : "Show comments"
+                    }
+                    </label>
                 }
 
-                {/* todo создать div который будет как children содержать error, если !!error */}
-
-                {/* todo в строке ниже изменить условие если showComments = true то показываем <label>Comments:</label>*/}
-                {!!comments.length && <label>Comments:</label>}
+                {/* donetodo создать div который будет как children содержать error, если !!error */}
+                {/*<div>{!!error ? error : ''}</div>*/}
+                {!!error && <div>{error}</div>}
+                {/* donetodo в строке ниже изменить условие если showComments = true то показываем <label>Comments:</label>*/}
+                {showComments && <label>Comments:</label>}
                 {
-                    //todo если секция комментариев открыта, т.е. showComments = true
+                    //donetodo если секция комментариев открыта, т.е. showComments = true
                     //   и идет загрузка комментариев, т.е. isCommentsLoading = true
                     // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
+                    showComments && isCommentsLoading && <div>"Loading comments ..."</div>
                 }
 
                 {
-                    //todo если секция комментариев открыта, т.е. showComments = true
+                    //donetodo если секция комментариев открыта, т.е. showComments = true
                     //   но НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
                     //   и запрос уже был выполнен т.е. commentsLoaded = true
                     //   и массив comments пустой, т.е. !comments.length
                     // показываем сообщение, что нет результатов (div с надписью "No comments for this post yet" в div)
+                    showComments && !isCommentsLoading && commentsLoaded && !comments.length
+                    && <div>"No comments for this post yet"</div>
                 }
 
                 {
-                    // todo если секция комментариев открыта, т.е. showComments = true
+                    // donetodo если секция комментариев открыта, т.е. showComments = true
                     //   и НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
                     //   и запрос уже был выполнен т.е. commentsLoaded = true
                     //   и массив comments НЕ пустой, т.е. !!comments.length
                     //    то:
-
-                    comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
+                    showComments && !isCommentsLoading && commentsLoaded && !!comments.length
+                    && comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
                 }
             </div>
         );
