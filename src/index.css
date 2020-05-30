@@ -11,6 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.loaderBody {
+  height: 10vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .loadingspinner {
   pointer-events: none;
   width: 2.5em;
