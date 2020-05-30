@@ -4,9 +4,10 @@ import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 // todo: достать в строке 7 массив allComments из констант
-import { postsList } from '../../constants'; // todo помимо константы postsList достать еще usersList
+import { postsList, allComments, usersList } from '../../constants'; // todo помимо константы postsList достать еще usersList
+
 // todo: тут сделать импорт  UserCard из components/user-card/UserCard
-import UserCard from '../../components/user-card/UserCard';
+
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -45,13 +46,13 @@ function App() {
             //  использовать для этого стринговый литерал ``
             //  в Card под телом поста срендерить имя автора, используя blockquote-footer класс из бутстрапа
             //  пример тут: https://hackerthemes.com/bootstrap-cheatsheet/#blockquote-footer
-
-
-            // todo: найти в массиве allComments комментарии, post_id которых = id поста  (т.е. в данном случае item.id)
+              const user = usersList.find(user => item.user_id === user.id);
+              const author = `${user.first_name} ${user.last_name}`;
+              // todo: найти в массиве allComments комментарии, post_id которых = id поста  (т.е. в данном случае item.id)
             //  для этого можно использовать метод массива filter
             //  передать этот массив в Card как пропсу под названиес comments
-
-              return <Card post={item} key={item.id} hasImage={odd} />
+            const comments = allComments.filter((value) => value.post_id === item.id);
+              return <Card post={item} key={item.іd} hasImage={odd} author={author} comments={comments}/>
           })
         }
       </div>
