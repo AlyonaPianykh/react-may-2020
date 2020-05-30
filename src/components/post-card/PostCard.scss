@@ -29,3 +29,31 @@
     margin: 5px 0;
   }
 }
+
+.loadingspinner {
+
+  &-container {
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  &-body{
+    pointer-events: none;
+    width: 30px;
+    height: 30px;
+    border: 0.4em solid #eee;
+    border-top-color: #3E67EC;
+    border-radius: 50%;
+    animation: loadingspin 1s linear infinite;
+  }
+
+  @keyframes loadingspin {
+    100% {
+      transform: rotate(360deg)
+    }
+  }
+}
+

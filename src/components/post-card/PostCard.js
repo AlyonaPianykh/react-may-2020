@@ -158,7 +158,10 @@ export class PostCard extends PureComponent {
                     //donetodo если секция комментариев открыта, т.е. showComments = true
                     //   и идет загрузка комментариев, т.е. isCommentsLoading = true
                     // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
-                    showComments && isCommentsLoading && <div>"Loading comments ..."</div>
+                    showComments && isCommentsLoading &&
+                    <div className="loadingspinner-container">
+                        <div className="loadingspinner-body"/>
+                    </div>
                 }
 
                 {
