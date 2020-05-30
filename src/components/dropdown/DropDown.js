@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './DropDown.scss';
+import {links} from "../../constants";
 
 export class DropDown extends Component {
 // todo:
@@ -8,7 +9,7 @@ export class DropDown extends Component {
 //  на базе нее будут рендериться или нет опции дропдауна
   constructor(props) {
     super(props);
-    // const {onSelect, selectedOption, options}=props
+    // const {onSelect, selectedOption, options=[]}=props
     // можна ли тут сразу достать все значения пропсов????
     this.state = {
       isOpen: false
@@ -35,10 +36,12 @@ const {onSelect}= this.props;
     console.log(value);
 
     // todo: вызвать функцию из onSelect с аргументом value
+      onSelect(value);
 
 
 
     // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
+      this.setState({ isOpen: false });
   };
 
   render() {
@@ -46,18 +49,18 @@ const {onSelect}= this.props;
     //  достать из this.props массив опций options
     //  он должен быть по умолчанию пуст, т.е. = [] (дефолтный параметр при деструктуризации) и
     //  достать также в пропсах selectedOption (выбранная в данный момент опция)
-const {selectedOption, options}=this.props;
+const {selectedOption, options=[]}=this.props;
 
     // todo:
     //  достать isOpen из this.state
 const {isOpen}=this.state
     return (
-      <div className="may-drop-down dropdown" onClick={this.toggle}>
+      <div className="may-drop-down dropdown" >
         {/* todo: показать в строке 45 выбранную опцию selectedOption  и передать в onClick this.toggle
              (нажатие на этот тег должно открывать/закрывать дропдаун)
 
         */}
-        <div className="dropdown-toggle">{/* тут будет выбранная опция*/}{selectedOption}</div>
+        <div className="dropdown-toggle" onClick={this.toggle}>{/* тут будет выбранная опция*/}{selectedOption}</div>
 
         {
           // todo:
@@ -74,7 +77,13 @@ const {isOpen}=this.state
             //  в event listener onClick положить значение this.onOptionSelect
             //  внутри тега показать {option} (как children)
           */}
-
+              {
+                 options.map((option)=>{
+                     return(
+                         <div key={option} className = "may-drop-down-options-wrapper-option dropdown-item" data-value={option} onClick={this.onOptionSelect}>{option}</div>
+                     )
+                 })
+              }
           </div>
             )
         }
@@ -82,3 +91,4 @@ const {isOpen}=this.state
     );
   }
 }
+

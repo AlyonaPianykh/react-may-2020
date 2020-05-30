@@ -20,8 +20,8 @@ class App extends Component {
   state = {
     posts: [...postsList],
     // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
-    selectedOption: sortingOptions[0]
-
+    selectedOption: sortingOptions[0],
+    isColor: false
   };
 
   renderList = () => {
@@ -62,14 +62,14 @@ class App extends Component {
 
   onSortByDefault = () => {
     this.setState({
-      posts: [...postsList]
+      posts: [...postsList],
+      isColor: !this.state.isColor,
     })
   };
 
   onSortByAuthorClick = () => {
     const res = [...this.state.posts];
-
-    const sorted = res.sort(function (a, b) {
+        const sorted = res.sort(function (a, b) {
       const authorA =  usersList.find(user => user.id === a.user_id);
       const authorB =  usersList.find(user => user.id === b.user_id);
 
@@ -84,14 +84,17 @@ class App extends Component {
     });
 
     this.setState({
-      posts: sorted
+      posts: sorted,
+      isColor: !this.state.isColor
+
     });
   };
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
     const { posts, selectedOption } = this.state;
-
+    const {isColor}=this.state;
+    console.log(isColor);
     return (
       <div className="App">
         <Header />
@@ -107,8 +110,8 @@ class App extends Component {
         <PanelFromLecture label="Posts">
           <div className="d-flex">
             Sorting:
-            <button onClick={this.onSortByAuthorClick}>By author</button>
-            <button onClick={this.onSortByDefault}>By default</button>
+            <button className={` ${ isColor ? 'colorr' : ''}`}  onClick={ this.onSortByAuthorClick}>By author</button>
+            <button className={`${ !isColor ? 'colorr' : ''}`} onClick={this.onSortByDefault}>By default</button>
 
             {/* todo: тут используется дропдаун
                  ему нужно передать в пропсы такие значение:

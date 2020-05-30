@@ -11,8 +11,8 @@ export class PanelFromLecture extends React.Component {
 
     this.state = {
       isOpen: isOpenByDefault,
-      inputVal: 'test'
-    };
+      inputVal: 'test',
+        };
   }
 
   test = 'test';
@@ -21,7 +21,8 @@ export class PanelFromLecture extends React.Component {
     console.log('test');
 
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
+
     })
   };
 
@@ -39,8 +40,7 @@ export class PanelFromLecture extends React.Component {
     console.log('render')
     const { children, label } = this.props;
     const {isOpen} = this.state;
-
-    return (
+       return (
       <div className="may-panel card">
 
         {/*<input value={this.state.inputVal} onChange={this.onChange}/>*/}
