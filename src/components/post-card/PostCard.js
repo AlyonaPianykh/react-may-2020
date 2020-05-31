@@ -5,7 +5,7 @@ import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
-// todo: делаем открывание/закрывание комментариев по кнопочке и добавляем лоадинг индикатор на загрузку комментариев
+// donetodo: делаем открывание/закрывание комментариев по кнопочке и добавляем лоадинг индикатор на загрузку комментариев
 import {LoadingPanel} from '../LoadingPanel/LoadingPanel';
 
 export class PostCard extends PureComponent {
@@ -60,7 +60,7 @@ export class PostCard extends PureComponent {
       let json = await response.json();
 
       const { result } = json;
-      debugger
+
 
       if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
         this.setState({
