@@ -31,9 +31,11 @@ class App extends Component {
   search = (event) => {
     const curValue = event.target.elements.input.value
     event.preventDefault()
-    const user = usersList.filter((element)=> (curValue === element.first_name))
-    if (user[0]) {
-      const id = user[0].id
+    const [user] = usersList.filter((element)=> (curValue === element.first_name)) /// here is destructuring the first element of array
+    if (user) {
+    // const user = usersList.filter((element)=> (curValue === element.first_name))
+    // if (user[0]) {
+      const id = user.id
       const filterUser = postsList.filter((element) => (element.user_id === id))
       this.setState({posts:filterUser});
       console.log(user)
