@@ -59,8 +59,7 @@ export class DropDown extends Component {
               return (
                 <div
                   key={option}
-                  className = {`"may-drop-down-options-wrapper-option dropdown-item"
-                    & option === selectedOption ? 'active' : ''`}
+                  className = {"may-drop-down-options-wrapper-option dropdown-item"}
                   data-value= {option}
                   onClick= {this.onOptionSelect}>{option}</div>
               )
