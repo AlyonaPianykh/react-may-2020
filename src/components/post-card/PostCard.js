@@ -140,17 +140,17 @@ export class PostCard extends PureComponent {
                     {showComments ? "Hide comments" : "Show comments"}
                 </label>
 
-                {/* done_todo создать div который будет как children содержать error, если !!error */}
-                {!!error && <div>{error}</div>}
+                {/* done_todo создать div который будет как children содержать error, если !!error */
+                !!error && <div>{error}</div>}
 
-                {/* done_todo в строке ниже изменить условие если showComments = true то показываем <label>Comments:</label>*/}
-                {showComments && <label>Comments:</label>}
+                {/* done_todo в строке ниже изменить условие если showComments = true то показываем <label>Comments:</label>*/
+                showComments && <label>Comments:</label>}
                 {
                     //done_todo если секция комментариев открыта, т.е. showComments = true
                     //   и идет загрузка комментариев, т.е. isCommentsLoading = true
                     // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
-                }
-                {showComments && isCommentsLoading && <div>Loading comments ...</div>}
+
+                showComments && isCommentsLoading && <div>Loading comments ...</div>}
                 {
                     //done_todo если секция комментариев открыта, т.е. showComments = true
                     //   но НЕ идет загрузка комментариев, т.е. isCommentsLoading = false
