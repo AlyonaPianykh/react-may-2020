@@ -74,49 +74,46 @@ class App extends Component {
     const { posts } = this.state;
 
     return (
-      <div className="App">
-        <Header />
+        <div className="App">
+          <Header />
 
-        <PanelFromLecture>
-          Hello, world!
-        </PanelFromLecture>
+          <PanelFromLecture>
+            Hello, world!
+          </PanelFromLecture>
 
-        <PanelFromLecture label="test" isOpenByDefault>
-          <PostPreview posts={posts} />
-        </PanelFromLecture>
+          <PanelFromLecture label="test" isOpenByDefault>
+            <PostPreview posts={posts} />
+          </PanelFromLecture>
 
-        <PanelFromLecture label="Posts" >
-          <div className="d-flex">
-            Sorting:
-            <button onClick={this.onSortByAuthorClick}>By author</button>
-            <button onClick={this.onSortByDefault}>By default</button>
+          <PanelFromLecture label="Posts" >
+            <div className="d-flex">
+              Sorting:
+              <button onClick={this.onSortByAuthorClick}>By author</button>
+              <button onClick={this.onSortByDefault}>By default</button>
 
-            <DropDown
+              <DropDown/>
+            </div>
+            <div className="d-flex posts-container">
+              {
+                posts.map((item, index) => {
+                  const user = usersList.find(user => user.id === item.user_id);
+                  const author = user ? `${user.first_name} ${user.last_name}` : '';
+                  const comments = allComments.filter(comment => comment.post_id === item.id);
 
-
-
-            />
-          </div>
-          <div className="d-flex posts-container">
-            {
-              posts.map((item, index) => {
-                const user = usersList.find(user => user.id === item.user_id);
-                const author = user ? `${user.first_name} ${user.last_name}` : '';
-                const comments = allComments.filter(comment => comment.post_id === item.id);
-
-                return <Card
-                  post={item}
-                  key={item.id}
-                  hasImage={index % 2 !== 0}
-                  author={author}
-                  comments={comments}
-                />;
-              })
-            }
-          </div>
-        </PanelFromLecture>
-        <Footer />
-      </div>
+                  return <Card
+                      post={item}
+                      key={item.id}
+                      hasImage={index % 2 !== 0}
+                      author={author}
+                      // comments={comments}
+                      withCommentsLoading
+                  />;
+                })
+              }
+            </div>
+          </PanelFromLecture>
+          <Footer />
+        </div>
     );
   }
 }
