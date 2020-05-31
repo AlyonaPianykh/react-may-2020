@@ -19,9 +19,9 @@ export function PostCard(props) {
 
   const renderImage = () => {
     return hasImage ? (
-      <img src={kittyUrl} />
+      <img src={kittyUrl} alt="kat"/>
     ) : (
-      <img src={DefaultImg} />
+      <img src={DefaultImg} alt="defimg"/>
     );
   };
 
@@ -31,13 +31,13 @@ export function PostCard(props) {
         <div className="may-post-card-img" id="my-block" onClick={() => {
           alert('ghvcdhfvbdfsjvbdf');
         }}>
-          <img src={kittyUrl} />
+          <img src={kittyUrl} alt="kat"/>
         </div>
       )
       }
       {!hasImage && (
         <div className="may-post-card-img">
-          <img src={DefaultImg} />
+          <img src={DefaultImg} alt="defimg"/>
         </div>
       )}
 
