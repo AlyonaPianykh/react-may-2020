@@ -46,7 +46,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1341"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?87340"
+        "href": "https://via.placeholder.com/250"
       }
     }
   },
@@ -69,7 +69,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1342"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?55275"
+        "href": "https://via.placeholder.com/250"
       }
     }
   },
@@ -92,7 +92,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1343"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?62267"
+        "href": "https://via.placeholder.com/250"
       }
     }
   },
@@ -115,7 +115,7 @@ export const usersList = [
         "href": "https://gorest.co.in/public-api/users/1344"
       },
       "avatar": {
-        "href": "https://lorempixel.com/250/250/people/?71754"
+        "href": "https://via.placeholder.com/250"
       }
     }
   },
@@ -403,6 +403,9 @@ export const postsList = [
     }
   }
 ];
+
+//************************************************************************
+//********************************************************************
 
 export const allComments = [ {
   "id": "2553",
