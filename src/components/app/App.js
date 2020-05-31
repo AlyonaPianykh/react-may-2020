@@ -16,7 +16,8 @@ const sortingOptions = ['Sort By Default', 'Sort By Author'];
 class App extends Component {
   state = {
     posts: [...postsList],
-    // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    //donetodo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    selectedOption:sortingOptions[0]
   };
 
   onSort = (selectedOption) => {
@@ -70,8 +71,8 @@ class App extends Component {
   };
 
   render() {
-    // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    // donetodo 4) достать также в строке 92 из стейта selectedOption
+    const { posts,selectedOption } = this.state;
 
     return (
       <div className="App">
