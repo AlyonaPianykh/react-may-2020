@@ -31,45 +31,46 @@ export class PostCard extends Component {
 
         return (
             <div className="may-post-card card">
-
-                <button
-                    onClick={this.onShowHideClick}
-                    type="button"
-                    className="btn btn-outline-secondary ">
-                    hide/show comment
-                </button>
-                {
-                    showComments && (<div>
-
-                        {hasImage && (<div className="may-post-card-img" id="my-block"
-                                           onClick={() => alert('You clicked on the image')}>
+                <div>
+                    {
+                        hasImage && (<div className="may-post-card-img"
+                                          id="my-block"
+                                          onClick={() => alert('You clicked on the image')}>
                             <img src={kittyUrl} alt="cat"/>
                         </div>)
-                        }
+                    }
 
-                        {!hasImage && (<div className="may-post-card-img">
+                    {
+                        !hasImage && (<div className="may-post-card-img">
                             <img src={DefaultImg} alt="DefaultImg"/>
                         </div>)
-                        }
+                    }
 
-                        <div className="card-body">
-                            <h4 className="card-title title">{title}</h4>
-                            <div className="card-text body">{body}</div>
-                            <blockquote className="blockquote">
-                                <footer className="blockquote-footer">Author:
-                                    <cite title="Source Title">{author}</cite>
-                                </footer>
-                            </blockquote>
-                        </div>
+                    <div className="card-body">
+                        <h4 className="card-title title">{title}</h4>
+                        <div className="card-text body">{body}</div>
+                        <blockquote className="blockquote">
+                            <footer className="blockquote-footer">Author:
+                                <cite title="Source Title">{author}</cite>
+                            </footer>
+                        </blockquote>
+                    </div>
 
-                        {!!comments.length && <label>Comments:</label>}
+                    <div>
                         {
-                            comments.map(comment => (<Comment comment={comment} key={comment.id}/>))
+                            !!comments.length && (<button onClick={this.onShowHideClick}
+                                                          type="button"
+                                                          className="btn btn-outline-secondary ">
+                                {!showComments ? 'Show comment' : 'Hide comment'}
+                            </button>)
                         }
+                    </div>
 
-                    </div>)
-                }
-
+                    <div>
+                        {showComments && !!comments.length && <label>Comments:</label>}
+                        {showComments && comments.map(comment => (<Comment comment={comment} key={comment.id}/>))}
+                    </div>
+                </div>
             </div>
         );
     }
