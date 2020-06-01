@@ -9,15 +9,9 @@ import './PostCard.scss';
 //  в котором будет флажок showComments
 //  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
 
-export class PostCard extends Component {
-  constructor(props) {
-    super(props)
+export const PostCard = (props) => {
 
-    this.state = {
-      showComments: false,
-    }
-  };
-
+  const [showComments, toggleComments] = React.useState(false);
   // Просто пример как можно рендерить картинки с условием
   /*const renderImage = () => {
     return hasImage ? (
@@ -27,11 +21,9 @@ export class PostCard extends Component {
     );
   };*/
 
-  render() {
     const btnLabel = "show comments";
-    const { post, hasImage, comments = [], author } = this.props;
+    const { post, hasImage, comments = [], author } = props;
     const { title, body } = post;
-    const {showComments} = this.state;
 
     const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
     return (
@@ -61,7 +53,7 @@ export class PostCard extends Component {
           </blockquote>
         </div>
 
-        {!!comments.length && <button onClick={() => this.setState({showComments: !this.state.showComments})}>
+        {!!comments.length && <button onClick={() => toggleComments(!showComments)}>
           {showComments ? 'Hide comments'  : 'Show comments'}
         </button>}
         {
@@ -70,6 +62,5 @@ export class PostCard extends Component {
         {showComments && comments.map(comment => (<Comment comment={comment} key={comment.id}/>))}
       </div>
     );
-  }
 }
 
