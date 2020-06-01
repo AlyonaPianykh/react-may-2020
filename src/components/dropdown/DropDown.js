@@ -13,19 +13,10 @@ export class DropDown extends Component {
   };
 
   onOptionSelect = (event) => {
-    // todo:
-    //  достать из this.props функцию onSelect
+    const { onSelect } = this.props;
+    const value = event.target.getAttribute('data-value');
 
-
-    // todo:
-    //  объявить переменную value, записать в нее  event.target.getAttribute('data-value');
-    //  вывести console.log(value) и убедиться что в консоли показывается текст выбранной опции
-
-
-    // todo: вызвать функцию из onSelect с аргументом value
-
-
-    // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
+    onSelect && onSelect(value)
   };
 
   render() {

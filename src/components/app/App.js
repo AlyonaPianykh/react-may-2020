@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import uniqueId from 'uniqid';
+
 import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
-
+import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
+import {UsersList} from '../users-list/UsersList';
+import AddUserForm from '../user-form/AddUserForm';
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -69,6 +73,22 @@ class App extends Component {
     });
   };
 
+  addPost = (newPost) => {
+    this.setState((prevState) => {
+      return {
+        posts: [{
+          ...newPost,
+          id: uniqueId(),
+        }, ...prevState.posts]
+      }
+    });
+  };
+
+  // todo 1: добавить здесь функцию onUserAdd
+  //  она должна добавлять пользователя в список users в стейте
+  //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
+
+
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
     const { posts } = this.state;
@@ -77,15 +97,16 @@ class App extends Component {
       <div className="App">
         <Header />
 
-        <PanelFromLecture>
-          Hello, world!
+        <PanelFromLecture label="Users" >
+          <AddUserForm/>
+          <UsersList users={users}/>
         </PanelFromLecture>
 
-        <PanelFromLecture label="test" isOpenByDefault>
+        <PanelFromLecture label="test" >
           <PostPreview posts={posts} />
         </PanelFromLecture>
 
-        <PanelFromLecture label="Posts" >
+        <PanelFromLecture label="Posts">
           <div className="d-flex">
             Sorting:
             <button onClick={this.onSortByAuthorClick}>By author</button>
@@ -98,6 +119,9 @@ class App extends Component {
             />
           </div>
           <div className="d-flex posts-container">
+
+            <AddPostForm onAddPost={this.addPost} users={users} />
+
             {
               posts.map((item, index) => {
                 const user = usersList.find(user => user.id === item.user_id);
@@ -107,7 +131,6 @@ class App extends Component {
                 return <Card
                   post={item}
                   key={item.id}
-                  hasImage={index % 2 !== 0}
                   author={author}
                   comments={comments}
                 />;

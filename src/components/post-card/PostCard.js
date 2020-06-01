@@ -5,12 +5,11 @@ import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
-// todo: делаем открывание/закрывание комментариев по кнопочке и добавляем лоадинг индикатор на загрузку комментариев
 
 export class PostCard extends PureComponent {
   constructor(props) {
     super(props);
-    console.log('PostCard constructor ');
+    // console.log('PostCard constructor ');
   }
 
   state = {
@@ -24,7 +23,7 @@ export class PostCard extends PureComponent {
   componentDidMount() {
     const { post, withCommentsLoading } = this.props;
 
-    console.log('PostCard componentDidMount');
+    // console.log('PostCard componentDidMount');
     if (post && withCommentsLoading) { // добавлена проверка withCommentsLoading нужно ли делать загрузку комментариев (чтоб в списке всех постов не загружать их)
       const { id } = post;
       id && this.loadComments(id);
@@ -32,7 +31,7 @@ export class PostCard extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('PostCard componentDidUpdate', prevProps.post, this.props.post);
+    // console.log('PostCard componentDidUpdate', prevProps.post, this.props.post);
     // добавлена проверка withCommentsLoading нужно ли делать загрузку комментариев (чтоб в списке всех постов не загружать их)
     if (prevProps.post.id !== this.props.post.id && this.props.withCommentsLoading) {
       this.loadComments(this.props.post.id);
@@ -90,7 +89,7 @@ export class PostCard extends PureComponent {
 
     const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
-    console.log('PostCard render');
+    console.log('PostCard render', post.id);
     return (
       <div className={`may-post-card card ${className}`}>
         <div className="may-post-card-img" id="my-block" onClick={() => {
