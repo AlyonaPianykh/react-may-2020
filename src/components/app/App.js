@@ -3,7 +3,7 @@ import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
-import TestCard, { PostCard as Card } from '../post-card/PostCard';
+import TestCard, { PostCard} from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 
 import { DropDown } from '../dropdown/DropDown';
@@ -71,7 +71,7 @@ class App extends Component {
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    const { posts } = this.state; // posts из state (отсортированные или по умолчанию)
 
     return (
         <div className="App">
@@ -81,7 +81,7 @@ class App extends Component {
             Hello, world!
           </PanelFromLecture>
 
-          <PanelFromLecture label="test" isOpenByDefault>
+          <PanelFromLecture label="Post preview" isOpenByDefault>
             <PostPreview posts={posts} />
           </PanelFromLecture>
 
@@ -93,24 +93,26 @@ class App extends Component {
 
               <DropDown/>
             </div>
-            <div className="d-flex posts-container">
-              {
-                posts.map((item, index) => {
-                  const user = usersList.find(user => user.id === item.user_id);
-                  const author = user ? `${user.first_name} ${user.last_name}` : '';
-                  const comments = allComments.filter(comment => comment.post_id === item.id);
+            {/*<div className="d-flex posts-container">*/}
+            {/*  {*/}
+            {/*    posts.map((item, index) => {*/}
+            {/*      const user = usersList.find(user => user.id === item.user_id);*/}
+            {/*      const author = user ? `${user.first_name} ${user.last_name}` : '';*/}
+            {/*      const comments = allComments.filter(comment => comment.post_id === item.id);*/}
 
-                  return <Card
-                      post={item}
-                      key={item.id}
-                      hasImage={index % 2 !== 0}
-                      author={author}
-                      // comments={comments}
-                      withCommentsLoading
-                  />;
-                })
-              }
-            </div>
+            {/*      return (*/}
+            {/*          <PostCard*/}
+            {/*            post={item}*/}
+            {/*            key={item.id}*/}
+            {/*            hasImage={index % 2 !== 0}*/}
+            {/*            author={author}*/}
+            {/*            // comments={comments}*/}
+            {/*            withCommentsLoading*/}
+            {/*          />*/}
+            {/*      );*/}
+            {/*    })*/}
+            {/*  }*/}
+            {/*</div>*/}
           </PanelFromLecture>
           <Footer />
         </div>

@@ -10,51 +10,50 @@ export class PostPreview extends Component {
   constructor(props) {
     super(props);
 
-    const { posts } = props;
+    const { posts } = this.props; // PostsLists [{},{},{},...]
+
     this.state = {
-      selectedPost: posts ? posts[2].id : null
+      selectedPostId: posts.length ? posts[2].id : null // id начального поста
     };
 
-    console.log('PostPreview constructor')
+    // console.log('PostPreview constructor')
   }
 
-  componentDidMount() {
-    console.log('PostPreview componentDidMount');
-    // document.addEventListener('click', this.showMessage)
-  }
-
-  componentWillUnmount() {
-    console.log('PostPreview componentWillUnmount');
-    // document.removeEventListener('click', this.showMessage)
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-     console.log('PostPreview componentDidUpdate', this.state.selectedPost, prevState.selectedPost)
-  }
-
-  showMessage = () => {
-    alert('hello')
-  };
+  // componentDidMount() {
+  //   console.log('PostPreview componentDidMount');
+  //   document.addEventListener('click', this.showMessage)
+  // }
+  //
+  // componentWillUnmount() {
+  //   console.log('PostPreview componentWillUnmount');
+  //   document.removeEventListener('click', this.showMessage)
+  // }
+  //
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //    console.log('PostPreview componentDidUpdate', this.state.selectedPost, prevState.selectedPost)
+  // }
 
   onPostSelect = (postId) => {
     this.setState({
-      selectedPost: postId
+      selectedPostId: postId  // изменять на id кликнутого поста
     })
   };
 
   render() {
-    const { selectedPost } = this.state;
-    const { posts } = this.props;
+    const { selectedPostId } = this.state;
+    const { posts } = this.props; // PostsLists [{},{},{},...]
+    const post = posts.find(post => post.id === selectedPostId); // получить текущий пост по id - {}
 
-    const post = posts.find(item => item.id === selectedPost);
-    console.log('PostPreview render')
+
+    // console.log('PostPreview render')
     return (
       <div className={CN}>
         <div className={`${CN}-list`}>
-          <PostsMenuList posts={posts} onSelect={this.onPostSelect}/>
+          <PostsMenuList posts={posts} onSelect={this.onPostSelect} />
         </div>
         <div className={`${CN}-content`}>
           <PostCard post={post} className={`${CN}-card`} withCommentsLoading hasImage />
+          {/*<PostCard post={post} className={`${CN}-card`} hasImage />*/}
         </div>
       </div>
     );

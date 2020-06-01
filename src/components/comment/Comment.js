@@ -1,8 +1,10 @@
 import React from 'react';
 
 export const Comment = (props) => {
-  const { comment } = props;
 
+  console.log(1);
+
+  const { comment } = props;
   if (!comment) return null;
 
   const { name, email, body } = comment;
