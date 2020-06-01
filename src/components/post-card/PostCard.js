@@ -88,8 +88,7 @@ export class PostCard extends PureComponent {
     const { comments } = this.state;
 
     const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
-
-    console.log('PostCard render', post.id);
+    
     return (
       <div className={`may-post-card card ${className}`}>
         <div className="may-post-card-img" id="my-block" onClick={() => {
