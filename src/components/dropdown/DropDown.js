@@ -7,9 +7,14 @@ export class DropDown extends Component {
     isOpen: false
   };
 
+  state = {
+    isOpen: false
+  }
+
   toggle = () => {
-    // todo: здесь должно быть открывание/закрывание дропдауна с помощью this.setState
-    //  сделать так же как в компоненте components/panel/PanelFromLecture в методе onClick
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
   };
 
   onOptionSelect = (event) => {
@@ -20,35 +25,25 @@ export class DropDown extends Component {
   };
 
   render() {
-    // todo:
-    //  достать из this.props массив опций options
-    //  он должен быть по умолчанию пуст, т.е. = [] (дефолтный параметр при деструктуризации) и
-    //  достать также в пропсах selectedOption (выбранная в данный момент опция)
-
-    // todo:
-    //  достать isOpen из this.state
+    const { selectedOption, options } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <div className="may-drop-down dropdown">
-        {/* todo: показать в строке 45 выбранную опцию selectedOption  и передать в onClick this.toggle
-             (нажатие на этот тег должно открывать/закрывать дропдаун)
-        */}
-        <div className="dropdown-toggle">{/* тут будет выбранная опция*/}</div>
+        <div className="dropdown-toggle" onClick={this.toggle}>{selectedOption}</div>
 
         {
-          // todo:
-          //  если значение isOpen в this.state = true показываем этот блок ниже (использовать &&)
-          <div className="may-drop-down-options-wrapper dropdown-menu show">
-            {/*
-          todo:
-            //  рендерим список опций с помощью options.map(option => ....
-            //  опция должна быть тегом div и иметь такие пропсы:
-            //  должен быть className = "may-drop-down-options-wrapper-option dropdown-item"
-            //  key = значению option
-            //  атрибут data-value =  значению option
-            //  в event listener onClick положить значение this.onOptionSelect
-            //  внутри тега показать {option} (как children)
-          */}
+          isOpen &&  <div className="may-drop-down-options-wrapper dropdown-menu show">
+            {
+              options.map(option => (
+                <div
+                  className="may-drop-down-options-wrapper-option dropdown-item"
+                  key={option}
+                  data-value={option}
+                  onClick={this.onOptionSelect}
+                >{option}</div>
+              ))
+            }
           </div>
         }
       </div>
