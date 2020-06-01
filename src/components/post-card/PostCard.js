@@ -4,6 +4,7 @@ import {accessToken} from '../../constants';
 import {Comment} from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
+import Spinner from './Spinner/Spinner'
 
 // dtodo: делаем открывание/закрывание комментариев по кнопочке и добавляем лоадинг индикатор на загрузку комментариев
 
@@ -141,7 +142,7 @@ export class PostCard extends PureComponent {
                     //toddo если секция комментариев открыта, т.е. showComments = true
                     //   и идет загрузка комментариев, т.е. isCommentsLoading = true
                     // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
-                    showComments && isCommentsLoading && <div className="loadingspinner"></div>
+                    showComments && isCommentsLoading && <Spinner />
                     }
                 {
                     //toddo если секция комментариев открыта, т.е. showComments = true
