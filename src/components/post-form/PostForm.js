@@ -126,7 +126,7 @@ class PostForm extends Component {
           this.renderUsersSelect()
         }
         {/* todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
-        <button type="submit" className="btn btn-primary">Add post</button>
+        <button type="submit" className="btn btn-primary m-2">Add post</button>
       </form>
     );
   }

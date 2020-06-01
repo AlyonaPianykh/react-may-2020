@@ -21,7 +21,7 @@ class AddUserForm extends Component {
 
     const firstName = this.firstNameRef.current.value;
     const lastName = this.lastNameRef.current.value;
-    const email = this.lastNameRef.current.value;
+    const email = this.emailNameRef.current.value;
 
     const pattern = /\d+/;
 
@@ -89,7 +89,7 @@ class AddUserForm extends Component {
               передать ему атрибут под название ref наш созданный в строке 8 ref
         */}
 
-        <button type='submit'>Click me</button>
+        <button type='submit' className="btn btn-primary m-2">Add </button>
         <button type='button' onClick={this.focusInput}>focus</button>
 
       {/*
