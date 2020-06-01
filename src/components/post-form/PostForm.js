@@ -20,7 +20,7 @@ class PostForm extends Component {
   onBodyChange = (event) => {
     const body = event.target.value;
 
-    if (/\d+/.test(body))  {
+    if (/\d+/.test(body)) {
       this.setState({
         warning: 'please don\'t put numbers '
       });
@@ -35,7 +35,7 @@ class PostForm extends Component {
 
   onUserSelect = (event) => {
     debugger
-    console.log(event.target.value)
+    console.log(event.target.value);
     const selectedIndex = event.target.selectedIndex;
 
     this.setState((prevState, props) => {
@@ -58,7 +58,7 @@ class PostForm extends Component {
     e.preventDefault();
 
     const { onAddPost } = this.props;
-    const {title, body, user_id} = this.state;
+    const { title, body, user_id } = this.state;
 
     const newPost = {
       title,
@@ -79,7 +79,7 @@ class PostForm extends Component {
     const selectedFullName = `${selectedUser.first_name} ${selectedUser.last_name}`;
 
     return (
-      <select value={selectedFullName} onChange={this.onUserSelect} >
+      <select value={selectedFullName} onChange={this.onUserSelect}>
         {
           users.map(user => {
             const fullName = `${user.first_name} ${user.last_name}`;
@@ -90,7 +90,7 @@ class PostForm extends Component {
           })
         }
       </select>
-    )
+    );
   };
 
   render() {
@@ -126,7 +126,9 @@ class PostForm extends Component {
           this.renderUsersSelect()
         }
         {/* todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
-        <button type="submit" className="btn btn-primary m-2">Add post</button>
+        <div className="m-2">
+          <button type="submit" className="btn btn-primary m-2">Add post</button>
+        </div>
       </form>
     );
   }
