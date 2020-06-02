@@ -34,7 +34,7 @@ class PostForm extends Component {
   };
 
   onUserSelect = (event) => {
-    debugger
+    // debugger
     console.log(event.target.value);
     const selectedIndex = event.target.selectedIndex;
 
@@ -51,8 +51,15 @@ class PostForm extends Component {
     // });
   };
 
-  // todo 2: добавить функцию onReset которая будет очищать форму
+  // done_todo 2: добавить функцию onReset которая будет очищать форму
   //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
+
+  onReset = () => {
+    this.setState({
+      title: '',
+      body: '',
+    })
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +75,8 @@ class PostForm extends Component {
 
     onAddPost && onAddPost(newPost);
 
-    // todo 2: добавить очистку формы с помощью вызова функции onReset
+    // done_todo 2: добавить очистку формы с помощью вызова функции onReset
+    this.onReset();
   };
 
   renderUsersSelect = () => {
@@ -125,9 +133,10 @@ class PostForm extends Component {
         {
           this.renderUsersSelect()
         }
-        {/* todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+        {/* done_todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
         <div className="m-2">
-          <button type="submit" className="btn btn-primary m-2">Add post</button>
+          <button type="submit" className="btn btn-success m-2">Add post</button>
+          <button type="button" className="btn btn-danger m-2" onClick={this.onReset}>Reset</button>
         </div>
       </form>
     );
