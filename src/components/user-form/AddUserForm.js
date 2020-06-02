@@ -4,10 +4,14 @@ class AddUserForm extends Component {
 
   firstNameRef = createRef();
   lastNameRef = createRef();
+  genderRef = createRef();
+  dobRef = createRef();
+  phoneRef = createRef();
+  websiteRef = createRef();
+  _linksRef = createRef();
   emailNameRef = createRef();
-  address = createRef();
+  addressRef = createRef();
   // donetodo 1: добавить ref для address
-
 
   state = {
     warning: ''
@@ -23,8 +27,14 @@ class AddUserForm extends Component {
 
     const firstName = this.firstNameRef.current.value;
     const lastName = this.lastNameRef.current.value;
-    const email = this.emailNameRef.current.value;
-    const address = this.address.current.value;
+    const gender = this.genderRef.current.value;
+    const dob = this.dobRef.current.value;
+    const phone = this.phoneRef.current.value;
+    const website = this.websiteRef.current.value;
+    const _links = this._linksRef.current.value;
+    const email = this.addressRef.current.value;
+    const address = this.addressRef.current.value;
+
     const pattern = /\d+/;
 
     if (pattern.test(firstName) || pattern.test(lastName)) {
@@ -39,7 +49,7 @@ class AddUserForm extends Component {
 
     // donetodo 1: использовать функцию onUserAdd для создания нового пользователя здесь
     //  у этого объекта должны быть проперти first_name, last_name, address, email
-    onUserAdd(firstName, lastName, address,email);
+    onUserAdd(firstName, lastName, gender, dob, phone, website, _links, address, email);
 
     // donetodo 3: зачистить форму, вызвав функцию onReset
     this.onReset();
@@ -52,8 +62,12 @@ class AddUserForm extends Component {
   onReset = () => {
     this.firstNameRef.current.value = '';
     this.lastNameRef.current.value = '';
+    this.genderRef.current.value = '';
+    this.dobRef.current.value = '';
+    this.phoneRef.current.value = '';
+    this.websiteRef.current.value = '';
+    this.addressRef.current.value = '';
     this.emailNameRef.current.value = '';
-    this.address.current.value = '';
   };
 
   focusInput = () => {
@@ -72,7 +86,7 @@ class AddUserForm extends Component {
             type="text"
             className="form-control"
             id="firstNameInput"
-            placeholder="Example input"
+            placeholder="Type in your name"
           />
         </div>
         <div className="form-group">
@@ -82,26 +96,70 @@ class AddUserForm extends Component {
             type="text"
             className="form-control"
             id="lastNameInput"
-            placeholder="Example input"
+            placeholder="Type in your last name"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastNameInput">Gender:</label>
+          <input
+              ref={this.genderRef}
+              type="text"
+              className="form-control"
+              id="lastNameInput"
+              placeholder="Type in your gender"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastNameInput">Date of birth:</label>
+          <input
+              ref={this.dobRef}
+              type="text"
+              className="form-control"
+              id="lastNameInput"
+              placeholder="Type in your date of birth"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastNameInput">Phone:</label>
+          <input
+              ref={this.phoneRef}
+              type="text"
+              className="form-control"
+              id="lastNameInput"
+              placeholder="Type in your phone"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastNameInput">Website:</label>
+          <input
+              ref={this.websiteRef}
+              type="text"
+              className="form-control"
+              id="lastNameInput"
+              placeholder="Type in your website"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastNameInput">Address:</label>
+          <input
+            ref={this.addressRef}
+            type="text"
+            className="form-control"
+            id="lastNameInput"
+            placeholder="Type in your address"
           />
         </div>
         <div className="form-group">
           <label htmlFor="lastNameInput">Email:</label>
           <input
-            ref={this.emailNameRef}
-            type="text"
-            className="form-control"
-            id="lastNameInput"
-            placeholder="Example input"
+              ref={this.emailNameRef}
+              type="text"
+              className="form-control"
+              id="lastNameInput"
+              placeholder="Type in your email"
           />
         </div>
-        <input
-            ref={this.address}
-            type="text"
-            className="form-control"
-            id="lastNameInput"
-            placeholder="Example input"
-        />
+
         {/*
         donetodo 1: добавить инпут для ввода адресса
               передать ему атрибут под название ref наш созданный в строке 8 ref
