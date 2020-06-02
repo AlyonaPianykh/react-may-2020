@@ -5,15 +5,16 @@ class AddUserForm extends Component {
   firstNameRef = createRef();
   lastNameRef = createRef();
   emailNameRef = createRef();
-  // todo 1: добавить ref для address
-
+  // donetodo 1: добавить ref для address
+  addressRef = createRef();
 
   state = {
     warning: ''
   };
 
   onSubmit = (e) => {
-    // todo 1: достать из props функцию добавления пользователя onUserAdd
+    // donetodo 1: достать из props функцию добавления пользователя onUserAdd
+    const { onUserAdd } = this.props;
     e.preventDefault();
 
     console.log(this.firstNameRef.current.value);
@@ -22,6 +23,7 @@ class AddUserForm extends Component {
     const firstName = this.firstNameRef.current.value;
     const lastName = this.lastNameRef.current.value;
     const email = this.emailNameRef.current.value;
+    const addressRef = this.addressRef.current.value;
 
     const pattern = /\d+/;
 
@@ -33,15 +35,27 @@ class AddUserForm extends Component {
     }
 
     console.log(firstName, lastName, email);
-    // todo 1: использовать функцию onUserAdd для создания нового пользователя здесь
+    // donetodo 1: использовать функцию onUserAdd для создания нового пользователя здесь
     //  у этого объекта должны быть проперти first_name, last_name, address, email
-
-    // todo 3: зачистить форму, вызвав функцию onReset
+    const newUser = {
+      first_name: firstName,
+      last_name: lastName,
+      address: addressRef,
+      email: email,
+    };
+    onUserAdd && onUserAdd(newUser);
+    // donetodo 3: зачистить форму, вызвав функцию onReset
+    this.onReset();
   };
 
-  // todo 3: добавить функцию onReset, которая будет зачищать поля формы
+  // donetodo 3: добавить функцию onReset, которая будет зачищать поля формы
   //  обратите внимание, что тут нет стейта и мы обращаемся к инпутам с помощью ref
-
+  onReset = () => {
+    this.firstNameRef.current.value = '';
+    this.lastNameRef.current.value = '';
+    this.emailNameRef.current.value = '';
+    this.addressRef.current.value = '';
+  };
   focusInput = () => {
     console.log('focused');
     this.lastNameRef.current.focus()
@@ -85,16 +99,28 @@ class AddUserForm extends Component {
         </div>
 
         {/*
-        todo 1: добавить инпут для ввода адресса
+        donetodo 1: добавить инпут для ввода адресса
               передать ему атрибут под название ref наш созданный в строке 8 ref
         */}
+        <div className="form-group">
+          <label htmlFor="adressInput">Adress:</label>
+          <input
+              ref={this.addressRef}
+              type="text"
+              className="form-control"
+              id="adressInput"
+              placeholder="Example adress input"
+          />
+        </div>
 
         <button type='submit' className="btn btn-primary m-2">Add </button>
+
         <button type='button' onClick={this.focusInput}>focus</button>
 
       {/*
-      todo 3: добавить кнопку, которая по нажатию будет будет вызывать метод onReset
+      donetodo 3: добавить кнопку, которая по нажатию будет будет вызывать метод onReset
       */}
+        <button type='button' className="btn btn-primary m-2" onClick={this.onReset}>Reset </button>
       </form>
     );
   }
