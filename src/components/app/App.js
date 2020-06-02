@@ -17,6 +17,7 @@ class App extends Component {
   state = {
     posts: [...postsList],
     // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+
   };
 
   onSort = (selectedOption) => {

@@ -10,6 +10,7 @@ export class DropDown extends Component {
   toggle = () => {
     // todo: здесь должно быть открывание/закрывание дропдауна с помощью this.setState
     //  сделать так же как в компоненте components/panel/PanelFromLecture в методе onClick
+
   };
 
   onOptionSelect = (event) => {
@@ -26,6 +27,7 @@ export class DropDown extends Component {
 
 
     // todo: закрыть дропдаун, вызвав this.setState({ isOpen: false })
+
   };
 
   render() {
@@ -36,6 +38,7 @@ export class DropDown extends Component {
 
     // todo:
     //  достать isOpen из this.state
+
 
     return (
       <div className="may-drop-down dropdown">
@@ -58,6 +61,7 @@ export class DropDown extends Component {
             //  в event listener onClick положить значение this.onOptionSelect
             //  внутри тега показать {option} (как children)
           */}
+
           </div>
         }
       </div>
