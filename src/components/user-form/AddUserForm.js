@@ -71,7 +71,7 @@ class AddUserForm extends Component {
     render() {
         return (
             <form onSubmit={this.onSubmit}>
-                {!!this.state.warning && <div>{this.state.warning}</div>}
+                {!!this.state.warning && <div className='text-warning'>{this.state.warning}</div>}
                 <div className="form-group">
                     <label htmlFor="firstNameInput">First name:</label>
                     <input
@@ -80,7 +80,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="firstNameInput"
                         placeholder="Name input"
-                        pattern='\S'
+                        pattern='^(\S).*$'
                         required
                     />
                 </div>
@@ -93,7 +93,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="LastName input"
-                        pattern='\S'
+                        pattern='^(\S).*$'
                         required
                     />
                 </div>
