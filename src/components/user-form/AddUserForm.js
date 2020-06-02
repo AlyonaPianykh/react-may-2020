@@ -86,6 +86,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="firstNameInput"
                         placeholder="Example input"
+                        required
                     />
                 </div>
 
@@ -97,6 +98,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="Example input"
+                        required
                     />
                 </div>
 
@@ -108,6 +110,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="Example input"
+                        required
                     />
                 </div>
 
@@ -123,13 +126,13 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="Example input"
+                        //required
                     />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="lastNameInput">Gender:</label>
-                    <select ref={this.genderNameRef} className="form-control" id="lastNameInput">
-                        <option>Other</option>
+                    <select ref={this.genderNameRef} className="form-control" id="lastNameInput" required>
                         <option>female</option>
                         <option>male</option>
                     </select>
@@ -150,6 +153,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="1966-06-06"
+                        //required
                     />
                 </div>
 
@@ -161,7 +165,8 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="+3-333-333-3333"
-                        pattern={"[\\+]\\d{1}[\\-]\\d{3}[\\-]\\d{3}[\\-]\\d{4}"}
+                        //required
+                        // pattern={"[\\+]\\d{1}[\\-]\\d{3}[\\-]\\d{3}[\\-]\\d{4}"}
                     />
                 </div>
 
@@ -173,7 +178,8 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="www.shields.com/"
-                        pattern={`^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:\\/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$`}
+                        //required
+                        // pattern={`^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:\\/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$`}
                     />
                 </div>
 
@@ -185,6 +191,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="Example input"
+                        //required
                     />
                 </div>
 

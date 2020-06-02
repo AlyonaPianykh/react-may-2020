@@ -28,8 +28,8 @@ class PostForm extends Component {
     }
 
     this.setState({
-      title: '',
-      body: '',
+      body,
+      warning: ""
     });
   };
 
