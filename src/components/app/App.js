@@ -107,7 +107,7 @@ class App extends Component {
         <Header />
 
         <PanelFromLecture label="Users" >
-          <AddUserForm/>
+          <AddUserForm onUserAdd={this.onUserAdd}/>
           <UsersList users={users}/>
         </PanelFromLecture>
 
