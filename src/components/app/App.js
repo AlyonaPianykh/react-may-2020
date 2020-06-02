@@ -88,6 +88,17 @@ class App extends Component {
   // todo 1: добавить здесь функцию onUserAdd
   //  она должна добавлять пользователя в список users в стейте
   //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
+  addUser = (newUser) => {
+    this.setState((prevState) => {
+      return {
+        users: [{
+          ...newUser,
+          id: uniqueId(),
+        }, ...prevState.users]
+      }
+    });
+  };
+
 
 
   render() {
@@ -97,8 +108,8 @@ class App extends Component {
       <div className="App">
         <Header />
 
-        <PanelFromLecture label="Users" >
-          <AddUserForm/>
+        <PanelFromLecture label="Users">
+          <AddUserForm onUserAdd={this.addUser}/>
           <UsersList users={users}/>
         </PanelFromLecture>
 

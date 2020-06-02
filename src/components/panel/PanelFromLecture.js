@@ -40,7 +40,7 @@ export class PanelFromLecture extends React.Component {
     const {isOpen} = this.state;
 
     return (
-      <div className="may-panel card">
+      <div className="may-panel card" >
         <div className="may-panel-header card-header">
           <div>{label}</div>
           <div className={`may-panel-header-chevron ${isOpen ? 'up' : ''}`} onClick={this.onClick}>
