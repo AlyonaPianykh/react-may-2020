@@ -4,48 +4,65 @@ class AddUserForm extends Component {
 
   firstNameRef = createRef();
   lastNameRef = createRef();
-  emailNameRef = createRef();
-  // todo 1: добавить ref для address
+  emailRef = createRef();
+  addressRef = createRef();
+  // donetodo 1: добавить ref для address
 
-
+  //for validate not nambers
   state = {
     warning: ''
   };
 
   onSubmit = (e) => {
-    // todo 1: достать из props функцию добавления пользователя onUserAdd
     e.preventDefault();
+    // donetodo 1: достать из props функцию добавления пользователя onUserAdd
+    const {onUserAdd} = this.props;
 
-    console.log(this.firstNameRef.current.value);
-    console.log(this.lastNameRef.current.value);
+    //получить текущие значения полей input
+    const first_name = this.firstNameRef.current.value; //текущее значение input с атрибутом ref={this.firstNameRef}
+    const last_name = this.lastNameRef.current.value;
+    const email = this.emailRef.current.value;
+    const address = this.addressRef.current.value;
+    // console.log(first_name, last_name, email, address);
 
-    const firstName = this.firstNameRef.current.value;
-    const lastName = this.lastNameRef.current.value;
-    const email = this.emailNameRef.current.value;
-
+    //for validate not nambers
     const pattern = /\d+/;
 
-    if (pattern.test(firstName) || pattern.test(lastName))  {
+    if (pattern.test(first_name) || pattern.test(last_name))  {
       this.setState({
         warning: 'please don\'t put numbers '
       });
       return;
     }
 
-    console.log(firstName, lastName, email);
-    // todo 1: использовать функцию onUserAdd для создания нового пользователя здесь
+    // donetodo 1: использовать функцию onUserAdd для создания нового пользователя здесь
     //  у этого объекта должны быть проперти first_name, last_name, address, email
+      const newUser = {
+        first_name,
+        last_name,
+        email,
+        address
+      };
 
-    // todo 3: зачистить форму, вызвав функцию onReset
+      onUserAdd && onUserAdd(newUser);
+      // dtodo 3: зачистить форму, вызвав функцию onReset
+      this.onReset();
   };
 
-  // todo 3: добавить функцию onReset, которая будет зачищать поля формы
+  // dtodo 3: добавить функцию onReset, которая будет зачищать поля формы
   //  обратите внимание, что тут нет стейта и мы обращаемся к инпутам с помощью ref
+  onReset = () => {
+    this.firstNameRef.current.value = '';
+    this.lastNameRef.current.value = '';
+    this.emailRef.current.value = '';
+    this.addressRef.current.value = '';
+  }
 
-  focusInput = () => {
-    console.log('focused');
-    this.lastNameRef.current.focus()
-  };
+  //set focus input lastName
+  // focusInput = () => {
+  //   console.log('focused');
+  //   this.lastNameRef.current.focus();
+  // };
 
   render() {
     return (
@@ -58,7 +75,7 @@ class AddUserForm extends Component {
             type="text"
             className="form-control"
             id="firstNameInput"
-            placeholder="Example input"
+            placeholder="First name"
           />
         </div>
 
@@ -69,32 +86,44 @@ class AddUserForm extends Component {
             type="text"
             className="form-control"
             id="lastNameInput"
-            placeholder="Example input"
+            placeholder="Last name"
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="lastNameInput">Email:</label>
           <input
-            ref={this.emailNameRef}
+            ref={this.emailRef}
             type="text"
             className="form-control"
             id="lastNameInput"
-            placeholder="Example input"
+            placeholder="Email"
           />
         </div>
 
         {/*
-        todo 1: добавить инпут для ввода адресса
+        donetodo 1: добавить инпут для ввода адресса
               передать ему атрибут под название ref наш созданный в строке 8 ref
         */}
 
+        <div className="form-group">
+          <label htmlFor="addressInput">Address:</label>
+          <input
+              ref={this.addressRef}
+              type="text"
+              className="form-control"
+              id="addressInput"
+              placeholder="Address"
+          />
+        </div>
+
         <button type='submit' className="btn btn-primary m-2">Add </button>
-        <button type='button' onClick={this.focusInput}>focus</button>
+        {/*<button type='button' onClick={this.focusInput}>focus</button>*/}
 
       {/*
-      todo 3: добавить кнопку, которая по нажатию будет будет вызывать метод onReset
+      dtodo 3: добавить кнопку, которая по нажатию будет будет вызывать метод onReset
       */}
+        <button type='button' className="btn btn-primary m-2" onClick={this.onReset}>Reset</button>
       </form>
     );
   }

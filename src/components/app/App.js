@@ -21,7 +21,7 @@ class App extends Component {
   state = {
     posts: [...postsList],
     selectedOption: sortingOptions[0],
-    users: usersList
+    users: [...usersList]
   };
 
   onSort = (selectedOption) => {
@@ -85,10 +85,20 @@ class App extends Component {
     });
   };
 
-  // todo 1: добавить здесь функцию onUserAdd
+  // donetodo 1: добавить здесь функцию onUserAdd
   //  она должна добавлять пользователя в список users в стейте
   //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
 
+  onUserAdd = (newUser) => {
+    this.setState((prevState) => {
+      return {
+        users: [{
+          ...newUser,
+          id: uniqueId(),
+        }, ...prevState.users]
+      }
+    });
+  };
 
   render() {
     const { posts, selectedOption, users } = this.state;
@@ -97,8 +107,8 @@ class App extends Component {
       <div className="App">
         <Header />
 
-        <PanelFromLecture label="Users" >
-          <AddUserForm/>
+        <PanelFromLecture label="Users" isOpenByDefault>
+          <AddUserForm onUserAdd={this.onUserAdd} />
           <UsersList users={users}/>
         </PanelFromLecture>
 
@@ -106,7 +116,7 @@ class App extends Component {
           <PostPreview posts={posts} />
         </PanelFromLecture>
 
-        <PanelFromLecture label="Posts">
+        <PanelFromLecture label="Posts" isOpenByDefault>
           <div className="d-flex">
             Sorting:
             <button onClick={this.onSortByAuthorClick}>By author</button>
@@ -118,13 +128,12 @@ class App extends Component {
               options={sortingOptions}
             />
           </div>
+
           <div className="d-flex posts-container">
-
             <AddPostForm onAddPost={this.addPost} users={users} />
-
             {
               posts.map((item, index) => {
-                const user = usersList.find(user => user.id === item.user_id);
+                const user = users.find(user => user.id === item.user_id);
                 const author = user ? `${user.first_name} ${user.last_name}` : '';
                 const comments = allComments.filter(comment => comment.post_id === item.id);
 

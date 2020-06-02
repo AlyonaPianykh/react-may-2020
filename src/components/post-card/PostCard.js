@@ -3,7 +3,7 @@ import React, { Component, PureComponent } from 'react';
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
-import { Loader } from "../loader/Loader";
+// import { Loader } from "../loader/Loader";
 import './PostCard.scss';
 
 // donetodo: делаем открывание/закрывание комментариев по кнопочке и добавляем лоадинг индикатор на загрузку комментариев
@@ -151,7 +151,7 @@ export class PostCard extends PureComponent {
             isCommentsLoading &&
             <div>
                 <div>Loading comments ...</div>
-                <Loader/>
+                {/*<Loader/>*/}
             </div>
             }
           {
