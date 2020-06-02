@@ -165,10 +165,9 @@ class AddUserForm extends Component {
                   required
               />
           </div>
-          <div className="form-group" ref={this.genderNameRef} >
+
           <label htmlFor="genderNameInput">gender:</label>
               <label>
-                  gender
                   <select onChange={this.handleChange}>
                       <option value="male" defaultChecked>male</option>
                       <option value="female">female</option>
@@ -176,7 +175,6 @@ class AddUserForm extends Component {
                   </select>
               </label>
 
-      </div>
         <button type='submit' className="btn btn-primary m-2">Add </button>
         <button type='button' onClick={this.focusInput}>focus</button>
 

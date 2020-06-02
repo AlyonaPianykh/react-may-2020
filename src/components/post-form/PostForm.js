@@ -34,7 +34,6 @@ class PostForm extends Component {
   };
 
   onUserSelect = (event) => {
-    debugger
     console.log(event.target.value);
     const selectedIndex = event.target.selectedIndex;
 
@@ -66,7 +65,7 @@ class PostForm extends Component {
 
     const { onAddPost } = this.props;
     const { title, body, user_id } = this.state;
-
+    if (!title || !body) return;
     const newPost = {
       title,
       body,
