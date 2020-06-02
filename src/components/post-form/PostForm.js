@@ -66,6 +66,10 @@ class PostForm extends Component {
 
     const { onAddPost } = this.props;
     const { title, body, user_id } = this.state;
+    if (!title.trim() || !body.trim()) {
+      alert('you did not enter data')
+      return;
+    }
 
     const newPost = {
       title,
