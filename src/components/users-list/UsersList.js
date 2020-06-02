@@ -7,11 +7,11 @@ export function UsersList(props) {
   return (
     <div className="d-flex">
       {
-        users.map((user, index) => {
+        users.map((user) => {
           return <UserCard
-            user={user}
-            key={user.id}
-          />;
+                    user={user}
+                    key={user.id}
+                  />;
         })
       }
     </div>
