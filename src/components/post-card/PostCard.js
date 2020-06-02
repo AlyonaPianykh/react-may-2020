@@ -51,7 +51,7 @@ export class PostCard extends PureComponent {
       let json = await response.json();
 
       const { result } = json;
-      debugger
+
 
       if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
         this.setState({
