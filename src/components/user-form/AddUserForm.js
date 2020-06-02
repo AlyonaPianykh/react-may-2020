@@ -46,7 +46,7 @@ class AddUserForm extends Component {
         // console.log(first_name, lastName, email);
         // ttodo 1: использовать функцию onUserAdd для создания нового пользователя здесь
         //  у этого объекта должны быть проперти first_name, last_name, address, email
-        onUserAdd({first_name, last_name, address, email});
+        onUserAdd && onUserAdd({first_name, last_name, address, email});
 
         // ttodo 3: зачистить форму, вызвав функцию onReset
         this.onReset(e)
@@ -80,6 +80,8 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="firstNameInput"
                         placeholder="Name input"
+                        pattern='\S'
+                        required
                     />
                 </div>
 
@@ -91,6 +93,8 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="lastNameInput"
                         placeholder="LastName input"
+                        pattern='\S'
+                        required
                     />
                 </div>
 
@@ -102,6 +106,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="emailInput"
                         placeholder="Email input"
+                        required
                     />
                 </div>
 
@@ -115,6 +120,7 @@ class AddUserForm extends Component {
                         className="form-control"
                         id="addressnput"
                         placeholder="Address input"
+                        required
                     />
                 </div>
 

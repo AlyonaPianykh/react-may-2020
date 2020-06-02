@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import './AddPostForm.scss';
 
@@ -12,141 +12,143 @@ class PostForm extends Component {
         };
         this.state = this.defaultState
     }
-  // state = {
-  //   title: '',
-  //   body: '',
-  //   user_id: this.props.users[1].id
-  // };
 
-  onTitleChange = (event) => {
-    const title = event.target.value;
+    // state = {
+    //   title: '',
+    //   body: '',
+    //   user_id: this.props.users[1].id
+    // };
 
-    this.setState({
-      title
-    });
-  };
+    onTitleChange = (event) => {
+        const title = event.target.value;
 
-  onBodyChange = (event) => {
-    const body = event.target.value;
+        this.setState({
+            title
+        });
+    };
 
-    if (/\d+/.test(body)) {
-      this.setState({
-        warning: 'please don\'t put numbers '
-      });
-      return;
-    }
+    onBodyChange = (event) => {
+        const body = event.target.value;
+        if (/\d+/.test(body)) {
+            this.setState({
+                warning: 'please don\'t put numbers '
+            });
+            return;
+        }
 
-    this.setState({
-      body,
-      warning: ''
-    });
-  };
+        this.setState({
+            body,
+            warning: ''
+        });
+    };
 
-  onUserSelect = (event) => {
-    // debugger
-    // console.log(event.target.value);
-    const selectedIndex = event.target.selectedIndex;
+    onUserSelect = (event) => {
+        // debugger
+        // console.log(event.target.value);
+        const selectedIndex = event.target.selectedIndex;
 
-    this.setState((prevState, props) => {
-      return {
-        user_id: props.users[selectedIndex].id
-      };
-    });
+        this.setState((prevState, props) => {
+            return {
+                user_id: props.users[selectedIndex].id
+            };
+        });
 
-    // another way:
-    // const {users} = this.props;
-    // this.setState({
-    //   user_id: users[selectedIndex].id
-    // });
-  };
+        // another way:
+        // const {users} = this.props;
+        // this.setState({
+        //   user_id: users[selectedIndex].id
+        // });
+    };
 
-  // ttodo 2: добавить функцию onReset которая будет очищать форму
-  //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
+    // ttodo 2: добавить функцию onReset которая будет очищать форму
+    //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
     onReset = (e) => {
         e.preventDefault();
         this.setState(this.defaultState)
     };
 
-  onSubmit = (e) => {
-    e.preventDefault();
+    onSubmit = (e) => {
+        e.preventDefault();
 
-    const { onAddPost } = this.props;
-    const { title, body, user_id } = this.state;
+        const {onAddPost} = this.props;
+        const {title, body, user_id} = this.state;
 
-    const newPost = {
-      title,
-      body,
-      user_id
+        const newPost = {
+            title,
+            body,
+            user_id
+        };
+        // title.trim() - такий вид перевірки на порожній інпут запропонував у групі Артем Мачуленко,
+        // я перейняв, мені сподобався
+        !!title.trim() && !!body.trim() && onAddPost && onAddPost(newPost);
+
+        // ttodo 2: добавить очистку формы с помощью вызова функции onReset
+        this.onReset(e)
     };
 
-    onAddPost && onAddPost(newPost);
+    renderUsersSelect = () => {
+        const {users} = this.props;
+        const {user_id} = this.state;
 
-    // ttodo 2: добавить очистку формы с помощью вызова функции onReset
-    this.onReset(e)
-  };
+        const selectedUser = users.find(item => item.id === user_id);
+        const selectedFullName = `${selectedUser.first_name} ${selectedUser.last_name}`;
 
-  renderUsersSelect = () => {
-    const { users } = this.props;
-    const { user_id } = this.state;
+        return (
+            <select value={selectedFullName} onChange={this.onUserSelect}>
+                {
+                    users.map(user => {
+                        const fullName = `${user.first_name} ${user.last_name}`;
 
-    const selectedUser = users.find(item => item.id === user_id);
-    const selectedFullName = `${selectedUser.first_name} ${selectedUser.last_name}`;
+                        return (
+                            <option key={user.id} value={fullName}>{fullName}</option>
+                        );
+                    })
+                }
+            </select>
+        );
+    };
 
-    return (
-      <select value={selectedFullName} onChange={this.onUserSelect}>
-        {
-          users.map(user => {
-            const fullName = `${user.first_name} ${user.last_name}`;
+    render() {
+        const {title, body, user_id, warning} = this.state;
 
-            return (
-              <option key={user.id} value={fullName}>{fullName}</option>
-            );
-          })
-        }
-      </select>
-    );
-  };
+        return (
+            <form className="may-add-post-form" onSubmit={this.onSubmit}>
+                {!!warning && <div className='text-warning'>{warning}</div>}
 
-  render() {
-    const { title, body, user_id, warning } = this.state;
+                <div className="form-group">
+                    <label htmlFor="formGroupExampleInput">Example label</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="formGroupExampleInput"
+                        placeholder="Tittle input"
+                        pattern='\S'
+                        value={title}
+                        onChange={this.onTitleChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="formGroupExampleInput">Example label</label>
+                    <textarea
+                        className="form-control"
+                        id="formGroupExampleArea"
+                        placeholder="Post input"
+                        value={body}
+                        onChange={this.onBodyChange}
+                    />
+                </div>
 
-    return (
-      <form className="may-add-post-form" onSubmit={this.onSubmit}>
-        {!!warning && <div>{warning}</div>}
-
-        <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Example label</label>
-          <input
-            type="text"
-            className="form-control"
-            id="formGroupExampleInput"
-            placeholder="Example input"
-            value={title}
-            onChange={this.onTitleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Example label</label>
-          <textarea
-            className="form-control"
-            id="formGroupExampleInput"
-            placeholder="Example input"
-            value={body}
-            onChange={this.onBodyChange}
-          />
-        </div>
-
-        {
-          this.renderUsersSelect()
-        }
-        {/* ttodo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
-        <div className="m-2">
-          <button type="submit" className="btn btn-primary m-2">Add post</button>
-          <button onClick={this.onReset} className="btn btn-secondary m-2">Reset</button>
-        </div>
-      </form>
-    );
-  }
+                {
+                    this.renderUsersSelect()
+                }
+                {/* ttodo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+                <div className="m-2">
+                    <button type="submit" className="btn btn-primary m-2">Add post</button>
+                    <button onClick={this.onReset} className="btn btn-secondary m-2">Reset</button>
+                </div>
+            </form>
+        );
+    }
 }
 
 export default PostForm;

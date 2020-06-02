@@ -89,9 +89,10 @@ class App extends Component {
     //  она должна добавлять пользователя в список users в стейте
     //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
     onUserAdd = (newUser) => {
-        this.state.users.unshift({id:uniqueId(),...newUser});
+        const users = this.state.users;
+        users.unshift({id:uniqueId(),...newUser}); // чи має право на життя цей вар-т?, чи не має мінусів?
         this.setState({
-            users: this.state.users
+            users
         });
         console.log('onUserAdd',this.state.users)
     };
