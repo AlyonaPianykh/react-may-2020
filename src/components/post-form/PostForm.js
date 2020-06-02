@@ -51,8 +51,15 @@ class PostForm extends Component {
     // });
   };
 
-  // todo 2: добавить функцию onReset которая будет очищать форму
+  // donetodo 2: добавить функцию onReset которая будет очищать форму
   //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
+
+  onReset = ()=>{
+    this.setState({
+      title: '',
+      body: ''
+    })
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +75,8 @@ class PostForm extends Component {
 
     onAddPost && onAddPost(newPost);
 
-    // todo 2: добавить очистку формы с помощью вызова функции onReset
+    // donetodo 2: добавить очистку формы с помощью вызова функции onReset
+    this.onReset()
   };
 
   renderUsersSelect = () => {
@@ -79,17 +87,17 @@ class PostForm extends Component {
     const selectedFullName = `${selectedUser.first_name} ${selectedUser.last_name}`;
 
     return (
-      <select value={selectedFullName} onChange={this.onUserSelect}>
-        {
-          users.map(user => {
-            const fullName = `${user.first_name} ${user.last_name}`;
+        <select value={selectedFullName} onChange={this.onUserSelect}>
+          {
+            users.map(user => {
+              const fullName = `${user.first_name} ${user.last_name}`;
 
-            return (
-              <option key={user.id} value={fullName}>{fullName}</option>
-            );
-          })
-        }
-      </select>
+              return (
+                  <option key={user.id} value={fullName}>{fullName}</option>
+              );
+            })
+          }
+        </select>
     );
   };
 
@@ -97,39 +105,41 @@ class PostForm extends Component {
     const { title, body, user_id, warning } = this.state;
 
     return (
-      <form className="may-add-post-form" onSubmit={this.onSubmit}>
-        {!!warning && <div>{warning}</div>}
+        <form className="may-add-post-form" onSubmit={this.onSubmit}>
+          {!!warning && <div>{warning}</div>}
 
-        <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Example label</label>
-          <input
-            type="text"
-            className="form-control"
-            id="formGroupExampleInput"
-            placeholder="Example input"
-            value={title}
-            onChange={this.onTitleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Example label</label>
-          <textarea
-            className="form-control"
-            id="formGroupExampleInput"
-            placeholder="Example input"
-            value={body}
-            onChange={this.onBodyChange}
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="formGroupExampleInput">Example label</label>
+            <input
+                type="text"
+                className="form-control"
+                id="formGroupExampleInput"
+                placeholder="Example input"
+                value={title}
+                onChange={this.onTitleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="formGroupExampleInput">Example label</label>
+            <textarea
+                className="form-control"
+                id="formGroupExampleInput"
+                placeholder="Example input"
+                value={body}
+                onChange={this.onBodyChange}
+            />
+          </div>
 
-        {
-          this.renderUsersSelect()
-        }
-        {/* todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
-        <div className="m-2">
-          <button type="submit" className="btn btn-primary m-2">Add post</button>
-        </div>
-      </form>
+          {
+            this.renderUsersSelect()
+          }
+          {/* donetodo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+
+          <div className="m-2">
+            <button type="submit" className="btn btn-primary m-2" onClick={this.onReset}>clear</button>
+            <button type="submit" className="btn btn-primary m-2">Add post</button>
+          </div>
+        </form>
     );
   }
 }
