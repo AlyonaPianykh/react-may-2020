@@ -8,6 +8,8 @@ class PostForm extends Component {
     body: '',
     user_id: this.props.users[1].id
   };
+  baseState = this.state;
+
 
   onTitleChange = (event) => {
     const title = event.target.value;
@@ -51,12 +53,18 @@ class PostForm extends Component {
     // });
   };
 
-  // todo 2: добавить функцию onReset которая будет очищать форму
+  // donetodo 2: добавить функцию onReset которая будет очищать форму
   //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
+  onReset = () => {
+    this.setState({
+      title: '',
+      body: ''
+    });
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
-
+    if (this.state.body === '' || this.state.title === '' ) return;
     const { onAddPost } = this.props;
     const { title, body, user_id } = this.state;
 
@@ -68,7 +76,8 @@ class PostForm extends Component {
 
     onAddPost && onAddPost(newPost);
 
-    // todo 2: добавить очистку формы с помощью вызова функции onReset
+    // donetodo 2: добавить очистку формы с помощью вызова функции onReset
+    this.onReset();
   };
 
   renderUsersSelect = () => {
@@ -125,7 +134,8 @@ class PostForm extends Component {
         {
           this.renderUsersSelect()
         }
-        {/* todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+        {/* donetodo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+        <button type="submit" onClick={this.onReset}>Reset my form data</button>
         <div className="m-2">
           <button type="submit" className="btn btn-primary m-2">Add post</button>
         </div>
