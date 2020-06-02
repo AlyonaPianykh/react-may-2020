@@ -9,7 +9,7 @@ import TestCard, { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
-import {UsersList} from '../users-list/UsersList';
+import { UsersList } from '../users-list/UsersList';
 import AddUserForm from '../user-form/AddUserForm';
 
 import './App.scss';
@@ -85,6 +85,20 @@ class App extends Component {
     });
   };
 
+  onAddUser = (newUser) => {
+    this.setState((prevState) => {
+      console.log(newUser);
+      console.log(prevState);
+
+      return {
+        users: [{
+          ...newUser,
+          id: uniqueId(),
+        }, ...prevState.users]
+      }
+    });
+  };
+
   // todo 1: добавить здесь функцию onUserAdd
   //  она должна добавлять пользователя в список users в стейте
   //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
@@ -98,8 +112,8 @@ class App extends Component {
         <Header />
 
         <PanelFromLecture label="Users" >
-          <AddUserForm/>
-          <UsersList users={users}/>
+          <AddUserForm onAddUser={this.onAddUser} />
+          <UsersList users={users} />
         </PanelFromLecture>
 
         <PanelFromLecture label="test" >
