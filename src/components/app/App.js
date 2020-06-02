@@ -85,10 +85,24 @@ class App extends Component {
     });
   };
 
-  // todo 1: добавить здесь функцию onUserAdd
+    onAddUser = (newUser) => {
+        this.setState((prevState) => {
+            console.log(newUser);
+            console.log(prevState);
+
+            return {
+                users: [{
+                    ...newUser,
+                    id: uniqueId(),
+                }, ...prevState.users]
+            }
+        });
+    };
+
+  // done todo 1: добавить здесь функцию onUserAdd
   //  она должна добавлять пользователя в список users в стейте
   //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
-
+// id:onUserAdd ;
 
   render() {
     const { posts, selectedOption, users } = this.state;
