@@ -85,15 +85,14 @@ class App extends Component {
         });
     };
 
-    // todo 1: добавить здесь функцию onUserAdd
+    // ttodo 1: добавить здесь функцию onUserAdd
     //  она должна добавлять пользователя в список users в стейте
     //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
     onUserAdd = (newUser) => {
-        const users = this.state.users;
-        users.unshift({id:uniqueId(),...newUser});
+        this.state.users.unshift({id:uniqueId(),...newUser});
         this.setState({
             users: this.state.users
-        })
+        });
         console.log('onUserAdd',this.state.users)
     };
 

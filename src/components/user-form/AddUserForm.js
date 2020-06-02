@@ -49,7 +49,7 @@ class AddUserForm extends Component {
         onUserAdd({first_name, last_name, address, email});
 
         // ttodo 3: зачистить форму, вызвав функцию onReset
-        this.onReset()
+        this.onReset(e)
     };
 
     // ttodo 3: добавить функцию onReset, которая будет зачищать поля формы
