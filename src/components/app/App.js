@@ -5,7 +5,7 @@ import { Header } from '../header/HeaderFromLecture';
 import { Footer } from '../footer/Footer';
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
-import TestCard, { PostCard as Card } from '../post-card/PostCard';
+import { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';

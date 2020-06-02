@@ -3,11 +3,20 @@ import React, { Component } from 'react';
 import './AddPostForm.scss';
 
 class PostForm extends Component {
-  state = {
-    title: '',
-    body: '',
-    user_id: this.props.users[1].id
-  };
+    constructor(props) {
+        super(props);
+        this.defaultState = {
+            title: '',
+            body: '',
+            user_id: this.props.users[1].id
+        };
+        this.state = this.defaultState
+    }
+  // state = {
+  //   title: '',
+  //   body: '',
+  //   user_id: this.props.users[1].id
+  // };
 
   onTitleChange = (event) => {
     const title = event.target.value;
@@ -34,8 +43,8 @@ class PostForm extends Component {
   };
 
   onUserSelect = (event) => {
-    debugger
-    console.log(event.target.value);
+    // debugger
+    // console.log(event.target.value);
     const selectedIndex = event.target.selectedIndex;
 
     this.setState((prevState, props) => {
@@ -51,8 +60,12 @@ class PostForm extends Component {
     // });
   };
 
-  // todo 2: добавить функцию onReset которая будет очищать форму
+  // ttodo 2: добавить функцию onReset которая будет очищать форму
   //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
+    onReset = (e) => {
+        e.preventDefault();
+        this.setState(this.defaultState)
+    };
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +81,8 @@ class PostForm extends Component {
 
     onAddPost && onAddPost(newPost);
 
-    // todo 2: добавить очистку формы с помощью вызова функции onReset
+    // ttodo 2: добавить очистку формы с помощью вызова функции onReset
+    this.onReset(e)
   };
 
   renderUsersSelect = () => {
@@ -125,9 +139,10 @@ class PostForm extends Component {
         {
           this.renderUsersSelect()
         }
-        {/* todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+        {/* ttodo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
         <div className="m-2">
           <button type="submit" className="btn btn-primary m-2">Add post</button>
+          <button onClick={this.onReset} className="btn btn-secondary m-2">Reset</button>
         </div>
       </form>
     );
