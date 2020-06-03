@@ -117,7 +117,7 @@ class AddUserForm extends Component {
       done_todo 3: добавить кнопку, которая по нажатию будет будет вызывать метод onReset
       */}
         <button type='button' className="btn btn-primary m-2" onClick={this.onReset}>Reset</button>
-        {/*instead of the "onReset" method, we can also use <button type='button'>.....*/}
+        {/*instead of the "onReset" method, we can also use <button type='reset'>.....*/}
       </form>
     );
   }
