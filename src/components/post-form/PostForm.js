@@ -51,8 +51,14 @@ class PostForm extends Component {
     // });
   };
 
-  // todo 2: добавить функцию onReset которая будет очищать форму
+  // oktodo 2: добавить функцию onReset которая будет очищать форму
   //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
+    onReset = () => {
+        this.setState({
+            title: '',
+            body: '',
+        })
+    };
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +74,8 @@ class PostForm extends Component {
 
     onAddPost && onAddPost(newPost);
 
-    // todo 2: добавить очистку формы с помощью вызова функции onReset
+    // oktodo 2: добавить очистку формы с помощью вызова функции onReset
+      onreset();
   };
 
   renderUsersSelect = () => {
@@ -125,9 +132,10 @@ class PostForm extends Component {
         {
           this.renderUsersSelect()
         }
-        {/* todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+        {/* oktodo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
         <div className="m-2">
           <button type="submit" className="btn btn-primary m-2">Add post</button>
+          <button type="button" className="btn btn-secondary m-2" onClick={this.onReset}>Reset</button>
         </div>
       </form>
     );
