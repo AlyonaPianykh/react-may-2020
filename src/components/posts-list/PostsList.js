@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { accessToken, usersList } from '../../constants';
-import { PostCard as Card } from '../post-card/PostCard';
+import PostCard from '../post-card/PostCard';
 
 class PostsList extends Component {
   state = {
@@ -38,7 +38,7 @@ class PostsList extends Component {
             const user = usersList.find(user => user.id === item.user_id);
             const author = user ? `${user.first_name} ${user.last_name}` : '';
 
-            return <Card
+            return <PostCard
               post={item}
               key={item.id}
               author={author}

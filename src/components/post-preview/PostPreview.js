@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { PostCard } from '../post-card/PostCard';
+import PostCard from '../post-card/PostCard';
 import { PostsMenuList } from './PostsMenuList';
 import './PostPreview.scss';
 

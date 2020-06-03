@@ -5,7 +5,7 @@ import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
-export class PostCard extends PureComponent {
+class PostCard extends PureComponent {
   state = {
     comments: [],
     isCommentsLoading: false,
@@ -80,6 +80,12 @@ export class PostCard extends PureComponent {
   render() {
     //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
     const { post, hasImage, author = '', className = '' } = this.props;
+
+    if (!post) {
+      console.log('post is not defined');
+      return null;
+    }
+
     const { title, body } = post;
     const { comments, showComments, error, isCommentsLoading, commentsLoaded } = this.state;
 
@@ -111,7 +117,7 @@ export class PostCard extends PureComponent {
                     по аналогии с 24 строкой в UserCard
         */}
 
-        { showComments && <label>Comments:</label> }
+        { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
         {
           showComments && !isCommentsLoading && commentsLoaded && !comments.length &&

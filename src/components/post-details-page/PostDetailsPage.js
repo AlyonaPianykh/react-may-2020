@@ -35,7 +35,7 @@ class PostDetailsPage extends Component {
         <div>Post Details Page</div>
         {
           // todo 3: если идет загрузка - показываем лоадинг индикатор
-          //    если нет - показываем карточку поста PostCard, в которую как пропсу post передаем наш post из state
+          //    если нет и пост существует - показываем карточку поста PostCard, в которую как пропсу post передаем наш post из state
         }
       </div>
     );
