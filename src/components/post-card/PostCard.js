@@ -75,7 +75,7 @@ export class PostCard extends PureComponent {
     this.setState({
       showComments: !this.state.showComments
     })
-  }
+  };
 
   // shouldComponentUpdate(nextProps, nextState, nextContext) {
   //   const { post: curPost } = this.props;
