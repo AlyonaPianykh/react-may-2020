@@ -53,6 +53,13 @@ class PostForm extends Component {
 
   // todo 2: добавить функцию onReset которая будет очищать форму
   //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
+  onReset=()=>{
+    this.setState({
+      title: '',
+      body: ''
+    })
+  };
+
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +75,8 @@ class PostForm extends Component {
 
     onAddPost && onAddPost(newPost);
 
-    // todo 2: добавить очистку формы с помощью вызова функции onReset
+    this.onReset();
+
   };
 
   renderUsersSelect = () => {
@@ -126,6 +134,13 @@ class PostForm extends Component {
           this.renderUsersSelect()
         }
         {/* todo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+
+        {/*не знаю як зробити так, щоб button не створював нового пустого поста*/}
+        <div className='may-reset-forms'>
+          <button onClick={this.onReset}>Reset form</button>
+          {/*тому просто  дівку підстилізував під button і все ок*/}
+              <div onClick={this.onReset} className='may-reset-forms-custom'>Reset</div>
+        </div>
         <div className="m-2">
           <button type="submit" className="btn btn-primary m-2">Add post</button>
         </div>
