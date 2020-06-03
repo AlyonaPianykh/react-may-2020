@@ -20,28 +20,25 @@ class AddUserForm extends Component {
     console.log(this.lastNameRef.current.value);
 
 
-    const firstName = this.firstNameRef.current.value;
-    const lastName = this.lastNameRef.current.value;
+    const first_name = this.firstNameRef.current.value;
+    const last_name = this.lastNameRef.current.value;
     const email = this.emailNameRef.current.value;
     const address = this.addressNameRef.current.value;
 
     const pattern = /\d+/;
 
-    if (pattern.test(firstName) || pattern.test(lastName))  {
+    if (pattern.test(first_name) || pattern.test(last_name))  {
       this.setState({
         warning: 'please don\'t put numbers '
       });
       return;
     }
 
-    console.log(firstName, lastName, email, address);
+    console.log(first_name, last_name, email, address);
     // dichtodo 1: использовать функцию onUserAdd для создания нового пользователя здесь
     //  у этого объекта должны быть проперти first_name, last_name, address, email
-    onUserAdd({
-      first_name:firstName,
-      last_name: lastName,
-      address: address,
-      email: email
+    onUserAdd && onUserAdd({
+      first_name, last_name, address, email
     })
 
 
@@ -55,7 +52,7 @@ class AddUserForm extends Component {
     this.firstNameRef.current.value = '';
     this.lastNameRef.current.value = '';
     this.emailNameRef.current.value = '';
-    this.addressNameRef.current.value = ''
+    this.addressNameRef.current.value = '';
   }
 
   focusInput = () => {
@@ -119,7 +116,7 @@ class AddUserForm extends Component {
           <button type='submit' className="btn btn-primary m-2">Add </button>
           <button type='button' onClick={this.focusInput}>focus</button>
 
-          <button type='button' onClick={this.onReset}>reset</button>
+          <button type='button' className={"btn btn-secondary m-2"} onClick={this.onReset}>reset</button>
           {/*
       donetodo 3: добавить кнопку, которая по нажатию будет будет вызывать метод onReset
       */}

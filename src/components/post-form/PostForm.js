@@ -136,8 +136,8 @@ class PostForm extends Component {
           {/* donetodo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
 
           <div className="m-2">
-            <button type="submit" className="btn btn-primary m-2" onClick={this.onReset}>clear</button>
             <button type="submit" className="btn btn-primary m-2">Add post</button>
+            <button type="button" className="btn btn-secondary m-2" onClick={this.onReset}>Reset</button>
           </div>
         </form>
     );
