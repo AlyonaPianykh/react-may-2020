@@ -83,11 +83,6 @@ class HomePage extends Component {
     });
   };
 
-  // todo 1: добавить здесь функцию onUserAdd
-  //  она должна добавлять пользователя в список users в стейте
-  //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
-
-
   render() {
     const { posts, selectedOption, users } = this.state;
 
