@@ -1,17 +1,11 @@
 import React, { Component, PureComponent } from 'react';
-
+// todo 3: сделать импорт Link из react-router-dom
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
-
 export class PostCard extends PureComponent {
-  constructor(props) {
-    super(props);
-    // console.log('PostCard constructor ');
-  }
-
   state = {
     comments: [],
     isCommentsLoading: false,
@@ -39,7 +33,6 @@ export class PostCard extends PureComponent {
   }
 
   loadComments = async (postId) => {
-
     this.setState({
       isCommentsLoading: true,
       showComments: true
@@ -58,7 +51,7 @@ export class PostCard extends PureComponent {
           isCommentsLoading: false,
           commentsLoaded: true,
           error: '',
-          comments: result
+          comments: result || [] // изменена проверка, если results существовать не будет - закидываем пустой массив
         });
       }
     } else {
@@ -75,7 +68,7 @@ export class PostCard extends PureComponent {
     this.setState({
       showComments: !this.state.showComments
     })
-  }
+  };
 
   // shouldComponentUpdate(nextProps, nextState, nextContext) {
   //   const { post: curPost } = this.props;
@@ -85,17 +78,16 @@ export class PostCard extends PureComponent {
   // }
 
   render() {
+    //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
     const { post, hasImage, author = '', className = '' } = this.props;
     const { title, body } = post;
     const { comments, showComments, error, isCommentsLoading, commentsLoaded } = this.state;
 
     const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
-    
+
     return (
       <div className={`may-post-card card ${className}`}>
-        <div className="may-post-card-img" id="my-block" onClick={() => {
-          alert('ghvcdhfvbdfsjvbdf');
-        }}>
+        <div className="may-post-card-img" id="my-block">
           <img src={hasImage ? kittyUrl : DefaultImg} />
         </div>
         <div className="card-body">
@@ -112,14 +104,15 @@ export class PostCard extends PureComponent {
 
         {
           <label onClick={this.onToggleComments} className="btn btn-link">{showComments ? 'Hide comments' : 'Show comments'}</label>
-          //    как класс задать ей "btn btn-link"
         }
         { !!error &&  <div>{error}</div> }
 
-        {showComments && <label>Comments:</label>}
-        {
-          showComments && isCommentsLoading && <div>Loading...</div>
-        }
+        {/* todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
+                    по аналогии с 24 строкой в UserCard
+        */}
+
+        { showComments && <label>Comments:</label> }
+        { showComments && isCommentsLoading && <div>Loading...</div> }
         {
           showComments && !isCommentsLoading && commentsLoaded && !comments.length &&
           <div>No comments found.</div>
@@ -136,4 +129,5 @@ export class PostCard extends PureComponent {
   }
 }
 
+// todo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
 export default PostCard;

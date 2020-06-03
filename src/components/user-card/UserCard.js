@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import './UserCard.scss';
 
-import './UserCard.scss'
-
-export function UserCard(props) {
-  const { user } = props;
+function UserCardComponent(props) {
+  const { user, location, match: {url} } = props;
 
   if (!user) return null;
 
@@ -19,6 +20,10 @@ export function UserCard(props) {
           <div>{address}</div>
         </div>
       </div>
+
+      <Link to={`${url}/${user.id}`}>Show details</Link>
     </div>
   );
 }
+
+export const UserCard = withRouter(UserCardComponent);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { links, user } from '../../constants';
 import Logo from '../../assets/react.png';
 
@@ -13,15 +14,15 @@ export const Header = (props) => {
       <img src={Logo} className="may-header-logo" />
 
       <div className="may-header-links-wrapper">
-        <div className="nav-item">
-          <a href={links[0].url} className="may-header-links-wrapper-link nav-link">{links[0].name}</a>
-        </div>
-        <div className="nav-item">
-          <a href={links[1].url} className="may-header-links-wrapper-link nav-link">{links[1].name}</a>
-        </div>
-        <div className="nav-item">
-          <a href={links[2].url} className="may-header-links-wrapper-link nav-link">{links[2].name}</a>
-        </div>
+        {
+          links.map(item => {
+            return  (
+              <div className="nav-item" key={item.url}>
+                <NavLink to={item.url} activeClassName="active" className="may-header-links-wrapper-link nav-link">{item.name}</NavLink>
+              </div>
+            )
+          })
+        }
       </div>
 
       <UserInfo user={user} />

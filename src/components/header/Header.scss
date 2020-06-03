@@ -10,6 +10,11 @@
     height: 60px;
   }
 
+  .active {
+    text-decoration: underline;
+    color: darkred;
+  }
+
   &-links-wrapper {
     display: flex;
 

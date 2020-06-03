@@ -9,15 +9,15 @@ import TestCard, { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
-import {UsersList} from '../users-list/UsersList';
+
 import AddUserForm from '../user-form/AddUserForm';
 
-import './App.scss';
+import './HomePage.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
 
-class App extends Component {
+class HomePage extends Component {
   state = {
     posts: [...postsList],
     selectedOption: sortingOptions[0],
@@ -95,11 +95,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header />
 
         <PanelFromLecture label="Users" >
           <AddUserForm/>
-          <UsersList users={users}/>
         </PanelFromLecture>
 
         <PanelFromLecture label="test" >
@@ -109,8 +107,8 @@ class App extends Component {
         <PanelFromLecture label="Posts">
           <div className="d-flex">
             Sorting:
-            <button onClick={this.onSortByAuthorClick}>By author</button>
-            <button onClick={this.onSortByDefault}>By default</button>
+            <button className="btn btn-outline-primary m-2" onClick={this.onSortByAuthorClick}>By author</button>
+            <button className="btn btn-outline-primary m-2" onClick={this.onSortByDefault}>By default</button>
 
             <DropDown
               onSelect={this.onSort}
@@ -138,10 +136,9 @@ class App extends Component {
             }
           </div>
         </PanelFromLecture>
-        <Footer />
       </div>
     );
   }
 }
 
-export default App;
+export default HomePage;
