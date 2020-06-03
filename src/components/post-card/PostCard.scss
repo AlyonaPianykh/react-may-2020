@@ -29,3 +29,21 @@
     margin: 5px 0;
   }
 }
+
+.may-reset-forms{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-custom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    background: #61dafb;
+    width: 60px;
+    height: 30px;
+    position: center;
+    border-radius: 2px;
+  }
+}
