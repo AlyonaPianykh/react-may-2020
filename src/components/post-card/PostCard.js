@@ -129,7 +129,7 @@ export class PostCard extends PureComponent {
                 </div>
 
                 {
-                    // todo: добавить label, в котором как children будет если showComments = true - надпись "Hide comments",
+                    // dtodo: добавить label, в котором как children будет если showComments = true - надпись "Hide comments",
                     //    иначе - "Show comments"
                     //    повесить на нее onClick событие this.onToggleComments
                     //    как класс задать ей "btn btn-link"
