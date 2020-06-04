@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './AddPostForm.scss';
 
 class PostForm extends Component {
@@ -40,7 +39,7 @@ class PostForm extends Component {
 
     this.setState((prevState, props) => {
       return {
-        user_id: props.users[selectedIndex].id,
+        user_id: props.users[selectedIndex].id
       };
     });
 
@@ -51,12 +50,14 @@ class PostForm extends Component {
     // });
   };
 
+  // dtodo 2: добавить функцию onReset которая будет очищать форму
+  //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
   onReset = () => {
     this.setState({
       title: '',
       body: ''
     });
-  };
+  }
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -70,11 +71,13 @@ class PostForm extends Component {
       user_id
     };
 
+    if (!title.trim() || !body.trim()) return;
+
     onAddPost && onAddPost(newPost);
 
-
+    // dtodo 2: добавить очистку формы с помощью вызова функции onReset
     this.onReset();
- };
+  };
 
   renderUsersSelect = () => {
     const { users } = this.props;
@@ -99,6 +102,7 @@ class PostForm extends Component {
   };
 
   render() {
+    console.log('render');
     const { title, body, user_id, warning } = this.state;
 
     return (
@@ -106,7 +110,7 @@ class PostForm extends Component {
         {!!warning && <div>{warning}</div>}
 
         <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Example label</label>
+          <label htmlFor="formGroupExampleInput">Title</label>
           <input
             type="text"
             className="form-control"
@@ -117,7 +121,7 @@ class PostForm extends Component {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Example label</label>
+          <label htmlFor="formGroupExampleInput">Body</label>
           <textarea
             className="form-control"
             id="formGroupExampleInput"
@@ -130,9 +134,10 @@ class PostForm extends Component {
         {
           this.renderUsersSelect()
         }
-        <div className="form-group m-2">
-          <button type="button" className="btn btn-outline-secondary m-2" onClick={this.onReset}>Reset</button>
+        {/* dtodo 2: добавить кнопку, по нажатию на которую будет вызываться метод onReset*/}
+        <div className="m-2">
           <button type="submit" className="btn btn-primary m-2">Add post</button>
+          <button type='button' className="btn btn-primary m-2" onClick={this.onReset}>Reset</button>
         </div>
       </form>
     );

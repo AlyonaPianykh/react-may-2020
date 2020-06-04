@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import uniqueId from 'uniqid';
-
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
-import Card from '../post-card/PostCard';
+import { PostCard } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
-
+import {UsersList} from '../users-list/UsersList';
 import AddUserForm from '../user-form/AddUserForm';
 
 import './HomePage.scss';
@@ -19,7 +18,7 @@ class HomePage extends Component {
   state = {
     posts: [...postsList],
     selectedOption: sortingOptions[0],
-    users: usersList
+    users: [...usersList]
   };
 
   onSort = (selectedOption) => {
@@ -83,11 +82,27 @@ class HomePage extends Component {
     });
   };
 
+  // donetodo 1: добавить здесь функцию onUserAdd
+  //  она должна добавлять пользователя в список users в стейте
+  //  при добавлении пользователя ему нужно добавить пропертю id, можно по аналогии со строкой 82
+
+  onUserAdd = (newUser) => {
+    this.setState((prevState) => {
+      return {
+        users: [{
+          ...newUser,
+          id: uniqueId(),
+        }, ...prevState.users]
+      }
+    });
+  };
+
   render() {
     const { posts, selectedOption, users } = this.state;
 
     return (
       <div className="App">
+        {/*<Header />*/}
 
         <PanelFromLecture label="Users" >
           <AddUserForm/>
@@ -97,11 +112,11 @@ class HomePage extends Component {
           <PostPreview posts={posts} />
         </PanelFromLecture>
 
-        <PanelFromLecture label="Posts">
+        <PanelFromLecture label="Posts" isOpenByDefault>
           <div className="d-flex">
             Sorting:
-            <button className="btn btn-outline-primary m-2" onClick={this.onSortByAuthorClick}>By author</button>
-            <button className="btn btn-outline-primary m-2" onClick={this.onSortByDefault}>By default</button>
+            <button onClick={this.onSortByAuthorClick}>By author</button>
+            <button onClick={this.onSortByDefault}>By default</button>
 
             <DropDown
               onSelect={this.onSort}
@@ -109,17 +124,16 @@ class HomePage extends Component {
               options={sortingOptions}
             />
           </div>
+          
           <div className="d-flex posts-container">
-
             <AddPostForm onAddPost={this.addPost} users={users} />
-
             {
               posts.map((item, index) => {
-                const user = usersList.find(user => user.id === item.user_id);
+                const user = users.find(user => user.id === item.user_id);
                 const author = user ? `${user.first_name} ${user.last_name}` : '';
                 const comments = allComments.filter(comment => comment.post_id === item.id);
 
-                return <Card
+                return <PostCard
                   post={item}
                   key={item.id}
                   author={author}
@@ -129,6 +143,7 @@ class HomePage extends Component {
             }
           </div>
         </PanelFromLecture>
+        {/*<Footer />*/}
       </div>
     );
   }
