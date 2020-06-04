@@ -1,21 +1,33 @@
 import React, { Component, createRef } from 'react';
 
+// genderOptions: ['Male' , 'Female', 'Others'];
+
 class AddUserForm extends Component {
 
   firstNameRef = createRef();
   lastNameRef = createRef();
   emailNameRef = createRef();
   addressNameRef = createRef();
+  genderNameRef = createRef();
+  dobNameRef = createRef();
+  phoneNameRef = createRef();
+
+
+
 
   // oktodo 1: добавить ref для address
 
 
   state = {
-    warning: ''
+    warning: '',
+      // selectedOption: genderOptions[0],
   };
+
+
 
   onSubmit = (e) => {
     // oktodo 1: достать из props функцию добавления пользователя onUserAdd
+
     e.preventDefault();
     const {onUserAdd} = this.props;
     console.log(this.firstNameRef.current.value);
@@ -25,6 +37,10 @@ class AddUserForm extends Component {
     const last_name = this.lastNameRef.current.value;
     const email = this.emailNameRef.current.value;
     const address = this.addressNameRef.current.value;
+    const gender = this.genderNameRef.current.value;
+    const dob = this.dobNameRef.current.value;
+    const phone = this.phoneNameRef.current.value;
+
 
     const pattern = /\d+/;
 
@@ -39,7 +55,7 @@ class AddUserForm extends Component {
     // todo 1: использовать функцию onUserAdd для создания нового пользователя здесь
     //  у этого объекта должны быть проперти first_name, last_name, address, email
         onUserAdd && onUserAdd({
-            first_name, last_name, address, email
+            first_name, last_name, address, email , gender , dob , phone
         });
     // todo 3: зачистить форму, вызвав функцию onReset
       this.onReset();
@@ -52,7 +68,11 @@ class AddUserForm extends Component {
             this.lastNameRef.current.value = '';
             this.emailNameRef.current.value = '';
             this.addressNameRef.current.value = '';
+            this.genderNameRef.current.value = '';
+            this.dobNameRef.current.value = '';
+            this.phoneNameRef.current.value = '';
         };
+
 
 
   focusInput = () => {
@@ -106,6 +126,40 @@ class AddUserForm extends Component {
               <input
                   ref={this.addressNameRef}
                   type="text"
+                  className="form-control"
+                  id="lastNameInput"
+                  placeholder="Example input"
+              />
+          </div>
+
+          <div className="form-group">
+              <label htmlFor="genderInput">Gender:</label>
+              <input
+                  ref={this.genderNameRef}
+                  options={this.genderOptions}
+                  type="boolean"
+                  className="form-control"
+                  id="lastNameInput"
+                  placeholder="Example input"
+              />
+          </div>
+
+          <div className="form-group">
+              <label htmlFor="dobInput">dob: `DD-MM-YYYY`</label>
+              <input
+                  ref={this.dobNameRef}
+                  type="number"
+                  className="form-control"
+                  id="lastNameInput"
+                  placeholder="Example input"
+              />
+          </div>
+
+          <div className="form-group">
+              <label htmlFor="phoneNameInput">Phone:</label>
+              <input
+                  ref={this.phoneNameRef}
+                  type="number"
                   className="form-control"
                   id="lastNameInput"
                   placeholder="Example input"
