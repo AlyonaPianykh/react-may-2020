@@ -75,7 +75,6 @@ class PostsList extends Component {
                                 <div className="d-flex justify-content-center" key={item.id}>
                                     <PostCard post={item} author={author}/>
                                 </div>
-
                             )
                         })
                     )
