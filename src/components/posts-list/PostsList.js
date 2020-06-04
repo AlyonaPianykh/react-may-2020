@@ -65,6 +65,7 @@ class PostsList extends Component {
                         </div>
                     )
                 }
+
                 {
                     !isLoading && (
                         posts.map((item) => {
