@@ -75,7 +75,7 @@ class PostForm extends Component {
     onAddPost && onAddPost(newPost);
 
     // oktodo 2: добавить очистку формы с помощью вызова функции onReset
-      onreset();
+      this.onReset();
   };
 
   renderUsersSelect = () => {
