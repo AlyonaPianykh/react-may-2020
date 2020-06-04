@@ -99,7 +99,7 @@ class PostForm extends Component {
   };
 
   render() {
-    const { title, body, user_id, warning } = this.state;
+    const { title, body, warning } = this.state;
 
     return (
       <form className="may-add-post-form" onSubmit={this.onSubmit}>

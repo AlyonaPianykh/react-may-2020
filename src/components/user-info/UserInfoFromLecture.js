@@ -4,7 +4,7 @@ import './UserInfo.scss';
 
 
 export const UserInfo = (props) => {
-  console.log(props)
+  // console.log(props)
 
   const { user } = props;
 
@@ -14,7 +14,7 @@ export const UserInfo = (props) => {
 
   return (
     <div className="user-info">
-      <img src={avatar} className="user-info-avatar rounded-circle" />
+      <img src={avatar} className="user-info-avatar rounded-circle" alt='avatar' />
       <div className="user-info-details">
         <span>{firstName} </span>
         <span>{lastName}</span>

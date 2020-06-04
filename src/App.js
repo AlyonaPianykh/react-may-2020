@@ -17,6 +17,7 @@ import { UserPage } from './components/pages/UserPage';
 
 import { postsList, usersList } from './constants';
 import { UserCard } from './components/user-card/UserCard';
+import PostsList from "./components/posts-list/PostsList";
 
 class App extends Component {
   render() {
@@ -38,11 +39,12 @@ class App extends Component {
                  }}
           />
 
-          {/*todo 2: добавить роут "/posts", который покажет компонент PostsList*/}
+          {/*ttodo 2: добавить роут "/posts", который покажет компонент PostsList*/}
+          <Route path='/posts'>
+              <PostsList/>
+          </Route>
 
-          {/*
-            todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
-          */}
+          {/*todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage*/}
 
           <Route path="/post-preview" render={(routerProps) => {
             // debugger
