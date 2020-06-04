@@ -1,0 +1,15 @@
+.post-list {
+  display: flex;
+  justify-content: space-around;
+
+  &-loading {
+    text-align: center;
+    font-style: italic;
+    color: grey;
+    font-size: 14px;
+  }
+  &-heading {
+    text-align: center;
+    margin: 10px 0 0;
+  }
+}
