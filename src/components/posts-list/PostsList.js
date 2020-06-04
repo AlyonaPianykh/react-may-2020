@@ -34,7 +34,7 @@ class PostsList extends Component {
             if (Array.isArray(result)) {
                 this.setState({
                     isLoading: false,
-                    posts: result,
+                    posts: result || [],
                     error: '',
                 });
             }
@@ -66,17 +66,19 @@ class PostsList extends Component {
                     )
                 }
                 {
-                    posts.map((item) => {
-                        const user = usersList.find(user => user.id === item.user_id);
-                        const author = user ? `${user.first_name} ${user.last_name}` : '';
+                    !isLoading && (
+                        posts.map((item) => {
+                            const user = usersList.find(user => user.id === item.user_id);
+                            const author = user ? `${user.first_name} ${user.last_name}` : '';
 
-                        return (
-                            <div className="d-flex justify-content-center" key={item.id}>
-                                <PostCard post={item} author={author}/>
-                            </div>
+                            return (
+                                <div className="d-flex justify-content-center" key={item.id}>
+                                    <PostCard post={item} author={author}/>
+                                </div>
 
-                        )
-                    })
+                            )
+                        })
+                    )
                 }
             </div>
         );

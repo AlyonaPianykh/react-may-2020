@@ -42,7 +42,7 @@ class PostDetailsPageComponent extends Component {
             if (result instanceof Object) {
                 this.setState({
                     isLoading: false,
-                    post: result,
+                    post: result || null,
                     error: '',
                 });
             }
@@ -73,7 +73,7 @@ class PostDetailsPageComponent extends Component {
                     )
                 }
                 {
-                    !isLoading && !!post && (
+                    !isLoading && post && (
                         <div className="d-flex justify-content-center">
                             <PostCard post={post}/>
                         </div>
