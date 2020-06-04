@@ -5,15 +5,18 @@ class AddUserForm extends Component {
   firstNameRef = createRef();
   lastNameRef = createRef();
   emailNameRef = createRef();
-  // todo 1: добавить ref для address
-
+  addressNameRef = createRef();
 
   state = {
-    warning: ''
+    warning: '',
+    // email:'' ,
+    // address: '',
+    // firstName: '',
+    // lastName: ''
   };
 
   onSubmit = (e) => {
-    // todo 1: достать из props функцию добавления пользователя onUserAdd
+    const {onUserAdd} = this.props;
     e.preventDefault();
 
     console.log(this.firstNameRef.current.value);
@@ -22,6 +25,7 @@ class AddUserForm extends Component {
     const firstName = this.firstNameRef.current.value;
     const lastName = this.lastNameRef.current.value;
     const email = this.emailNameRef.current.value;
+    const address = this.addressNameRef.current.value;
 
     const pattern = /\d+/;
 
@@ -32,15 +36,29 @@ class AddUserForm extends Component {
       return;
     }
 
-    console.log(firstName, lastName, email);
-    // todo 1: использовать функцию onUserAdd для создания нового пользователя здесь
-    //  у этого объекта должны быть проперти first_name, last_name, address, email
+    console.log(firstName, lastName, email, address);
 
-    // todo 3: зачистить форму, вызвав функцию onReset
+
+    // donetodo 1: использовать функцию onUserAdd для создания нового пользователя здесь
+    //  у этого объекта должны быть проперти first_name, last_name, address, email - !uwagi do symbole!
+    onUserAdd && onUserAdd({
+      firstName, lastName, address, email
+  });
+
+    function onReset() {
+    }
+    onReset();
   };
 
-  // todo 3: добавить функцию onReset, которая будет зачищать поля формы
-  //  обратите внимание, что тут нет стейта и мы обращаемся к инпутам с помощью ref
+    onReset = (e) => {
+    // e.preventDefault();
+    // console.log('reset');
+    this.addressNameRef.current.value = '';
+    this.emailNameRef.current.value = '';
+    this.firstNameRef.current.value = '';
+    this.lastNameRef.current.value = '';
+  };
+
 
   focusInput = () => {
     console.log('focused');
@@ -53,6 +71,7 @@ class AddUserForm extends Component {
         {!!this.state.warning && <div>{this.state.warning}</div>}
         <div className="form-group">
           <label htmlFor="firstNameInput">First name:</label>
+
           <input
             ref={this.firstNameRef}
             type="text"
@@ -64,6 +83,7 @@ class AddUserForm extends Component {
 
         <div className="form-group">
           <label htmlFor="lastNameInput">Last name:</label>
+
           <input
             ref={this.lastNameRef}
             type="text"
@@ -74,27 +94,31 @@ class AddUserForm extends Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="lastNameInput">Email:</label>
+          <label htmlFor="EmailNameInput">Email:</label>
+
           <input
             ref={this.emailNameRef}
             type="text"
             className="form-control"
-            id="lastNameInput"
+            id="EmailNameInput"
             placeholder="Example input"
           />
         </div>
 
-        {/*
-        todo 1: добавить инпут для ввода адресса
-              передать ему атрибут под название ref наш созданный в строке 8 ref
-        */}
+                <div className="form-group">
+          <label htmlFor="addressNameInput">Address name:</label>
 
+          <input
+            ref={this.addressNameRef}
+            type="text"
+            className="form-control"
+            id="addressNameInput"
+            placeholder="Example input"
+          />
+        </div>
         <button type='submit' className="btn btn-primary m-2">Add </button>
-        <button type='button' onClick={this.focusInput}>focus</button>
-
-      {/*
-      todo 3: добавить кнопку, которая по нажатию будет будет вызывать метод onReset
-      */}
+        <button type='button' className="btn btn-primary m-2" onClick={this.focusInput}>Focus</button>
+        <button type='button' className="btn btn-secondary m-2" onClick={this.onReset}>Reset</button>
       </form>
     );
   }
