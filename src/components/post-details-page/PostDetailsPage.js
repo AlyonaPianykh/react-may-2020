@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {accessToken, usersList} from "../../constants";
 import {PostCard} from "../post-card/PostCard";
-
+const CN = 'may-post-preview';
 class PostDetailsPage extends Component {
 
   constructor(props) {
@@ -69,7 +69,7 @@ class PostDetailsPage extends Component {
         }
         {
           !isPostLoading && post &&
-          <PostCard post={post} />
+          <PostCard post={post} className={`${CN}-card`} />
         }
       </div>
     );
