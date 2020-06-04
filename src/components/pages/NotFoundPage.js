@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import './NotFoundPage.css'
+import './Pages.css'
 
 // ttodo 1: вынести эту функцию в отдельную компоненту: сощздать папку, js файл
 export const NotFoundPage = () => {
