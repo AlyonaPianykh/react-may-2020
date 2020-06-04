@@ -42,7 +42,7 @@ class PostDetailsPage extends Component {
       const json = await response.json();
       const {result} = json;
 
-      if (typeof result === 'object') {
+      if (result.constructor.name === 'Object') {
         this.setState({
           isPostLoading: false,
           post: result
