@@ -1,11 +1,13 @@
 import React, { Component, PureComponent } from 'react';
-// todo 3: сделать импорт Link из react-router-dom
+// done_todo 3: сделать импорт Link из react-router-dom
+import {Link} from 'react-router-dom';
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
+import {withRouter} from "react-router";
 import './PostCard.scss';
 
-class PostCard extends PureComponent {
+class PostCardComponent extends PureComponent {
   state = {
     comments: [],
     isCommentsLoading: false,
@@ -78,8 +80,8 @@ class PostCard extends PureComponent {
   // }
 
   render() {
-    //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
-    const { post, hasImage, author = '', className = '' } = this.props;
+    //done_todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
+    const { post, hasImage, author = '', className = '', match: {url} } = this.props;
 
     if (!post) {
       console.log('post is not defined');
@@ -113,9 +115,12 @@ class PostCard extends PureComponent {
         }
         { !!error &&  <div>{error}</div> }
 
-        {/* todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
+        {/* done_todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
                     по аналогии с 24 строкой в UserCard
         */}
+        <div className="d-flex justify-content-center">
+          <Link to={`${url}/${post.id}`}>Show details</Link>
+        </div>
 
         { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
@@ -135,5 +140,5 @@ class PostCard extends PureComponent {
   }
 }
 
-// todo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
-export default PostCard;
+// done_todo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
+export const PostCard = withRouter(PostCardComponent);
