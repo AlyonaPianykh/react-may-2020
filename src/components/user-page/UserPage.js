@@ -2,8 +2,9 @@ import React from "react";
 
 import {usersList} from "../../constants";
 import {UserCard} from "../user-card/UserCard";
+import {withRouter} from "react-router";
 
-export const UserPage = (props) => {
+const UserPageComponent = (props) => {
     const { match: { params: { userId } }, history } = props;
 
     const user = usersList.find(item => item.id === userId);
@@ -27,3 +28,5 @@ export const UserPage = (props) => {
         </div>
     );
 };
+
+export const UserPage = withRouter(UserPageComponent)

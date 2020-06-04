@@ -1,7 +1,8 @@
 import React from "react";
 
+import {withRouter} from "react-router";
 
-export const NotFoundPage = (props) => {
+const NotFoundPageComponent = (props) => {
     const { match: { params: { userId } }, history } = props;
 
     const toHomePage = () => {
@@ -16,3 +17,5 @@ export const NotFoundPage = (props) => {
         </div>
     )
 };
+
+export const NotFoundPage = withRouter(NotFoundPageComponent);

@@ -17,6 +17,10 @@ import { NotFoundPage } from './components/user-page/NotFoundPage'
 
 import { postsList, usersList } from './constants';
 import { UserCard } from './components/user-card/UserCard';
+import PostsList from "./components/posts-list/PostsList";
+import { PostCard } from './components/post-card/PostCard';
+import PostDetailsPage from './components/post-details-page/PostDetailsPage'
+
 
 class App extends Component {
   render() {
@@ -39,12 +43,24 @@ class App extends Component {
           />
 
           {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
+            donetodo 2: добавить роут "/posts", который покажет компонент PostsList
           */}
+            <Route path='/posts' exact
+                   render={(routerProps)=>{
+                return (
+                    <PostsList  {...routerProps}/>
+                )
+            }}/>
 
           {/*
-            todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
+            donetodo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
           */}
+          <Route path="/posts/:id" exact
+            render={(routerProps)=>{
+            return(
+                <PostDetailsPage {...routerProps}/>
+            )
+          }}/>
 
           <Route path="/post-preview" render={(routerProps) => {
             debugger
@@ -59,7 +75,7 @@ class App extends Component {
           {/*<Route path="*">*/}
           {/*  <NotFoundPage/>*/}
           {/*</Route>*/}
-          <Route path="*"
+          <Route path="*" exact
                  render={(routerProps) => {
                    return (<NotFoundPage {...routerProps} />);
                  }}
