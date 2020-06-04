@@ -72,7 +72,7 @@ class PostDetailsPageComponent extends Component {
                         </div>
                     )
                 }
-                
+
                 {
                     !isLoading && post && (
                         <div className="d-flex justify-content-center">
