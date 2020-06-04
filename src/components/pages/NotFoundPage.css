@@ -1,0 +1,9 @@
+.nfp {
+    width: 80%;
+    min-height: 300px;
+    background: url("../../assets/page-not-found.png") no-repeat center;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}

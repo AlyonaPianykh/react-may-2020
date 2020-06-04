@@ -12,6 +12,7 @@ import { UsersListPage } from './components/users-list/UsersList';
 import { Header } from './components/header/HeaderFromLecture';
 import { Footer } from './components/footer/Footer';
 import { PostPreview } from './components/post-preview/PostPreview';
+import { NotFoundPage } from './components/pages/NotFoundPage';
 
 import { postsList, usersList } from './constants';
 import { UserCard } from './components/user-card/UserCard';
@@ -36,9 +37,7 @@ class App extends Component {
                  }}
           />
 
-          {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
-          */}
+          {/*todo 2: добавить роут "/posts", который покажет компонент PostsList*/}
 
           {/*
             todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
@@ -78,7 +77,7 @@ const UserPage = (props) => {
   const toHomePage = () => {
     history.push('/home');
   };
-  debugger
+  // debugger
   return (
     <div>
       <button className="btn btn-primary m-2" type="button" onClick={toUsersList}> Go back to users list</button>
@@ -90,10 +89,4 @@ const UserPage = (props) => {
       }
     </div>
   );
-};
-// todo 1: вынести эту функцию в отдельную компоненту: сощздать папку, js файл
-const NotFoundPage = () => {
-  // todo 1: добавить кнопку навигации на back to home page
-  //  подумайте, как для этого надо изменить эту страницу
-  return <div>Page not found</div>
 };
