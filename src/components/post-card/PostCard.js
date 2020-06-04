@@ -1,11 +1,13 @@
 import React, { Component, PureComponent } from 'react';
-// todo 3: сделать импорт Link из react-router-dom
+//  3: сделать импорт Link из react-router-dom
+import {Link, withRouter} from "react-router-dom";
+
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
-class PostCard extends PureComponent {
+class PostCardComponent extends PureComponent {
   state = {
     comments: [],
     isCommentsLoading: false,
@@ -44,7 +46,7 @@ class PostCard extends PureComponent {
       let json = await response.json();
 
       const { result } = json;
-      debugger
+      // debugger
 
       if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
         this.setState({
@@ -78,8 +80,8 @@ class PostCard extends PureComponent {
   // }
 
   render() {
-    //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
-    const { post, hasImage, author = '', className = '' } = this.props;
+    // 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
+    const { post, hasImage, author = '', className = '', match: {url}, withCommentsLoading } = this.props;
 
     if (!post) {
       console.log('post is not defined');
@@ -107,15 +109,18 @@ class PostCard extends PureComponent {
             </footer>
           </blockquote>
         </div>
-
-        {
+        {/*Показуєм коментарі тільки на сторінці поста коли роут = "/posts/:id" */}
+        { !!withCommentsLoading &&
           <label onClick={this.onToggleComments} className="btn btn-link">{showComments ? 'Hide comments' : 'Show comments'}</label>
         }
         { !!error &&  <div>{error}</div> }
 
-        {/* todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
+        {/*  3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
                     по аналогии с 24 строкой в UserCard
         */}
+        {/**/}
+
+        { (url === "/posts") && <Link to={`${url}/${post.id}`}>Show details</Link> }
 
         { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
@@ -135,5 +140,5 @@ class PostCard extends PureComponent {
   }
 }
 
-// todo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
-export default PostCard;
+//  3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
+export const PostCard = withRouter(PostCardComponent);

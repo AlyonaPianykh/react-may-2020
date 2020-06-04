@@ -8,8 +8,9 @@ function UserCardComponent(props) {
 
   if (!user) return null;
 
-  const { first_name, last_name, email, address, _links: { avatar } = {} } = user;
-  return (
+  const { first_name, last_name, email, address, _links: { avatar } = {}, history } = user;
+    // console.log(url);
+    return (
     <div className="may-user-card card">
       {/*<img src={`${avatar.href}?dummy=${Math.random() * 1000}`} alt="user avatar" className="may-user-card-avatar rounded-circle"/>*/}
 
@@ -21,7 +22,7 @@ function UserCardComponent(props) {
         </div>
       </div>
 
-      <Link to={`${url}/${user.id}`}>Show details</Link>
+      {(url === "/users") && <Link to={`${url}/${user.id}`}>Show details</Link>}
     </div>
   );
 }
