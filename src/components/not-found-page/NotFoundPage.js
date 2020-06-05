@@ -1,7 +1,6 @@
 import React from "react";
-
 export function NotFoundPage(props) {
-    // todo 1: добавить кнопку навигации на back to home page
+    // dtodo 1: добавить кнопку навигации на back to home page
     //  подумайте, как для этого надо изменить эту страницу
     const {  history } = props;
 

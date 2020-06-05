@@ -1,7 +1,6 @@
 import {usersList} from "../../constants";
 import {UserCard} from "../user-card/UserCard";
 import React from "react";
-import NotFoundPage from "../not-found-page/NotFoundPage";
 
 export function UserPage (props) {
     const { match: { params: { userId } }, history } = props;
