@@ -25,10 +25,12 @@ class UsersListPageComponent extends React.Component {
     return (
       <div className="d-flex">
         {
-          users.map((user, index) => {
+          users.map((user) => {
             return <UserCard
               user={user}
               key={user.id}
+              show          //додав властивість show щоб керувати відображенням
+                            // кнопки "show details'
             />;
           })
         }

@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from 'react-router-dom';
 
@@ -14,9 +13,8 @@ import { Footer } from './components/footer/Footer';
 import { PostPreview } from './components/post-preview/PostPreview';
 import { NotFoundPage } from './components/pages/NotFoundPage';
 import { UserPage } from './components/pages/UserPage';
-
-import { postsList, usersList } from './constants';
-import { UserCard } from './components/user-card/UserCard';
+import { postsList } from './constants';
+import PostDetailsPage from './components/post-details-page/PostDetailsPage'
 import PostsList from "./components/posts-list/PostsList";
 
 class App extends Component {
@@ -40,11 +38,24 @@ class App extends Component {
           />
 
           {/*ttodo 2: добавить роут "/posts", который покажет компонент PostsList*/}
-          <Route path='/posts'>
+          <Route path='/posts' exact>
               <PostsList/>
           </Route>
 
-          {/*todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage*/}
+          ttodo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
+          <Route path='/posts/:id'>
+              {console.log('+++')}
+              <PostDetailsPage/>
+          </Route>
+
+          {/*<Route path='/posts/:id'*/}
+          {/*       render={(routerProps) => {*/}
+          {/*           console.log('+++')*/}
+
+          {/*           console.error(routerProps)*/}
+          {/*           return (<PostDetailsPage {...routerProps}/>)*/}
+          {/*       }}*/}
+          {/*/>*/}
 
           <Route path="/post-preview" render={(routerProps) => {
             // debugger

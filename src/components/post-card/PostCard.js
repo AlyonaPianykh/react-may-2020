@@ -1,5 +1,7 @@
-import React, { Component, PureComponent } from 'react';
-// todo 3: сделать импорт Link из react-router-dom
+import React, { PureComponent } from 'react';
+// {// ttodo 3: сделать импорт Link из react-router-dom}
+import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router';
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
@@ -17,7 +19,6 @@ class PostCard extends PureComponent {
   componentDidMount() {
     const { post, withCommentsLoading } = this.props;
 
-    // console.log('PostCard componentDidMount');
     if (post && withCommentsLoading) { // добавлена проверка withCommentsLoading нужно ли делать загрузку комментариев (чтоб в списке всех постов не загружать их)
       const { id } = post;
       id && this.loadComments(id);
@@ -78,8 +79,8 @@ class PostCard extends PureComponent {
   // }
 
   render() {
-    //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
-    const { post, hasImage, author = '', className = '' } = this.props;
+    //ttodo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
+    const { post, hasImage, author = '', className = '', match:{url} } = this.props;
 
     if (!post) {
       console.log('post is not defined');
@@ -94,7 +95,7 @@ class PostCard extends PureComponent {
     return (
       <div className={`may-post-card card ${className}`}>
         <div className="may-post-card-img" id="my-block">
-          <img src={hasImage ? kittyUrl : DefaultImg} />
+          <img src={hasImage ? kittyUrl : DefaultImg} alt='kitty'/>
         </div>
         <div className="card-body">
           <h4 className="card-title title">{title}</h4>
@@ -108,14 +109,14 @@ class PostCard extends PureComponent {
           </blockquote>
         </div>
 
-        {
-          <label onClick={this.onToggleComments} className="btn btn-link">{showComments ? 'Hide comments' : 'Show comments'}</label>
-        }
+
+        <label onClick={this.onToggleComments} className="btn btn-link">{showComments ? 'Hide comments' : 'Show comments'}</label>
+
         { !!error &&  <div>{error}</div> }
 
-        {/* todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
-                    по аналогии с 24 строкой в UserCard
-        */}
+        {/* ttodo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
+                    по аналогии с 24 строкой в UserCard*/}
+        <Link to={`${url}/${post.id}`} className="btn btn-secondary m-3" >Show details</Link>
 
         { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
@@ -135,5 +136,5 @@ class PostCard extends PureComponent {
   }
 }
 
-// todo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
-export default PostCard;
+// ttodo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
+export default PostCard = withRouter(PostCard);

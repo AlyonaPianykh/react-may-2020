@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { Link, withRouter} from 'react-router-dom';
+// import { withRouter } from 'react-router';
 import './UserCard.scss';
 
 function UserCardComponent(props) {
-  const { user, match: {url} } = props;
+  const { user, show, match: {url} } = props;
 
   if (!user) return null;
 
@@ -21,7 +21,8 @@ function UserCardComponent(props) {
         </div>
       </div>
 
-      <Link to={`${url}/${user.id}`}>Show details</Link>
+      {show && <Link to={`${url}/${user.id}`}>Show details</Link>}  {/*додав властивість show щоб керувати відображенням
+                                                                        // кнопки "show details'*/}
     </div>
   );
 }

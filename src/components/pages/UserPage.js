@@ -5,6 +5,7 @@ import {UserCard} from "../user-card/UserCard";
 
 export const UserPage = (props) => {
     const { match: { params: { userId } }, history } = props;
+    console.log('UserPage userId',userId)
 
     const user = usersList.find(item => item.id === userId);
 
@@ -21,7 +22,8 @@ export const UserPage = (props) => {
             <button className="btn btn-primary m-2" type="button" onClick={toHomePage}> Go back to homepage</button>
             {
                 !!user && (
-                    <UserCard user={user}/>
+                    <UserCard user={user} show={false}/> // додав властивість show щоб керувати відображенням
+                                                        // кнопки "show details'
                 )
             }
         </div>
