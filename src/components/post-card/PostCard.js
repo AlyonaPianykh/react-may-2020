@@ -1,5 +1,7 @@
 import React, { Component, PureComponent } from 'react';
-// todo 3: сделать импорт Link из react-router-dom
+// done 3: сделать импорт Link из react-router-dom
+import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router'
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
@@ -78,8 +80,8 @@ class PostCard extends PureComponent {
   // }
 
   render() {
-    //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
-    const { post, hasImage, author = '', className = '' } = this.props;
+    //done 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
+    const { post, hasImage, author = '', className = '', match: {url} } = this.props;
 
     if (!post) {
       console.log('post is not defined');
@@ -113,9 +115,10 @@ class PostCard extends PureComponent {
         }
         { !!error &&  <div>{error}</div> }
 
-        {/* todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
+        {/* done 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
                     по аналогии с 24 строкой в UserCard
         */}
+        <Link to={`${url}/${post.id}`}>Details</Link>
 
         { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
@@ -135,5 +138,5 @@ class PostCard extends PureComponent {
   }
 }
 
-// todo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
-export default PostCard;
+// done 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
+export default withRouter(PostCard);
