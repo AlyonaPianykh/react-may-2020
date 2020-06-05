@@ -22,7 +22,7 @@ class PostDetailsPage extends Component {
   }
 
   loadPost = async () => {
-    // todo 3:
+    // ttodo 3:
     //  достать id поста из props посредством пропсов, которые дает нам роутер
       const {match:{params:{id}}} = this.props;
     //  проверьте лежит ли ваш accessToken в constants/index.js
@@ -76,5 +76,5 @@ class PostDetailsPage extends Component {
   }
 }
 
-// todo 3: обратите внимание - если в App.js вы не передали routerProps в компоненту - то здесь нужно использовать withRouter
+// ttodo 3: обратите внимание - если в App.js вы не передали routerProps в компоненту - то здесь нужно использовать withRouter
 export default PostDetailsPage = withRouter(PostDetailsPage);

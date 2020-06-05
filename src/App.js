@@ -44,15 +44,11 @@ class App extends Component {
 
           ttodo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
           <Route path='/posts/:id'>
-              {console.log('+++')}
               <PostDetailsPage/>
           </Route>
 
           {/*<Route path='/posts/:id'*/}
           {/*       render={(routerProps) => {*/}
-          {/*           console.log('+++')*/}
-
-          {/*           console.error(routerProps)*/}
           {/*           return (<PostDetailsPage {...routerProps}/>)*/}
           {/*       }}*/}
           {/*/>*/}
