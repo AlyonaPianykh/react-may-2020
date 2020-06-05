@@ -1,0 +1,21 @@
+.nfp {
+  display: flex;
+  justify-content: center;
+  color: dodgerblue;
+
+  &-div {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-btn {
+    border: none;
+    background-color: dodgerblue;
+    color: white;
+  }
+}
+
+.bold {
+  font-weight: bold;
+  font-size: xx-large;
+}
