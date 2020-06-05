@@ -14,13 +14,17 @@ import AddUserForm from '../user-form/AddUserForm';
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
+
+
+// const genderOptions: [' Male ' , ' Female ',];
+
 
 class App extends Component {
     state = {
         posts: [...postsList],
         selectedOption: sortingOptions[0],
+        // genderOptions: genderOptions[0],
         users: usersList
     };
 
@@ -48,7 +52,7 @@ class App extends Component {
 
     onSortByDefault = () => {
         this.setState({
-            posts: [...postsList]
+            posts: [...postsList],
         });
     };
 
@@ -101,7 +105,7 @@ class App extends Component {
     };
 
     render() {
-        const {posts, selectedOption, users} = this.state;
+        const {posts, selectedOption, users , genderOptions} = this.state;
 
         return (
             <div className="App">

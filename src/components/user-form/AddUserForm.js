@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
+import {DropDown} from '../dropdown/DropDown';
 
-// genderOptions: ['Male' , 'Female', 'Others'];
+genderOptions: ['Male' , 'Female', 'Others'];
 
 class AddUserForm extends Component {
 
@@ -20,7 +21,7 @@ class AddUserForm extends Component {
 
   state = {
     warning: '',
-      // selectedOption: genderOptions[0],
+      selectedOption: genderOptions[0],
   };
 
 
