@@ -30,13 +30,13 @@ class PostDetailsPage extends Component {
     //  результат выполнения запроса нужно положить в стейт в post
     //  когда запрос выполнится - не забудьте поменять индикатор загрузки isLoading на false
     //  обратите внимание, что результат выполнения запроса - ОБЪЕКТ, а не массив
-    const {match: {params: {Id}}} =  this.props;
+    const {match: {params: {id}}} =  this.props;
 
     this.setState({
       isLoading : true,
     });
 
-    let response = await fetch(`https://gorest.co.in/public-api/posts?access-token=${accessToken}`);
+    let response = await fetch(`https://gorest.co.in/public-api/posts/${id}?access-token=${accessToken}`);
 
     if (response.ok){
       let json = await response.json();
