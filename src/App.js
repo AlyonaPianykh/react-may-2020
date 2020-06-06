@@ -15,6 +15,12 @@ import { PostPreview } from './components/post-preview/PostPreview';
 
 import { postsList, usersList } from './constants';
 import { UserCard } from './components/user-card/UserCard';
+import UserPage from "./components/user-page/UserPage";
+import NotFoundPage from "./components/not-found-page/NotFoundPage";
+import PostsList from "./components/posts-list/PostsList";
+import {PostDetailsPage} from "./components/post-details-page/PostDetailsPage"
+import PostCard from "./components/post-card/PostCard"
+
 
 class App extends Component {
   render() {
@@ -37,16 +43,20 @@ class App extends Component {
           />
 
           {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
+            dtodo 2: добавить роут "/posts", который покажет компонент PostsList
           */}
-
+                     <Route path="/posts" component={PostsList} exact />
           {/*
-            todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
+            dtodo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
           */}
+            <Route path="/posts/:id" render={(routerProps) => {
+                       return (
+              <PostDetailsPage {...routerProps} />
+            );
+          }} />
 
           <Route path="/post-preview" render={(routerProps) => {
-            debugger
-            return (
+                       return (
               <PostPreview posts={postsList} {...routerProps} />
             );
           }} />
@@ -66,34 +76,6 @@ class App extends Component {
 }
 
 export default App;
-// todo 1: вынести эту функцию в отдельную компоненту: сощздать папку, js файл
-const UserPage = (props) => {
-  const { match: { params: { userId } }, history } = props;
+// dtodo 1: вынести эту функцию в отдельную компоненту: сощздать папку, js файл
 
-  const user = usersList.find(item => item.id === userId);
-
-  const toUsersList = () => {
-    history.push('/users');
-  };
-  const toHomePage = () => {
-    history.push('/home');
-  };
-  debugger
-  return (
-    <div>
-      <button className="btn btn-primary m-2" type="button" onClick={toUsersList}> Go back to users list</button>
-      <button className="btn btn-primary m-2" type="button" onClick={toHomePage}> Go back to homepage</button>
-      {
-        !!user && (
-          <UserCard user={user}/>
-        )
-      }
-    </div>
-  );
-};
-// todo 1: вынести эту функцию в отдельную компоненту: сощздать папку, js файл
-const NotFoundPage = () => {
-  // todo 1: добавить кнопку навигации на back to home page
-  //  подумайте, как для этого надо изменить эту страницу
-  return <div>Page not found</div>
-};
+// dtodo 1: вынести эту функцию в отдельную компоненту: сощздать папку, js файл
