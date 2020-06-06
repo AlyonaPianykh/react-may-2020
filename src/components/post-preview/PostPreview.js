@@ -4,6 +4,10 @@ import PostCard from '../post-card/PostCard';
 import { PostsMenuList } from './PostsMenuList';
 import './PostPreview.scss';
 
+
+
+
+
 const CN = 'may-post-preview';
 
 export class PostPreview extends Component {
