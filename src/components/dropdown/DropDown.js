@@ -34,10 +34,10 @@ export class DropDown extends Component {
   };
 
   render() {
-    // done_todo:
+    //todo:
     //  достать из this.props массив опций options
     //  он должен быть по умолчанию пуст, т.е. = [] (дефолтный параметр при деструктуризации) и
-    //  достать также в пропсах selectedOption (выбранная в данный момент опция)
+    // достать также в пропсах selectedOption (выбранная в данный момент опция)
     const {options =[], selectedOption} = this.props;
     // done_todo:
     //  достать isOpen из this.state
@@ -45,17 +45,17 @@ export class DropDown extends Component {
 
     return (
       <div className="may-drop-down dropdown">
-        {/* done_todo: показать в строке 45 выбранную опцию selectedOption  и передать в onClick this.toggle
+        {/* todo: показать в строке 45 выбранную опцию selectedOption  и передать в onClick this.toggle
              (нажатие на этот тег должно открывать/закрывать дропдаун)
         */}
         <div className="dropdown-toggle" onClick={this.toggle}>{selectedOption}</div>
 
         {
-          // done_todo:
+          //todo:
           //  если значение isOpen в this.state = true показываем этот блок ниже (использовать &&)
           isOpen && <div className="may-drop-down-options-wrapper dropdown-menu show">
             {/*
-          done_todo:
+          todo:
             //  рендерим список опций с помощью options.map(option => ....
             //  опция должна быть тегом div и иметь такие пропсы:
             //  должен быть className = "may-drop-down-options-wrapper-option dropdown-item"
