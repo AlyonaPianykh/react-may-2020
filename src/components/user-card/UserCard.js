@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './UserCard.scss';
 
+
 function UserCardComponent(props) {
   const { user, location, match: {url} } = props;
 
