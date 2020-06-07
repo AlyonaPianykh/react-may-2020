@@ -115,6 +115,7 @@ class PostCard extends PureComponent {
 
         {/* todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
                     по аналогии с 24 строкой в UserCard
+                    рендерить линку только если id из пропсов-объекта match-объекта params не найдено (не существует)
         */}
 
         { showComments && !!comments.length && <label>Comments:</label> }
