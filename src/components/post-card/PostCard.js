@@ -1,6 +1,6 @@
 import React, { Component, PureComponent } from 'react';
-import Link from "react-router-dom/modules/Link";
-import withRouter from "react-router/modules/withRouter";
+import {Link} from "react-router-dom";
+import  { withRouter } from "react-router"
 // todo 3: сделать импорт Link из react-router-dom
 
 import { accessToken } from '../../constants';
@@ -82,7 +82,7 @@ class PostCard extends PureComponent {
 
   render() {
     //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
-    const { post, hasImage, author = '', className = '', match: {url} } = this.props;
+    const { post, hasImage, author = '', className = '', match: {url, id} } = this.props;
     if (!post) {
       console.log('post is not defined');
       return null;
@@ -90,7 +90,6 @@ class PostCard extends PureComponent {
 
     const { title, body } = post;
     const { comments, showComments, error, isCommentsLoading, commentsLoaded } = this.state;
-
     const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
 
     return (
@@ -118,7 +117,7 @@ class PostCard extends PureComponent {
         {/* todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
                     по аналогии с 24 строкой в UserCard
         */}
-        <Link to={`${url}/${post.id}`}>Show details</Link>
+       {!id && (<Link to={`${url}/${post.id}`}>Show details</Link>)}
         { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
         {

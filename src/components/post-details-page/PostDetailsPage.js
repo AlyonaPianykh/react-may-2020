@@ -21,6 +21,7 @@ class PostDetailsPage extends Component {
   }
 
   loadPost = async () => {
+    console.log(this.props)
     // todo 3:
     //  достать id поста из props посредством пропсов, которые дает нам роутер
     //  проверьте лежит ли ваш accessToken в constants/index.js
@@ -30,13 +31,12 @@ class PostDetailsPage extends Component {
     //  результат выполнения запроса нужно положить в стейт в post
     //  когда запрос выполнится - не забудьте поменять индикатор загрузки isLoading на false
     //  обратите внимание, что результат выполнения запроса - ОБЪЕКТ, а не массив
-    const  { match: {params: {id}} } = this.props;
+    const  { match: {params:{id}} } = this.props;
     this.setState({
-      isLoading: true,
-
+      isLoading: true
     });
 
-    let response = await fetch(`https://gorest.co.in/public-api//posts/${id}?access-token=${accessToken}`);
+    let response = await fetch(`https://gorest.co.in/public-api/posts/${id}?access-token=${accessToken}`);
 
     if (response.ok) {
       let json = await response.json();
@@ -48,7 +48,7 @@ class PostDetailsPage extends Component {
           isLoading: false,
           commentsLoaded: true,
           error: '',
-          posts: result || [] // изменена проверка, если results существовать не будет - закидываем пустой массив
+          posts: result || undefined // изменена проверка, если results существовать не будет - закидываем пустой массив
         });
       }
     } else {
@@ -63,7 +63,7 @@ class PostDetailsPage extends Component {
   render() {
 
     //todo 3: достать пост из стейта
-    const { post, isLoading } = this.state;
+    const { posts, isLoading } = this.state;
     return (
       <div>
         <div>Post Details Page</div>
@@ -73,7 +73,7 @@ class PostDetailsPage extends Component {
             isLoading && (<div>...Loading</div>)
         }
         {
-          !isLoading && post && <div><PostCard post={post}/></div>
+          !isLoading && posts && <PostCard post={posts} withCommentsLoading/>
         }
       </div>
     );

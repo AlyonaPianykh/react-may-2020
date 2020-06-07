@@ -63,7 +63,7 @@ class PostsList extends Component {
                     если загрузка не идет то показываем список постов
         */}
         {
-          posts.map(item =>  item.isLoading && <div>Loading</div>)
+         isLoading && <div>Loading</div>
         }
         {
           posts.map((item) => {
