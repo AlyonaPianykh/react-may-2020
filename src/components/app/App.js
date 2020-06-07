@@ -5,21 +5,17 @@ import { PanelFromLecture } from '../panel/PanelFromLecture';
 
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
-
-// todo 0) тут мы делаем импорт дропдауна (уже сделан)
 import { DropDown } from '../dropdown/DropDown';
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-// todo 1) вот наши опции сортировки, мы будем их использовать в DropDown (уже объявлены)
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
 
 class App extends Component {
   state = {
     posts: [...postsList],
-    // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    selectedOptions: sortingOptions[0]
   };
 
   renderList = () => {
@@ -33,10 +29,6 @@ class App extends Component {
     return res;
   };
 
-  // todo: 3) обратите внимание на эту функцию, она уже написана,
-  //  ее надо использовать в render методе, где кнопки сортировки
-  //  передать ее в DropDown как пропсу под названием onSelect (строка 118)
-  //  попробуйте продебажить и разобраться как она работает
   onSort = (selectedOption) => {
     // детально про строку 42 тут: https://javascript.info/destructuring-assignment#array-destructuring
     const [option1, option2] = sortingOptions;
@@ -87,13 +79,12 @@ class App extends Component {
   };
 
   render() {
-    // todo 4) достать также в строке 92 из стейта selectedOption
     const { posts } = this.state;
+    const {selectedOptions} = this.state;
 
     return (
       <div className="App">
         <Header />
-
         <PanelFromLecture isOpenByDefault={false} >
           Hello, world!
         </PanelFromLecture>
@@ -108,16 +99,12 @@ class App extends Component {
             <button onClick={this.onSortByAuthorClick}>By author</button>
             <button onClick={this.onSortByDefault}>By default</button>
 
-            {/* todo: тут используется дропдаун
-                 ему нужно передать в пропсы такие значение:
-                 в onSelect положить this.onSort
-                 в selectedOption положить selectedOption (из строки 91)
-                 в options положить sortingOptions
+            {/*
             */}
             <DropDown
-
-
-
+                onSelect = {this.onSort}
+                selectedOption = {selectedOptions}
+                options = {sortingOptions}
             />
           </div>
           <div className="d-flex posts-container">

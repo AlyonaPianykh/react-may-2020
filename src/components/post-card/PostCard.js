@@ -8,6 +8,7 @@ import './PostCard.scss';
 //  в ней должно появиться свойство state
 //  в котором будет флажок showComments
 //  и будет кнопка, лейба которой будет либо "show comments" либо "hide comments"
+// это задание не понял как делать :(
 
 export function PostCard(props) {
   const { post, hasImage, comments = [], author } = props;
