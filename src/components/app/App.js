@@ -5,7 +5,6 @@ import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
-
 import { DropDown } from '../dropdown/DropDown';
 
 import './App.scss';
