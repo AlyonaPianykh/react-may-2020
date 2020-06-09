@@ -4,6 +4,7 @@ import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
+
 // todo: переписать эту компоненту, чтоб она стала классовой
 //  в ней должно появиться свойство state
 //  в котором будет флажок showComments
