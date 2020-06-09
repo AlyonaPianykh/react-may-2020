@@ -12,7 +12,6 @@ class UsersListPageComponent extends React.Component {
     const { location: { search } } = props;
 
     const { page } = queryString.parse(search);
-    debugger
     this.state = {
       users: usersList,
       page: page || 1
