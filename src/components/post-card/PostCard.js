@@ -1,11 +1,13 @@
 import React, { Component, PureComponent } from 'react';
-// todo 3: сделать импорт Link из react-router-dom
+// dtodo 3: сделать импорт Link из react-router-dom
+import {Link} from 'react-router-dom'
+import { withRouter } from 'react-router';
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
-class PostCard extends PureComponent {
+class PostCardComponent extends PureComponent {
   state = {
     comments: [],
     isCommentsLoading: false,
@@ -16,6 +18,7 @@ class PostCard extends PureComponent {
 
   componentDidMount() {
     const { post, withCommentsLoading } = this.props;
+    debugger
 
     // console.log('PostCard componentDidMount');
     if (post && withCommentsLoading) { // добавлена проверка withCommentsLoading нужно ли делать загрузку комментариев (чтоб в списке всех постов не загружать их)
@@ -44,7 +47,6 @@ class PostCard extends PureComponent {
       let json = await response.json();
 
       const { result } = json;
-      debugger
 
       if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
         this.setState({
@@ -78,14 +80,13 @@ class PostCard extends PureComponent {
   // }
 
   render() {
-    //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
-    const { post, hasImage, author = '', className = '' } = this.props;
-
+    //dtodo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
+    const { post, hasImage, author = '', className = '', match:{url, params:{id}}} = this.props;
     if (!post) {
       console.log('post is not defined');
       return null;
     }
-
+debugger
     const { title, body } = post;
     const { comments, showComments, error, isCommentsLoading, commentsLoaded } = this.state;
 
@@ -118,6 +119,10 @@ class PostCard extends PureComponent {
                     рендерить линку только если id из пропсов-объекта match-объекта params не найдено (не существует)
         */}
 
+        {
+         !id && <Link to={`${url}/${post.id}`}>Show details</Link>
+        }
+
         { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
         {
@@ -136,5 +141,5 @@ class PostCard extends PureComponent {
   }
 }
 
-// todo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
-export default PostCard;
+// dtodo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
+export const PostCard = withRouter(PostCardComponent);
