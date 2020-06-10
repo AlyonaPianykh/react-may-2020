@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uniqueId from 'uniqid';
+import { connect } from 'react-redux';
 
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
@@ -7,8 +8,9 @@ import Card from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
-
 import AddUserForm from '../user-form/AddUserForm';
+import { inc, dec } from '../../actions';
+import { DECREMENT } from '../../action-types';
 
 import './HomePage.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -77,23 +79,43 @@ class HomePage extends Component {
       return {
         posts: [{
           ...newPost,
-          id: uniqueId(),
+          id: uniqueId()
         }, ...prevState.posts]
-      }
+      };
     });
   };
 
+  onInc = () => {
+    const { increment } = this.props;
+    increment();
+    // appStore.dispatch({
+    //   type: INCREMENT,
+    //   payload: 3
+    // });
+  };
+
+  onDec = () => {
+    const { decrement } = this.props;
+    decrement();
+    // appStore.dispatch(dec());
+  };
+
   render() {
+    debugger
+    const { count } = this.props;
     const { posts, selectedOption, users } = this.state;
 
     return (
       <div className="App">
+        <div>Current count: {count}</div>
+        <button type="button" onClick={this.onInc} className="btn btn-primary m-2">Inc</button>
+        <button type="button" onClick={this.onDec} className="btn btn-primary m-2">Dec</button>
 
-        <PanelFromLecture label="Users" >
-          <AddUserForm/>
+        <PanelFromLecture label="Users">
+          <AddUserForm />
         </PanelFromLecture>
 
-        <PanelFromLecture label="test" >
+        <PanelFromLecture label="test">
           <PostPreview posts={posts} />
         </PanelFromLecture>
 
@@ -134,4 +156,25 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => {
+  const { counter: { count, property1, a } } = state;
+  return {
+    count,
+    property1,
+    a
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    increment: () => dispatch(inc()),
+    decrement: () => dispatch({ type: DECREMENT, payload: 2 })
+  };
+};
+
+// const mapDispatchToProps = ({
+//   increment: inc,
+//   decrement: dec
+// });
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

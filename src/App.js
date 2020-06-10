@@ -7,6 +7,8 @@ import {
   Redirect
 } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
+
 import HomePage from './components/home-page/HomePage';
 import { UsersListPage } from './components/users-list/UsersList';
 import { Header } from './components/header/HeaderFromLecture';
@@ -19,24 +21,25 @@ import { UserCard } from './components/user-card/UserCard';
 class App extends Component {
   render() {
     return (
-      <Router>
-        <Header />
+      <Provider store={appStore}>
+        <Router>
+          <Header />
 
-        <Switch>
-          {/*<Route path="/" exact>*/}
-          {/*  <HomePage />*/}
-          {/*</Route>*/}
-          <Route path="/home" exact>
-            <HomePage />
-          </Route>
-          <Route path="/users" component={UsersListPage} exact />
-          <Route path="/users/:userId"
-                 render={(routerProps) => {
-                   return (<UserPage {...routerProps} />);
-                 }}
-          />
+          <Switch>
+            {/*<Route path="/" exact>*/}
+            {/*  <HomePage />*/}
+            {/*</Route>*/}
+            <Route path="/home" exact>
+              <HomePage />
+            </Route>
+            <Route path="/users" component={UsersListPage} exact />
+            <Route path="/users/:userId"
+                   render={(routerProps) => {
+                     return (<UserPage {...routerProps} />);
+                   }}
+            />
 
-          {/*
+            {/*
             todo 2: добавить роут "/posts", который покажет компонент PostsList
           */}
 
@@ -44,31 +47,31 @@ class App extends Component {
             todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
           */}
 
-          <Route path="/post-preview" render={(routerProps) => {
-            debugger
-            return (
-              <PostPreview posts={postsList} {...routerProps} />
-            );
-          }} />
+            <Route path="/post-preview" render={(routerProps) => {
+              debugger
+              return (
+                <PostPreview posts={postsList} {...routerProps} />
+              );
+            }} />
 
-          <Redirect from="/" to="/home" exact />
-          {/*<Redirect from="*" to="/home"/>*/}
+            <Redirect from="/" to="/home" exact />
+            {/*<Redirect from="*" to="/home"/>*/}
 
-          <Route path="*">
-            <NotFoundPage/>
-          </Route>
+            <Route path="*">
+              <NotFoundPage />
+            </Route>
 
-        </Switch>
-        <Footer />
-      </Router>
+          </Switch>
+          <Footer />
+        </Router>
+      </Provider>
     );
   }
 }
 
 export default App;
-// todo 1: вынести эту функцию в отдельную компоненту: сощздать папку, js файл
 const UserPage = (props) => {
-  const { match: { params: { userId } }, history } = props;
+  const { match: { url, path, params: { userId } }, history } = props;
 
   const user = usersList.find(item => item.id === userId);
 
@@ -85,15 +88,12 @@ const UserPage = (props) => {
       <button className="btn btn-primary m-2" type="button" onClick={toHomePage}> Go back to homepage</button>
       {
         !!user && (
-          <UserCard user={user}/>
+          <UserCard user={user} />
         )
       }
     </div>
   );
 };
-// todo 1: вынести эту функцию в отдельную компоненту: сощздать папку, js файл
 const NotFoundPage = () => {
-  // todo 1: добавить кнопку навигации на back to home page
-  //  подумайте, как для этого надо изменить эту страницу
-  return <div>Page not found</div>
+  return <div>Page not found</div>;
 };

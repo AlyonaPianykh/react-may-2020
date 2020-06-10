@@ -4,7 +4,7 @@ import './DropDown.scss';
 
 export class DropDown extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
   };
 
   state = {
