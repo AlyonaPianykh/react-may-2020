@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {accessToken} from "../../constants";
-import {withRouter} from "react-router";
 import {PostCard} from "../post-card/PostCard";
 
-class PostDetailsPageComponent extends Component {
+export class PostDetailsPage extends Component {
     constructor(props) {
         super(props);
 
@@ -86,4 +85,3 @@ class PostDetailsPageComponent extends Component {
 }
 
 // // done_todo 3: обратите внимание - если в App.js вы не передали routerProps в компоненту - то здесь нужно использовать withRouter
-export const PostDetailsPage = withRouter(PostDetailsPageComponent);
