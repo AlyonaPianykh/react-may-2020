@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Chevron from '../../assets/chevron-bottom.png';
 
 import './Panel.scss';
