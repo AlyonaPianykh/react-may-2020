@@ -51,8 +51,8 @@ export function todoReducer(store = todoDefaultStore, action) {
         };
       }
       return store;
-
     }
+    // todo 1: добавить обработку toggle статуса тудушки
     default: return store;
   }
 }
@@ -81,10 +81,20 @@ export function counter(store = defaultData, action) {
   return res;
 };
 
+
+// todo 2: создать еще 1 редьюсер usersReducer
+//   как начальное значение задать объект в котором будет пропертя users со значением usersList (из констант)
+//   реализовать добавление пользователя с помощью редакса
+//   т.е. перенести логику из компонент в стор
+//   найти все компоненты, которые используют константу usersList и подписать их на стор ( с помощью connect функции)
+//   чтобы они могли читать массив пользвателей из стора, а не из константы
+
 export const createRootReducer = () => {
   return combineReducers({
     counter,
     todoReducer
+    // todo 2: добавить тут usersReducer
+
    // todo: обратите внимание, тут можно добавлять еще редьюсеры
   });
-}
+};

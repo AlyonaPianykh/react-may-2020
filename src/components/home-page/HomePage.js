@@ -74,6 +74,18 @@ class HomePage extends Component {
     });
   };
 
+
+  onUserAdd = (newUser) => {
+
+    // todo 2: тут будет использована action-функция добавления пользователя ( чтоб он попал в редаксовый стор) вместо изменения стейта
+    this.setState({
+      users: [{
+        ...newUser,
+        id: uniqueId()
+      }, ...this.state.users]
+    })
+  };
+
   addPost = (newPost) => {
     this.setState((prevState) => {
       return {
@@ -112,7 +124,9 @@ class HomePage extends Component {
         <button type="button" onClick={this.onDec} className="btn btn-primary m-2">Dec</button>
 
         <PanelFromLecture label="Users">
-          <AddUserForm />
+          <AddUserForm onUserAdd={this.onUserAdd}/>
+
+        {/*  todo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
         </PanelFromLecture>
 
         <PanelFromLecture label="test">

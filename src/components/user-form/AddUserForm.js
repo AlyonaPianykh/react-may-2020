@@ -21,7 +21,7 @@ class AddUserForm extends Component {
 
     const firstName = this.firstNameRef.current.value;
     const lastName = this.lastNameRef.current.value;
-    const email = this.lastNameRef.current.value;
+    const email = this.emailNameRef.current.value;
     const address = this.addressRef.current.value;
 
     const pattern = /\d+/;

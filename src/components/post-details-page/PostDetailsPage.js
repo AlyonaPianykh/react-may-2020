@@ -42,5 +42,4 @@ class PostDetailsPage extends Component {
   }
 }
 
-// // todo 3: обратите внимание - если в App.js вы не передали routerProps в компоненту - то здесь нужно использовать withRouter
 export default PostDetailsPage;
