@@ -47,7 +47,7 @@ export class DropDown extends Component {
 
     return (
       <div className="may-drop-down dropdown" ref={this.dropDownRef}>
-        <div className="dropdown-toggle" onClick={this.toggle}>{selectedOption}</div>
+        <div className="dropdown-toggle" onClick={this.toggle}>{selectedOption || 'Select'}</div>
 
         {
           isOpen && <div className="may-drop-down-options-wrapper dropdown-menu show">
