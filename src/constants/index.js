@@ -18,6 +18,9 @@ export const links = [{
 }, {
   name: "Post Preview",
   url: '/post-preview'
+}, {
+  name: "Todos",
+  url: '/todos'
 }
 ];
 

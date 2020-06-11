@@ -1,6 +1,5 @@
-/// todo: обратите внимание эта функция используется чтоб сделать больше одного редьюсера
-//   на лекции мы не успели ее пройти - обговорим детальнее на следующей
 import { combineReducers } from 'redux';
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
 
 const defaultData =  {
   count: 0,
@@ -10,6 +9,53 @@ const defaultData =  {
     c: 'jghvhvh'
   }
 };
+
+const todoDefaultStore = {
+  todos: []
+};
+export function todoReducer(store = todoDefaultStore, action) {
+  switch (action.type) {
+    case ADD_TODO: {
+      const newTodo = action.payload;
+      const {todos} = store;
+
+      return {
+        todos: [...todos, newTodo]
+      };
+    }
+    case REMOVE_TODO: {
+      const {id} = action.payload;
+      const {todos} = store;
+
+      const index = todos.findIndex(item => item.id === id);
+      const copyOfArray = [...todos];
+      copyOfArray.splice(index, 1)
+      if (index > -1) {
+        return {
+          todos: copyOfArray
+        };
+      }
+      return store;
+    }
+    case UPDATE_TODO: {
+      const { id } = action.payload;
+      const {todos} = store;
+      const copyOfArray = [...todos];
+      const index = todos.findIndex(item => item.id === id);
+
+      if (index > -1) {
+        copyOfArray[index] = action.payload;
+
+        return {
+          todos: copyOfArray
+        };
+      }
+      return store;
+
+    }
+    default: return store;
+  }
+}
 
 export function counter(store = defaultData, action) {
   let res;
@@ -35,9 +81,10 @@ export function counter(store = defaultData, action) {
   return res;
 };
 
-export function createRootReducer() {
+export const createRootReducer = () => {
   return combineReducers({
     counter,
-    // todo: обратите внимание, тут можно добавлять еще редьюсеры
-  })
+    todoReducer
+   // todo: обратите внимание, тут можно добавлять еще редьюсеры
+  });
 }

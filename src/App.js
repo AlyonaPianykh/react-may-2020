@@ -32,6 +32,8 @@ class App extends Component {
             <Route path="/home" exact>
               <HomePage />
             </Route>
+            <Route path="/todos" component={TodoPage} exact />
+
             <Route path="/users" component={UsersListPage} exact />
             <Route path="/users/:userId"
                    render={(routerProps) => {
