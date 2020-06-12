@@ -25,7 +25,7 @@ class UsersListPageComponent extends React.Component {
     const { users } = this.props;
 
     return (
-      <div className="d-flex">
+      <div className="d-flex flex-wrap">
         {
           users.map((user, index) => {
             return <UserCard

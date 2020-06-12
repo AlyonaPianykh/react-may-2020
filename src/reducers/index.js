@@ -116,7 +116,7 @@ export function usersReducer(store = usersList, action) {
       const {users} = store;
 
       return {
-        todos: [...users, newUser]
+        users: [...users, newUser]
       };
     }
 
