@@ -141,7 +141,7 @@ class HomePage extends Component {
         <PanelFromLecture label="Users">
           <AddUserForm onUserAdd={this.onUserAdd}/>
 
-        {/*  todo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
+        {/*  dtodo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
         {
           <div className="d-flex flex-wrap">
             {
