@@ -45,16 +45,9 @@ class App extends Component {
       switch(selectedOption) {
         case option1:
           this.onSortByDefault(); // вызываем сортировку по дефолту, если 1 элемент массива sortingOptions
-          this.setState({
-            selectedOption: option1 // записываем в стейт выбранную опцию
-          });
           break;
         case option2:
           this.onSortByAuthorClick(); // вызываем сортировку по автору, если 2 элемент массива sortingOptions
-          this.setState({
-            selectedOption: option2 // записываем в стейт выбранную опцию
-          });
-          break;
         default:  break; // ничего неделаем если опция не входит в массив sortingOptions
       }
   };
@@ -109,7 +102,7 @@ class App extends Component {
 
         <PanelFromLecture label="Posts">
           <div className="d-flex">
-            {console.log(this.state.selectedOption)}
+
             Sorting:
             <button onClick={this.onSortByAuthorClick} className={selectedOption === 'Sort By Author' ? 'active' : ''}>By author</button>
             <button onClick={this.onSortByDefault} className={selectedOption === 'Sort By Default' ? 'active' : ''}>By default</button>
