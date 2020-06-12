@@ -21,7 +21,7 @@ function UserCardComponent(props) {
         </div>
       </div>
 
-      <Link to={`${url}/${user.id}`}>Show details</Link>
+      <Link to={`/users/${user.id}`}>Show details</Link>
     </div>
   );
 }

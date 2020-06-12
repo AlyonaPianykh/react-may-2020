@@ -3,8 +3,9 @@ import queryString from 'query-string';
 import { UserCard } from '../user-card/UserCard';
 import { usersList } from '../../constants';
 import { withRouter } from 'react-router';
+import {connect} from "react-redux";
 
-class UsersListPageComponent extends React.Component {
+class UsersListPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -20,7 +21,7 @@ class UsersListPageComponent extends React.Component {
   }
 
   render() {
-    const { users } = this.state;
+    const { users } = this.props;
 
     return (
       <div className="d-flex">
@@ -36,5 +37,11 @@ class UsersListPageComponent extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  const { usersReducer: {users} } = state;
+  return {
+    users
+  };
+};
 
-export const UsersListPage = withRouter(UsersListPageComponent);
+export default connect(mapStateToProps)(UsersListPage);
