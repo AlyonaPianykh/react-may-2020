@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react';
+import uniqId from 'uniqid';
 
 class AddUserForm extends Component {
 
@@ -32,14 +33,18 @@ class AddUserForm extends Component {
       });
       return;
     }
-
+    if (!firstName || !lastName || !email  ||  !address) return null;
     console.log(firstName, lastName, email);
-    onUserAdd && onUserAdd({
+    debugger
+    let newUser = {
+      id: uniqId(),
       first_name: firstName,
       last_name: lastName,
       email,
       address
-    });
+    };
+
+    onUserAdd && onUserAdd(newUser);
 
     this.onReset();
   };
