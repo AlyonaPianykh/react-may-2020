@@ -21,7 +21,7 @@ class App extends Component {
   state = {
     posts: [...postsList],
     selectedOption: sortingOptions[0],
-    users: usersList
+    users: [...usersList]
   };
 
   onSort = (selectedOption) => {
