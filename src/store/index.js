@@ -5,3 +5,4 @@ import { counter, createRootReducer  } from '../reducers';
 //  добавлена функция createRootReducer, которая собственно добавляет несколько редьюсеров
 //  она используется при создании стора ниже
 export const appStore = createStore(createRootReducer(), composeWithDevTools());
+

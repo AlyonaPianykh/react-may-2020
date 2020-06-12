@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './UserCard.scss';
 
-function UserCardComponent(props) {
-  const { user, location, match: {url} } = props;
+const UserCardComponent = (props) => {
+  const { user, match: {url} } = props;
 
   if (!user) return null;
 
@@ -27,3 +27,4 @@ function UserCardComponent(props) {
 }
 
 export const UserCard = withRouter(UserCardComponent);
+

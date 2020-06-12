@@ -18,11 +18,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    // console.log('props' + JSON.stringify(props));
+    // debugger;
+  }
+
   state = {
     posts: [...postsList],
     selectedOption: sortingOptions[0],
     users: usersList
   };
+
+
+
 
   onSort = (selectedOption) => {
     // детально про строку 42 тут: https://javascript.info/destructuring-assignment#array-destructuring
@@ -113,7 +122,7 @@ class HomePage extends Component {
   };
 
   render() {
-    debugger
+    // debugger
     const { count } = this.props;
     const { posts, selectedOption, users } = this.state;
 

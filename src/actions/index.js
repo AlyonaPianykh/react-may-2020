@@ -3,7 +3,8 @@ import {
   DECREMENT,
   ADD_TODO,
   REMOVE_TODO,
-  UPDATE_TODO } from '../action-types';
+  UPDATE_TODO,
+  TOGGLE_DONE_STATUS_TODO} from '../action-types';
 
 export const inc = () => {
   return {
@@ -40,7 +41,12 @@ export const updateTodo = (todo) => {
   }
 };
 
-// todo 1: добавить функцию на toggle статуса тудушки
-//
+// dtodo 1: добавить функцию на toggle статуса тудушки
+export const toggleDoneStatusTodo = (id) => {
+  return {
+    type: TOGGLE_DONE_STATUS_TODO,
+    payload: id
+  }
+}
 // todo 2: добавить функцию на добавление пользователя
 //  использовать ее в форме по созданию пользователя
