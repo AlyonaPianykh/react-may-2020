@@ -1,0 +1,31 @@
+.may-header .nav-item {
+  position: relative;
+}
+.may-header .nav-item:hover .users-menu {
+  display: block;
+}
+
+.may-header {
+  padding: 10px 20px;
+  width: 100%;
+  border-bottom: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: hotpink !important;
+
+  &-logo {
+    height: 60px;
+  }
+
+  &-links-wrapper {
+    display: flex;
+
+    &-link {
+      margin: 0 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: mediumvioletred;
+    }
+  }
+}

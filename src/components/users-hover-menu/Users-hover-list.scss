@@ -1,0 +1,25 @@
+.users-menu {
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+
+  width: 150px;
+  background-color: #444444;
+
+  display: none;
+
+  &-item {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent;
+  }
+  &-item:hover {
+    text-decoration: none;
+    color: deepskyblue;
+    background-color: #666666;
+    border-color: #eeeeee;
+  }
+
+}
