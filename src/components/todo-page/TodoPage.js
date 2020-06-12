@@ -145,7 +145,7 @@ class TodoPage extends Component {
           <input className="m-2" value={title} onChange={this.onTitleChange} />
           <textarea className="m-2" value={body} onChange={this.onBodyChange} />
 
-          <DropDown className="m-2" options={users} selectedOption={user} onSelect={this.onUserSelect} />
+          <DropDown className="dropdown m-2" options={users} selectedOption={user} onSelect={this.onUserSelect} />
 
           <div>
             <input type="checkbox" onChange={this.onStatusChange} checked={doneStatus} />
@@ -161,7 +161,7 @@ class TodoPage extends Component {
           {
             todos.map(todo => {
               return (
-                  <TodoItem key={todo.id}
+                  <TodoItem key={todo.id }
                             todo={todo}
                             toggleDoneStatusTodo={this.toggleDoneStatusTodo}
                             removeTodo={this.removeTodo}

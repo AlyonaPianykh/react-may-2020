@@ -90,7 +90,7 @@ const UserPage = (props) => {
   const toHomePage = () => {
     history.push('/home');
   };
-  debugger
+  // debugger
   return (
     <div>
       <button className="btn btn-primary m-2" type="button" onClick={toUsersList}> Go back to users list</button>

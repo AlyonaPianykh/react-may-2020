@@ -1,26 +1,28 @@
 import React from 'react';
 import queryString from 'query-string';
 import { UserCard } from '../user-card/UserCard';
-import { usersList } from '../../constants';
+// import { usersList } from '../../constants';
 import { withRouter } from 'react-router';
+
+import {connect, Provider} from "react-redux";
 
 class UsersListPageComponent extends React.Component {
 
   constructor(props) {
     super(props);
-
     const { location: { search } } = props;
 
     const { page } = queryString.parse(search);
-    debugger
+    // debugger
     this.state = {
-      users: usersList,
+      // users: usersList,
       page: page || 1
     };
   }
 
   render() {
-    const { users } = this.state;
+    // const { users } = this.state;
+    const { users } = this.props;
 
     return (
       <div className="d-flex">
@@ -37,4 +39,12 @@ class UsersListPageComponent extends React.Component {
   }
 }
 
-export const UsersListPage = withRouter(UsersListPageComponent);
+const mapStateToProps = (store) => {
+  const { usersReducer: { users } } = store;
+  return {
+    users
+  };
+};
+
+// export const UsersListPage = withRouter(UsersListPageComponent);
+export const UsersListPage = withRouter(connect(mapStateToProps)(UsersListPageComponent));
