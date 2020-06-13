@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
 import uniqueId from 'uniqid';
 import { connect } from 'react-redux';
-
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
 import Card from '../post-card/PostCard';
-import { allComments, postsList, usersList } from '../../constants';
+// import { allComments, postsList, usersList } from '../../constants';
+import { allComments, postsList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
 import AddUserForm from '../user-form/AddUserForm';
-import { inc, dec } from '../../actions';
+import { inc, dec, addUser } from '../../actions';
 import { DECREMENT } from '../../action-types';
 
 import './HomePage.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {UserCard} from "../user-card/UserCard";
 
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    // console.log('props' + JSON.stringify(props));
+    // debugger;
+  }
+
   state = {
     posts: [...postsList],
     selectedOption: sortingOptions[0],
-    users: usersList
+    // users: usersList
   };
 
   onSort = (selectedOption) => {
@@ -56,8 +63,11 @@ class HomePage extends Component {
     const res = [...this.state.posts];
 
     const sorted = res.sort(function (a, b) {
-      const authorA = usersList.find(user => user.id === a.user_id);
-      const authorB = usersList.find(user => user.id === b.user_id);
+      // const authorA = usersList.find(user => user.id === a.user_id);
+      // const authorB = usersList.find(user => user.id === b.user_id);
+      const { users } = this.props;
+      const authorA = users.find(user => user.id === a.user_id);
+      const authorB = users.find(user => user.id === b.user_id);
 
       if (authorA.first_name > authorB.first_name) {
         return 1;
@@ -77,13 +87,16 @@ class HomePage extends Component {
 
   onUserAdd = (newUser) => {
 
-    // todo 2: тут будет использована action-функция добавления пользователя ( чтоб он попал в редаксовый стор) вместо изменения стейта
-    this.setState({
-      users: [{
-        ...newUser,
-        id: uniqueId()
-      }, ...this.state.users]
-    })
+    // dtodo 2: тут будет использована action-функция добавления пользователя ( чтоб он попал в редаксовый стор) вместо изменения стейта
+    // this.setState({
+    //   users: [{
+    //     ...newUser,
+    //     id: uniqueId()
+    //   }, ...this.state.users]
+    // })
+    const { addUser } = this.props;
+    addUser({...newUser, id: uniqueId()});
+
   };
 
   addPost = (newPost) => {
@@ -113,9 +126,11 @@ class HomePage extends Component {
   };
 
   render() {
-    debugger
+    // debugger
     const { count } = this.props;
-    const { posts, selectedOption, users } = this.state;
+    // const { posts, selectedOption, users } = this.state;
+    const { posts, selectedOption } = this.state;
+    const { users } = this.props;
 
     return (
       <div className="App">
@@ -126,7 +141,19 @@ class HomePage extends Component {
         <PanelFromLecture label="Users">
           <AddUserForm onUserAdd={this.onUserAdd}/>
 
-        {/*  todo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
+        {/*  dtodo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
+        {
+          <div className="d-flex flex-wrap">
+            {
+              users.map((user, index) => {
+                return <UserCard
+                    user={user}
+                    key={user.id}
+                />;
+              })
+            }
+          </div>
+        }
         </PanelFromLecture>
 
         <PanelFromLecture label="test">
@@ -151,7 +178,9 @@ class HomePage extends Component {
 
             {
               posts.map((item, index) => {
-                const user = usersList.find(user => user.id === item.user_id);
+                // const user = usersList.find(user => user.id === item.user_id);
+                const { users } = this.props;
+                const user = users.find(user => user.id === item.user_id);
                 const author = user ? `${user.first_name} ${user.last_name}` : '';
                 const comments = allComments.filter(comment => comment.post_id === item.id);
 
@@ -171,26 +200,28 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-  // todo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
-  const { counter: { count, property1, a } } = state;
+  // dtodo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
+  const { counter: { count, property1, a }, usersReducer: { users } } = state;
   return {
     count,
     property1,
-    a
+    a,
+    users
   };
 };
-// todo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
-// todo: обратите внимание, ниже mapDispatchToProps это функция
-const mapDispatchToProps = dispatch => {
-  return {
-    increment: () => dispatch(inc()),
-    decrement: () => dispatch({ type: DECREMENT, payload: 2 })
-  };
-};
-// todo: обратите внимание, a тут это объект
-// const mapDispatchToProps = ({
-//   increment: inc,
-//   decrement: dec
-// });
+// dtodo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
+// dtodo: обратите внимание, ниже mapDispatchToProps это функция
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     increment: () => dispatch(inc()),
+//     decrement: () => dispatch({ type: DECREMENT, payload: 2 })
+//   };
+// };
+// dtodo: обратите внимание, a тут это объект
+const mapDispatchToProps = ({
+  increment: inc,
+  decrement: dec,
+  addUser: addUser
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

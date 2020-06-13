@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import uniqId from 'uniqid';
 import { DropDown } from '../dropdown/DropDown';
 import { accessToken } from '../../constants';
+import {TodoItem} from "./TodoItem";
 
-// todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
+// dtodo 1: импортнуть в этом файле функцию на toggle статуса тудушки
 //         подумайте какие еще шаги нужно выполнить, чтоб все заработало
-import { addTodo, removeTodo, updateTodo } from '../../actions';
+import { addTodo, removeTodo, updateTodo, toggleDoneStatusTodo } from '../../actions';
 
 class TodoPage extends Component {
   state = {
@@ -26,10 +27,8 @@ class TodoPage extends Component {
     let response = await fetch(`https://gorest.co.in/public-api/users?access-token=${accessToken}`);
 
     if (response.ok) {
-      let json = await response.json();
-
+      let json = await response.json()
       const { result } = json;
-
       if (Array.isArray(result)) {
         const usersNames = result.map(user => `${user.first_name} ${user.last_name}`);
 
@@ -90,7 +89,8 @@ class TodoPage extends Component {
       title: '',
       body: '',
       doneStatus: false,
-      id: ''
+      id: '',
+      isEditMode: false
     });
   }
 
@@ -98,12 +98,13 @@ class TodoPage extends Component {
     const { removeTodo } = this.props;
 
     return () => {
-      debugger
+      // debugger
       removeTodo && removeTodo(todo);
     };
   };
 
   editTodo = (todo) => {
+    console.log(todo);
     return () => {
       this.setState({
         isEditMode: true,
@@ -126,6 +127,13 @@ class TodoPage extends Component {
     this.resetForm();
   };
 
+  toggleDoneStatusTodo = (todo) => {
+    const { toggleDoneStatusTodo } = this.props;
+    return () => {
+      toggleDoneStatusTodo && toggleDoneStatusTodo(todo);
+    }
+  };
+
   render() {
     const { todos } = this.props;
     const { users, user, title, body, doneStatus, isEditMode } = this.state;
@@ -137,7 +145,7 @@ class TodoPage extends Component {
           <input className="m-2" value={title} onChange={this.onTitleChange} />
           <textarea className="m-2" value={body} onChange={this.onBodyChange} />
 
-          <DropDown className="m-2" options={users} selectedOption={user} onSelect={this.onUserSelect} />
+          <DropDown className="dropdown m-2" options={users} selectedOption={user} onSelect={this.onUserSelect} />
 
           <div>
             <input type="checkbox" onChange={this.onStatusChange} checked={doneStatus} />
@@ -150,24 +158,40 @@ class TodoPage extends Component {
         </div>
 
         <div className="m-2 d-flex">
-
           {
             todos.map(todo => {
-              const { user, title, body, doneStatus, id } = todo;
               return (
-                <div key={id} className="card m-2">
-                  <div>{title}</div>
-                  <div>{body}</div>
-                  <div>{user}</div>
-                  {/*// todo 1: вместо div со статусом  показывать чекбокс
-                         при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
-                  */}
-                  <div>is done? {doneStatus ? 'yes' : 'no'}</div>
-                  <button onClick={this.removeTodo(todo)}>remove todo</button>
-                  <button onClick={this.editTodo(todo)}>edit todo</button>
-                </div>
+                  <TodoItem key={todo.id }
+                            todo={todo}
+                            toggleDoneStatusTodo={this.toggleDoneStatusTodo}
+                            removeTodo={this.removeTodo}
+                            editTodo={this.editTodo}/>
               );
             })
+          }
+
+          {
+            //------------------------------------
+            // todos.map(todo => {
+            //   const { user, title, body, doneStatus, id } = todo;
+            //   return (
+            //     <div key={id} className="card m-2">
+            //       <div>{title}</div>
+            //       <div>{body}</div>
+            //       <div>{user}</div>
+            //       {/*// dtodo 1: вместо div со статусом  показывать чекбокс
+            //              при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
+            //       */}
+            //       <div>
+            //         <input type="checkbox" onChange={this.toggleDoneStatusTodo(todo)} checked={doneStatus} />
+            //       </div>
+            //       <div>is done? {doneStatus ? 'yes' : 'no'}</div>
+            //       <button onClick={this.removeTodo(todo)}>remove todo</button>
+            //       <button onClick={this.editTodo(todo)}>edit todo</button>
+            //       <TodoItem />
+            //     </div>
+            //   );
+            // })
           }
         </div>
       </div>
@@ -192,7 +216,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = ({
   addTodo,
   removeTodo,
-  updateTodo
+  updateTodo,
+  toggleDoneStatusTodo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);

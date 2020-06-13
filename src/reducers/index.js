@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_DONE_STATUS_TODO, ADD_USER} from '../action-types';
+import {usersList as users} from "../constants";
 
 const defaultData =  {
   count: 0,
@@ -13,6 +14,7 @@ const defaultData =  {
 const todoDefaultStore = {
   todos: []
 };
+
 export function todoReducer(store = todoDefaultStore, action) {
   switch (action.type) {
     case ADD_TODO: {
@@ -52,7 +54,22 @@ export function todoReducer(store = todoDefaultStore, action) {
       }
       return store;
     }
-    // todo 1: добавить обработку toggle статуса тудушки
+    // dtodo 1: добавить обработку toggle статуса тудушки
+    case TOGGLE_DONE_STATUS_TODO: {
+      const {id} = action.payload;
+      const {todos} = store;
+      const copyOfArray = [...todos];
+      const index = todos.findIndex(item => item.id === id);
+
+      if (index > -1) {
+        copyOfArray[index].doneStatus = !copyOfArray[index].doneStatus;
+
+        return {
+          todos: copyOfArray
+        };
+      }
+      return store;
+    }
     default: return store;
   }
 }
@@ -82,19 +99,38 @@ export function counter(store = defaultData, action) {
 };
 
 
-// todo 2: создать еще 1 редьюсер usersReducer
+// dtodo 2: создать еще 1 редьюсер usersReducer
 //   как начальное значение задать объект в котором будет пропертя users со значением usersList (из констант)
 //   реализовать добавление пользователя с помощью редакса
 //   т.е. перенести логику из компонент в стор
 //   найти все компоненты, которые используют константу usersList и подписать их на стор ( с помощью connect функции)
 //   чтобы они могли читать массив пользвателей из стора, а не из константы
+const usersList = {
+  users: users
+};
+
+export function usersReducer(store = usersList, action) {
+  switch (action.type) {
+    case ADD_USER: {
+      const newUser = action.payload;
+      const {users} = store;
+
+      return {
+        users: [...users, newUser]
+      };
+    }
+
+    default: return store;
+  }
+}
+
 
 export const createRootReducer = () => {
   return combineReducers({
     counter,
-    todoReducer
-    // todo 2: добавить тут usersReducer
-
-   // todo: обратите внимание, тут можно добавлять еще редьюсеры
+    todoReducer,
+    // dtodo 2: добавить тут usersReducer
+    usersReducer
+   // dtodo: обратите внимание, тут можно добавлять еще редьюсеры
   });
 };

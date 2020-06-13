@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
+import {appStore} from "./store";
 
 import HomePage from './components/home-page/HomePage';
 import { UsersListPage } from './components/users-list/UsersList';
@@ -20,7 +21,7 @@ import { UserCard } from './components/user-card/UserCard';
 import PostsList from './components/posts-list/PostsList';
 import PostDetailsPage from './components/post-details-page/PostDetailsPage';
 import TodoPage from './components/todo-page/TodoPage';
-import  { appStore } from './store';
+
 
 class App extends Component {
   render() {
@@ -56,7 +57,7 @@ class App extends Component {
             />
 
             <Route path="/post-preview" render={(routerProps) => {
-              debugger
+              // debugger
               return (
                 <PostPreview posts={postsList} {...routerProps} />
               );
@@ -89,7 +90,7 @@ const UserPage = (props) => {
   const toHomePage = () => {
     history.push('/home');
   };
-  debugger
+  // debugger
   return (
     <div>
       <button className="btn btn-primary m-2" type="button" onClick={toUsersList}> Go back to users list</button>
