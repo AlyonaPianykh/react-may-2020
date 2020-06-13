@@ -1,11 +1,12 @@
 import React, { Component, PureComponent } from 'react';
-// todo 3: сделать импорт Link из react-router-dom
+import {Link} from 'react-router-dom'
 import { accessToken } from '../../constants';
 import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
+import {withRouter} from 'react-router';
 
-class PostCard extends PureComponent {
+class PostCardComponent extends PureComponent {
   state = {
     comments: [],
     isCommentsLoading: false,
@@ -70,6 +71,19 @@ class PostCard extends PureComponent {
     })
   };
 
+  onClickHandler = () => {
+    this.setState({
+      inputValue: '',
+      isInputClear: true
+    })
+  }
+
+  setValueInput = (value) => {
+    this.setState({
+      inputValue: value,
+      isInputClear: false
+    })
+  }
   // shouldComponentUpdate(nextProps, nextState, nextContext) {
   //   const { post: curPost } = this.props;
   //   const { post: nextPost } = nextProps;
@@ -78,8 +92,8 @@ class PostCard extends PureComponent {
   // }
 
   render() {
-    //todo 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
-    const { post, hasImage, author = '', className = '' } = this.props;
+    const {match: {url}} = this.props;
+    const { post, hasImage, author = '', className = ''} = this.props;
 
     if (!post) {
       console.log('post is not defined');
@@ -109,15 +123,13 @@ class PostCard extends PureComponent {
         </div>
 
         {
-          <label onClick={this.onToggleComments} className="btn btn-link">{showComments ? 'Hide comments' : 'Show comments'}</label>
+          <label id="0" onClick={this.onToggleComments}
+                 className="btn btn-link">{showComments ? 'Hide comments' : 'Show comments'}</label>
         }
         { !!error &&  <div>{error}</div> }
-
-        {/* todo 3 : добавить ссылку Link на урлу с айди поста, где будут детали поста
-                    по аналогии с 24 строкой в UserCard
-                    рендерить линку только если id из пропсов-объекта match-объекта params не найдено (не существует)
-        */}
-
+        {
+          <Link style={{marginLeft: "35%"}} to={`${url}/${post.id}`}>Show details</Link>
+        }
         { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
         {
@@ -135,6 +147,4 @@ class PostCard extends PureComponent {
     );
   }
 }
-
-// todo 3: подвязать PostCard с помощью withRouter к роутеру по аналогии с UserCard
-export default PostCard;
+export const PostCard = withRouter(PostCardComponent);
