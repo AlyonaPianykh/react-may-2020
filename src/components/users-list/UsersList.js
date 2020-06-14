@@ -1,8 +1,8 @@
 import React from 'react';
 import queryString from 'query-string';
 import { UserCard } from '../user-card/UserCard';
-import { usersList } from '../../constants';
 import { withRouter } from 'react-router';
+import {connect} from "react-redux";
 
 class UsersListPageComponent extends React.Component {
 
@@ -14,7 +14,7 @@ class UsersListPageComponent extends React.Component {
     const { page } = queryString.parse(search);
     debugger
     this.state = {
-      users: usersList,
+      users: this.props.users,
       page: page || 1
     };
   }
@@ -36,5 +36,11 @@ class UsersListPageComponent extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  const {  usersReducer:{ users } } = state;
+  return {
+    users
+  };
+};
+export default connect(mapStateToProps)( withRouter(UsersListPageComponent));
 
-export const UsersListPage = withRouter(UsersListPageComponent);

@@ -6,6 +6,7 @@ import { Comment } from '../comment/Comment';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
+
 class PostCard extends PureComponent {
   state = {
     comments: [],
@@ -131,4 +132,5 @@ class PostCard extends PureComponent {
     );
   }
 }
+
 export default withRouter(PostCard);

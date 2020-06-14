@@ -10,7 +10,7 @@ import {
 import { Provider } from 'react-redux';
 
 import HomePage from './components/home-page/HomePage';
-import { UsersListPage } from './components/users-list/UsersList';
+import UsersListPageComponent from "./components/users-list/UsersList";
 import { Header } from './components/header/HeaderFromLecture';
 import { Footer } from './components/footer/Footer';
 import { PostPreview } from './components/post-preview/PostPreview';
@@ -38,7 +38,7 @@ class App extends Component {
             </Route>
             <Route path="/todos" component={TodoPage} exact />
 
-            <Route path="/users" component={UsersListPage} exact />
+            <Route path="/users" component={UsersListPageComponent} exact />
             <Route path="/users/:userId"
                    render={(routerProps) => {
                      return (<UserPage {...routerProps} />);
