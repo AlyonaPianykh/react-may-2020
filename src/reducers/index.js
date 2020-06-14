@@ -121,7 +121,8 @@ export function usersReducer (store = usersList, action) {
         const user = action.payload;
         console.log (user);
         console.log ([...users, user]);
-          return users = [...users, user];
+        console.log (users)
+          return users = {users: [...users, user]};
         ;
       }
       default: return store

@@ -81,6 +81,7 @@ class HomePage extends Component {
     // todo 2: тут будет использована action-функция добавления пользователя ( чтоб он попал в редаксовый стор) вместо изменения стейта
     const { onUserAdd } = this.props;
     onUserAdd({...newUser, id: uniqueId()});
+    console.log (newUser)
 
   };
 
@@ -113,6 +114,7 @@ class HomePage extends Component {
   render() {
     debugger
     const { count, users } = this.props;
+    console.log (users);
     const { posts, selectedOption} = this.state;
 
     return (
@@ -176,7 +178,8 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   // todo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
-  const { counter: { count, property1, a }, usersReducer: {users} } = state;
+  const { counter: { count, property1, a }, usersReducer: {users: users} } = state;
+  console.log (users)
   return {
     count,
     property1,
