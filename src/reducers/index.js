@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, TOGGLE_STATUS_CHANGE, UPDATE_TODO} from '../action-types';
+import {ADD_TODO, REMOVE_TODO, TOGGLE_STATUS_CHANGE, UPDATE_TODO, ADD_USER} from '../action-types';
+import {usersList as users} from "../constants";
 
 const defaultData =  {
   count: 0,
@@ -13,6 +14,14 @@ const defaultData =  {
 const todoDefaultStore = {
   todos: []
 };
+// const usersDefaultStore = {
+//   users: usersList
+// };
+
+
+
+
+
 export function todoReducer(store = todoDefaultStore, action) {
   switch (action.type) {
     case ADD_TODO: {
@@ -104,10 +113,27 @@ export function counter(store = defaultData, action) {
 //   найти все компоненты, которые используют константу usersList и подписать их на стор ( с помощью connect функции)
 //   чтобы они могли читать массив пользвателей из стора, а не из константы
 
+export function usersReducer (store = usersList, action) {
+
+    switch (action.type) {
+      case ADD_USER: {
+        let {users} = store;
+        const user = action.payload;
+        console.log (user);
+        console.log ([...users, user]);
+          return users = [...users, user];
+        ;
+      }
+      default: return store
+    }
+}
+const usersList = {users};
+
 export const createRootReducer = () => {
   return combineReducers({
     counter,
-    todoReducer
+    todoReducer,
+    usersReducer
     // todo 2: добавить тут usersReducer
 
    // todo: обратите внимание, тут можно добавлять еще редьюсеры

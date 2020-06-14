@@ -1,10 +1,5 @@
 import {
-  INCREMENT,
-  DECREMENT,
-  ADD_TODO,
-  REMOVE_TODO,
-  UPDATE_TODO,
-  TOGGLE_STATUS_CHANGE
+  INCREMENT, DECREMENT, ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_STATUS_CHANGE, ADD_USER
 } from '../action-types';
 
 export const inc = () => {
@@ -50,5 +45,11 @@ export const toggleStatusTodo = (id) => {
 
 // odo 1: добавить функцию на toggle статуса тудушки
 //
-// todo 2: добавить функцию на добавление пользователя
+// odo 2: добавить функцию на добавление пользователя
 //  использовать ее в форме по созданию пользователя
+export const onUserAdd = (user) => {
+  return {
+    type: ADD_USER,
+    payload: user
+  }
+};
