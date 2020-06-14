@@ -9,11 +9,12 @@ import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
 import AddUserForm from '../user-form/AddUserForm';
-import { inc, dec } from '../../actions';
+import { inc, dec, addUser } from '../../actions';
 import { DECREMENT } from '../../action-types';
 
 import './HomePage.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {UserCard} from "../user-card/UserCard";
 
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
 
@@ -77,7 +78,12 @@ class HomePage extends Component {
 
   onUserAdd = (newUser) => {
 
-    // todo 2: тут будет использована action-функция добавления пользователя ( чтоб он попал в редаксовый стор) вместо изменения стейта
+    // donetodo 2: тут будет использована action-функция добавления пользователя ( чтоб он попал в редаксовый стор) вместо изменения стейта
+
+    const { addUser } = this.props;
+    addUser({...newUser, id: uniqueId()});
+
+
     this.setState({
       users: [{
         ...newUser,
@@ -126,7 +132,13 @@ class HomePage extends Component {
         <PanelFromLecture label="Users">
           <AddUserForm onUserAdd={this.onUserAdd}/>
 
-        {/*  todo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
+        {/*  donetodo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
+          {
+           users.map(user => {
+             return <UserCard key={user.id} user={user} />
+           })
+          }
+
         </PanelFromLecture>
 
         <PanelFromLecture label="test">
@@ -171,26 +183,28 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-  // todo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
-  const { counter: { count, property1, a } } = state;
+  // donetodo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
+  const { counter: { count, property1, a }, usersReducer: {users} } = state;
   return {
     count,
     property1,
-    a
+    a,
+    users
   };
 };
-// todo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
-// todo: обратите внимание, ниже mapDispatchToProps это функция
-const mapDispatchToProps = dispatch => {
-  return {
-    increment: () => dispatch(inc()),
-    decrement: () => dispatch({ type: DECREMENT, payload: 2 })
-  };
-};
-// todo: обратите внимание, a тут это объект
-// const mapDispatchToProps = ({
-//   increment: inc,
-//   decrement: dec
-// });
+// donetodo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
+// donetodo: обратите внимание, ниже mapDispatchToProps это функция
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     increment: () => dispatch(inc()),
+//     decrement: () => dispatch({ type: DECREMENT, payload: 2 })
+//   };
+// };
+// donetodo: обратите внимание, a тут это объект
+const mapDispatchToProps = ({
+  increment: inc,
+  decrement: dec,
+  addUser: addUser
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

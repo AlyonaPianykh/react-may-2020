@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
-
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE,ADD_USER} from '../action-types';
+import {usersList as users} from "../constants";
 const defaultData =  {
   count: 0,
   property1: 'test',
@@ -52,7 +52,24 @@ export function todoReducer(store = todoDefaultStore, action) {
       }
       return store;
     }
-    // todo 1: добавить обработку toggle статуса тудушки
+    // donetodo 1: добавить обработку toggle статуса тудушки
+
+    case TOGGLE: {
+      const { id } = action.payload;
+      const { todos } = store;
+      const copyOfArray = [...todos];
+      const index = todos.findIndex(item => item.id === id);
+
+      if (index > -1) {
+        copyOfArray[index].doneStatus = !copyOfArray[index].doneStatus;
+
+        return {
+          todos: copyOfArray
+        };
+      }
+      return store;
+    }
+
     default: return store;
   }
 }
@@ -82,19 +99,38 @@ export function counter(store = defaultData, action) {
 };
 
 
-// todo 2: создать еще 1 редьюсер usersReducer
+// donetodo 2: создать еще 1 редьюсер usersReducer
 //   как начальное значение задать объект в котором будет пропертя users со значением usersList (из констант)
 //   реализовать добавление пользователя с помощью редакса
 //   т.е. перенести логику из компонент в стор
 //   найти все компоненты, которые используют константу usersList и подписать их на стор ( с помощью connect функции)
 //   чтобы они могли читать массив пользвателей из стора, а не из константы
 
+export function usersReducer(store = usersList, action) {
+  switch (action.type) {
+    case ADD_USER: {
+      const newUser = action.payload;
+      const {users} = store;
+
+      return {
+        users: [...users, newUser]
+      };
+    }
+
+    default: return store;
+  }
+}
+const usersList = {
+  users: users
+};
+
+
 export const createRootReducer = () => {
   return combineReducers({
     counter,
-    todoReducer
-    // todo 2: добавить тут usersReducer
-
-   // todo: обратите внимание, тут можно добавлять еще редьюсеры
+    todoReducer,
+    // donetodo 2: добавить тут usersReducer
+    usersReducer
+   // donetodo: обратите внимание, тут можно добавлять еще редьюсеры
   });
 };

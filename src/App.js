@@ -46,8 +46,9 @@ class App extends Component {
             />
 
             {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
+            donetodo 2: добавить роут "/posts", который покажет компонент PostsList
           */}
+
             <Route path="/posts" component={PostsList} exact />
             <Route path="/posts/:id"
                    render={(routerProps) => {
@@ -56,7 +57,7 @@ class App extends Component {
             />
 
             <Route path="/post-preview" render={(routerProps) => {
-              debugger
+             // debugger
               return (
                 <PostPreview posts={postsList} {...routerProps} />
               );
