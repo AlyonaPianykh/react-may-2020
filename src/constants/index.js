@@ -1,5 +1,5 @@
 // todo 1: используйте тут ваш токен
-export const accessToken = '';
+export const accessToken = 'XZ6FVuN_njPUHsw1cctfXnVgh3VNE0AsBafQ\n';
 
 export const user = {
   firstName: 'Poison',

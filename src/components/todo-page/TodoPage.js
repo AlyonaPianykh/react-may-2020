@@ -6,7 +6,9 @@ import { accessToken } from '../../constants';
 
 // todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
 //         подумайте какие еще шаги нужно выполнить, чтоб все заработало
-import { addTodo, removeTodo, updateTodo } from '../../actions';
+
+import { addTodo, removeTodo, updateTodo, toggleStatusTodo } from '../../actions';
+import {TodoItem} from "./Todo-item";
 
 class TodoPage extends Component {
   state = {
@@ -125,6 +127,12 @@ class TodoPage extends Component {
     });
     this.resetForm();
   };
+  toggleStatus = (todo) => {
+    const { toggleStatusTodo } = this.props;
+    return () => {
+      toggleStatusTodo && toggleStatusTodo(todo);
+    }
+  };
 
   render() {
     const { todos } = this.props;
@@ -155,17 +163,13 @@ class TodoPage extends Component {
             todos.map(todo => {
               const { user, title, body, doneStatus, id } = todo;
               return (
-                <div key={id} className="card m-2">
-                  <div>{title}</div>
-                  <div>{body}</div>
-                  <div>{user}</div>
-                  {/*// todo 1: вместо div со статусом  показывать чекбокс
-                         при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
-                  */}
-                  <div>is done? {doneStatus ? 'yes' : 'no'}</div>
-                  <button onClick={this.removeTodo(todo)}>remove todo</button>
-                  <button onClick={this.editTodo(todo)}>edit todo</button>
-                </div>
+                <TodoItem
+                    key={todo.id}
+                    todo={todo}
+                    toggleStatusTodo={this.toggleStatus}
+                    removeTodo={this.removeTodo}
+                    editTodo={this.editTodo}
+                />
               );
             })
           }
@@ -182,17 +186,11 @@ const mapStateToProps = (store) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addTodo: (todo) => dispatch(addTodo(todo)),
-//     removeTodo: (todo) => dispatch(removeTodo(todo))
-//   };
-// };
-
 const mapDispatchToProps = ({
   addTodo,
   removeTodo,
-  updateTodo
+  updateTodo,
+  toggleStatusTodo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);
