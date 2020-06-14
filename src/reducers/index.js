@@ -1,84 +1,90 @@
-import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
+import {combineReducers} from 'redux';
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO, STATUS_TODO} from '../action-types';
 
-const defaultData =  {
-  count: 0,
-  property1: 'test',
-  a: {
-    b: 3,
-    c: 'jghvhvh'
-  }
+const defaultData = {
+    count: 0,
+    property1: 'test',
+    a: {
+        b: 3,
+        c: 'jghvhvh'
+    }
 };
 
 const todoDefaultStore = {
-  todos: []
+    todos: []
 };
+
 export function todoReducer(store = todoDefaultStore, action) {
-  switch (action.type) {
-    case ADD_TODO: {
-      const newTodo = action.payload;
-      const {todos} = store;
+    switch (action.type) {
+        case ADD_TODO: {
+            const newTodo = action.payload;
+            const {todos} = store;
 
-      return {
-        todos: [...todos, newTodo]
-      };
+            return {
+                todos: [...todos, newTodo]
+            };
+        }
+        case REMOVE_TODO: {
+            const {id} = action.payload;
+            const {todos} = store;
+
+            const index = todos.findIndex(item => item.id === id);
+            const copyOfArray = [...todos];
+            copyOfArray.splice(index, 1)
+            if (index > -1) {
+                return {
+                    todos: copyOfArray
+                };
+            }
+            return store;
+        }
+        case UPDATE_TODO:
+        case STATUS_TODO: {
+            const {id} = action.payload;
+            const {todos} = store;
+            const copyOfArray = [...todos];
+            const index = todos.findIndex(item => item.id === id);
+
+            if (index > -1) {
+                copyOfArray[index] = action.payload;
+
+                return {
+                    todos: copyOfArray
+                };
+            }
+            return store;
+        }
+        // DONEtodo 1: добавить обработку toggle статуса тудушки
+
+        default:
+            return store;
     }
-    case REMOVE_TODO: {
-      const {id} = action.payload;
-      const {todos} = store;
-
-      const index = todos.findIndex(item => item.id === id);
-      const copyOfArray = [...todos];
-      copyOfArray.splice(index, 1)
-      if (index > -1) {
-        return {
-          todos: copyOfArray
-        };
-      }
-      return store;
-    }
-    case UPDATE_TODO: {
-      const { id } = action.payload;
-      const {todos} = store;
-      const copyOfArray = [...todos];
-      const index = todos.findIndex(item => item.id === id);
-
-      if (index > -1) {
-        copyOfArray[index] = action.payload;
-
-        return {
-          todos: copyOfArray
-        };
-      }
-      return store;
-    }
-    // todo 1: добавить обработку toggle статуса тудушки
-    default: return store;
-  }
 }
 
 export function counter(store = defaultData, action) {
-  let res;
-  switch (action.type) {
-    case 'INCREMENT': {
-      const { count } = store;
-      res = {
-        ...store,
-        count: store.count + action.payload
-      };
-      break;
+    let res;
+    switch (action.type) {
+        case 'INCREMENT': {
+            const {count} = store;
+            res = {
+                ...store,
+                count: store.count + action.payload
+            };
+            break;
+        }
+        case 'DECREMENT': {
+            const {count} = store;
+            res = {
+                ...store,
+                count: count - action.payload
+            };
+            break;
+        }
+        default:
+            res = store;
+            break;
     }
-    case 'DECREMENT': {
-      const { count} = store;
-      res = {
-        ...store,
-        count: count - action.payload
-      };
-      break;
-    }
-    default: res = store; break;
-  }
-  return res;
+    return res;
 };
 
 
@@ -90,11 +96,11 @@ export function counter(store = defaultData, action) {
 //   чтобы они могли читать массив пользвателей из стора, а не из константы
 
 export const createRootReducer = () => {
-  return combineReducers({
-    counter,
-    todoReducer
-    // todo 2: добавить тут usersReducer
+    return combineReducers({
+        counter,
+        todoReducer
+        // todo 2: добавить тут usersReducer
 
-   // todo: обратите внимание, тут можно добавлять еще редьюсеры
-  });
+        // todo: обратите внимание, тут можно добавлять еще редьюсеры
+    });
 };
