@@ -48,7 +48,7 @@ function App() {
       <div className="d-flex posts-container">
       {usersList.map(value => {
         return (
-            <UserCard user={value} />
+            <UserCard user={item} key={item.id} />
         )
     })}
       </div>
