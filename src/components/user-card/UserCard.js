@@ -7,7 +7,7 @@ export function UserCard(props) {
 
   if (!user) return null;
 
-  const { first_name, last_name, email, address, _links: { avatar } = {} } = user;
+  const { first_name, last_name, email, address, gender, dob, phone, _links: { avatar } = {} } = user;
   return (
     <div className="may-user-card card">
       {/*<img src={`${avatar.href}?dummy=${Math.random() * 1000}`} alt="user avatar" className="may-user-card-avatar rounded-circle"/>*/}
@@ -17,6 +17,9 @@ export function UserCard(props) {
         <div className="card-text">
           <div>{email}</div>
           <div>{address}</div>
+          <div>{gender}</div>
+          <div>{dob}</div>
+          <div>{phone}</div>
         </div>
       </div>
     </div>
