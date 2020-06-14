@@ -1,4 +1,6 @@
 import React, { Component, createRef } from 'react';
+import {connect} from "react-redux";
+
 
 class AddUserForm extends Component {
 
@@ -40,7 +42,7 @@ class AddUserForm extends Component {
       email,
       address
     });
-
+    debugger
     this.onReset();
   };
 

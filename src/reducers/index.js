@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO, UPDATE_STATUS, USER_ADD } from '../action-types';
+import { usersList } from "../constants";
 
 const defaultData =  {
   count: 0,
@@ -13,6 +14,10 @@ const defaultData =  {
 const todoDefaultStore = {
   todos: []
 };
+const userDefaultList = {
+  users: usersList
+};
+
 export function todoReducer(store = todoDefaultStore, action) {
   switch (action.type) {
     case ADD_TODO: {
@@ -52,7 +57,22 @@ export function todoReducer(store = todoDefaultStore, action) {
       }
       return store;
     }
-    // todo 1: добавить обработку toggle статуса тудушки
+    //  добавить обработку toggle статуса тудушки
+    case UPDATE_STATUS: {
+      const { todos } = store;
+      const { id } = action.payload;
+      const { doneStatus } = action.payload;
+      const copyTodos = [...todos];
+      const updateTodoIndex = todos.findIndex(todo => todo.id === id);
+      if (updateTodoIndex > -1){
+        copyTodos.splice(updateTodoIndex,1, { ...copyTodos[updateTodoIndex], doneStatus: !doneStatus} )
+
+        return {
+          todos: copyTodos
+        }
+        }
+      return store;
+    }
     default: return store;
   }
 }
@@ -81,8 +101,21 @@ export function counter(store = defaultData, action) {
   return res;
 };
 
+export const usersReducer = (store = userDefaultList, action) => {
+  switch (action.type) {
+    case USER_ADD: {
+      const newUser = action.payload;
+      const { users } = store;
 
-// todo 2: создать еще 1 редьюсер usersReducer
+      return {
+        users: [ newUser,...users ]
+       };
+     }
+    default: return store
+    }
+  };
+
+// : создать еще 1 редьюсер usersReducer
 //   как начальное значение задать объект в котором будет пропертя users со значением usersList (из констант)
 //   реализовать добавление пользователя с помощью редакса
 //   т.е. перенести логику из компонент в стор
@@ -92,9 +125,10 @@ export function counter(store = defaultData, action) {
 export const createRootReducer = () => {
   return combineReducers({
     counter,
-    todoReducer
-    // todo 2: добавить тут usersReducer
+    todoReducer,
+    usersReducer
+    // : добавить тут usersReducer
 
-   // todo: обратите внимание, тут можно добавлять еще редьюсеры
+   // : обратите внимание, тут можно добавлять еще редьюсеры
   });
 };

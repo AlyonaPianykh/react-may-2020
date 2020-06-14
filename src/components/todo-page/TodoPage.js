@@ -4,9 +4,9 @@ import uniqId from 'uniqid';
 import { DropDown } from '../dropdown/DropDown';
 import { accessToken } from '../../constants';
 
-// todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
+//  импортнуть в этом файле функцию на toggle статуса тудушки
 //         подумайте какие еще шаги нужно выполнить, чтоб все заработало
-import { addTodo, removeTodo, updateTodo } from '../../actions';
+import { addTodo, removeTodo, updateTodo, updateStatusTodo } from '../../actions';
 
 class TodoPage extends Component {
   state = {
@@ -90,7 +90,8 @@ class TodoPage extends Component {
       title: '',
       body: '',
       doneStatus: false,
-      id: ''
+      id: '',
+      isEditMode: false
     });
   }
 
@@ -110,6 +111,8 @@ class TodoPage extends Component {
         ...todo
       });
     };
+    //TODO поправил код, не менялась кнопка на апдейт
+    this.resetForm()
   };
 
   updateTodo = () => {
@@ -124,6 +127,12 @@ class TodoPage extends Component {
       id
     });
     this.resetForm();
+  };
+  statusChangeTodo = (todo) => {
+    const { updateStatusTodo } = this.props;
+    return () => {
+      updateStatusTodo && updateStatusTodo(todo);
+    }
   };
 
   render() {
@@ -145,7 +154,7 @@ class TodoPage extends Component {
           </div>
           <div className="d-flex">
             {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add todo</button> }
-            {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo</button>}
+            {!!isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo</button>}
           </div>
         </div>
 
@@ -159,10 +168,11 @@ class TodoPage extends Component {
                   <div>{title}</div>
                   <div>{body}</div>
                   <div>{user}</div>
-                  {/*// todo 1: вместо div со статусом  показывать чекбокс
+                  <div>is done? {doneStatus ? 'yes' : 'no'}
+                   <input type="checkbox" onClick={this.statusChangeTodo(todo)} checked={doneStatus}/></div>
+                  {/*// : вместо div со статусом  показывать чекбокс
                          при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
                   */}
-                  <div>is done? {doneStatus ? 'yes' : 'no'}</div>
                   <button onClick={this.removeTodo(todo)}>remove todo</button>
                   <button onClick={this.editTodo(todo)}>edit todo</button>
                 </div>
@@ -192,7 +202,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = ({
   addTodo,
   removeTodo,
-  updateTodo
+  updateTodo,
+  updateStatusTodo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);
