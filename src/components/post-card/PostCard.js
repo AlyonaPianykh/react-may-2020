@@ -3,12 +3,13 @@ import React from 'react';
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
 
+
 export function PostCard(props) {
   console.log(props);
 
-  const { post, hasImage } = props;
+  const { post, hasImage, comments, author } = props;
 
-  console.log('hasImage', hasImage);
+  console.log('comments', comments);
   const { title, body } = post;
 
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
@@ -57,6 +58,8 @@ export function PostCard(props) {
         <div className="card-text body">
           {body}
         </div>
+        <footer className="blockquote-footer">{author}
+        </footer>
       </div>
     </div>
   );
