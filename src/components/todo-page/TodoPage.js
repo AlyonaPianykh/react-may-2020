@@ -6,7 +6,7 @@ import { accessToken } from '../../constants';
 
 // todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
 //         подумайте какие еще шаги нужно выполнить, чтоб все заработало
-import { addTodo, removeTodo, updateTodo } from '../../actions';
+import { addTodo, removeTodo, updateTodo, toggleStatusToDo } from '../../actions';
 
 class TodoPage extends Component {
   state = {
@@ -23,21 +23,25 @@ class TodoPage extends Component {
   }
 
   loadUsers = async () => {
-    let response = await fetch(`https://gorest.co.in/public-api/users?access-token=${accessToken}`);
+    // let response = await fetch(`https://gorest.co.in/public-api/users?access-token=${accessToken}`);
+    //Отримав помилку: No 'Access-Control-Allow-Origin' header is present on the requested resource. ,
+      //не зміг розібратись, змінив ресурс...
+
+    let response = await fetch(`https://jsonplaceholder.typicode.com/users`);
 
     if (response.ok) {
       let json = await response.json();
 
-      const { result } = json;
-
-      if (Array.isArray(result)) {
-        const usersNames = result.map(user => `${user.first_name} ${user.last_name}`);
+      // const { result } = json;
+      // if (Array.isArray(result)) {
+      if (Array.isArray(json)) {
+        // const usersNames = result.map(user => `${user.first_name} ${user.last_name}`);
+        const usersNames = json.map(user => user.name);
 
         this.setState({
           users: usersNames
         });
-      }
-    }
+      }}
   };
 
   onBodyChange = (event) => {
@@ -92,13 +96,13 @@ class TodoPage extends Component {
       doneStatus: false,
       id: ''
     });
-  }
+  };
 
   removeTodo = (todo) => {
     const { removeTodo } = this.props;
 
     return () => {
-      debugger
+      // debugger
       removeTodo && removeTodo(todo);
     };
   };
@@ -144,7 +148,7 @@ class TodoPage extends Component {
             <span className="m-1">done?</span>
           </div>
           <div className="d-flex">
-            {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add todo</button> }
+            {!isEditMode && <button className="btn btn-success m-2" onClick={this.addTodo}>Add todo</button> }
             {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo</button>}
           </div>
         </div>
@@ -163,8 +167,8 @@ class TodoPage extends Component {
                          при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
                   */}
                   <div>is done? {doneStatus ? 'yes' : 'no'}</div>
-                  <button onClick={this.removeTodo(todo)}>remove todo</button>
-                  <button onClick={this.editTodo(todo)}>edit todo</button>
+                  <button className='btn btn-outline-warning m-3'onClick={this.editTodo(todo)}>edit todo</button>
+                  <button className='btn btn-outline-danger m-3' onClick={this.removeTodo(todo)}>remove todo</button>
                 </div>
               );
             })

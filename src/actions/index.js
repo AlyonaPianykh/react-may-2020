@@ -1,9 +1,10 @@
 import {
-  INCREMENT,
-  DECREMENT,
-  ADD_TODO,
-  REMOVE_TODO,
-  UPDATE_TODO } from '../action-types';
+    INCREMENT,
+    DECREMENT,
+    ADD_TODO,
+    REMOVE_TODO,
+    UPDATE_TODO,
+    TODO_IS_DONE} from '../action-types';
 
 export const inc = () => {
   return {
@@ -40,7 +41,13 @@ export const updateTodo = (todo) => {
   }
 };
 
-// todo 1: добавить функцию на toggle статуса тудушки
+// ttodo 1: добавить функцию на toggle статуса тудушки
+export  const toggleStatusToDo = (todo) => {
+    return {
+        type: TODO_IS_DONE,
+        payload: todo
+    }
+};
 //
 // todo 2: добавить функцию на добавление пользователя
 //  использовать ее в форме по созданию пользователя
