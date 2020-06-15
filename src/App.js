@@ -79,7 +79,7 @@ class App extends Component {
 
 export default App;
 const UserPage = (props) => {
-  console.log(props);
+  // console.log(props);
   const { match: { url, path, params: { userId } }, history, users } = props;
 
   const user = users.find(item => item.id === userId);
