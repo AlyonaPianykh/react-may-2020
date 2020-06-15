@@ -6,20 +6,21 @@ import { PanelFromLecture } from '../panel/PanelFromLecture';
 import TestCard, { PostCard as Card } from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 
-// todo 0) тут мы делаем импорт дропдауна (уже сделан)
+// dtodo 0) тут мы делаем импорт дропдауна (уже сделан)
 import { DropDown } from '../dropdown/DropDown';
 
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-// todo 1) вот наши опции сортировки, мы будем их использовать в DropDown (уже объявлены)
+// dtodo 1) вот наши опции сортировки, мы будем их использовать в DropDown (уже объявлены)
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
 
 class App extends Component {
   state = {
     posts: [...postsList],
-    // todo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
+    selectedOption: sortingOptions[0],
+    // dtodo: 2) добавить под ключом selectedOption значение sortingOptions[0] (она будет хранить выбранную в данный моменит опцию)
   };
 
   renderList = () => {
@@ -88,7 +89,7 @@ class App extends Component {
 
   render() {
     // todo 4) достать также в строке 92 из стейта selectedOption
-    const { posts } = this.state;
+    const { posts, selectedOption } = this.state;
 
     return (
       <div className="App">
@@ -115,9 +116,9 @@ class App extends Component {
                  в options положить sortingOptions
             */}
             <DropDown
-
-
-
+            onSelect={this.onSort}
+            selectedOption={selectedOption}
+            options={sortingOptions}
             />
           </div>
           <div className="d-flex posts-container">
