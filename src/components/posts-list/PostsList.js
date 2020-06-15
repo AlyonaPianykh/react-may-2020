@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { accessToken, usersList } from '../../constants';
+import { accessToken } from '../../constants';
 import PostCard from '../post-card/PostCard';
+import {connect} from "react-redux";
 
 class PostsList extends Component {
   state = {
@@ -41,6 +42,7 @@ class PostsList extends Component {
 
   render() {
     const { posts, isLoading } = this.state;
+    const {users} = this.props;
 
     return (
       <div>
@@ -50,7 +52,7 @@ class PostsList extends Component {
         }
         {
           !isLoading && posts.map((item) => {
-            const user = usersList.find(user => user.id === item.user_id);
+            const user = users.find(user => user.id === item.user_id);
             const author = user ? `${user.first_name} ${user.last_name}` : '';
 
             return <PostCard
@@ -65,4 +67,9 @@ class PostsList extends Component {
   }
 }
 
-export default PostsList;
+const mapStateToProps = state => {
+  const { usersReducer: { users } } = state;
+  return {users};
+};
+
+export default connect(mapStateToProps)(PostsList);

@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { counter, createRootReducer  } from '../reducers';
+import { createRootReducer  } from '../reducers';
 // d_todo: обратите внимание, тут есть отличие с лекцией
 //  добавлена функция createRootReducer, которая собственно добавляет несколько редьюсеров
 //  она используется при создании стора ниже

@@ -4,7 +4,9 @@ import {
   ADD_TODO,
   REMOVE_TODO,
   UPDATE_TODO,
-  TOGGLE_STATUS_TODO} from '../action-types';
+  TOGGLE_STATUS_TODO,
+  ADD_USER} from '../action-types';
+import {user} from "../constants";
 
 export const inc = () => {
   return {
@@ -49,5 +51,11 @@ export const toggleStatusTodo = (todo) => {
   }
 };
 
-// todo 2: добавить функцию на добавление пользователя
+// d_todo 2: добавить функцию на добавление пользователя
 //  использовать ее в форме по созданию пользователя
+export const addUser = (newUser) => {
+  return {
+    type: ADD_USER,
+    payload: newUser
+  }
+};

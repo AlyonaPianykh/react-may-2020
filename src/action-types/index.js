@@ -8,5 +8,6 @@ export const UPDATE_TODO = 'UPDATE_TODO';
 export const TOGGLE_STATUS_TODO = 'TOGGLE_STATUS_TODO'
 
 
-// todo 2: добавить тип на добавление пользователя
+// d_todo 2: добавить тип на добавление пользователя
+export const ADD_USER = 'ADD_USER';
 

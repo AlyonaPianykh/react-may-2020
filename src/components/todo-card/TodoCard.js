@@ -18,8 +18,8 @@ export const TodoCard = props => {
                     <input type="checkbox" onChange={toggleStatusTodo(todo)} checked={doneStatus}/>
                 </div>
             </div>
-            <button onClick={removeTodo(todo)}>remove todo</button>
-            <button onClick={editTodo(todo)}>edit todo</button>
+            <button onClick={removeTodo(todo)}>remove to-do</button>
+            <button onClick={editTodo(todo)}>edit to-do</button>
         </div>
     );
 }
