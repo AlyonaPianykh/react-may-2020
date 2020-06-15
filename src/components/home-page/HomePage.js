@@ -171,7 +171,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-  // todo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
+  // d_todo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
   const { counter: { count, property1, a } } = state;
   return {
     count,
@@ -179,15 +179,15 @@ const mapStateToProps = state => {
     a
   };
 };
-// todo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
-// todo: обратите внимание, ниже mapDispatchToProps это функция
+// d_todo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
+// d_todo: обратите внимание, ниже mapDispatchToProps это функция
 const mapDispatchToProps = dispatch => {
   return {
     increment: () => dispatch(inc()),
     decrement: () => dispatch({ type: DECREMENT, payload: 2 })
   };
 };
-// todo: обратите внимание, a тут это объект
+// d_todo: обратите внимание, a тут это объект
 // const mapDispatchToProps = ({
 //   increment: inc,
 //   decrement: dec
