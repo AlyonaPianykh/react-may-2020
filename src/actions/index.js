@@ -1,46 +1,61 @@
 import {
-  INCREMENT,
-  DECREMENT,
-  ADD_TODO,
-  REMOVE_TODO,
-  UPDATE_TODO } from '../action-types';
+    INCREMENT,
+    DECREMENT,
+    ADD_TODO,
+    REMOVE_TODO,
+    UPDATE_TODO,
+    TOGGLE,
+    ADD_USER} from '../action-types';
 
 export const inc = () => {
-  return {
-    type: INCREMENT,
-    payload: 5
-  };
+    return {
+        type: INCREMENT,
+        payload: 5
+    };
 };
 
 export const dec = () => {
-  return {
-    type: DECREMENT,
-    payload: 2
-  };
+    return {
+        type: DECREMENT,
+        payload: 2
+    };
 };
 
 export const addTodo = (newTodo) => {
-  return {
-    type: ADD_TODO,
-    payload: newTodo
-  }
+    return {
+        type: ADD_TODO,
+        payload: newTodo
+    }
 };
 
 export const removeTodo = (todo) => {
-  return {
-    type: REMOVE_TODO,
-    payload: todo
-  }
+    return {
+        type: REMOVE_TODO,
+        payload: todo
+    }
 };
 
 export const updateTodo = (todo) => {
-  return {
-    type: UPDATE_TODO,
-    payload: todo
-  }
+    return {
+        type: UPDATE_TODO,
+        payload: todo
+    }
 };
 
-// todo 1: добавить функцию на toggle статуса тудушки
+// todo 1: (maybe done) добавить функцию на toggle статуса тудушки
 //
-// todo 2: добавить функцию на добавление пользователя
+export const toggle = (id) => {
+    return{
+        type: TOGGLE,
+        payload: id
+    };
+}
+// todo 2: (maybe done) добавить функцию на добавление пользователя
 //  использовать ее в форме по созданию пользователя
+
+export const addUser = (user) => {
+    return{
+        type: ADD_USER,
+        payload: user
+    };
+}
