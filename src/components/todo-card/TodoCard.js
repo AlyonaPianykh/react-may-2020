@@ -3,11 +3,8 @@ import React, {Component} from 'react';
 class TodoCard extends Component {
 
     onTodoStatusChange = (event) => {
+        // console.log(this.props)
         const { todo, toggleTodo } = this.props;
-
-        this.setState({
-            doneStatus: event.target.checked
-        });
 
         toggleTodo(todo.id, event.target.checked);
     };
