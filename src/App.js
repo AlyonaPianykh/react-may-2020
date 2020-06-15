@@ -4,10 +4,10 @@ import {
   Switch,
   Route,
   Link,
-  Redirect
+  Redirect, withRouter
 } from 'react-router-dom';
 
-import { Provider } from 'react-redux';
+import {connect, Provider} from 'react-redux';
 
 import HomePage from './components/home-page/HomePage';
 import { UsersListPage } from './components/users-list/UsersList';
@@ -41,7 +41,7 @@ class App extends Component {
             <Route path="/users" component={UsersListPage} exact />
             <Route path="/users/:userId"
                    render={(routerProps) => {
-                     return (<UserPage {...routerProps} />);
+                     return (<UserPageWithStore {...routerProps} />);
                    }}
             />
 
@@ -79,9 +79,10 @@ class App extends Component {
 
 export default App;
 const UserPage = (props) => {
-  const { match: { url, path, params: { userId } }, history } = props;
+  // console.log(props);
+  const { match: { url, path, params: { userId } }, history, users } = props;
 
-  const user = usersList.find(item => item.id === userId);
+  const user = users.find(item => item.id === userId);
 
   const toUsersList = () => {
     history.push('/users');
@@ -89,7 +90,7 @@ const UserPage = (props) => {
   const toHomePage = () => {
     history.push('/home');
   };
-  debugger
+  // debugger
   return (
     <div>
       <button className="btn btn-primary m-2" type="button" onClick={toUsersList}> Go back to users list</button>
@@ -102,6 +103,13 @@ const UserPage = (props) => {
     </div>
   );
 };
+const mapStateToProps = (store) => {
+  const { usersReducer: { users } } = store;
+  return {
+    users
+  };
+};
+export const UserPageWithStore =  connect(mapStateToProps)(UserPage);
 const NotFoundPage = () => {
   return <div>Page not found</div>;
 };

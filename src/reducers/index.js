@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_TODO, ADD_USER} from '../action-types';
+
+import { usersList} from "../constants";
 
 const defaultData =  {
   count: 0,
@@ -29,7 +31,7 @@ export function todoReducer(store = todoDefaultStore, action) {
 
       const index = todos.findIndex(item => item.id === id);
       const copyOfArray = [...todos];
-      copyOfArray.splice(index, 1)
+      copyOfArray.splice(index, 1);
       if (index > -1) {
         return {
           todos: copyOfArray
@@ -52,7 +54,22 @@ export function todoReducer(store = todoDefaultStore, action) {
       }
       return store;
     }
-    // todo 1: добавить обработку toggle статуса тудушки
+    //  1: добавить обработку toggle статуса тудушки
+    case TOGGLE_TODO:  {
+      const { id, status } = action.payload;
+      const {todos} = store;
+      const copyOfArray = [...todos];
+      const index = todos.findIndex(item => item.id === id);
+
+      if (index > -1) {
+        copyOfArray[index].doneStatus = status;
+
+        return {
+          todos: copyOfArray
+        };
+      }
+      return store;
+    }
     default: return store;
   }
 }
@@ -82,19 +99,32 @@ export function counter(store = defaultData, action) {
 };
 
 
-// todo 2: создать еще 1 редьюсер usersReducer
+// 2: создать еще 1 редьюсер usersReducer
 //   как начальное значение задать объект в котором будет пропертя users со значением usersList (из констант)
 //   реализовать добавление пользователя с помощью редакса
 //   т.е. перенести логику из компонент в стор
 //   найти все компоненты, которые используют константу usersList и подписать их на стор ( с помощью connect функции)
 //   чтобы они могли читать массив пользвателей из стора, а не из константы
 
+export function usersReducer(store = {users: usersList}, action) {
+  switch (action.type) {
+    case ADD_USER:{
+      const newUser = action.payload;
+      const {users} = store;
+      return {
+        users: [...users, newUser]
+      }
+    }
+    default: return store;
+  }
+}
+
 export const createRootReducer = () => {
   return combineReducers({
     counter,
-    todoReducer
-    // todo 2: добавить тут usersReducer
-
-   // todo: обратите внимание, тут можно добавлять еще редьюсеры
+    todoReducer,
+    //  2: добавить тут usersReducer
+    usersReducer
+   // : обратите внимание, тут можно добавлять еще редьюсеры
   });
 };
