@@ -19,7 +19,7 @@ class PostCardComponent extends PureComponent {
     componentDidMount() {
         const { post, withCommentsLoading } = this.props;
 
-        // console.log('PostCard componentDidMount');
+        // console.log('PostCard componenhtDidMount');
         if (post && withCommentsLoading) { // добавлена проверка withCommentsLoading нужно ли делать загрузку комментариев (чтоб в списке всех постов не загружать их)
             const { id } = post;
             id && this.loadComments(id);
