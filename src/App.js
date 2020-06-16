@@ -17,6 +17,10 @@ import { PostPreview } from './components/post-preview/PostPreview';
 
 import { postsList, usersList } from './constants';
 import { UserCard } from './components/user-card/UserCard';
+import PostsList from "./components/posts-list/PostsList";
+import PostDetailsPage from "./components/post-details-page/PostDetailsPage";
+import {appStore} from "./store";
+import TodoPage from './components/todo-page/TodoPage';
 
 class App extends Component {
   render() {
@@ -42,12 +46,16 @@ class App extends Component {
             />
 
             {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
+            donetodo 2: добавить роут "/posts", который покажет компонент PostsList
           */}
+          <Route path='/posts' component={PostsList} exact/>
 
           {/*
-            todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
+            donetodo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
           */}
+          <Route path='/posts/:id' render={(routerProps) => {
+            return (<PostDetailsPage {...routerProps} />);
+          }}/>
 
             <Route path="/post-preview" render={(routerProps) => {
               debugger
