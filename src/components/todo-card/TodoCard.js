@@ -36,8 +36,8 @@ class TodoCard extends Component {
                     <span>{doneStatus ? 'done' : 'not done'}</span>
                 </div>
 
-                <button className='btn btn-outline-warning m-3'onClick={editTodo(todo)}>edit todo</button>
-                <button className='btn btn-outline-danger m-3' onClick={this.removeTodo(todo)}>remove todo</button>
+                <button className='btn btn-outline-warning m-3'onClick={editTodo(todo)}>edit todo_</button>
+                <button className='btn btn-outline-danger m-3' onClick={this.removeTodo(todo)}>remove todo_</button>
             </div>
         );
     }
