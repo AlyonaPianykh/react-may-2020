@@ -8,20 +8,22 @@ import {
 } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-
+import { appStore } from "./store";
 import HomePage from './components/home-page/HomePage';
 import { UsersListPage } from './components/users-list/UsersList';
 import { Header } from './components/header/HeaderFromLecture';
 import { Footer } from './components/footer/Footer';
 import { PostPreview } from './components/post-preview/PostPreview';
-
+import TodoPage from './components/todo-page/TodoPage';
+import PostsList from './components/posts-list/PostsList';
+import PostDetailsPage from './components/post-details-page/PostDetailsPage';
 import { postsList, usersList } from './constants';
 import { UserCard } from './components/user-card/UserCard';
 
 class App extends Component {
   render() {
     return (
-      <Provider store={appStore}>
+      <Provider store={appStore}> 
         <Router>
           <Header />
 
@@ -40,13 +42,13 @@ class App extends Component {
                      return (<UserPage {...routerProps} />);
                    }}
             />
-
+            <Route path="/posts" component={PostsList} exact />
             {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
-          */}
-
+            donetodo 2: добавить роут "/posts", который покажет компонент PostsList
+            */}
+            <Route path="/posts/:id" component={PostDetailsPage} exact />
           {/*
-            todo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
+            donetodo 3: добавить роут "/posts/:id", который покажет компонент PostDetailsPage
           */}
 
             <Route path="/post-preview" render={(routerProps) => {

@@ -85,6 +85,6 @@ export const createRootReducer = () => {
   return combineReducers({
     counter,
     todoReducer
-   // todo: обратите внимание, тут можно добавлять еще редьюсеры
+   // donetodo: обратите внимание, тут можно добавлять еще редьюсеры
   });
 }
