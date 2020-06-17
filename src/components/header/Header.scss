@@ -39,10 +39,68 @@
   img {
     width: 30px;
     height: 30px;
+    margin: 15px;
   }
 
   &-logo {
     width: 30px;
     height: 30px;
+  }
+
+  &-panel {
+
+    &.none {
+      animation: 0.5s ease-out 0s 1 slideInToLeft;
+      transform: translateX(-100%);
+    }
+
+    animation: 0.5s ease-out 0s 1 slideInFromLeft;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    z-index: 100;
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    img {
+      width: 75px;
+      height: 75px;
+      margin: 15px;
+    }
+
+    border: 1px solid midnightblue;
+
+    .close-btn {
+      img {
+        width: 20px;
+        height: 20px;
+      }
+
+      align-self: flex-end;
+    }
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInToLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }

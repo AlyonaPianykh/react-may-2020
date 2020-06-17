@@ -21,6 +21,7 @@ export class DetectViewPortWrapper extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.updateViewPort);
+    this.updateViewPort();
   }
 
   componentWillUnmount() {
