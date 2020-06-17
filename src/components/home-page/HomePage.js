@@ -184,7 +184,7 @@ const mapStateToProps = state => {
   return {
     count,
     property1,
-    a
+    a,
   };
 };
 // todo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них

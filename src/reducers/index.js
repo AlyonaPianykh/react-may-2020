@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO,TODO_IS_DONE} from '../action-types';
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO,TODO_IS_DONE,ADD_USER} from '../action-types';
+import { usersList } from '../constants/index';
+
 
 const defaultData =  {
   count: 0,
@@ -13,7 +15,7 @@ const defaultData =  {
 const todoDefaultStore = {
   todos: []
 };
-export function todoReducer(store = todoDefaultStore, action) {
+function todoReducer(store = todoDefaultStore, action) {
   switch (action.type) {
     case ADD_TODO: {
       const newTodo = action.payload;
@@ -69,7 +71,7 @@ export function todoReducer(store = todoDefaultStore, action) {
   }
 }
 
-export function counter(store = defaultData, action) {
+function counter(store = defaultData, action) {
   let res;
   switch (action.type) {
     case 'INCREMENT': {
@@ -91,7 +93,7 @@ export function counter(store = defaultData, action) {
     default: res = store; break;
   }
   return res;
-};
+}
 
 
 // todo 2: создать еще 1 редьюсер usersReducer
@@ -100,12 +102,28 @@ export function counter(store = defaultData, action) {
 //   т.е. перенести логику из компонент в стор
 //   найти все компоненты, которые используют константу usersList и подписать их на стор ( с помощью connect функции)
 //   чтобы они могли читать массив пользвателей из стора, а не из константы
+const usersDefaultStore = {
+    usersList
+};
+function usersReducer(store = usersDefaultStore,action) {
+    switch (action.type) {
+        case ADD_USER: {
+            const newUser = action.payload;
+            const {usersList} = store;
+            return {
+                usersList: [...usersList,newUser]
+            }
+        }
+        default: return store
+    }
+}
 
 export const createRootReducer = () => {
   return combineReducers({
     counter,
-    todoReducer
-    // todo 2: добавить тут usersReducer
+    todoReducer,
+    usersReducer
+    // ttodo 2: добавить тут usersReducer
 
    // ttodo: обратите внимание, тут можно добавлять еще редьюсеры
   });
