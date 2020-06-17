@@ -13,6 +13,10 @@ $breakpoint-tablet: 768px;
 .App {
   text-align: center;
   padding-bottom: 90px;
+
+  &.dark {
+    background-color: #282c34;
+  }
 }
 
 .App-logo {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import uniqueId from 'uniqid';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { DarkThemeContext } from '../../context/DarkThemeContext';
 
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
@@ -10,8 +11,9 @@ import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
 import AddUserForm from '../user-form/AddUserForm';
-import * as allAction  from '../../actions';
+import * as allAction from '../../actions';
 import { DECREMENT } from '../../action-types';
+import { ViewPortContext } from '../../context/ViewPortContext';
 
 import './HomePage.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -78,13 +80,12 @@ class HomePage extends Component {
 
   onUserAdd = (newUser) => {
 
-    // todo 2: тут будет использована action-функция добавления пользователя ( чтоб он попал в редаксовый стор) вместо изменения стейта
     this.setState({
       users: [{
         ...newUser,
         id: uniqueId()
       }, ...this.state.users]
-    })
+    });
   };
 
   addPost = (newPost) => {
@@ -114,65 +115,82 @@ class HomePage extends Component {
   };
 
   render() {
-    debugger
     const { count } = this.props;
     const { posts, selectedOption, users } = this.state;
 
     return (
-      <div className="App">
-        <div>Current count: {count}</div>
-        <button type="button" onClick={this.onInc} className="btn btn-primary m-2">Inc</button>
-        <button type="button" onClick={this.onDec} className="btn btn-primary m-2">Dec</button>
+      <ViewPortContext.Consumer>
+        {
+          (viewPort) => {
+            return (
+              <DarkThemeContext.Consumer>
+                {
+                  (data) => {
+                    return (
+                      <div className={`App ${data.isDarkTheme && 'dark'}`}>
+                        <div>{viewPort}</div>
+                        <div>Current count: {count}</div>
+                        <button type="button" onClick={this.onInc} className="btn btn-primary m-2">Inc</button>
+                        <button type="button" onClick={this.onDec} className="btn btn-primary m-2">Dec</button>
 
-        <PanelFromLecture label="Users">
-          <AddUserForm onUserAdd={this.onUserAdd}/>
+                        <PanelFromLecture label="Users">
+                          <AddUserForm onUserAdd={this.onUserAdd} />
+                        </PanelFromLecture>
 
-        {/*  todo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
-        </PanelFromLecture>
+                        <PanelFromLecture label="test">
+                          <PostPreview posts={posts} />
+                        </PanelFromLecture>
 
-        <PanelFromLecture label="test">
-          <PostPreview posts={posts} />
-        </PanelFromLecture>
+                        <PanelFromLecture label="Posts">
+                          <div className="d-flex">
+                            Sorting:
+                            <button className="btn btn-outline-primary m-2" onClick={this.onSortByAuthorClick}>By
+                              author</button>
+                            <button className="btn btn-outline-primary m-2" onClick={this.onSortByDefault}>By default
+                            </button>
 
-        <PanelFromLecture label="Posts">
-          <div className="d-flex">
-            Sorting:
-            <button className="btn btn-outline-primary m-2" onClick={this.onSortByAuthorClick}>By author</button>
-            <button className="btn btn-outline-primary m-2" onClick={this.onSortByDefault}>By default</button>
+                            <DropDown
+                              onSelect={this.onSort}
+                              selectedOption={selectedOption}
+                              options={sortingOptions}
+                            />
+                          </div>
+                          <div className="d-flex posts-container">
 
-            <DropDown
-              onSelect={this.onSort}
-              selectedOption={selectedOption}
-              options={sortingOptions}
-            />
-          </div>
-          <div className="d-flex posts-container">
+                            <AddPostForm onAddPost={this.addPost} users={users} />
 
-            <AddPostForm onAddPost={this.addPost} users={users} />
+                            {
+                              posts.map((item, index) => {
+                                const user = usersList.find(user => user.id === item.user_id);
+                                const author = user ? `${user.first_name} ${user.last_name}` : '';
+                                const comments = allComments.filter(comment => comment.post_id === item.id);
 
-            {
-              posts.map((item, index) => {
-                const user = usersList.find(user => user.id === item.user_id);
-                const author = user ? `${user.first_name} ${user.last_name}` : '';
-                const comments = allComments.filter(comment => comment.post_id === item.id);
+                                return <Card
+                                  post={item}
+                                  key={item.id}
+                                  author={author}
+                                  comments={comments}
+                                />;
+                              })
+                            }
+                          </div>
+                        </PanelFromLecture>
+                      </div>
+                    );
+                  }
+                }
+              </DarkThemeContext.Consumer>
+            );
+          }
+        }
 
-                return <Card
-                  post={item}
-                  key={item.id}
-                  author={author}
-                  comments={comments}
-                />;
-              })
-            }
-          </div>
-        </PanelFromLecture>
-      </div>
+      </ViewPortContext.Consumer>
     );
   }
 }
 
 const mapStateToProps = state => {
-  // todo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
+
   const { counter: { count, property1, a } } = state;
   return {
     count,
@@ -180,8 +198,6 @@ const mapStateToProps = state => {
     a
   };
 };
-// todo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
-// todo: обратите внимание, ниже mapDispatchToProps это функция
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     increment: () => dispatch(inc()),
@@ -192,14 +208,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators(
     {
-      ...allAction,
+      ...allAction
     },
-    dispatch,
-  ),
+    dispatch
+  )
 });
 
-
-// todo: обратите внимание, a тут это объект
 // const mapDispatchToProps = ({
 //   increment: inc,
 //   decrement: dec

@@ -15,11 +15,34 @@
     color: darkred;
   }
 
+  .btn {
+    &.dark {
+      background-color: cadetblue;
+    }
+  }
+
   &-links-wrapper {
     display: flex;
 
     &-link {
       margin: 0 10px;
     }
+  }
+}
+
+.may-header-mobile {
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px solid gray;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
+  &-logo {
+    width: 30px;
+    height: 30px;
   }
 }

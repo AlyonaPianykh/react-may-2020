@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-
+import { DarkThemeContext } from '../../context/DarkThemeContext';
 import './DropDown.scss';
 
+
 export class DropDown extends Component {
+  dropDownRef = React.createRef();
   state = {
     isOpen: false
   };
 
-  dropDownRef = React.createRef();
+  static contextType = DarkThemeContext;
 
   componentDidMount() {
     document.addEventListener('click', this.onClose);
@@ -44,11 +46,12 @@ export class DropDown extends Component {
   render() {
     const { selectedOption, options } = this.props;
     const { isOpen } = this.state;
+    debugger
+    const darkThemeContextValue = this.context;
 
     return (
-      <div className="may-drop-down dropdown" ref={this.dropDownRef}>
+      <div className={`may-drop-down dropdown ${darkThemeContextValue.isDarkTheme && 'dark'}`} ref={this.dropDownRef}>
         <div className="dropdown-toggle" onClick={this.toggle}>{selectedOption || 'Select'}</div>
-
         {
           isOpen && <div className="may-drop-down-options-wrapper dropdown-menu show">
             {
@@ -67,3 +70,5 @@ export class DropDown extends Component {
     );
   }
 }
+
+// Dropdown.contextType = DarkThemeContext;

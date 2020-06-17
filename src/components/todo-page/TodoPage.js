@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import uniqId from 'uniqid';
 import { DropDown } from '../dropdown/DropDown';
 import { accessToken } from '../../constants';
-
-// todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
-//         подумайте какие еще шаги нужно выполнить, чтоб все заработало
 import { addTodo, removeTodo, updateTodo } from '../../actions';
 
 class TodoPage extends Component {
@@ -159,9 +156,6 @@ class TodoPage extends Component {
                   <div>{title}</div>
                   <div>{body}</div>
                   <div>{user}</div>
-                  {/*// todo 1: вместо div со статусом  показывать чекбокс
-                         при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
-                  */}
                   <div>is done? {doneStatus ? 'yes' : 'no'}</div>
                   <button onClick={this.removeTodo(todo)}>remove todo</button>
                   <button onClick={this.editTodo(todo)}>edit todo</button>
