@@ -45,7 +45,7 @@ class PostCard extends PureComponent {
       let json = await response.json();
 
       const { result } = json;
-      debugger
+      // debugger
 
       if (Array.isArray(result)) { // во время выполнения запроса м.б. вариант когда result не массив
         this.setState({
@@ -94,7 +94,7 @@ class PostCard extends PureComponent {
     return (
       <div className={`may-post-card card ${className}`}>
         <div className="may-post-card-img" id="my-block">
-          <img src={hasImage ? kittyUrl : DefaultImg} />
+          <img src={hasImage ? kittyUrl : DefaultImg} alt='post-card' />
         </div>
         <div className="card-body">
           <h4 className="card-title title">{title}</h4>

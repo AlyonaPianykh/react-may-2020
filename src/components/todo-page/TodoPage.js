@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uniqId from 'uniqid';
 import { DropDown } from '../dropdown/DropDown';
+import TodoCard from '../todo-card/TodoCard';
 import { accessToken } from '../../constants';
 
-// todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
+// ttodo 1: импортнуть в этом файле функцию на toggle статуса тудушки
 //         подумайте какие еще шаги нужно выполнить, чтоб все заработало
 import { addTodo, removeTodo, updateTodo } from '../../actions';
 
@@ -23,21 +24,25 @@ class TodoPage extends Component {
   }
 
   loadUsers = async () => {
-    let response = await fetch(`https://gorest.co.in/public-api/users?access-token=${accessToken}`);
+    // let response = await fetch(`https://gorest.co.in/public-api/users?access-token=${accessToken}`);
+    //Отримав помилку: No 'Access-Control-Allow-Origin' header is present on the requested resource. ,
+      //не зміг розібратись, змінив ресурс...
+
+    let response = await fetch(`https://jsonplaceholder.typicode.com/users`);
 
     if (response.ok) {
       let json = await response.json();
 
-      const { result } = json;
-
-      if (Array.isArray(result)) {
-        const usersNames = result.map(user => `${user.first_name} ${user.last_name}`);
+      // const { result } = json;
+      // if (Array.isArray(result)) {
+      if (Array.isArray(json)) {
+        // const usersNames = result.map(user => `${user.first_name} ${user.last_name}`);
+        const usersNames = json.map(user => user.name);
 
         this.setState({
           users: usersNames
         });
-      }
-    }
+      }}
   };
 
   onBodyChange = (event) => {
@@ -92,15 +97,6 @@ class TodoPage extends Component {
       doneStatus: false,
       id: ''
     });
-  }
-
-  removeTodo = (todo) => {
-    const { removeTodo } = this.props;
-
-    return () => {
-      debugger
-      removeTodo && removeTodo(todo);
-    };
   };
 
   editTodo = (todo) => {
@@ -132,7 +128,7 @@ class TodoPage extends Component {
 
     return (
       <div>
-        Add todo form
+        Add todo_ form
         <div className="d-flex flex-column m-2">
           <input className="m-2" value={title} onChange={this.onTitleChange} />
           <textarea className="m-2" value={body} onChange={this.onBodyChange} />
@@ -144,28 +140,16 @@ class TodoPage extends Component {
             <span className="m-1">done?</span>
           </div>
           <div className="d-flex">
-            {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add todo</button> }
-            {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo</button>}
+            {!isEditMode && <button className="btn btn-success m-2" onClick={this.addTodo}>Add todo_</button> }
+            {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo_</button>}
           </div>
         </div>
 
         <div className="m-2 d-flex">
 
-          {
-            todos.map(todo => {
-              const { user, title, body, doneStatus, id } = todo;
+          {todos.map(todo => {
               return (
-                <div key={id} className="card m-2">
-                  <div>{title}</div>
-                  <div>{body}</div>
-                  <div>{user}</div>
-                  {/*// todo 1: вместо div со статусом  показывать чекбокс
-                         при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
-                  */}
-                  <div>is done? {doneStatus ? 'yes' : 'no'}</div>
-                  <button onClick={this.removeTodo(todo)}>remove todo</button>
-                  <button onClick={this.editTodo(todo)}>edit todo</button>
-                </div>
+                  <TodoCard key={todo.id} todo={todo} editTodo={this.editTodo}/>
               );
             })
           }
@@ -184,8 +168,8 @@ const mapStateToProps = (store) => {
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     addTodo: (todo) => dispatch(addTodo(todo)),
-//     removeTodo: (todo) => dispatch(removeTodo(todo))
+//     addTodo: (todo_) => dispatch(addTodo(todo_)),
+//     removeTodo: (todo_) => dispatch(removeTodo(todo_))
 //   };
 // };
 
