@@ -3,43 +3,57 @@ import React, { Component } from 'react';
 import PostCard from '../post-card/PostCard';
 import { PostsMenuList } from './PostsMenuList';
 import './PostPreview.scss';
+import { getPosts } from '../../actions/postsAction';
+import { connect } from 'react-redux';
 
 const CN = 'may-post-preview';
 
-export class PostPreview extends Component {
+class PostPreviewComponent extends Component {
   constructor(props) {
     super(props);
 
+    debugger
     const { posts } = props;
     this.state = {
-      selectedPost: posts ? posts[2].id : null
+      selectedPost: posts.length ? posts[2].id : null
     };
 
-    console.log('PostPreview constructor')
+    console.log('PostPreview constructor');
   }
 
   componentDidMount() {
-    console.log('PostPreview componentDidMount');
+    const {posts, getPosts} = this.props;
+
+    debugger
+    if (!posts.length) {
+      getPosts && getPosts();
+    }
     // document.addEventListener('click', this.showMessage)
   }
+
+  componentDidUpdate (prevProps, prevState) {
+    debugger
+    if ((prevProps.posts.length !== this.props.posts.length) && this.props.posts.length) {
+      this.setState({
+        selectedPost:  this.props.posts[1].id
+      });
+    }
+  }
+
 
   componentWillUnmount() {
     console.log('PostPreview componentWillUnmount');
     // document.removeEventListener('click', this.showMessage)
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-     console.log('PostPreview componentDidUpdate', this.state.selectedPost, prevState.selectedPost)
-  }
-
   showMessage = () => {
-    alert('hello')
+    alert('hello');
   };
 
   onPostSelect = (postId) => {
     this.setState({
       selectedPost: postId
-    })
+    });
   };
 
   render() {
@@ -47,11 +61,13 @@ export class PostPreview extends Component {
     const { posts } = this.props;
 
     const post = posts.find(item => item.id === selectedPost);
-    console.log('PostPreview render');
+
+    if (!post) return (<div>No posts yet</div>);
+
     return (
       <div className={CN}>
         <div className={`${CN}-list`}>
-          <PostsMenuList posts={posts} onSelect={this.onPostSelect}/>
+          <PostsMenuList posts={posts} onSelect={this.onPostSelect} />
         </div>
         <div className={`${CN}-content`}>
           <PostCard post={post} className={`${CN}-card`} withCommentsLoading />
@@ -60,3 +76,15 @@ export class PostPreview extends Component {
     );
   }
 }
+
+const mapStateToProps = (store) => {
+  const { postsReducer } = store;
+  return {
+    posts: postsReducer.posts
+  };
+};
+const mapDispatchToProps = ({
+  getPosts
+});
+
+export const PostPreview = connect(mapStateToProps, mapDispatchToProps)(PostPreviewComponent);

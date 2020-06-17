@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uniqueId from 'uniqid';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
@@ -9,7 +10,7 @@ import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
 import AddUserForm from '../user-form/AddUserForm';
-import { inc, dec } from '../../actions';
+import * as allAction  from '../../actions';
 import { DECREMENT } from '../../action-types';
 
 import './HomePage.scss';
@@ -181,12 +182,23 @@ const mapStateToProps = state => {
 };
 // todo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
 // todo: обратите внимание, ниже mapDispatchToProps это функция
-const mapDispatchToProps = dispatch => {
-  return {
-    increment: () => dispatch(inc()),
-    decrement: () => dispatch({ type: DECREMENT, payload: 2 })
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     increment: () => dispatch(inc()),
+//     decrement: () => dispatch({ type: DECREMENT, payload: 2 })
+//   };
+// };
+
+const mapDispatchToProps = (dispatch) => ({
+  ...bindActionCreators(
+    {
+      ...allAction,
+    },
+    dispatch,
+  ),
+});
+
+
 // todo: обратите внимание, a тут это объект
 // const mapDispatchToProps = ({
 //   increment: inc,

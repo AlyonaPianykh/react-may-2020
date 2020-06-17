@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
+import { postsReducer } from './postsReducer';
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../action-types';
 
-const defaultData =  {
+const defaultData = {
   count: 0,
   property1: 'test',
   a: {
@@ -13,23 +14,24 @@ const defaultData =  {
 const todoDefaultStore = {
   todos: []
 };
+
 export function todoReducer(store = todoDefaultStore, action) {
   switch (action.type) {
     case ADD_TODO: {
       const newTodo = action.payload;
-      const {todos} = store;
+      const { todos } = store;
 
       return {
         todos: [...todos, newTodo]
       };
     }
     case REMOVE_TODO: {
-      const {id} = action.payload;
-      const {todos} = store;
+      const { id } = action.payload;
+      const { todos } = store;
 
       const index = todos.findIndex(item => item.id === id);
       const copyOfArray = [...todos];
-      copyOfArray.splice(index, 1)
+      copyOfArray.splice(index, 1);
       if (index > -1) {
         return {
           todos: copyOfArray
@@ -39,7 +41,7 @@ export function todoReducer(store = todoDefaultStore, action) {
     }
     case UPDATE_TODO: {
       const { id } = action.payload;
-      const {todos} = store;
+      const { todos } = store;
       const copyOfArray = [...todos];
       const index = todos.findIndex(item => item.id === id);
 
@@ -53,7 +55,8 @@ export function todoReducer(store = todoDefaultStore, action) {
       return store;
     }
     // todo 1: добавить обработку toggle статуса тудушки
-    default: return store;
+    default:
+      return store;
   }
 }
 
@@ -69,32 +72,24 @@ export function counter(store = defaultData, action) {
       break;
     }
     case 'DECREMENT': {
-      const { count} = store;
+      const { count } = store;
       res = {
         ...store,
         count: count - action.payload
       };
       break;
     }
-    default: res = store; break;
+    default:
+      res = store;
+      break;
   }
   return res;
 };
 
-
-// todo 2: создать еще 1 редьюсер usersReducer
-//   как начальное значение задать объект в котором будет пропертя users со значением usersList (из констант)
-//   реализовать добавление пользователя с помощью редакса
-//   т.е. перенести логику из компонент в стор
-//   найти все компоненты, которые используют константу usersList и подписать их на стор ( с помощью connect функции)
-//   чтобы они могли читать массив пользвателей из стора, а не из константы
-
 export const createRootReducer = () => {
   return combineReducers({
     counter,
-    todoReducer
-    // todo 2: добавить тут usersReducer
-
-   // todo: обратите внимание, тут можно добавлять еще редьюсеры
+    todoReducer,
+    postsReducer
   });
 };

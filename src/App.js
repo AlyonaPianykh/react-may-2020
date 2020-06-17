@@ -58,7 +58,7 @@ class App extends Component {
             <Route path="/post-preview" render={(routerProps) => {
               debugger
               return (
-                <PostPreview posts={postsList} {...routerProps} />
+                <PostPreview {...routerProps} />
               );
             }} />
 
