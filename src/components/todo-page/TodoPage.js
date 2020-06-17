@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uniqId from 'uniqid';
 import { DropDown } from '../dropdown/DropDown';
+import TodoCard from '../todo-card/TodoCard';
 import { accessToken } from '../../constants';
 
-// todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
+// ttodo 1: импортнуть в этом файле функцию на toggle статуса тудушки
 //         подумайте какие еще шаги нужно выполнить, чтоб все заработало
-import { addTodo, removeTodo, updateTodo, toggleStatusToDo } from '../../actions';
+import { addTodo, removeTodo, updateTodo } from '../../actions';
 
 class TodoPage extends Component {
   state = {
@@ -98,15 +99,6 @@ class TodoPage extends Component {
     });
   };
 
-  removeTodo = (todo) => {
-    const { removeTodo } = this.props;
-
-    return () => {
-      // debugger
-      removeTodo && removeTodo(todo);
-    };
-  };
-
   editTodo = (todo) => {
     return () => {
       this.setState({
@@ -155,21 +147,9 @@ class TodoPage extends Component {
 
         <div className="m-2 d-flex">
 
-          {
-            todos.map(todo => {
-              const { user, title, body, doneStatus, id } = todo;
+          {todos.map(todo => {
               return (
-                <div key={id} className="card m-2">
-                  <div>{title}</div>
-                  <div>{body}</div>
-                  <div>{user}</div>
-                  {/*// todo 1: вместо div со статусом  показывать чекбокс
-                         при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
-                  */}
-                  <div>is done? {doneStatus ? 'yes' : 'no'}</div>
-                  <button className='btn btn-outline-warning m-3'onClick={this.editTodo(todo)}>edit todo</button>
-                  <button className='btn btn-outline-danger m-3' onClick={this.removeTodo(todo)}>remove todo</button>
-                </div>
+                  <TodoCard key={todo.id} todo={todo} editTodo={this.editTodo}/>
               );
             })
           }

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO,TODO_IS_DONE} from '../action-types';
 
 const defaultData =  {
   count: 0,
@@ -29,7 +29,7 @@ export function todoReducer(store = todoDefaultStore, action) {
 
       const index = todos.findIndex(item => item.id === id);
       const copyOfArray = [...todos];
-      copyOfArray.splice(index, 1)
+      copyOfArray.splice(index, 1);
       if (index > -1) {
         return {
           todos: copyOfArray
@@ -52,7 +52,19 @@ export function todoReducer(store = todoDefaultStore, action) {
       }
       return store;
     }
-    // todo 1: добавить обработку toggle статуса тудушки
+    // ttodo 1: добавить обработку toggle статуса тудушки
+      case TODO_IS_DONE: {
+          const { id, doneStatus } = action.payload;
+          const {todos} = store;
+          const copyOfArray = [...todos];
+          const todo = copyOfArray.find(item => item.id === id);
+          if (todo) {
+              todo.doneStatus = !doneStatus;
+
+              return {
+                  todos: copyOfArray
+              };
+          }}
     default: return store;
   }
 }
@@ -95,6 +107,6 @@ export const createRootReducer = () => {
     todoReducer
     // todo 2: добавить тут usersReducer
 
-   // todo: обратите внимание, тут можно добавлять еще редьюсеры
+   // ttodo: обратите внимание, тут можно добавлять еще редьюсеры
   });
 };
