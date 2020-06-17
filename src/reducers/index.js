@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
+import {ADD_TODO, REMOVE_TODO, TOGGLE_TODO, UPDATE_TODO} from '../action-types';
 
 const defaultData =  {
   count: 0,
@@ -52,7 +52,22 @@ export function todoReducer(store = todoDefaultStore, action) {
       }
       return store;
     }
-    // todo 1: добавить обработку toggle статуса тудушки
+    // dtodo 1: добавить обработку toggle статуса тудушки
+    case TOGGLE_TODO: {
+      const  id  = action.payload;
+      const {todos} = store;
+      const copyOfArray = [...todos];
+      const index = todos.findIndex(item => item.id === id);
+
+      if (index > -1) {
+        copyOfArray[index].doneStatus = !copyOfArray[index].doneStatus
+
+        return {
+          todos: copyOfArray
+        };
+      }
+      return store;
+    }
     default: return store;
   }
 }
