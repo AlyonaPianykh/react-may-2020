@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import './UserCard.scss';
 
 function UserCardComponent(props) {
-  const { user, location, match: {url} } = props;
+  const { user, location, match: {url}, isShownDetails } = props;
 
   if (!user) return null;
 
@@ -19,9 +19,10 @@ function UserCardComponent(props) {
           <div>{email}</div>
           <div>{address}</div>
         </div>
+
+          {isShownDetails && <Link to={`${url}/${user.id}`}>Show details</Link>}
       </div>
 
-      <Link to={`${url}/${user.id}`}>Show details</Link>
     </div>
   );
 }

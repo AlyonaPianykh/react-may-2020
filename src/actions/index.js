@@ -50,7 +50,7 @@ export  const toggleStatusToDo = (todo) => {
     }
 };
 //
-// todo 2: добавить функцию на добавление пользователя
+// ttodo 2: добавить функцию на добавление пользователя
 //  использовать ее в форме по созданию пользователя
 export const addUser = (newUser) => {
     return {
