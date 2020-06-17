@@ -9,6 +9,7 @@ import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
 import AddUserForm from '../user-form/AddUserForm';
+import {UserCard} from '../user-card/UserCard';
 import { inc, dec } from '../../actions';
 import { DECREMENT } from '../../action-types';
 
@@ -113,7 +114,7 @@ class HomePage extends Component {
   };
 
   render() {
-    debugger
+    // debugger
     const { count } = this.props;
     const { posts, selectedOption, users } = this.state;
 
@@ -124,9 +125,16 @@ class HomePage extends Component {
         <button type="button" onClick={this.onDec} className="btn btn-primary m-2">Dec</button>
 
         <PanelFromLecture label="Users">
-          <AddUserForm onUserAdd={this.onUserAdd}/>
+            <AddUserForm onUserAdd={this.onUserAdd}/>
 
-        {/*  todo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
+            {/*  todo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
+            <div className='d-flex flex-wrap'>
+                {users.map((user) => {
+                    return (
+                        <UserCard key={user.id} user={user}/>
+                    )
+                })}
+            </div>
         </PanelFromLecture>
 
         <PanelFromLecture label="test">

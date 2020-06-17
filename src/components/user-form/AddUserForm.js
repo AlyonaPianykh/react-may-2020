@@ -16,8 +16,8 @@ class AddUserForm extends Component {
     e.preventDefault();
     const { onUserAdd } = this.props;
 
-    console.log(this.firstNameRef.current.value);
-    console.log(this.lastNameRef.current.value);
+    // console.log(this.firstNameRef.current.value);
+    // console.log(this.lastNameRef.current.value);
 
     const firstName = this.firstNameRef.current.value;
     const lastName = this.lastNameRef.current.value;
@@ -33,7 +33,7 @@ class AddUserForm extends Component {
       return;
     }
 
-    console.log(firstName, lastName, email);
+    // console.log(firstName, lastName, email);
     onUserAdd && onUserAdd({
       first_name: firstName,
       last_name: lastName,
@@ -52,7 +52,7 @@ class AddUserForm extends Component {
   };
 
   focusInput = () => {
-    console.log('focused');
+    // console.log('focused');
     this.lastNameRef.current.focus()
   };
 
@@ -104,8 +104,8 @@ class AddUserForm extends Component {
           />
         </div>
 
-        <button type="button" className="btn btn-secondary m-2">reset</button>
-        <button type='submit'>Click me</button>
+        <button type="button" className="btn btn-secondary m-2" onClick={this.onReset}>reset</button>
+        <button type='submit' className='btn btn-success'onClick={this.onSubmit}>Add User</button>
         <button type='button' className="btn btn-primary m-2" onClick={this.focusInput}>focus</button>
       </form>
     );
