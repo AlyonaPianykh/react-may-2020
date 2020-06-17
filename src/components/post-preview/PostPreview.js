@@ -47,7 +47,7 @@ export class PostPreview extends Component {
     const { posts } = this.props;
 
     const post = posts.find(item => item.id === selectedPost);
-    console.log('PostPreview render')
+    console.log('PostPreview render');
     return (
       <div className={CN}>
         <div className={`${CN}-list`}>

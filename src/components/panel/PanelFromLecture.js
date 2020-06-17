@@ -41,8 +41,6 @@ export class PanelFromLecture extends React.Component {
 
     return (
       <div className="may-panel card">
-
-        {/*<input value={this.state.inputVal} onChange={this.onChange}/>*/}
         <div className="may-panel-header card-header">
           <div>{label}</div>
           <div className={`may-panel-header-chevron ${isOpen ? 'up' : ''}`} onClick={this.onClick}>
