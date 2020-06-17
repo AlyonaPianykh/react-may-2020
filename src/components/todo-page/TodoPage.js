@@ -140,7 +140,7 @@ class TodoPage extends Component {
 
     return (
       <div>
-        Add todo form
+        Add dtodo form
         <div className="d-flex flex-column m-2">
           <input className="m-2" value={title} onChange={this.onTitleChange} />
           <textarea className="m-2" value={body} onChange={this.onBodyChange} />
@@ -152,8 +152,8 @@ class TodoPage extends Component {
             <span className="m-1">done?</span>
           </div>
           <div className="d-flex">
-            {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add todo</button> }
-            {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo</button>}
+            {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add dtodo</button> }
+            {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update dtodo</button>}
           </div>
         </div>
 
@@ -179,8 +179,8 @@ const mapStateToProps = (store) => {
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     addTodo: (todo) => dispatch(addTodo(todo)),
-//     removeTodo: (todo) => dispatch(removeTodo(todo))
+//     addTodo: (dtodo) => dispatch(addTodo(dtodo)),
+//     removeTodo: (dtodo) => dispatch(removeTodo(dtodo))
 //   };
 // };
 

@@ -13,8 +13,8 @@ export function TodoUserCard(props) {
                          при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
                   */}
             <div>is done? <input type={'checkbox'} checked={doneStatus} onChange={toggleTodo}/></div>
-            <button onClick={removeTodo}>remove todo</button>
-            <button onClick={editTodo}>edit todo</button>
+            <button onClick={removeTodo}>remove dtodo</button>
+            <button onClick={editTodo}>edit dtodo</button>
         </div>
     );
 }

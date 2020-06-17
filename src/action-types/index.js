@@ -6,7 +6,6 @@ export const REMOVE_TODO = 'REMOVE_TODO';
 export const UPDATE_TODO = 'UPDATE_TODO';
 // dtodo 1: добавить тип на toggle статуса тудушки
 export const TOGGLE_TODO = 'TOGGLE_TODO';
-
-
-// todo 2: добавить тип на добавление пользователя
+// dtodo 2: добавить тип на добавление пользователя
+export const USER_ADD_TODO = 'USER_ADD_TODO';
 

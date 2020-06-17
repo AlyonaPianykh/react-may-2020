@@ -7,7 +7,7 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import { Provider } from 'react-redux';
+import {connect, Provider} from 'react-redux';
 
 import HomePage from './components/home-page/HomePage';
 import { UsersListPage } from './components/users-list/UsersList';
@@ -46,7 +46,7 @@ class App extends Component {
             />
 
             {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
+            dtodo 2: добавить роут "/posts", который покажет компонент PostsList
           */}
             <Route path="/posts" component={PostsList} exact />
             <Route path="/posts/:id"
@@ -77,7 +77,6 @@ class App extends Component {
   }
 }
 
-export default App;
 const UserPage = (props) => {
   const { match: { url, path, params: { userId } }, history } = props;
 
@@ -105,3 +104,6 @@ const UserPage = (props) => {
 const NotFoundPage = () => {
   return <div>Page not found</div>;
 };
+
+
+export default App;

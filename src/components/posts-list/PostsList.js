@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
-import { accessToken, usersList } from '../../constants';
+import { accessToken } from '../../constants';
 import PostCard from '../post-card/PostCard';
+import {connect} from "react-redux";
+import {withRouter} from "react-router";
 
 class PostsList extends Component {
-  state = {
-    posts: [],
-    isLoading: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+      isLoading: false,
+      users: props.usersList
+
+    };
+  }
+
 
   componentDidMount() {
     this.loadPosts();
@@ -41,6 +49,7 @@ class PostsList extends Component {
 
   render() {
     const { posts, isLoading } = this.state;
+    const { usersList } = this.props;
 
     return (
       <div>
@@ -65,4 +74,13 @@ class PostsList extends Component {
   }
 }
 
-export default PostsList;
+
+const mapStateToProps = state => {
+  const {  usersReducer:{usersList} } = state;
+  return {
+    usersList
+  };
+};
+
+
+export default connect(mapStateToProps)(PostsList);

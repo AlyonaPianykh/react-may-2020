@@ -4,7 +4,8 @@ import {
     ADD_TODO,
     REMOVE_TODO,
     UPDATE_TODO,
-    TOGGLE_TODO
+    TOGGLE_TODO,
+    USER_ADD_TODO
 } from '../action-types';
 
 export const inc = () => {
@@ -50,5 +51,11 @@ export const toggleTodo = (id) => {
         payload: id
     }
 };
-// todo 2: добавить функцию на добавление пользователя
+// dtodo 2: добавить функцию на добавление пользователя
 //  использовать ее в форме по созданию пользователя
+export const userAddTodo = (newUser) => {
+    return {
+        type: USER_ADD_TODO,
+        payload: newUser
+    }
+};
