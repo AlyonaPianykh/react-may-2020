@@ -22,11 +22,14 @@ import PostsList from './components/posts-list/PostsList';
 import PostDetailsPage from './components/post-details-page/PostDetailsPage';
 import TodoPage from './components/todo-page/TodoPage';
 import { appStore } from './store';
+import {CurrentUserContext} from "./context/CurrentUserContext";
+import {user} from "./constants";
 
 class App extends Component {
   render() {
     return (
 // todo: обвернуть в CurrentUserContext наше приложение, как value положить переменную user из констант
+        <CurrentUserContext.Provider value={user}>
       <DarkThemeContextWrapper>
         <DetectViewPortWrapper>
           <Provider store={appStore}>
@@ -76,6 +79,7 @@ class App extends Component {
           </Provider>
         </DetectViewPortWrapper>
       </DarkThemeContextWrapper>
+          </CurrentUserContext.Provider>
     );
   }
 }
