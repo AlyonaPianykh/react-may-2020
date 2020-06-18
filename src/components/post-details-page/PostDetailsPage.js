@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+import {accessToken} from "../../constants";
+import {PostCard} from "../post-card/PostCard";
 
 class PostDetailsPage extends Component {
 
@@ -6,17 +9,19 @@ class PostDetailsPage extends Component {
     super(props);
 
     this.state = {
-      post: null
-      // todo 3: добавить isLoading флажок - индикатор загрузки
+      post: null,
+      // donetodo 3: добавить isLoading флажок - индикатор загрузки
+      isLoading:false
     };
   }
 
   componentDidMount() {
-    // todo 3: вызвать загрузку инфрмации про пост loadPost
+    // donetodo 3: вызвать загрузку инфрмации про пост loadPost
+    this.loadPost();
   }
 
   loadPost = async () => {
-    // todo 3:
+    // donetodo 3:
     //  достать id поста из props посредством пропсов, которые дает нам роутер
     //  проверьте лежит ли ваш accessToken в constants/index.js
     //  прежде чем отправить запрос - включите в true флажок загрузки в стейте isLoading
@@ -25,11 +30,28 @@ class PostDetailsPage extends Component {
     //  результат выполнения запроса нужно положить в стейт в post
     //  когда запрос выполнится - не забудьте поменять индикатор загрузки isLoading на false
     //  обратите внимание, что результат выполнения запроса - ОБЪЕКТ, а не массив
+    const {id} = this.props;
+
+    this.setState({
+      isLoading:true
+    });
+
+    let response = await fetch(`https://gorest.co.in/public-api/posts/${id}/access-token=${accessToken}`);
+
+      let json = await response.json();
+      const { result } = json;
+
+        this.setState({
+          isLoading: false,
+          post: result
+        });
+
   };
 
   render() {
 
-    //todo 3: достать пост из стейта
+    //donetodo 3: достать пост из стейта
+      const {post,isLoading} = this.state;
     return (
       <div>
         <div>Post Details Page</div>
@@ -37,10 +59,12 @@ class PostDetailsPage extends Component {
           // todo 3: если идет загрузка - показываем лоадинг индикатор
           //    если нет и пост существует - показываем карточку поста PostCard, в которую как пропсу post передаем наш post из state
         }
+        {isLoading && (<div>Is Loading</div>)}
+        {!isLoading && (<PostCard post = {post}/>)}
       </div>
     );
   }
 }
 
 // // todo 3: обратите внимание - если в App.js вы не передали routerProps в компоненту - то здесь нужно использовать withRouter
-export default PostDetailsPage;
+export default withRouter(PostDetailsPage);
