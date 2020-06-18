@@ -128,43 +128,43 @@ class TodoPage extends Component {
     const { users, user, title, body, doneStatus, isEditMode } = this.state;
 
     return (
-      <div>
-        Add todo form
-        <div className="d-flex flex-column m-2">
-          <input className="m-2" value={title} onChange={this.onTitleChange} />
-          <textarea className="m-2" value={body} onChange={this.onBodyChange} />
+        <div>
+          Add todo form
+          <div className="d-flex flex-column m-2">
+            <input className="m-2" value={title} onChange={this.onTitleChange} />
+            <textarea className="m-2" value={body} onChange={this.onBodyChange} />
 
-          <DropDown className="m-2" options={users} selectedOption={user} onSelect={this.onUserSelect} />
+            <DropDown className="m-2" options={users} selectedOption={user} onSelect={this.onUserSelect} />
 
-          <div>
-            <input type="checkbox" onChange={this.onStatusChange} checked={doneStatus} />
-            <span className="m-1">done?</span>
+            <div>
+              <input type="checkbox" onChange={this.onStatusChange} checked={doneStatus} />
+              <span className="m-1">done?</span>
+            </div>
+            <div className="d-flex">
+              {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add todo</button> }
+              {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo</button>}
+            </div>
           </div>
-          <div className="d-flex">
-            {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add todo</button> }
-            {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo</button>}
+
+          <div className="m-2 d-flex">
+
+            {
+              todos.map(todo => {
+                const { user, title, body, doneStatus, id } = todo;
+                return (
+                    <div key={id} className="card m-2">
+                      <div>{title}</div>
+                      <div>{body}</div>
+                      <div>{user}</div>
+                      <div>is done? {doneStatus ? 'yes' : 'no'}</div>
+                      <button onClick={this.removeTodo(todo)}>remove todo</button>
+                      <button onClick={this.editTodo(todo)}>edit todo</button>
+                    </div>
+                );
+              })
+            }
           </div>
         </div>
-
-        <div className="m-2 d-flex">
-
-          {
-            todos.map(todo => {
-              const { user, title, body, doneStatus, id } = todo;
-              return (
-                <div key={id} className="card m-2">
-                  <div>{title}</div>
-                  <div>{body}</div>
-                  <div>{user}</div>
-                  <div>is done? {doneStatus ? 'yes' : 'no'}</div>
-                  <button onClick={this.removeTodo(todo)}>remove todo</button>
-                  <button onClick={this.editTodo(todo)}>edit todo</button>
-                </div>
-              );
-            })
-          }
-        </div>
-      </div>
     );
   }
 }
