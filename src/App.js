@@ -16,19 +16,21 @@ import { PostPreview } from './components/post-preview/PostPreview';
 
 import { DarkThemeContextWrapper } from './components/dark-theme-context-wrapper/DarkThemeContextWrapper';
 import { DetectViewPortWrapper } from './components/detect-view-port-wrapper/DetectViewPortWrapper';
-import { postsList, usersList } from './constants';
+import { postsList, usersList, user } from './constants';
 import { UserCard } from './components/user-card/UserCard';
 import PostsList from './components/posts-list/PostsList';
 import PostDetailsPage from './components/post-details-page/PostDetailsPage';
 import TodoPage from './components/todo-page/TodoPage';
 import { appStore } from './store';
+import {CurrentUserContext} from "./context/CurrentUserContext";
 
 class App extends Component {
   render() {
     return (
-// todo: обвернуть в CurrentUserContext наше приложение, как value положить переменную user из констант
+// d_todo: обвернуть в CurrentUserContext наше приложение, как value положить переменную user из констант
       <DarkThemeContextWrapper>
         <DetectViewPortWrapper>
+        <CurrentUserContext.Provider value={user}>
           <Provider store={appStore}>
             <Router>
               <Header />
@@ -74,6 +76,7 @@ class App extends Component {
               <Footer />
             </Router>
           </Provider>
+          </CurrentUserContext.Provider>
         </DetectViewPortWrapper>
       </DarkThemeContextWrapper>
     );
