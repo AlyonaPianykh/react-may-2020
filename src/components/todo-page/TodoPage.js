@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import uniqId from 'uniqid';
 import { DropDown } from '../dropdown/DropDown';
 import { accessToken } from '../../constants';
+import TodoCard from "../../todo-card/TodoCard";
 
-// todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
-//         подумайте какие еще шаги нужно выполнить, чтоб все заработало
-import { addTodo, removeTodo, updateTodo } from '../../actions';
+import { addTodo, removeTodo, updateTodo, toggleTodo } from '../../actions';
 
 class TodoPage extends Component {
   state = {
@@ -103,6 +102,7 @@ class TodoPage extends Component {
     };
   };
 
+
   editTodo = (todo) => {
     return () => {
       this.setState({
@@ -126,13 +126,21 @@ class TodoPage extends Component {
     this.resetForm();
   };
 
+  toggleTodo = (id) => {
+    const { toggleTodo } = this.props;
+
+    return () => {
+      toggleTodo && toggleTodo(id);
+    };
+  };
+
   render() {
     const { todos } = this.props;
     const { users, user, title, body, doneStatus, isEditMode } = this.state;
 
     return (
       <div>
-        Add todo form
+        Add _todo form
         <div className="d-flex flex-column m-2">
           <input className="m-2" value={title} onChange={this.onTitleChange} />
           <textarea className="m-2" value={body} onChange={this.onBodyChange} />
@@ -144,29 +152,19 @@ class TodoPage extends Component {
             <span className="m-1">done?</span>
           </div>
           <div className="d-flex">
-            {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add todo</button> }
-            {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update todo</button>}
+            {!isEditMode && <button className="btn btn-primary m-2" onClick={this.addTodo}>Add _todo</button> }
+            {isEditMode && <button className="btn btn-primary m-2" onClick={this.updateTodo}>Update _todo</button>}
           </div>
         </div>
 
         <div className="m-2 d-flex">
-
           {
             todos.map(todo => {
-              const { user, title, body, doneStatus, id } = todo;
               return (
-                <div key={id} className="card m-2">
-                  <div>{title}</div>
-                  <div>{body}</div>
-                  <div>{user}</div>
-                  {/*// todo 1: вместо div со статусом  показывать чекбокс
-                         при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
-                  */}
-                  <div>is done? {doneStatus ? 'yes' : 'no'}</div>
-                  <button onClick={this.removeTodo(todo)}>remove todo</button>
-                  <button onClick={this.editTodo(todo)}>edit todo</button>
-                </div>
-              );
+                  <TodoCard key={todo.id} removeTodo={this.removeTodo(todo)}
+                  editTodo={this.editTodo(todo)} todo={todo}
+                  toggleTodo={this.toggleTodo(todo.id)}/>
+              )
             })
           }
         </div>
@@ -184,15 +182,16 @@ const mapStateToProps = (store) => {
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     addTodo: (todo) => dispatch(addTodo(todo)),
-//     removeTodo: (todo) => dispatch(removeTodo(todo))
+//     addTodo: (_todo) => dispatch(addTodo(_todo)),
+//     removeTodo: (_todo) => dispatch(removeTodo(_todo))
 //   };
 // };
 
 const mapDispatchToProps = ({
   addTodo,
   removeTodo,
-  updateTodo
+  updateTodo,
+  toggleTodo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);

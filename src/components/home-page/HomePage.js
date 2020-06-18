@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
 import Card from '../post-card/PostCard';
-import { allComments, postsList, usersList } from '../../constants';
+import { allComments, postsList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
 import AddUserForm from '../user-form/AddUserForm';
-import { inc, dec } from '../../actions';
+import { inc, dec, addUserTodo } from '../../actions';
 import { DECREMENT } from '../../action-types';
+import {UserCard} from '../user-card/UserCard';
 
 import './HomePage.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,11 +19,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
 
 class HomePage extends Component {
-  state = {
-    posts: [...postsList],
-    selectedOption: sortingOptions[0],
-    users: usersList
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [...postsList],
+      selectedOption: sortingOptions[0],
+      users: props.usersList
+    };
+  }
+
 
   onSort = (selectedOption) => {
     // детально про строку 42 тут: https://javascript.info/destructuring-assignment#array-destructuring
@@ -54,6 +59,7 @@ class HomePage extends Component {
 
   onSortByAuthorClick = () => {
     const res = [...this.state.posts];
+    const {usersList} = this.props;
 
     const sorted = res.sort(function (a, b) {
       const authorA = usersList.find(user => user.id === a.user_id);
@@ -76,14 +82,19 @@ class HomePage extends Component {
 
 
   onUserAdd = (newUser) => {
-
-    // todo 2: тут будет использована action-функция добавления пользователя ( чтоб он попал в редаксовый стор) вместо изменения стейта
-    this.setState({
-      users: [{
-        ...newUser,
-        id: uniqueId()
-      }, ...this.state.users]
-    })
+    const {
+      addUser
+    } = this.props;
+    addUserTodo({
+      ...newUser,
+      id: uniqueId()}
+    )
+    // this.setState({
+    //   users: [{
+    //     ...newUser,
+    //     id: uniqueId()
+    //   }, ...this.state.users]
+    // })
   };
 
   addPost = (newPost) => {
@@ -114,7 +125,7 @@ class HomePage extends Component {
 
   render() {
     debugger
-    const { count } = this.props;
+    const { count, usersList  } = this.props;
     const { posts, selectedOption, users } = this.state;
 
     return (
@@ -126,7 +137,15 @@ class HomePage extends Component {
         <PanelFromLecture label="Users">
           <AddUserForm onUserAdd={this.onUserAdd}/>
 
-        {/*  todo 2: добавить тут рендер списка пользователей (чтоб видеть что пользователь добавляется)*/}
+        {
+          usersList.map(user=>
+          {
+            return(
+                <UserCard key={user.id} user={user}/>
+            )
+          })
+        }
+
         </PanelFromLecture>
 
         <PanelFromLecture label="test">
@@ -171,23 +190,22 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-  // todo: обратите внимание, что с появлением нескольких редьюсеров меняется уровень вложенности объекта стор
-  const { counter: { count, property1, a } } = state;
+  const { counter: { count, property1, a },
+   usersReducer: {usersList}} = state;
   return {
     count,
     property1,
-    a
+    a,
+    usersList
   };
 };
-// todo: обратите внимание - эти 2 примера mapDispatchToProps равносильны, вы можете использовать любой из них
-// todo: обратите внимание, ниже mapDispatchToProps это функция
 const mapDispatchToProps = dispatch => {
   return {
     increment: () => dispatch(inc()),
-    decrement: () => dispatch({ type: DECREMENT, payload: 2 })
+    decrement: () => dispatch({ type: DECREMENT, payload: 2 }),
+    addUserTodo: (newUser) => dispatch(addUserTodo(newUser))
   };
 };
-// todo: обратите внимание, a тут это объект
 // const mapDispatchToProps = ({
 //   increment: inc,
 //   decrement: dec
