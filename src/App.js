@@ -46,7 +46,7 @@ class App extends Component {
             />
 
             {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
+            dtodo 2: добавить роут "/posts", который покажет компонент PostsList
           */}
             <Route path="/posts" component={PostsList} exact />
             <Route path="/posts/:id"

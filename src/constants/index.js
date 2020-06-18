@@ -1,5 +1,5 @@
-// todo 1: используйте тут ваш токен
-export const accessToken = '';
+// dtodo 1: используйте тут ваш токен
+export const accessToken = 'zKE7vNwKF5MSZRSqXx8xzaW6UsMLO-I_5xoV';
 
 export const user = {
   firstName: 'Poison',
