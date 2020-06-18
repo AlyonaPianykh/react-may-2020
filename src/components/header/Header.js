@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ViewPortContext } from '../../context/ViewPortContext';
 import { Header as DesktopHeader } from './HeaderFromLecture';
-import { MobileHeader } from './MobileHeader';
+import  MobileHeader  from './MobileHeader';
 import { viewPorts } from '../detect-view-port-wrapper/DetectViewPortWrapper';
 
 class Header extends Component {
