@@ -34,7 +34,7 @@ class PostForm extends Component {
   };
 
   onUserSelect = (event) => {
-    debugger
+    // debugger
     console.log(event.target.value);
     const selectedIndex = event.target.selectedIndex;
 
