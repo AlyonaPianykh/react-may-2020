@@ -15,24 +15,24 @@ import './Header.scss'
 export class MobileHeader extends React.Component {
     state = {
         isPanelOpen: false,
-        isBtnOpen: true
+        isBtnOpenPanel: true
     }
 
     togglePanel = () => {
         this.setState({
             isPanelOpen: true,
-            isBtnOpen: !this.state.isBtnOpen
+            isBtnOpenPanel: !this.state.isBtnOpenPanel
         })
     };
 
     render() {
-        const {isPanelOpen, isBtnOpen} = this.state;
+        const {isPanelOpen, isBtnOpenPanel} = this.state;
         return (
             <div className={`may-header-mobile`}>
                 <img alt="menu" src={HamburgerIcon} onClick={this.togglePanel}/>
                 {
                     isPanelOpen && (
-                        <div className={`may-header-mobile-panel${isBtnOpen ? ' none' : ''}`}>
+                        <div className={`may-header-mobile-panel ${isBtnOpenPanel && 'none'}`}>
                             <div className="close-btn">
                                 <img src={CloseIcon} alt="close icon" onClick={this.togglePanel}/>
                             </div>
