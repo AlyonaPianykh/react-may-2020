@@ -15,7 +15,7 @@ export const UserInfo = () => {
                     const {firstName, lastName, avatar} = value;
                     return (
                         <div className="user-info">
-                            <img src={avatar} className="user-info-avatar rounded-circle" alt="user-info-avatar"/>
+                            <img src={avatar} className="user-info-avatar rounded-circle" alt="user avatar"/>
                             <div className="user-info-details">
                                 <span>{firstName} </span>
                                 <span>{lastName}</span>
