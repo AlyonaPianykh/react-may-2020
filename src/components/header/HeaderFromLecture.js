@@ -13,7 +13,7 @@ export const Header = (props) => {
       {
         (value) => {
           const {isDarkTheme,  toggleTheme} = value;
-          debugger
+          // debugger
           return (
             <div className="may-header navbar">
               <img src={Logo} className="may-header-logo" />
@@ -33,7 +33,7 @@ export const Header = (props) => {
 
               <button className={`btn btn-primary ${isDarkTheme && 'dark'}`} onClick={toggleTheme}>Dark mode: {isDarkTheme ? 'on' : 'off'}</button>
               {/* todo не передавать тут пользователя как пропсу */}
-              <UserInfo user={user} />
+              <UserInfo />
             </div>
           )
         }
