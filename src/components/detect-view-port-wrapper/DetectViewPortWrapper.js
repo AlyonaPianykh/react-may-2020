@@ -33,10 +33,10 @@ export class DetectViewPortWrapper extends Component {
     let viewport = viewPorts.desktop;
 
     // console.log(width)
-    if (width >= DESKTOP_WIDTH) {
+    if (width > TABLET_WIDTH) {
       // debugger
       viewport = viewPorts.desktop;
-    } else if (width <= TABLET_WIDTH) {
+    } else if (width <= TABLET_WIDTH && width > MOBILE_WIDTH) {
       viewport = viewPorts.tablet;
     } else if (width <= MOBILE_WIDTH) {
       viewport = viewPorts.mobile;
