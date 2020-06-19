@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { links } from '../../constants';
 import Logo from '../../assets/react.png';
 
-import { UserInfo } from '../user-info/UserInfoFromLecture';
 import { DarkThemeContext } from '../../context/DarkThemeContext';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import './Header.scss';
@@ -44,20 +43,19 @@ export class TabletHeader extends Component {
                                             <span>{lastName}</span>
                                             <div >
                                                 {
-                                                    links.map(item => {
-                                                        return (
-                                                            <div className="nav-item" key={item.url}>
-                                                                <NavLink to={item.url} activeClassName="active"
-                                                                         className={`may-header-links-wrapper-link nav-link ${isDarkTheme ? 'dark' : ''}`}>
-                                                                    {item.name}
-                                                                </NavLink>
-                                                            </div>
-                                                        );
-                                                    })
+                                                links.map(item => {
+                                                    return (
+                                                        <div className="nav-item" key={item.url}>
+                                                            <NavLink to={item.url} activeClassName="active"
+                                                                     className={`may-header-links-wrapper-link nav-link 
+                                                                                ${isDarkTheme ? 'dark' : ''}`}>
+                                                                {item.name}
+                                                            </NavLink>
+                                                        </div>
+                                                    );
+                                                })
                                                 }
                                             </div>
-
-
                                         </div>
                                         <img alt="menu" src={HamburgerIcon} onClick={this.slidePanel} />
                                         <button className={`btn btn-primary ${isDarkTheme && 'dark'}`}
@@ -75,4 +73,4 @@ export class TabletHeader extends Component {
             </DarkThemeContext.Consumer>
         );
     }
-};
+}
