@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../action-types';
-
+import {ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_TODO,ADD_USER    } from '../action-types';
+import {usersList} from '../constants'
 const defaultData =  {
   count: 0,
   property1: 'test',
@@ -52,7 +52,24 @@ export function todoReducer(store = todoDefaultStore, action) {
       }
       return store;
     }
-    // todo 1: добавить обработку toggle статуса тудушки
+    // done_todo 1: добавить обработку toggle статуса тудушки
+      case TOGGLE_TODO: {
+          console.log("TOGGLE_TODO");
+          const id  = action.payload;
+          const {todos} = store;
+          const copyOfArray = [...todos];
+          const index = todos.findIndex(item => item.id === id);
+
+          if (index > -1) {
+              copyOfArray[index].doneStatus = !copyOfArray[index].doneStatus;
+
+              return {
+                  todos: copyOfArray
+              };
+          }
+          return store;
+      }
+
     default: return store;
   }
 }
@@ -88,12 +105,32 @@ export function counter(store = defaultData, action) {
 //   т.е. перенести логику из компонент в стор
 //   найти все компоненты, которые используют константу usersList и подписать их на стор ( с помощью connect функции)
 //   чтобы они могли читать массив пользвателей из стора, а не из константы
+const userDefaultStore = {
+    usersList: usersList
+};
+    export function usersReducer(store = userDefaultStore, action) {
+    switch (action.type) {
+        case ADD_USER: {
+            const newUser = action.payload;
+            const {userList} = store;
+
+            return {
+                userList: [...userList, newUser]
+            };
+        }
+
+
+        default: return store;
+    }
+}
+
 
 export const createRootReducer = () => {
   return combineReducers({
     counter,
-    todoReducer
-    // todo 2: добавить тут usersReducer
+    todoReducer,
+      usersReducer
+    // done_todo 2: добавить тут usersReducer
 
    // todo: обратите внимание, тут можно добавлять еще редьюсеры
   });
