@@ -46,9 +46,8 @@ export class DropDown extends Component {
   render() {
     const { selectedOption, options } = this.props;
     const { isOpen } = this.state;
-    debugger
     const darkThemeContextValue = this.context;
-
+    console.log('dark: ',darkThemeContextValue)
     return (
       <div className={`may-drop-down dropdown ${darkThemeContextValue.isDarkTheme && 'dark'}`} ref={this.dropDownRef}>
         <div className="dropdown-toggle" onClick={this.toggle}>{selectedOption || 'Select'}</div>

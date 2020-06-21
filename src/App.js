@@ -16,12 +16,14 @@ import { PostPreview } from './components/post-preview/PostPreview';
 
 import { DarkThemeContextWrapper } from './components/dark-theme-context-wrapper/DarkThemeContextWrapper';
 import { DetectViewPortWrapper } from './components/detect-view-port-wrapper/DetectViewPortWrapper';
+import {CurrentUserContext} from "./context/CurrentUserContext";
 import { postsList, usersList } from './constants';
 import { UserCard } from './components/user-card/UserCard';
 import PostsList from './components/posts-list/PostsList';
 import PostDetailsPage from './components/post-details-page/PostDetailsPage';
 import TodoPage from './components/todo-page/TodoPage';
 import { appStore } from './store';
+import {user} from "./constants";
 
 class App extends Component {
   render() {
