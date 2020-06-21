@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uniqId from 'uniqid';
 import { DropDown } from '../dropdown/DropDown';
+import {TodoCard} from "../todo-card/TodoCard";
 import { accessToken } from '../../constants';
 
-// todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
+// done_todo 1: импортнуть в этом файле функцию на toggle статуса тудушки
 //         подумайте какие еще шаги нужно выполнить, чтоб все заработало
-import { addTodo, removeTodo, updateTodo } from '../../actions';
+import { addTodo, removeTodo, updateTodo, toggleTodo } from '../../actions';
 
 class TodoPage extends Component {
   state = {
@@ -92,7 +93,7 @@ class TodoPage extends Component {
       doneStatus: false,
       id: ''
     });
-  }
+  };
 
   removeTodo = (todo) => {
     const { removeTodo } = this.props;
@@ -124,6 +125,17 @@ class TodoPage extends Component {
       id
     });
     this.resetForm();
+    this.setState({
+      isEditMode: false,
+    })
+  };
+
+  toggleTodo = (id) => {
+    const { toggleTodo } = this.props;
+
+    return () => {
+      toggleTodo && toggleTodo(id);
+    };
   };
 
   render() {
@@ -153,19 +165,14 @@ class TodoPage extends Component {
 
           {
             todos.map(todo => {
-              const { user, title, body, doneStatus, id } = todo;
               return (
-                <div key={id} className="card m-2">
-                  <div>{title}</div>
-                  <div>{body}</div>
-                  <div>{user}</div>
-                  {/*// todo 1: вместо div со статусом  показывать чекбокс
-                         при нажатии на чекбокс в сторе должен поменяться статус этой тудушки на противоположное значение
-                  */}
-                  <div>is done? {doneStatus ? 'yes' : 'no'}</div>
-                  <button onClick={this.removeTodo(todo)}>remove todo</button>
-                  <button onClick={this.editTodo(todo)}>edit todo</button>
-                </div>
+                  <TodoCard
+                      todo={todo}
+                      removeTodo={this.removeTodo}
+                      editTodo={this.editTodo}
+                      toggleTodo={this.toggleTodo}
+                      key={todo.id}
+                  />
               );
             })
           }
@@ -192,7 +199,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = ({
   addTodo,
   removeTodo,
-  updateTodo
+  updateTodo,
+  toggleTodo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);
