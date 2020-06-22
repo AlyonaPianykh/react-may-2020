@@ -86,20 +86,6 @@
       align-self: flex-end;
     }
   }
-  .panelM{
-    position: absolute;
-    width: 300px;
-    height: 100%;
-    left: -300px;
-    background: white;
-    border-right: black solid 2px;
-    z-index:99999;
-    transition-duration: 2s;
-
-    &.visibl{
-      left: 0px;
-    }
-  }
 
 }
 
