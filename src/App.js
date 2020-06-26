@@ -46,7 +46,7 @@ class App extends Component {
             />
 
             {/*
-            todo 2: добавить роут "/posts", который покажет компонент PostsList
+            dtodo 2: добавить роут "/posts", который покажет компонент PostsList
           */}
             <Route path="/posts" component={PostsList} exact />
             <Route path="/posts/:id"
@@ -89,7 +89,7 @@ const UserPage = (props) => {
   const toHomePage = () => {
     history.push('/home');
   };
-  debugger
+
   return (
     <div>
       <button className="btn btn-primary m-2" type="button" onClick={toUsersList}> Go back to users list</button>
