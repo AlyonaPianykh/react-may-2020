@@ -15,6 +15,7 @@ import * as allAction from '../../actions';
 import { DECREMENT } from '../../action-types';
 import { ViewPortContext } from '../../context/ViewPortContext';
 
+
 import './HomePage.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
