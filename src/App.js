@@ -16,20 +16,18 @@ import { PostPreview } from './components/post-preview/PostPreview';
 
 import { DarkThemeContextWrapper } from './components/dark-theme-context-wrapper/DarkThemeContextWrapper';
 import { DetectViewPortWrapper } from './components/detect-view-port-wrapper/DetectViewPortWrapper';
-import { postsList, user, usersList } from './constants';
+import { postsList, usersList } from './constants';
 import { UserCard } from './components/user-card/UserCard';
 import PostsList from './components/posts-list/PostsList';
 import PostDetailsPage from './components/post-details-page/PostDetailsPage';
 import TodoPage from './components/todo-page/TodoPage';
 import { appStore } from './store';
-import { CurrentUserContext } from './context/CurrentUserContext';
 
 class App extends Component {
   render() {
     return (
-// dtodo: обвернуть в CurrentUserContext наше приложение, как value положить переменную user из констант
-        <CurrentUserContext.Provider value={user}>
-        <DarkThemeContextWrapper>
+// todo: обвернуть в CurrentUserContext наше приложение, как value положить переменную user из констант
+      <DarkThemeContextWrapper>
         <DetectViewPortWrapper>
           <Provider store={appStore}>
             <Router>
@@ -78,7 +76,6 @@ class App extends Component {
           </Provider>
         </DetectViewPortWrapper>
       </DarkThemeContextWrapper>
-        </CurrentUserContext.Provider>
     );
   }
 }
@@ -95,7 +92,7 @@ const UserPage = (props) => {
   const toHomePage = () => {
     history.push('/home');
   };
-
+  debugger
   return (
     <div>
       <button className="btn btn-primary m-2" type="button" onClick={toUsersList}> Go back to users list</button>
