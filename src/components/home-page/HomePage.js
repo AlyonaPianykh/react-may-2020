@@ -3,7 +3,7 @@ import uniqueId from 'uniqid';
 
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
-import Card from '../post-card/PostCard';
+import {PostCard} from '../post-card/PostCard';
 import { allComments, postsList, usersList } from '../../constants';
 import AddPostForm from '../post-form/PostForm';
 import { DropDown } from '../dropdown/DropDown';
@@ -119,7 +119,7 @@ class HomePage extends Component {
                 const author = user ? `${user.first_name} ${user.last_name}` : '';
                 const comments = allComments.filter(comment => comment.post_id === item.id);
 
-                return <Card
+                return <PostCard
                   post={item}
                   key={item.id}
                   author={author}
