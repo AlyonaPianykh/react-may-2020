@@ -3,7 +3,6 @@ import uniqueId from 'uniqid';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DarkThemeContext } from '../../context/DarkThemeContext';
-
 import { PanelFromLecture } from '../panel/PanelFromLecture';
 import { PostPreview } from '../post-preview/PostPreview';
 import Card from '../post-card/PostCard';
@@ -19,6 +18,8 @@ import './HomePage.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const sortingOptions = ['Sort By Default', 'Sort By Author'];
+
+
 
 class HomePage extends Component {
   state = {
