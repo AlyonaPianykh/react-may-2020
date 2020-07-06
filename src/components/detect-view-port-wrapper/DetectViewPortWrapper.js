@@ -38,7 +38,7 @@ export class DetectViewPortWrapper extends Component {
       viewport = viewPorts.desktop;
     } else if (width >= TABLET_WIDTH) {
       viewport = viewPorts.tablet;
-    } else if (width < MOBILE_WIDTH) {
+    } else {
       viewport = viewPorts.mobile;
     }
 
