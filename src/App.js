@@ -16,7 +16,8 @@ import { PostPreview } from './components/post-preview/PostPreview';
 
 import { DarkThemeContextWrapper } from './components/dark-theme-context-wrapper/DarkThemeContextWrapper';
 import { DetectViewPortWrapper } from './components/detect-view-port-wrapper/DetectViewPortWrapper';
-import { postsList, usersList } from './constants';
+import { CurrentUserContext } from './context/CurrentUserContext';
+import { postsList, usersList, user } from './constants';
 import { UserCard } from './components/user-card/UserCard';
 import PostsList from './components/posts-list/PostsList';
 import PostDetailsPage from './components/post-details-page/PostDetailsPage';
@@ -26,56 +27,58 @@ import { appStore } from './store';
 class App extends Component {
   render() {
     return (
-// todo: обвернуть в CurrentUserContext наше приложение, как value положить переменную user из констант
-      <DarkThemeContextWrapper>
-        <DetectViewPortWrapper>
-          <Provider store={appStore}>
-            <Router>
-              <Header />
+// ttodo: обвернуть в CurrentUserContext наше приложение, как value положить переменную user из констант
+        <CurrentUserContext.Provider value={user}>
+            <DarkThemeContextWrapper>
+                <DetectViewPortWrapper>
+                    <Provider store={appStore}>
+                        <Router>
+                            <Header />
 
-              <Switch>
-                {/*<Route path="/" exact>*/}
-                {/*  <HomePage />*/}
-                {/*</Route>*/}
-                <Route path="/home" exact>
-                  <HomePage />
-                </Route>
-                <Route path="/todos" component={TodoPage} exact />
+                            <Switch>
+                                {/*<Route path="/" exact>*/}
+                                {/*  <HomePage />*/}
+                                {/*</Route>*/}
+                                <Route path="/home" exact>
+                                    <HomePage />
+                                </Route>
+                                <Route path="/todos" component={TodoPage} exact />
 
-                <Route path="/users" component={UsersListPage} exact />
-                <Route path="/users/:userId"
-                       render={(routerProps) => {
-                         return (<UserPage {...routerProps} />);
-                       }}
-                />
+                                <Route path="/users" component={UsersListPage} exact />
+                                <Route path="/users/:userId"
+                                       render={(routerProps) => {
+                                           return (<UserPage {...routerProps} />);
+                                       }}
+                                />
 
-                <Route path="/posts" component={PostsList} exact />
-                <Route path="/posts/:id"
-                       render={(routerProps) => {
-                         return (<PostDetailsPage {...routerProps} />);
-                       }}
-                />
+                                <Route path="/posts" component={PostsList} exact />
+                                <Route path="/posts/:id"
+                                       render={(routerProps) => {
+                                           return (<PostDetailsPage {...routerProps} />);
+                                       }}
+                                />
 
-                <Route path="/post-preview" render={(routerProps) => {
-                  debugger
-                  return (
-                    <PostPreview {...routerProps} />
-                  );
-                }} />
+                                <Route path="/post-preview" render={(routerProps) => {
+                                    // debugger
+                                    return (
+                                        <PostPreview {...routerProps} />
+                                    );
+                                }} />
 
-                <Redirect from="/" to="/home" exact />
-                {/*<Redirect from="*" to="/home"/>*/}
+                                <Redirect from="/" to="/home" exact />
+                                {/*<Redirect from="*" to="/home"/>*/}
 
-                <Route path="*">
-                  <NotFoundPage />
-                </Route>
+                                <Route path="*">
+                                    <NotFoundPage />
+                                </Route>
 
-              </Switch>
-              <Footer />
-            </Router>
-          </Provider>
-        </DetectViewPortWrapper>
-      </DarkThemeContextWrapper>
+                            </Switch>
+                            <Footer />
+                        </Router>
+                    </Provider>
+                </DetectViewPortWrapper>
+            </DarkThemeContextWrapper>
+        </CurrentUserContext.Provider>
     );
   }
 }
@@ -92,7 +95,7 @@ const UserPage = (props) => {
   const toHomePage = () => {
     history.push('/home');
   };
-  debugger
+  // debugger
   return (
     <div>
       <button className="btn btn-primary m-2" type="button" onClick={toUsersList}> Go back to users list</button>

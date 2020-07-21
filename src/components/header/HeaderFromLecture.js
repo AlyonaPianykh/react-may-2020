@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { links, user } from '../../constants';
+import { links } from '../../constants';
 import Logo from '../../assets/react.png';
 
 import { UserInfo } from '../user-info/UserInfoFromLecture';
@@ -13,10 +13,10 @@ export const Header = (props) => {
       {
         (value) => {
           const {isDarkTheme,  toggleTheme} = value;
-          debugger
+          // debugger
           return (
             <div className="may-header navbar">
-              <img src={Logo} className="may-header-logo" />
+              <img src={Logo} className="may-header-logo"  alt='logo'/>
 
               <div className="may-header-links-wrapper">
                 {
@@ -32,8 +32,8 @@ export const Header = (props) => {
               </div>
 
               <button className={`btn btn-primary ${isDarkTheme && 'dark'}`} onClick={toggleTheme}>Dark mode: {isDarkTheme ? 'on' : 'off'}</button>
-              {/* todo не передавать тут пользователя как пропсу */}
-              <UserInfo user={user} />
+              {/* ttodo не передавать тут пользователя как пропсу */}
+              <UserInfo />
             </div>
           )
         }

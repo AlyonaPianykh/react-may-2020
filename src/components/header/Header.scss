@@ -15,6 +15,12 @@
     color: darkred;
   }
 
+  img {
+    width: 40px;
+    height: 40px;
+    margin: 15px;
+  }
+
   .btn {
     &.dark {
       background-color: cadetblue;
@@ -26,6 +32,9 @@
 
     &-link {
       margin: 0 10px;
+      &.dark {
+        color: white;
+      }
     }
   }
 }
@@ -53,6 +62,12 @@
       animation: 0.5s ease-out 0s 1 slideInToLeft;
       transform: translateX(-100%);
     }
+
+    &.dark {
+      background-color: cadetblue;
+      color: goldenrod;
+    }
+  ;
 
     animation: 0.5s ease-out 0s 1 slideInFromLeft;
     position: fixed;

@@ -9,8 +9,8 @@ export const viewPorts = {
 };
 
 const DESKTOP_WIDTH = 1000;
-const MOBILE_WIDTH = 578;
 const TABLET_WIDTH = 720;
+const MOBILE_WIDTH = 578;
 
 export class DetectViewPortWrapper extends Component {
   state = {
@@ -32,13 +32,13 @@ export class DetectViewPortWrapper extends Component {
     const width = window.innerWidth;
     let viewport = viewPorts.desktop;
 
-    console.log(width)
-    if (width >= DESKTOP_WIDTH) {
-      debugger
+    // console.log(width)
+    if (width > TABLET_WIDTH) {
+      // debugger
       viewport = viewPorts.desktop;
-    } else if (width >= TABLET_WIDTH) {
+    } else if (width <= TABLET_WIDTH && width > MOBILE_WIDTH) {
       viewport = viewPorts.tablet;
-    } else if (width < MOBILE_WIDTH) {
+    } else if (width <= MOBILE_WIDTH) {
       viewport = viewPorts.mobile;
     }
 
