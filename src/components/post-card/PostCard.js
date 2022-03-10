@@ -2,13 +2,13 @@ import React from 'react';
 
 import DefaultImg from '../../assets/default-empty-img.png';
 import './PostCard.scss';
+import {Comment} from './Comment';
 
 export function PostCard(props) {
   console.log(props);
   // todo: достать пропсу comments из props ниже в 9й строке
-  const { post, hasImage } = props;
-
-  console.log('hasImage', hasImage);
+  const { post, hasImage,comments,author} = props;
+  // console.log('hasImage', hasImage);
   const { title, body } = post;
 
   const kittyUrl = `https://cataas.com/cat/says/hello%20world!?${Math.random() * 1000}`;
@@ -67,7 +67,15 @@ export function PostCard(props) {
           email - почта автора комментария
           body - текст комментария
     */}
-
+      <div className='comments'>{
+        comments.map(comm => {
+          return (
+              <Comment key={comm.id} comment={comm} />
+          );
+        })
+        }
+      </div>
+      <div className="blockquote-footer">{author}</div>
     </div>
   );
 }
